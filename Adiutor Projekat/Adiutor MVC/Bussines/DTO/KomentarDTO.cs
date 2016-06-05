@@ -11,5 +11,8 @@ namespace Bussines.DTO
         public int Id { get; set; }
         public string Tekst { get; set; }
         public DateTime DatumVreme { get; set; }
+
+        public int KorisnikId { get; set; }
+        public int OdgovorId { get; set; }
     }
 }

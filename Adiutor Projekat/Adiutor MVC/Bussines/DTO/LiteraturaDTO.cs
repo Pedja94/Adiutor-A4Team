@@ -11,5 +11,7 @@ namespace Bussines.DTO
         public int Id { get; set; }
         public string Naziv { get; set; }
         public string Link { get; set; }
+
+        public int OblastId { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace Bussines.DTO
     {
         public int Id { get; set; }
         public string Ime { get; set; }
+
+        public int PredmetId { get; set; }
     }
 }

@@ -14,5 +14,8 @@ namespace Bussines.DTO
         public int Minus { get; set; }
         public int Odobreno { get; set; }
         public DateTime DatumVreme { get; set; }
+
+        public int KorisnikId { get; set; }
+        public int PitanjeId { get; set; }
     }
 }

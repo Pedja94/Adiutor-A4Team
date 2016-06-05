@@ -19,5 +19,8 @@ namespace Bussines.DTO
         public string Smer { get; set; }
         public string Opis { get; set; }
         public decimal GodinaStudija { get; set; }
+
+        public int RoleId { get; set; }
+        public int StatusId { get; set; }
     }
 }
