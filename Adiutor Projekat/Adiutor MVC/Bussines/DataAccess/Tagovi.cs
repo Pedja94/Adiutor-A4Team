@@ -144,7 +144,7 @@ namespace Business.DataAccess
 
         public static void DodajPredlozeniTag(Predlozeni_TagDTO pt)
         {
-            Tag t = new Tag
+            TagDTO t = new TagDTO
             {
                 Ime = pt.Ime,
                 Opis = pt.Opis,
@@ -153,8 +153,8 @@ namespace Business.DataAccess
 
             pt.DatumObrade = DateTime.Now;
 
-            //Tagovi.Dodaj(t);
-            //PredlozeniTagovi.Izmeni(pt);
+            Tagovi.Dodaj(t);
+            PredlozeniTagovi.Izmeni(pt);
         }
     }
 }
