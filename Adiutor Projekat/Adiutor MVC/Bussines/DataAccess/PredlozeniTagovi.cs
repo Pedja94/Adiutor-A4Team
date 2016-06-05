@@ -7,18 +7,28 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
     public static class PredlozeniTagovi
     {
-        public static void Dodaj(Predlozeni_Tag c)
+        public static void Dodaj(Predlozeni_TagDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Predlozeni_Tag pt = new Predlozeni_Tag()
+                {
+                    DatumObrade = c.DatumObrade,
+                    DatumPostavljanja = c.DatumPostavljanja,
+                    Ime = c.Ime,
+                    Opis = c.Opis,
+                    TagIme = c.TagIme
+                };
+
+                s.SaveOrUpdate(pt);
                 s.Flush();
                 s.Close();
             }
@@ -47,20 +57,28 @@ namespace Business.DataAccess
             }
         }
 
-        static public Predlozeni_Tag Procitaj(int id)
+        static public Predlozeni_TagDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Predlozeni_Tag p = s.Load<Predlozeni_Tag>(id);
-                Predlozeni_Tag st = (Predlozeni_Tag)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
 
+                Predlozeni_TagDTO pt = new Predlozeni_TagDTO()
+                {
+                    Id = p.Id,
+                    DatumObrade = p.DatumObrade,
+                    DatumPostavljanja = p.DatumPostavljanja,
+                    Ime = p.Ime,
+                    Opis = p.Opis,
+                    TagIme = p.TagIme
+                };
 
                 s.Flush();
                 s.Close();
 
-                return st;
+                return pt;
 
             }
             catch (Exception e)
@@ -71,13 +89,23 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Predlozeni_Tag c)
+        static public void Izmeni(Predlozeni_TagDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.Update(c);
+                Predlozeni_Tag pt = new Predlozeni_Tag()
+                {
+                    Id = c.Id,
+                    DatumObrade = c.DatumObrade,
+                    DatumPostavljanja = c.DatumPostavljanja,
+                    Ime = c.Ime,
+                    Opis = c.Opis,
+                    TagIme = c.TagIme
+                };
+
+                s.Update(pt);
 
                 s.Flush();
                 s.Close();
@@ -90,7 +118,7 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Predlozeni_Tag> VratiSve()
+        static public List<Predlozeni_TagDTO> VratiSve()
         {
             try
             {
@@ -99,7 +127,24 @@ namespace Business.DataAccess
 
                 List<Predlozeni_Tag> Predlozeni_Tagi = (from k in s.Query<Predlozeni_Tag>()
                                             select k).ToList<Predlozeni_Tag>();
-                return Predlozeni_Tagi;
+
+                List<Predlozeni_TagDTO> retVal = new List<Predlozeni_TagDTO>();
+
+                foreach (Predlozeni_Tag p in Predlozeni_Tagi)
+                {
+                    Predlozeni_TagDTO dto = new Predlozeni_TagDTO()
+                    {
+                        Id = p.Id,
+                        DatumObrade = p.DatumObrade,
+                        DatumPostavljanja = p.DatumPostavljanja,
+                        Ime = p.Ime,
+                        Opis = p.Opis,
+                        TagIme = p.TagIme
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.DataAccess;
+using Business.DTO;
 
 namespace Bussines
 {
@@ -11,7 +12,7 @@ namespace Bussines
     {
         static void Main(string[] args)
         {
-            Korisnici.Nadji("rank");
+            List<KomentarDTO> list = Komentari.VratiSve(40);
         }
     }
 }

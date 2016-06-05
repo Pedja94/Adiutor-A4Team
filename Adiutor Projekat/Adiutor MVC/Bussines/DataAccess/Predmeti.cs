@@ -7,6 +7,7 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
@@ -32,13 +33,25 @@ namespace Business.DataAccess
             }
         }
 
-        public static void Dodaj(Predmet c)
+        public static void Dodaj(PredmetDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Profesor prof = new Profesor()
+                {
+                    Id = c.ProfesorId
+                };
+                Predmet pre = new Predmet()
+                {
+                    GodinaStudija = c.GodinaStudija,
+                    Naziv = c.Naziv,
+                    Semestar = c.Semestar,
+                    ZaduzeniProfesor = prof
+                };
+
+                s.SaveOrUpdate(pre);
                 s.Flush();
                 s.Close();
             }
@@ -48,20 +61,27 @@ namespace Business.DataAccess
             }
         }
 
-        static public Predmet Procitaj(int id)
+        static public PredmetDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Predmet p = s.Load<Predmet>(id);
-                Predmet st = (Predmet)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
 
+                PredmetDTO pre = new PredmetDTO()
+                {
+                    Id = p.Id,
+                    GodinaStudija = p.GodinaStudija,
+                    Naziv = p.Naziv,
+                    Semestar = p.Semestar,
+                    ProfesorId = p.ZaduzeniProfesor.Id
+                };
 
                 s.Flush();
                 s.Close();
 
-                return st;
+                return pre;
 
             }
             catch (Exception e)
@@ -72,13 +92,26 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Predmet c)
+        static public void Izmeni(PredmetDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.Update(c);
+                Profesor prof = new Profesor()
+                {
+                    Id = c.ProfesorId
+                };
+                Predmet pre = new Predmet()
+                {
+                    Id = c.Id,
+                    GodinaStudija = c.GodinaStudija,
+                    Naziv = c.Naziv,
+                    Semestar = c.Semestar,
+                    ZaduzeniProfesor = prof
+                };
+
+                s.Update(pre);
 
                 s.Flush();
                 s.Close();
@@ -91,7 +124,7 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Predmet> VratiSve()
+        static public List<PredmetDTO> VratiSve()
         {
             try
             {
@@ -100,7 +133,23 @@ namespace Business.DataAccess
 
                 List<Predmet> Predmeti = (from k in s.Query<Predmet>()
                                             select k).ToList<Predmet>();
-                return Predmeti;
+
+                List<PredmetDTO> retVal = new List<PredmetDTO>();
+
+                foreach (Predmet p in Predmeti)
+                {
+                    PredmetDTO pre = new PredmetDTO()
+                    {
+                        Id = p.Id,
+                        GodinaStudija = p.GodinaStudija,
+                        Naziv = p.Naziv,
+                        Semestar = p.Semestar,
+                        ProfesorId = p.ZaduzeniProfesor.Id
+                    };
+                    retVal.Add(pre);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {
@@ -109,6 +158,39 @@ namespace Business.DataAccess
             }
         }
 
+        //static public List<PredmetDTO> VratiSve(int smerID)
+        //{
+        //    try
+        //    {
+        //        ISession s = DataLayer.GetSession();
+
+
+        //        List<Predmet> Predmeti = (from k in s.Query<Predmet>()
+        //                                  select k).ToList<Predmet>();
+
+        //        List<PredmetDTO> retVal = new List<PredmetDTO>();
+
+        //        foreach (Predmet p in Predmeti)
+        //        {
+        //            PredmetDTO pre = new PredmetDTO()
+        //            {
+        //                Id = p.Id,
+        //                GodinaStudija = p.GodinaStudija,
+        //                Naziv = p.Naziv,
+        //                Semestar = p.Semestar,
+        //                ProfesorId = p.ZaduzeniProfesor.Id
+        //            };
+        //            retVal.Add(pre);
+        //        }
+
+        //        return retVal;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        return null;
+        //    }
+        //}
 
         public static void DodajZaduzenog(int Id, Profesor p)
         {
@@ -159,37 +241,6 @@ namespace Business.DataAccess
                 return null;
             }
         }
-
-        static public void DodajSmer(Predmet p, Smer smer)
-        {
-            try
-            {
-                ISession s = DataLayer.GetSession();
-                p.PripadaSmerovima.Add(smer);
-
-                s.Update(p);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        static public void ObrisiSmer(Predmet p, Smer smer)
-        {
-            try
-            {
-                ISession s = DataLayer.GetSession();
-                p.PripadaSmerovima.Remove(smer);
-
-                s.Update(p);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
 
     }
 }

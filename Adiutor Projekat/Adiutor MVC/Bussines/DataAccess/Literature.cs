@@ -7,18 +7,30 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
     public static class Literature
     {
-        public static void Dodaj(Literatura c)
+        public static void Dodaj(LiteraturaDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Oblast obl = new Oblast()
+                {
+                    Id = c.OblastId
+                };
+                Literatura lit = new Literatura()
+                {
+                    Link = c.Link,
+                    Naziv = c.Naziv,
+                    PripadaOblasti = obl
+                };
+
+                s.SaveOrUpdate(lit);
                 s.Flush();
                 s.Close();
             }
@@ -47,20 +59,26 @@ namespace Business.DataAccess
             }
         }
 
-        static public Literatura Procitaj(int id)
+        static public LiteraturaDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Literatura p = s.Load<Literatura>(id);
-                Literatura st = (Literatura)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
 
+                LiteraturaDTO lit = new LiteraturaDTO()
+                {
+                    Id = p.Id,
+                    Link = p.Link,
+                    Naziv = p.Naziv,
+                    OblastId = p.PripadaOblasti.Id
+                };
 
                 s.Flush();
                 s.Close();
 
-                return st;
+                return lit;
 
             }
             catch (Exception e)
@@ -71,13 +89,25 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Literatura c)
+        static public void Izmeni(LiteraturaDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.Update(c);
+                Oblast obl = new Oblast()
+                {
+                    Id = c.OblastId
+                };
+                Literatura lit = new Literatura()
+                {
+                    Id = c.Id,
+                    Link = c.Link,
+                    Naziv = c.Naziv,
+                    PripadaOblasti = obl
+                };
+
+                s.Update(lit);
 
                 s.Flush();
                 s.Close();
@@ -90,25 +120,25 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Literatura> VratiSve()
-        {
-            try
-            {
-                ISession s = DataLayer.GetSession();
+        //static public List<Literatura> VratiSve()
+        //{
+        //    try
+        //    {
+        //        ISession s = DataLayer.GetSession();
 
 
-                List<Literatura> Literature = (from k in s.Query<Literatura>()
-                                            select k).ToList<Literatura>();
-                return Literature;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-        }
+        //        List<Literatura> Literature = (from k in s.Query<Literatura>()
+        //                                    select k).ToList<Literatura>();
+        //        return Literature;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        return null;
+        //    }
+        //}
 
-        static public List<Literatura> VratiSve(int OblastId)
+        static public List<LiteraturaDTO> VratiSve(int OblastId)
         {
             try
             {
@@ -118,7 +148,22 @@ namespace Business.DataAccess
                 List<Literatura> Literature = (from k in s.Query<Literatura>()
                                                 where (k.PripadaOblasti.Id == OblastId)
                                                 select k).ToList<Literatura>();
-                return Literature;
+
+                List<LiteraturaDTO> retVal = new List<LiteraturaDTO>();
+
+                foreach (Literatura lit in Literature)
+                {
+                    LiteraturaDTO dto = new LiteraturaDTO()
+                    {
+                        Id = lit.Id,
+                        Link = lit.Link,
+                        Naziv = lit.Naziv,
+                        OblastId = lit.PripadaOblasti.Id
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {
@@ -127,18 +172,18 @@ namespace Business.DataAccess
             }
         }
 
-        public static void DodajLiteraturuOblasti(int id, Literatura l)
-        {
-            Oblast o = Oblasti.Procitaj(id);
-            l.PripadaOblasti = o;
-            Izmeni(l);
-        }
+        //public static void DodajLiteraturuOblasti(int id, Literatura l)
+        //{
+        //    Oblast o = Oblasti.Procitaj(id);
+        //    l.PripadaOblasti = o;
+        //    Izmeni(l);
+        //}
 
-        public static void IzbrisiLiteraturuOblasti(int id, Literatura l)
-        {
-            Oblast o = Oblasti.Procitaj(id);
-            l.PripadaOblasti = null;
-            Izmeni(l);
-        }
+        //public static void IzbrisiLiteraturuOblasti(int id, Literatura l)
+        //{
+        //    Oblast o = Oblasti.Procitaj(id);
+        //    l.PripadaOblasti = null;
+        //    Izmeni(l);
+        //}
     }
 }
