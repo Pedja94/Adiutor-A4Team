@@ -250,3 +250,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+Adiutor Projekat/Adiutor MVC/Bussines/Program.cs
+*.csproj
+Adiutor Projekat/Adiutor MVC/Bussines/Business.csproj
