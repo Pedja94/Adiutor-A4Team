@@ -3,40 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.DTO;
 using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DataAccess;
 using Business.DTO;
 
-namespace Business.DataAccess
+namespace Bussines.DataAccess
 {
-    public static class Predmet_Smerovi
+    public static class Pitanja_Tagovi
     {
-        public static void Dodaj(Predmet_SmerDTO c)
+        public static void Dodaj(Pitanje_TagDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                Predmet p = new Predmet()
+                Pitanje p = new Pitanje()
                 {
-                    Id = c.PredmetId
+                    Id = c.PitanjeId
                 };
 
 
-                Smer sm = new Smer()
+                Tag t = new Tag()
                 {
-                    Id = c.SmerId
+                    Id = c.TagId
                 };
 
-                Predmet_Smer Predmet_Smer = new Predmet_Smer()
+                Pitanje_Tag Pitanje_Tag = new Pitanje_Tag()
                 {
-                    Smer = sm,
-                    Predmet = p
+                    Pitanje = p,
+                    Tag = t
                 };
 
-                s.SaveOrUpdate(Predmet_Smer);
+                s.SaveOrUpdate(Pitanje_Tag);
                 s.Flush();
                 s.Close();
             }
@@ -53,7 +55,7 @@ namespace Business.DataAccess
                 ISession s = DataLayer.GetSession();
 
 
-                Predmet_Smer st = s.Load<Predmet_Smer>(id);
+                Pitanje_Tag st = s.Load<Pitanje_Tag>(id);
 
                 s.Delete(st);
                 s.Flush();
@@ -66,28 +68,28 @@ namespace Business.DataAccess
         }
 
 
-        static public Predmet_SmerDTO Nadji(int PredmetId, int SmerId)
+        static public Pitanje_TagDTO Nadji(int PitanjeId, int TagId)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
-                PredmetDTO predmet = Predmeti.Procitaj(PredmetId);
-                SmerDTO smer = Smerovi.Procitaj(SmerId);
+                PitanjeDTO pitanje = Pitanja.Procitaj(PitanjeId);
+                TagDTO tag = Tagovi.Procitaj(TagId);
 
-                Predmet_Smer ps = (from k in s.Query<Predmet_Smer>()
-                                   where (k.Predmet.Id == predmet.Id  && k.Smer.Id == smer.Id)
+                Pitanje_Tag pt = (from k in s.Query<Pitanje_Tag>()
+                                   where (k.Pitanje.Id == pitanje.Id && k.Tag.Id == tag.Id)
                                    select k).Single();
 
-                Predmet_SmerDTO psdto = new Predmet_SmerDTO
+                Pitanje_TagDTO ptdto = new Pitanje_TagDTO
                 {
-                    PredmetId = ps.Predmet.Id,
-                    SmerId = ps.Smer.Id
+                    PitanjeId = pt.Pitanje.Id,
+                    TagId = pt.Tag.Id
                 };
 
                 s.Flush();
                 s.Close();
 
-                return psdto;
+                return ptdto;
             }
             catch (Exception e)
             {

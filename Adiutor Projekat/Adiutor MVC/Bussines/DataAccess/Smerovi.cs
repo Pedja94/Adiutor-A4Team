@@ -7,18 +7,24 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
     public static class Smerovi
     {
-        public static void Dodaj(Smer c)
+        public static void Dodaj(SmerDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Smer Smer = new Smer
+                {
+                    Ime = c.Ime
+                };
+
+                s.SaveOrUpdate(Smer);
                 s.Flush();
                 s.Close();
             }
@@ -47,20 +53,23 @@ namespace Business.DataAccess
             }
         }
 
-        static public Smer Procitaj(int id)
+        static public SmerDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Smer p = s.Load<Smer>(id);
-                Smer st = (Smer)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
-
+                SmerDTO Smer = new SmerDTO
+                {
+                    Id = p.Id,
+                    Ime = p.Ime
+                };
 
                 s.Flush();
                 s.Close();
 
-                return st;
+                return Smer;
 
             }
             catch (Exception e)
@@ -71,13 +80,18 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Smer c)
+        static public void Izmeni(SmerDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.Update(c);
+                Smer Smer = new Smer
+                {
+                    Id = c.Id,
+                    Ime = c.Ime
+                };
+                s.Update(Smer);
 
                 s.Flush();
                 s.Close();
@@ -90,16 +104,28 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Smer> VratiSve()
+        static public List<SmerDTO> VratiSve()
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
+                List<SmerDTO> retVal = new List<SmerDTO>();
 
                 List<Smer> Smerovi = (from k in s.Query<Smer>()
-                                            select k).ToList<Smer>();
-                return Smerovi;
+                                    select k).ToList<Smer>();
+
+                foreach (Smer Smer in Smerovi)
+                {
+                    SmerDTO dto = new SmerDTO()
+                    {
+                        Id = Smer.Id,
+                        Ime = Smer.Ime
+                    };
+
+                    retVal.Add(dto);
+                }
+                return retVal;
             }
             catch (Exception e)
             {
@@ -109,18 +135,20 @@ namespace Business.DataAccess
         }
 
         public static void DodajPredmetSmeru(int PredmetId, int SmerId) {
-            Smer smer = Procitaj(SmerId);
-            Predmet p = Predmeti.Procitaj(PredmetId);
-            smer.ImaPredmete.Add(p);
-            Izmeni(smer);
+
+            Predmet_SmerDTO ps = new Predmet_SmerDTO
+            {
+                PredmetId = PredmetId,
+                SmerId = SmerId
+            };
+
+            Predmet_Smerovi.Dodaj(ps);
         }
 
         public static void IzbrisiPredmetSaSmera(int PredmetId, int SmerId)
         {
-            Smer smer = Procitaj(SmerId);
-            Predmet p = Predmeti.Procitaj(PredmetId);
-            smer.ImaPredmete.Remove(p);
-            Izmeni(smer);
+            Predmet_SmerDTO ps  = Predmet_Smerovi.Nadji(PredmetId, SmerId);
+            Predmet_Smerovi.Obrisi(ps.Id);
         }
     }
 }

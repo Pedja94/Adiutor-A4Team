@@ -10,13 +10,8 @@ namespace Database.Entiteti
     {
         public virtual int Id { get; set; }
 
-        public virtual IList<Tag> ImaTagove { get; set; }
-        public virtual IList<Pitanje> ImaPitanja { get; set; }
+        public virtual Tag Tag { get; set; }
+        public virtual Pitanje Pitanje { get; set; }
 
-        public Pitanje_Tag()
-        {
-            ImaTagove = new List<Tag>();
-            ImaPitanja = new List<Pitanje>();
-        }
     }
 }
