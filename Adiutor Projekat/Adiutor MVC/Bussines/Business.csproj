@@ -71,6 +71,14 @@
     <Compile Include="DataAccess\Smerovi.cs" />
     <Compile Include="DataAccess\Statusi.cs" />
     <Compile Include="DataAccess\Tagovi.cs" />
+    <Compile Include="DTO\KomentarDTO.cs" />
+    <Compile Include="DTO\KorisnikDTO.cs" />
+    <Compile Include="DTO\LiteraturaDTO.cs" />
+    <Compile Include="DTO\OblastDTO.cs" />
+    <Compile Include="DTO\OdgovorDTO.cs" />
+    <Compile Include="DTO\PitanjeDTO.cs" />
+    <Compile Include="DTO\Pitanje_TagDTO.cs" />
+    <Compile Include="DTO\Predlozeni_TagDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,9 +92,7 @@
       <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
