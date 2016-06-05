@@ -135,7 +135,7 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Pitanje> VratiSvaPitanjaOblasti(int OblastId)
+        static public List<PitanjeDTO> VratiSvaPitanjaOblasti(int OblastId)
         {
             try
             {
@@ -145,7 +145,24 @@ namespace Business.DataAccess
                 List<Pitanje> Pitanja = (from k in s.Query<Pitanje>()
                                             where (k.PripadaOblasti.Id == OblastId)
                                             select k).ToList<Pitanje>();
-                return Pitanja;
+
+                List<PitanjeDTO> retVal = new List<PitanjeDTO>();
+
+                foreach (Pitanje pitanje in Pitanja)
+                {
+                    PitanjeDTO dto = new PitanjeDTO()
+                    {
+                        Id = pitanje.Id,
+                        Tekst = pitanje.Tekst,
+                        DatumVreme = pitanje.DatumVreme,
+                        KorisnikId = pitanje.ImaKorisnika.Id,
+                        OblastId = pitanje.PripadaOblasti.Id
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {
@@ -153,7 +170,7 @@ namespace Business.DataAccess
                 return null;
             }
         }
-        static public List<Pitanje> VratiSvaPitanjaKorisnika(int KorisnikId)
+        static public List<PitanjeDTO> VratiSvaPitanjaKorisnika(int KorisnikId)
         {
             try
             {
@@ -163,7 +180,24 @@ namespace Business.DataAccess
                 List<Pitanje> Pitanja = (from k in s.Query<Pitanje>()
                                          where (k.ImaKorisnika.Id == KorisnikId)
                                          select k).ToList<Pitanje>();
-                return Pitanja;
+
+                List<PitanjeDTO> retVal = new List<PitanjeDTO>();
+
+                foreach (Pitanje pitanje in Pitanja)
+                {
+                    PitanjeDTO dto = new PitanjeDTO()
+                    {
+                        Id = pitanje.Id,
+                        Tekst = pitanje.Tekst,
+                        DatumVreme = pitanje.DatumVreme,
+                        KorisnikId = pitanje.ImaKorisnika.Id,
+                        OblastId = pitanje.PripadaOblasti.Id
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {
@@ -172,17 +206,41 @@ namespace Business.DataAccess
             }
         }
 
-        static public List<Pitanje> VratiSvaPitanjaTaga(int TagId)
+        static public List<PitanjeDTO> VratiSvaPitanjaTaga(int TagId)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
 
-                List<Pitanje> Pitanja = (from k in s.Query<Pitanje>()
-                                         where (k.PripadaOblasti.Id == TagId)
-                                         select k).ToList<Pitanje>();
-                return Pitanja;
+                List<Pitanje_Tag> PitanjaTagovi = (from k in s.Query<Pitanje_Tag>()
+                                         where (k.Tag.Id == TagId)
+                                         select k).ToList<Pitanje_Tag>();
+
+                List<Pitanje> pitanja = new List<Pitanje>();
+                foreach(Pitanje_Tag pt in PitanjaTagovi)
+                {
+                    Pitanje pitanje = (from k in s.Query<Pitanje>() where (k.Id == pt.Pitanje.Id) select k).Single();
+                    pitanja.Add(pitanje);    
+                }
+
+                List<PitanjeDTO> retVal = new List<PitanjeDTO>();
+
+                foreach (Pitanje pitanje in pitanja)
+                {
+                    PitanjeDTO dto = new PitanjeDTO()
+                    {
+                        Id = pitanje.Id,
+                        Tekst = pitanje.Tekst,
+                        DatumVreme = pitanje.DatumVreme,
+                        KorisnikId = pitanje.ImaKorisnika.Id,
+                        OblastId = pitanje.PripadaOblasti.Id
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {
