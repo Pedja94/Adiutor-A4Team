@@ -7,18 +7,35 @@ using NHibernate;
 using NHibernate.Linq;
 using Database.Entiteti;
 using Database;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
     public static class Komentari
     {
-        public static void Dodaj(Komentar c)
+        public static void Dodaj(KomentarDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Korisnik user = new Korisnik()
+                {
+                    Id = c.KorisnikId
+                };
+                Odgovor odg = new Odgovor() 
+                {
+                    Id = c.OdgovorId
+                };
+                Komentar coment = new Komentar() 
+                {
+                    Tekst = c.Tekst,
+                    DatumVreme = c.DatumVreme,
+                    ImaKorisnika = user,
+                    NaOdgovor = odg
+                };
+
+                s.SaveOrUpdate(coment);
                 s.Flush();
                 s.Close();
             }
@@ -47,15 +64,21 @@ namespace Business.DataAccess
             }
         }
 
-        static public Komentar Procitaj(int id)
+        static public KomentarDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Komentar p = s.Load<Komentar>(id);
-                Komentar st = (Komentar)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
-
+                KomentarDTO st = new KomentarDTO() 
+                {
+                    Id = p.Id,
+                    Tekst = p.Tekst,
+                    DatumVreme = p.DatumVreme,
+                    KorisnikId = p.ImaKorisnika.Id,
+                    OdgovorId = p.NaOdgovor.Id
+                };
 
                 s.Flush();
                 s.Close();
@@ -71,13 +94,29 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Komentar c)
+        static public void Izmeni(KomentarDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
+                Korisnik user = new Korisnik()
+                {
+                    Id = c.KorisnikId
+                };
+                Odgovor odg = new Odgovor()
+                {
+                    Id = c.OdgovorId
+                };
+                Komentar coment = new Komentar()
+                {
+                    Id = c.Id,
+                    Tekst = c.Tekst,
+                    DatumVreme = c.DatumVreme,
+                    ImaKorisnika = user,
+                    NaOdgovor = odg
+                };
 
-                s.Update(c);
+                s.Update(coment);
 
                 s.Flush();
                 s.Close();
@@ -90,7 +129,7 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Komentar> VratiSve(int OdgovorId)
+        static public List<KomentarDTO> VratiSve(int OdgovorId)
         {
             try
             {
@@ -100,7 +139,23 @@ namespace Business.DataAccess
                 List<Komentar> komentari = (from k in s.Query<Komentar>()
                                                        where (k.NaOdgovor.Id == OdgovorId)
                                                        select k).ToList<Komentar>();
-                return komentari;
+
+                List<KomentarDTO> retVal = new List<KomentarDTO>();
+
+                foreach (Komentar komentar in komentari)
+                {
+                    KomentarDTO dto = new KomentarDTO() 
+                    {
+                        Id = komentar.Id,
+                        Tekst = komentar.Tekst,
+                        DatumVreme = komentar.DatumVreme,
+                        KorisnikId = komentar.ImaKorisnika.Id,
+                        OdgovorId = komentar.NaOdgovor.Id
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch(Exception e)
             {
