@@ -158,39 +158,39 @@ namespace Business.DataAccess
             }
         }
 
-        //static public List<PredmetDTO> VratiSve(int smerID)
-        //{
-        //    try
-        //    {
-        //        ISession s = DataLayer.GetSession();
+        static public List<PredmetDTO> VratiSve(int smerID)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
 
 
-        //        List<Predmet> Predmeti = (from k in s.Query<Predmet>()
-        //                                  select k).ToList<Predmet>();
+                List<Predmet> Predmeti = (from k in s.Query<Predmet>()
+                                          select k).ToList<Predmet>();
 
-        //        List<PredmetDTO> retVal = new List<PredmetDTO>();
+                List<PredmetDTO> retVal = new List<PredmetDTO>();
 
-        //        foreach (Predmet p in Predmeti)
-        //        {
-        //            PredmetDTO pre = new PredmetDTO()
-        //            {
-        //                Id = p.Id,
-        //                GodinaStudija = p.GodinaStudija,
-        //                Naziv = p.Naziv,
-        //                Semestar = p.Semestar,
-        //                ProfesorId = p.ZaduzeniProfesor.Id
-        //            };
-        //            retVal.Add(pre);
-        //        }
+                foreach (Predmet p in Predmeti)
+                {
+                    PredmetDTO pre = new PredmetDTO()
+                    {
+                        Id = p.Id,
+                        GodinaStudija = p.GodinaStudija,
+                        Naziv = p.Naziv,
+                        Semestar = p.Semestar,
+                        ProfesorId = p.ZaduzeniProfesor.Id
+                    };
+                    retVal.Add(pre);
+                }
 
-        //        return retVal;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        return null;
-        //    }
-        //}
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
 
         public static void DodajZaduzenog(int Id, ProfesorDTO p)
         {
@@ -222,25 +222,25 @@ namespace Business.DataAccess
             }
         }
 
-        static public IList<Smer> VratiSveSmerove(int PredmetId)
-        {
-            try
-            {
-                ISession s = DataLayer.GetSession();
-                Predmet p = s.Load<Predmet>(PredmetId);
+        //static public IList<Smer> VratiSveSmerove(int PredmetId)
+        //{
+        //    try
+        //    {
+        //        ISession s = DataLayer.GetSession();
+        //        Predmet p = s.Load<Predmet>(PredmetId);
 
-                //List<Smer> smerovi = (from smer in s.Query<Smer>()
-                //                            where (smer.ImaPredmete.Contains(p))
-                //                            select smer).ToList<Smer>();
+        //        //List<Smer> smerovi = (from smer in s.Query<Smer>()
+        //        //                            where (smer.ImaPredmete.Contains(p))
+        //        //                            select smer).ToList<Smer>();
 
-                return p.PripadaSmerovima;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-        }
+        //        return p.PripadaSmerovima;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        return null;
+        //    }
+        //}
 
     }
 }
