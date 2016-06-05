@@ -21,7 +21,7 @@ namespace Business.DataAccess
 
                 Smer Smer = new Smer
                 {
-                    Ime = c.Ime
+                    Ime = c.Ime,
                 };
 
                 s.SaveOrUpdate(Smer);

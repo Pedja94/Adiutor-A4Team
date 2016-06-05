@@ -192,13 +192,13 @@ namespace Business.DataAccess
         //    }
         //}
 
-        public static void DodajZaduzenog(int Id, Profesor p)
+        public static void DodajZaduzenog(int Id, ProfesorDTO p)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
-                Predmet pr = Procitaj(Id);
-                pr.ZaduzeniProfesor = p;
+                PredmetDTO pr = Procitaj(Id);
+                pr.ProfesorId = p.Id;
                 Izmeni(pr);
             }
             catch (Exception e)
@@ -207,13 +207,13 @@ namespace Business.DataAccess
             }
         }
 
-        public static void IzbrisiZaduzenog(int Id, Profesor p)
+        public static void IzbrisiZaduzenog(int Id, ProfesorDTO p)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
-                Predmet pr = Procitaj(Id);
-                pr.ZaduzeniProfesor = null;
+                PredmetDTO pr = Procitaj(Id);
+                pr.ProfesorId = 0;
                 Izmeni(pr);
             }
             catch (Exception e)

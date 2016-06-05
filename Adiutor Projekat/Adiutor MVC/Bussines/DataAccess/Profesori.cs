@@ -7,18 +7,29 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
     public static class Profesori
     {
-        public static void Dodaj(Profesor c)
+        public static void Dodaj(ProfesorDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Predmet pre = new Predmet()
+                {
+                    Id = c.PredmetId
+                };
+                Profesor pro = new Profesor()
+                {
+                    PunoIme = c.PunoIme,
+                    PripadaPredmetu = pre
+                };
+
+                s.SaveOrUpdate(pro);
                 s.Flush();
                 s.Close();
             }
@@ -47,20 +58,25 @@ namespace Business.DataAccess
             }
         }
 
-        static public Profesor Procitaj(int id)
+        static public ProfesorDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Profesor p = s.Load<Profesor>(id);
-                Profesor st = (Profesor)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
 
+                ProfesorDTO pro = new ProfesorDTO()
+                {
+                    Id = p.Id,
+                    PunoIme = p.PunoIme,
+                    PredmetId = p.PripadaPredmetu.Id
+                };
 
                 s.Flush();
                 s.Close();
 
-                return st;
+                return pro;
 
             }
             catch (Exception e)
@@ -71,13 +87,24 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Profesor c)
+        static public void Izmeni(ProfesorDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.Update(c);
+                Predmet pre = new Predmet()
+                {
+                    Id = c.PredmetId
+                };
+                Profesor pro = new Profesor()
+                {
+                    Id = c.Id,
+                    PunoIme = c.PunoIme,
+                    PripadaPredmetu = pre
+                };
+
+                s.Update(pro);
 
                 s.Flush();
                 s.Close();
@@ -89,7 +116,7 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Profesor> VratiSve()
+        static public List<ProfesorDTO> VratiSve(int predmetId)
         {
             try
             {
@@ -97,8 +124,23 @@ namespace Business.DataAccess
 
 
                 List<Profesor> Profesori = (from k in s.Query<Profesor>()
+                                            where k.PripadaPredmetu.Id == predmetId
                                             select k).ToList<Profesor>();
-                return Profesori;
+
+                List<ProfesorDTO> retVal = new List<ProfesorDTO>();
+
+                foreach (Profesor pro in Profesori)
+                {
+                    ProfesorDTO dto = new ProfesorDTO()
+                    {
+                        Id = pro.Id,
+                        PunoIme = pro.PunoIme,
+                        PredmetId = pro.PripadaPredmetu.Id
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {
