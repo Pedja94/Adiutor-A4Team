@@ -9,5 +9,8 @@ namespace Bussines.DTO
     public class Predmet_SmerDTO
     {
         public int Id { get; set; }
+
+        public int SmerId { get; set; }
+        public int PredmetId { get; set; }
     }
 }

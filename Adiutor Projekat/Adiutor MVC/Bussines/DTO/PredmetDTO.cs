@@ -12,5 +12,7 @@ namespace Bussines.DTO
         public string Naziv { get; set; }
         public int GodinaStudija { get; set; }
         public int Semestar { get; set; }
+
+        public int ProfesorId { get; set; }
     }
 }

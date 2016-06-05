@@ -16,6 +16,7 @@ namespace Database.Mapiranja
 
             Id(x => x.Id).Column("ID").GeneratedBy.TriggerIdentity();
 
+            //Proveriti
             HasMany(x => x.ImaSmerove).KeyColumn("SMER_ID");
             HasMany(x => x.ImaPredmete).KeyColumn("PREDMET_ID");
         }
