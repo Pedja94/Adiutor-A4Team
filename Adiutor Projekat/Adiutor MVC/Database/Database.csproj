@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3BA44FEC-EE1A-4667-9C83-7EEE4E2B0ACC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Database</RootNamespace>
+    <AssemblyName>Database</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.24160419\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataLayer.cs" />
+    <Compile Include="Entiteti\Komentar.cs" />
+    <Compile Include="Entiteti\Korisnik.cs" />
+    <Compile Include="Entiteti\Literatura.cs" />
+    <Compile Include="Entiteti\Oblast.cs" />
+    <Compile Include="Entiteti\Odgovor.cs" />
+    <Compile Include="Entiteti\Pitanje.cs" />
+    <Compile Include="Entiteti\Pitanje_Tag.cs" />
+    <Compile Include="Entiteti\Predlozeni_Tag.cs" />
+    <Compile Include="Entiteti\Predmet.cs" />
+    <Compile Include="Entiteti\Predmet_Smer.cs" />
+    <Compile Include="Entiteti\Profesor.cs" />
+    <Compile Include="Entiteti\Role.cs" />
+    <Compile Include="Entiteti\Slika.cs" />
+    <Compile Include="Entiteti\Smer.cs" />
+    <Compile Include="Entiteti\Status.cs" />
+    <Compile Include="Entiteti\Tag.cs" />
+    <Compile Include="Mapiranja\KomentarMapiranja.cs" />
+    <Compile Include="Mapiranja\KorisnikMaprianja.cs" />
+    <Compile Include="Mapiranja\LiteraturaMapiranja.cs" />
+    <Compile Include="Mapiranja\OblastMapiranja.cs" />
+    <Compile Include="Mapiranja\OdgovorMapiranja.cs" />
+    <Compile Include="Mapiranja\PitanjeMapiranja.cs" />
+    <Compile Include="Mapiranja\Pitanje_TagMapiranja.cs" />
+    <Compile Include="Mapiranja\Predlozeni_TagMapiranja.cs" />
+    <Compile Include="Mapiranja\PredmetMapiranja.cs" />
+    <Compile Include="Mapiranja\Predmet_SmerMapiranja.cs" />
+    <Compile Include="Mapiranja\ProfesorMapiranja.cs" />
+    <Compile Include="Mapiranja\RoleMapiranja.cs" />
+    <Compile Include="Mapiranja\SlikaMapiranja.cs" />
+    <Compile Include="Mapiranja\SmerMapiranja.cs" />
+    <Compile Include="Mapiranja\StatusMapiranja.cs" />
+    <Compile Include="Mapiranja\TagMapiranja.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
