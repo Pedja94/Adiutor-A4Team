@@ -7,18 +7,30 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
     public static class Slike
     {
-        public static void Dodaj(Slika c)
+        public static void Dodaj(SlikaDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Odgovor odg = new Odgovor
+                {
+                    Id = c.Id
+                };
+
+                Slika Slika = new Slika
+                {
+                    Link = c.Link,
+                    PripadaOdgovoru = odg
+                };
+
+                s.SaveOrUpdate(Slika);
                 s.Flush();
                 s.Close();
             }
@@ -47,20 +59,23 @@ namespace Business.DataAccess
             }
         }
 
-        static public Slika Procitaj(int id)
+        static public SlikaDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Slika p = s.Load<Slika>(id);
-                Slika st = (Slika)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
-
+                SlikaDTO Slika = new SlikaDTO
+                {
+                    Id = p.Id,
+                    Link = p.Link
+                };
 
                 s.Flush();
                 s.Close();
 
-                return st;
+                return Slika;
 
             }
             catch (Exception e)
@@ -71,13 +86,19 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Slika c)
+        static public void Izmeni(SlikaDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.Update(c);
+                Slika Slika = new Slika
+                {
+                    Id = c.Id,
+                    Link = c.Link
+                };
+
+                s.Update(Slika);
 
                 s.Flush();
                 s.Close();
@@ -90,25 +111,7 @@ namespace Business.DataAccess
 
         }
 
-        static public List<Slika> VratiSve()
-        {
-            try
-            {
-                ISession s = DataLayer.GetSession();
-
-
-                List<Slika> Slike = (from k in s.Query<Slika>()
-                                            select k).ToList<Slika>();
-                return Slike;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-        }
-
-        static public List<Slika> VratiSve(int OdgovorId)
+        static public List<SlikaDTO> VratiSve(int OdgovorId)
         {
             try
             {
@@ -118,7 +121,21 @@ namespace Business.DataAccess
                 List<Slika> Slike = (from k in s.Query<Slika>()
                                      where (k.PripadaOdgovoru.Id == OdgovorId)
                                      select k).ToList<Slika>();
-                return Slike;
+
+                List<SlikaDTO> retVal = new List<SlikaDTO>();
+
+                foreach (Slika slika in Slike)
+                {
+                    SlikaDTO dto = new SlikaDTO()
+                    {
+                        Id = slika.Id,
+                        Link = slika.Link
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
             }
             catch (Exception e)
             {

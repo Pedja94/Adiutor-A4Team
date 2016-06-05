@@ -15,8 +15,8 @@ namespace Database.Mapiranja
 
             Id(x => x.Id).Column("ID").GeneratedBy.TriggerIdentity();
 
-            HasMany(x => x.ImaPitanja).KeyColumn("PITANJE_ID");
-            HasMany(x => x.ImaTagove).KeyColumn("TAG_ID");
+            References(x => x.Pitanje).Column("PITANJE_ID");
+            References(x => x.Tag).Column("TAG_ID");
         }
     }
 }

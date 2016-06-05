@@ -10,13 +10,13 @@ namespace Database.Entiteti
     {
         public virtual int Id { get; set; }
 
-        public virtual IList<Smer> ImaSmerove { get; set; }
-        public virtual IList<Predmet> ImaPredmete { get; set; }
+        public virtual Smer Smer { get; set; }
+        public virtual Predmet Predmet { get; set; }
 
-        public Predmet_Smer()
-        {
-            ImaPredmete = new List<Predmet>();
-            ImaSmerove = new List<Smer>();
-        }
+        //public Predmet_Smer()
+        //{
+        //    ImaPredmete = new List<Predmet>();
+        //    ImaSmerove = new List<Smer>();
+        //}
     }
 }

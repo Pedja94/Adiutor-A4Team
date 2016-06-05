@@ -7,18 +7,37 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
+using Business.DTO;
 
 namespace Business.DataAccess
 {
     public static class Pitanja
     {
-        public static void Dodaj(Pitanje c)
+        public static void Dodaj(PitanjeDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(c);
+                Oblast oblast = new Oblast
+                {
+                    Id = c.OblastId
+                };
+
+                Korisnik korisnik = new Korisnik
+                {
+                    Id = c.KorisnikId
+                };
+
+                Pitanje Pitanje = new Pitanje
+                {
+                    Tekst = c.Tekst,
+                    DatumVreme = c.DatumVreme,
+                    PripadaOblasti = oblast,
+                    ImaKorisnika = korisnik,
+                };
+
+                s.SaveOrUpdate(Pitanje);
                 s.Flush();
                 s.Close();
             }
@@ -47,20 +66,27 @@ namespace Business.DataAccess
             }
         }
 
-        static public Pitanje Procitaj(int id)
+        static public PitanjeDTO Procitaj(int id)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
                 Pitanje p = s.Load<Pitanje>(id);
-                Pitanje st = (Pitanje)s.GetSessionImplementation().PersistenceContext.Unproxy(p);
 
+                PitanjeDTO Pitanje = new PitanjeDTO
+                {
+                    Id = p.Id,
+                    KorisnikId = p.ImaKorisnika.Id,
+                    OblastId = p.PripadaOblasti.Id,
+                    DatumVreme = p.DatumVreme,
+                    Tekst = p.Tekst
+                };
 
                 s.Flush();
                 s.Close();
 
-                return st;
+                return Pitanje;
 
             }
             catch (Exception e)
@@ -71,12 +97,33 @@ namespace Business.DataAccess
 
         }
 
-        static public void Izmeni(Pitanje c)
+        static public void Izmeni(PitanjeDTO c)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
-                s.Update(c);
+
+                Oblast oblast = new Oblast
+                {
+                    Id = c.OblastId
+                };
+
+                Korisnik korisnik = new Korisnik
+                {
+                    Id = c.KorisnikId
+                };
+
+                Pitanje Pitanje = new Pitanje
+                {
+                    Id = c.Id,
+                    ImaKorisnika = korisnik,
+                    PripadaOblasti = oblast,
+                    DatumVreme = c.DatumVreme,
+                    Tekst = c.Tekst
+                };
+
+                s.Update(Pitanje);
+
                 s.Flush();
                 s.Close();
 
