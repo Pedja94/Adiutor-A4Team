@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Business.DataAccess;
 using Database;
 using NHibernate;
 using Database.Entiteti;
 using Business.DTO;
-using Bussines.DataAccess;
+using Business.DataAccess;
 
 namespace Bussines
 {
@@ -82,23 +81,69 @@ namespace Bussines
 
                 //Smerovi.Obrisi(57);
 
-                SlikaDTO slika = new SlikaDTO
-                {
-                    Link = "link do slike"
-                };
+                //SlikaDTO slika = new SlikaDTO
+                //{
+                //    Link = "link do slike"
+                //};
 
-                
+
                 //OdgovorDTO o = Odgovori.Procitaj(39);
                 //slika.OdgovorId = o.Id;
                 //Slike.Dodaj(slika);
-                SlikaDTO s = Slike.Procitaj(43);
-                s.Link = "novi link";
-                Slike.Izmeni(s);
+                //SlikaDTO s = Slike.Procitaj(43);
+                //s.Link = "novi link";
+                //Slike.Izmeni(s);
                 //Slike.VratiSve(39);
                 //Slike.Obrisi(42);
+
+                //PredmetDTO predmet = Predmeti.Procitaj(42);
+
+                //ProfesorDTO profa = new ProfesorDTO {
+                //    PunoIme = "Milos Mladenovic",
+                //    PredmetId = predmet.Id
+                //};
+
+                //Profesori.Dodaj(profa);
+                //ProfesorDTO pr = Profesori.Procitaj(37);
+                //pr.PunoIme = "Predrag Nikolic";
+                //Profesori.Izmeni(pr);
+                //Profesori.VratiSve(42);
+                //Profesori.Obrisi(37);
+
+                //Predmet_SmerDTO ps = new Predmet_SmerDTO
+                //{
+                //    PredmetId = 42,
+                //    SmerId = 77
+                //};
+                //Predmet_Smerovi.Dodaj(ps);
+
+                //PredmetDTO pr = new PredmetDTO
+                //{
+                //    Naziv = "VI",
+                //    Semestar = 6,
+                //    GodinaStudija = 3,
+                //    ProfesorId = 38
+                //};
+
+                //Predmeti.Dodaj(pr);
+                //PredmetDTO predmet = Predmeti.Procitaj(42);
+                //predmet.Naziv = "Analogna Elektronika";
+                //Predmeti.Izmeni(predmet);
+                //Predmeti.VratiSve();
+                //Predmeti.VratiSvePredmete(77);
+                //Predmeti.Obrisi(40);
+
+                //ProfesorDTO prof = Profesori.Procitaj(38);
+
+                //Predmeti.DodajZaduzenog(39, prof);
+                //Predmeti.IzbrisiZaduzenog(39, prof);
+
+                //Profesori.Procitaj();
                 //s.SaveOrUpdate(k);
                 //s.Flush();
                 //s.Close();
+
+                
             }
             catch (Exception e)
             {

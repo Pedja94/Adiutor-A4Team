@@ -12,7 +12,14 @@ namespace AdiutorBootstrap.Controllers
         // GET: /Odabir_predmeta/
         public ActionResult Odabir_predmeta()
         {
-            return View();
+            if (Session["Id"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Pocetna", "Home");
+            }
         }
 	}
 }
