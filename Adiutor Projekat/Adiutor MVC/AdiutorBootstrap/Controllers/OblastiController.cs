@@ -12,7 +12,14 @@ namespace AdiutorBootstrap.Controllers
         // GET: /Oblasti/
         public ActionResult Oblasti()
         {
-            return View();
+            if (Session["Id"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Pocetna", "Home");
+            }
         }
 	}
 }

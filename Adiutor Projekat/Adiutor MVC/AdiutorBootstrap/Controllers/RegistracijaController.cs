@@ -36,27 +36,39 @@ namespace AdiutorBootstrap.Controllers
         [AllowAnonymous]
         public ActionResult Register(RegistracijaModels model)
         {
+            if (ModelState.IsValid)
+            {
                 KorisnikDTO user = new KorisnikDTO()
-                {
-                    BrojIndeksa = model.BrojIndeksa,
-                    Email = model.Email,
-                    GodinaStudija = 1,
-                    Ime = model.Ime,
-                    Opis = null,
-                    Password = model.Password,
-                    Prezime = model.Prezime,
-                    Slika = null,
-                    Smer = null,
-                    Username = model.Username,
-                    RoleId = 1,
-                    StatusId = 2
-                };
-
+                 {
+                     BrojIndeksa = model.BrojIndeksa,
+                     Email = model.Email,
+                     GodinaStudija = 1,
+                     Ime = model.Ime,
+                     Opis = null,
+                     Password = model.Password,
+                     Prezime = model.Prezime,
+                     Slika = null,
+                     Smer = null,
+                     Username = model.Username,
+                     RoleId = 1,
+                     StatusId = 1
+                 };
                 Korisnici.Dodaj(user);
-
-                return RedirectToAction("Pocetna", "Home");
+                ViewBag.Articles = "one";
+                return View("Registracija");
+            }
+            else
+            {
+                return RedirectToAction("Registracija", "Registracija");
+            }
+              
         }
 
+
+        public ActionResult Popup()
+        {
+            return Content("Ovo je neki popap");
+        }
         
 
 

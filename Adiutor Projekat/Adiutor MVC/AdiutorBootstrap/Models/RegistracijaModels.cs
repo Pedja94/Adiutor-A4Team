@@ -21,7 +21,7 @@ namespace AdiutorBootstrap.Models
             public decimal BrojIndeksa { get; set; }
 
             [Required]
-            [Display(Name = "Korisnicki")]
+            [Display(Name = "Korisničko ime")]
             public string Username { get; set; }
         
             [Required]
@@ -37,7 +37,7 @@ namespace AdiutorBootstrap.Models
             public string ConfirmPassword { get; set; }
 
             [Required]
-            [Display(Name = "Email")]
+            [Display(Name = "E-mail")]
             [DataType(DataType.EmailAddress)]
             public string Email { get; set; }
     }

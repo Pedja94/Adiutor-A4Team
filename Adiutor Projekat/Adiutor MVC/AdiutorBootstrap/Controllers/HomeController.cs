@@ -53,5 +53,23 @@ namespace AdiutorBootstrap.Controllers
             }
         }
 
+
+
+        [HttpGet]//trebace nam i kontroler za odjavljivanje sa naloga, nakon sto se neko prijavi
+        public ActionResult LogOut()
+        {
+            if (Session["Id"] != null && Session["Role"]!=null) 
+            {
+                Session["Id"] = null;
+                Session["Role"] = null;
+
+                return RedirectToAction("Pocetna", "Home");
+            }
+            else
+            {
+                return View("Pocetna");
+            }
+        }
+
     }
 }
