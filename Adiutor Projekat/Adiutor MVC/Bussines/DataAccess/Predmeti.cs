@@ -51,7 +51,7 @@ namespace Business.DataAccess
                     ZaduzeniProfesor = prof
                 };
 
-                s.SaveOrUpdate(pre);
+                s.Save(pre);
                 s.Flush();
                 s.Close();
             }
@@ -74,10 +74,17 @@ namespace Business.DataAccess
                     Id = p.Id,
                     GodinaStudija = p.GodinaStudija,
                     Naziv = p.Naziv,
-                    Semestar = p.Semestar,
-                    ProfesorId = p.ZaduzeniProfesor.Id
+                    Semestar = p.Semestar
                 };
 
+                if (p.ZaduzeniProfesor != null)
+                {
+                    pre.ProfesorId = p.ZaduzeniProfesor.Id;
+                }
+                else
+                {
+                    pre.ProfesorId = 0;
+                }
                 s.Flush();
                 s.Close();
 
@@ -107,9 +114,18 @@ namespace Business.DataAccess
                     Id = c.Id,
                     GodinaStudija = c.GodinaStudija,
                     Naziv = c.Naziv,
-                    Semestar = c.Semestar,
-                    ZaduzeniProfesor = prof
+                    Semestar = c.Semestar
                 };
+
+                if(prof.Id != 0)
+                {
+                    pre.ZaduzeniProfesor = prof;
+                }
+                else
+                {
+                    pre.ZaduzeniProfesor = null;
+                }
+
 
                 s.Update(pre);
 
@@ -144,8 +160,17 @@ namespace Business.DataAccess
                         GodinaStudija = p.GodinaStudija,
                         Naziv = p.Naziv,
                         Semestar = p.Semestar,
-                        ProfesorId = p.ZaduzeniProfesor.Id
+                        
                     };
+
+                    if (p.ZaduzeniProfesor != null)
+                    {
+                        pre.ProfesorId = p.ZaduzeniProfesor.Id;
+                    }
+                    else
+                    {
+                        pre.ProfesorId = 0;
+                    }
                     retVal.Add(pre);
                 }
 
@@ -178,8 +203,18 @@ namespace Business.DataAccess
                         GodinaStudija = p.GodinaStudija,
                         Naziv = p.Naziv,
                         Semestar = p.Semestar,
-                        ProfesorId = p.ZaduzeniProfesor.Id
+                        
                     };
+
+                    if (p.ZaduzeniProfesor != null)
+                    {
+                        pre.ProfesorId = p.ZaduzeniProfesor.Id;
+                    }
+                    else
+                    {
+                        pre.ProfesorId = 0;
+                    }
+
                     retVal.Add(pre);
                 }
 
