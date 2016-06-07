@@ -10,5 +10,7 @@ namespace Business.DTO
     {
         public int Id { get; set; }
         public string Link { get; set; }
+
+        public int OdgovorId { get; set; }
     }
 }

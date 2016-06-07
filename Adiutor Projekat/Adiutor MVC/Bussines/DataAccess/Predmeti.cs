@@ -242,5 +242,48 @@ namespace Business.DataAccess
         //    }
         //}
 
+        static public List<PredmetDTO> VratiSvePredmete(int SmerId)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<PredmetDTO> retVal = new List<PredmetDTO>();
+
+
+                Smer t = s.Load<Smer>(SmerId);
+                IList<Predmet> predmeti = t.ImaPredmete;
+
+                foreach (Predmet predmet in predmeti)
+                {
+                    PredmetDTO dto = new PredmetDTO()
+                    {
+                        Id = predmet.Id,
+                        Naziv = predmet.Naziv,
+                        Semestar = predmet.Semestar,
+                        GodinaStudija = predmet.GodinaStudija,
+                        
+                    };
+                    if (predmet.ZaduzeniProfesor != null)
+                    {
+                        dto.ProfesorId = predmet.ZaduzeniProfesor.Id;
+                    }
+                    else
+                    {
+                        dto.ProfesorId = 0;
+                    }
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
     }
 }

@@ -213,18 +213,22 @@ namespace Business.DataAccess
                 ISession s = DataLayer.GetSession();
 
 
-                List<Pitanje_Tag> PitanjaTagovi = (from k in s.Query<Pitanje_Tag>()
-                                         where (k.Tag.Id == TagId)
-                                         select k).ToList<Pitanje_Tag>();
+                //List<Pitanje_Tag> PitanjaTagovi = (from k in s.Query<Pitanje_Tag>()
+                //                         where (k.Tag.Id == TagId)
+                //                         select k).ToList<Pitanje_Tag>();
 
-                List<Pitanje> pitanja = new List<Pitanje>();
-                foreach(Pitanje_Tag pt in PitanjaTagovi)
-                {
-                    Pitanje pitanje = (from k in s.Query<Pitanje>() where (k.Id == pt.Pitanje.Id) select k).Single();
-                    pitanja.Add(pitanje);    
-                }
+                //List<Pitanje> pitanja = new List<Pitanje>();
+                //foreach(Pitanje_Tag pt in PitanjaTagovi)
+                //{
+                //    Pitanje pitanje = (from k in s.Query<Pitanje>() where (k.Id == pt.Pitanje.Id) select k).Single();
+                //    pitanja.Add(pitanje);    
+                //}
 
                 List<PitanjeDTO> retVal = new List<PitanjeDTO>();
+
+                
+                Tag t = s.Load<Tag>(TagId);
+                IList<Pitanje> pitanja = t.PripadaPitanjima;
 
                 foreach (Pitanje pitanje in pitanja)
                 {
@@ -235,6 +239,41 @@ namespace Business.DataAccess
                         DatumVreme = pitanje.DatumVreme,
                         KorisnikId = pitanje.ImaKorisnika.Id,
                         OblastId = pitanje.PripadaOblasti.Id
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+
+        static public List<TagDTO> VratiSveTagovePitanja(int PitanjeId)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<TagDTO> retVal = new List<TagDTO>();
+
+
+                Pitanje t = s.Load<Pitanje>(PitanjeId);
+                IList<Tag> tagovi = t.ImaTagove;
+
+                foreach (Tag tag in tagovi)
+                {
+                    TagDTO dto = new TagDTO()
+                    {
+                        Id = tag.Id,
+                        Ime = tag.Ime,
+                        Opis = tag.Opis,
+                        TagIme = tag.TagIme
                     };
 
                     retVal.Add(dto);

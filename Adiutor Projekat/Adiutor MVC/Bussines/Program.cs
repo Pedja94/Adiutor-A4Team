@@ -8,6 +8,7 @@ using Database;
 using NHibernate;
 using Database.Entiteti;
 using Business.DTO;
+using Bussines.DataAccess;
 
 namespace Bussines
 {
@@ -42,22 +43,59 @@ namespace Bussines
                 //    ImaStatus = st
                 //};
 
-                TagDTO tag = new TagDTO
+
+
+
+
+
+                //Pitanje_TagDTO pt = new Pitanje_TagDTO
+                //{
+                //    PitanjeId = 37,
+                //    TagId = 38
+                //};
+
+                //Pitanje_TagDTO pt1 = new Pitanje_TagDTO
+                //{
+                //    PitanjeId = 37,
+                //    TagId = 17
+                //};
+
+                //Pitanja_Tagovi.Dodaj(pt);
+                //Pitanja_Tagovi.Dodaj(pt1);
+
+                //List<PitanjeDTO> lista = Pitanja.VratiSvaPitanjaTaga(38);
+                //List<TagDTO> tagovi = Pitanja.VratiSveTagovePitanja(37);
+                //List<PredmetDTO> predmeti = Predmeti.VratiSvePredmete(57);
+
+                //SmerDTO smer = new SmerDTO
+                //{
+                //    Ime = "EENN"
+                //};
+
+                //Smerovi.Dodaj(smer);
+                //SmerDTO a = Smerovi.Procitaj(57);
+                //a.Ime = "EEN";
+                //Smerovi.Izmeni(a);
+                //List<SmerDTO> smerovi = Smerovi.VratiSve();
+                //Smerovi.DodajPredmetSmeru(23, 57);
+                //Smerovi.IzbrisiPredmetSaSmera(21, 58);
+
+                //Smerovi.Obrisi(57);
+
+                SlikaDTO slika = new SlikaDTO
                 {
-                    Ime = "matematika",
-                    TagIme = "mat",
-                    Opis = "tag za matematika"
+                    Link = "link do slike"
                 };
 
-                Tagovi.Dodaj(tag);
-
-                TagDTO t = Tagovi.Procitaj(37);
-                t.Opis = "tag za matematiku";
-                Tagovi.Izmeni(t);
-
-                Tagovi.VratiSve();
-                Tagovi.Obrisi(37);
-
+                
+                //OdgovorDTO o = Odgovori.Procitaj(39);
+                //slika.OdgovorId = o.Id;
+                //Slike.Dodaj(slika);
+                SlikaDTO s = Slike.Procitaj(43);
+                s.Link = "novi link";
+                Slike.Izmeni(s);
+                //Slike.VratiSve(39);
+                //Slike.Obrisi(42);
                 //s.SaveOrUpdate(k);
                 //s.Flush();
                 //s.Close();

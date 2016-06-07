@@ -21,7 +21,7 @@ namespace Business.DataAccess
 
                 Odgovor odg = new Odgovor
                 {
-                    Id = c.Id
+                    Id = c.OdgovorId
                 };
 
                 Slika Slika = new Slika
@@ -69,7 +69,9 @@ namespace Business.DataAccess
                 SlikaDTO Slika = new SlikaDTO
                 {
                     Id = p.Id,
-                    Link = p.Link
+                    Link = p.Link,
+                    OdgovorId = p.PripadaOdgovoru.Id
+                    
                 };
 
                 s.Flush();
@@ -92,10 +94,16 @@ namespace Business.DataAccess
             {
                 ISession s = DataLayer.GetSession();
 
+                Odgovor odg = new Odgovor
+                {
+                    Id = c.OdgovorId
+                };
+
                 Slika Slika = new Slika
                 {
                     Id = c.Id,
-                    Link = c.Link
+                    Link = c.Link,
+                    PripadaOdgovoru = odg
                 };
 
                 s.Update(Slika);
@@ -129,7 +137,9 @@ namespace Business.DataAccess
                     SlikaDTO dto = new SlikaDTO()
                     {
                         Id = slika.Id,
-                        Link = slika.Link
+                        Link = slika.Link,
+                        OdgovorId = slika.PripadaOdgovoru.Id
+                        
                     };
 
                     retVal.Add(dto);

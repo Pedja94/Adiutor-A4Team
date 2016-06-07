@@ -71,15 +71,14 @@ namespace Business.DataAccess
             try
             {
                 ISession s = DataLayer.GetSession();
-                PredmetDTO predmet = Predmeti.Procitaj(PredmetId);
-                SmerDTO smer = Smerovi.Procitaj(SmerId);
 
                 Predmet_Smer ps = (from k in s.Query<Predmet_Smer>()
-                                   where (k.Predmet.Id == predmet.Id  && k.Smer.Id == smer.Id)
+                                   where (k.Predmet.Id == PredmetId  && k.Smer.Id == SmerId)
                                    select k).Single();
 
                 Predmet_SmerDTO psdto = new Predmet_SmerDTO
                 {
+                    Id = ps.Id,
                     PredmetId = ps.Predmet.Id,
                     SmerId = ps.Smer.Id
                 };
