@@ -82,6 +82,7 @@ namespace Bussines.DataAccess
 
                 Pitanje_TagDTO ptdto = new Pitanje_TagDTO
                 {
+                    Id = pt.Id,
                     PitanjeId = pt.Pitanje.Id,
                     TagId = pt.Tag.Id
                 };

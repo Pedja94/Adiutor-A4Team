@@ -117,6 +117,7 @@ namespace Business.DataAccess
                 };
                 Odgovor odg = new Odgovor()
                 {
+                    Id = c.Id,
                     DatumVreme = c.DatumVreme,
                     Minus = c.Minus,
                     Plus = c.Plus,
@@ -164,6 +165,8 @@ namespace Business.DataAccess
                         KorisnikId = odg.ImaKorisnika.Id,
                         PitanjeId = odg.PripadaPitanju.Id
                     };
+
+                    retVal.Add(dto);
                 }
 
                 return retVal;
@@ -197,7 +200,7 @@ namespace Business.DataAccess
             {
                 ISession s = DataLayer.GetSession();
                 OdgovorDTO o = Procitaj(id);
-                o.Minus -= 1;
+                o.Minus += 1;
                 Izmeni(o);
             }
             catch (Exception e)
