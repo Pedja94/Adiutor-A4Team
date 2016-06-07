@@ -8,27 +8,37 @@ namespace AdiutorBootstrap.Models
 {
     public class RegistracijaModels
     {
-        public class RegisterViewModel
-        {
-            [Required]
-            [Display(Name = "User name")]
-            public string KorisnickoIme { get; set; }
-
             [Required]
             [Display(Name = "Ime")]
             public string Ime { get; set; }
 
             [Required]
+            [Display(Name = "Prezime")]
+            public string Prezime { get; set; }
+
+            [Required]
+            [Display(Name = "Broj indeksa")]
+            public decimal BrojIndeksa { get; set; }
+
+            [Required]
+            [Display(Name = "Korisnicki")]
+            public string Username { get; set; }
+        
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Lozinka { get; set; }
+            [Display(Name = "Lozinka")]
+            public string Password { get; set; }
+
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Potvrdi lozinku")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-        }
 
+            [Required]
+            [Display(Name = "Email")]
+            [DataType(DataType.EmailAddress)]
+            public string Email { get; set; }
     }
 }

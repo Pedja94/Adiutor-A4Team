@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using AdiutorBootstrap.Models;
+using Business.DataAccess;
+using Business.DTO;
 
 namespace AdiutorBootstrap.Controllers
 {
@@ -17,42 +19,45 @@ namespace AdiutorBootstrap.Controllers
         // GET: /Registracija/
         public ActionResult Registracija()
         {
-            return View();
+            RegistracijaModels model = new RegistracijaModels();
+            return View(model);
         }
 
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/Register
-        //[HttpPost]
         //[AllowAnonymous]
-        //public async Task<ActionResult> Register(RegisterViewModel model)
+        //public ActionResult Register()
         //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new ApplicationUser() { UserName = model.UserN
-        //            ame };
-        //        var result = await UserManager.CreateAsync(user, model.Password);
-        //        if (result.Succeeded)
-        //        {
-        //            await SignInAsync(user, isPersistent: false);
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //        {
-        //            AddErrors(result);
-        //        }
-        //    }
-
-        //    // If we got this far, something failed, redisplay form
+        //    RegistracijaModels model = new RegistracijaModels();
         //    return View(model);
         //}
 
-        //
+        
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Register(RegistracijaModels model)
+        {
+                KorisnikDTO user = new KorisnikDTO()
+                {
+                    BrojIndeksa = model.BrojIndeksa,
+                    Email = model.Email,
+                    GodinaStudija = 1,
+                    Ime = model.Ime,
+                    Opis = null,
+                    Password = model.Password,
+                    Prezime = model.Prezime,
+                    Slika = null,
+                    Smer = null,
+                    Username = model.Username,
+                    RoleId = 1,
+                    StatusId = 2
+                };
+
+                Korisnici.Dodaj(user);
+
+                return RedirectToAction("Pocetna", "Home");
+        }
+
+        
 
 
 	}

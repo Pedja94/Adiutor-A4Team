@@ -1,4 +1,4 @@
-﻿@model AdiutorBootstrap.Models.LoginViewModel
+﻿@model AdiutorBootstrap.Models.LogInModel
 @{
     ViewBag.Title = "Početna";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,13 +11,13 @@
             <div class="form-group">
                 <label id="korisnickoImeLbl" class="col-md-4 control-label">Korisničko ime</label>
                 <div class="col-md-4">
-                    <input type="text" id="korisnickoIme" name="UserName" class="form-control" />
+                    <input type="text" id="korisnickoIme" name="username" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
                 <label id="lozinkaLbl" class="col-md-4 control-label">Lozinka</label>
                 <div class="col-md-4">
-                    <input type="password" id="lozinka" name="Password" class="form-control" title="Lozinka" />
+                    <input type="password" id="lozinka" name="password" class="form-control" title="Lozinka" />
                 </div>
             </div>
             <div class="form-group">

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Bussines\Busine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{3BA44FEC-EE1A-4667-9C83-7EEE4E2B0ACC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdiutorBootstrap", "AdiutorBootstrap\AdiutorBootstrap.csproj", "{306CD989-CF41-46FB-BC96-849EF0ACDF1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3BA44FEC-EE1A-4667-9C83-7EEE4E2B0ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BA44FEC-EE1A-4667-9C83-7EEE4E2B0ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BA44FEC-EE1A-4667-9C83-7EEE4E2B0ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{306CD989-CF41-46FB-BC96-849EF0ACDF1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{306CD989-CF41-46FB-BC96-849EF0ACDF1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{306CD989-CF41-46FB-BC96-849EF0ACDF1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{306CD989-CF41-46FB-BC96-849EF0ACDF1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

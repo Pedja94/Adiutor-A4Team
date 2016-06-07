@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Business.DataAccess;
 using Database;
 using NHibernate;
 using Database.Entiteti;
 using Business.DTO;
-using Bussines.DataAccess;
+using Business.DataAccess;
 
 namespace Bussines
 {

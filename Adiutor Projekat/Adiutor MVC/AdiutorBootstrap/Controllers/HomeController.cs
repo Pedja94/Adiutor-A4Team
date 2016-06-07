@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AdiutorBootstrap.Models;
-using Business.Entiteti;
-using Business.Mapiranja;
-using Business.Data_Access;
+using Business.DTO;
+using Business.DataAccess;
 
 
 namespace AdiutorBootstrap.Controllers
@@ -39,17 +38,18 @@ namespace AdiutorBootstrap.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogIn(LoginViewModel model)
+        public ActionResult LogIn(LogInModel model)
         {
-            Korisnik user = Korisnici.Nadji(model.UserName);
-            if (user != null && Korisnici.ProveriSifru(user.Id, model.Password))
+            KorisnikDTO user = Korisnici.Nadji(model.username);
+            if (ModelState.IsValid && user != null && user.Password == model.password && user.StatusId == 1)
             {
                 Session["Id"] = user.Id;
-                return RedirectToAction("KorisnickiPanel", "KorisnickiPanel");
+                Session["Role"] = user.RoleId;
+                return RedirectToAction("Odabir_predmeta", "Odabir_predmeta");
             }
             else
             {
-                return RedirectToAction("Pocetna", "Home");
+                return View("Pocetna");
             }
         }
 
