@@ -1,0 +1,76 @@
+﻿@model AdiutorBootstrap.Models.LoginViewModel
+@{
+    ViewBag.Title = "Početna";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="post" action="@Url.Action("LogIn", "Home")">
+    <div class="col-lg-6 col-md-6">
+        <div class="form-horizontal formaPrijavaPocetna">
+            <div class="form-group">
+                <label id="korisnickoImeLbl" class="col-md-4 control-label">Korisničko ime</label>
+                <div class="col-md-4">
+                    <input type="text" id="korisnickoIme" name="UserName" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="lozinkaLbl" class="col-md-4 control-label">Lozinka</label>
+                <div class="col-md-4">
+                    <input type="password" id="lozinka" name="Password" class="form-control" title="Lozinka" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <input type="checkbox" id="potvrdiLozinku" />
+                    <label id="ll1">Zapamti lozinku</label>
+                              </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <button id="Button1" title="Prijava" class="btn btn-default btn-validate"><span class="glyphicon glyphicon-user"></span> Prijava</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <label id="lblError" class="text-danger"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <div class="col-lg-6 col-md-12">
+        <div class="jumbotron jumbotronPocetna">
+            <div style="clear:both;">
+                <div class="panel col-md-6 col-sm-6 col-xs-12">
+                    <h1 id="heder" align="center">Adiutor</h1>
+                    <p id="par1" align="center">
+                        <i>
+                            Portal na kome  možete  pronaći   odgovore,
+                            rešenja i savete za sve ono što vas interesuje
+                            i pravi probleme prilikom učenja.
+                            Registrujte se
+                            sada i pronadjite ono što vas zanima.
+                        </i>
+                    </p>
+                </div>
+
+                <div class="container col-md-6 deoSaSlikom col-sm-4 col-xs-12">
+                    <img id="slika12" src="~/Content/Images/slider-imagine.png" class="img-rounded " />
+                    <div class="dugme1">
+                        <button id="infoButton1" class="btn btn-success" data-toggle="popover" data-placement="down" title="    Dodatne informacije"
+                                data-content="Ovaj portal su napravili studenti III godine smera za Računarstvo i infomatiku, Elektronskog
+                         fakulteta u Nišu, kao studentski projekat iz predmeta Softversko inženjerstvo.">
+                            <span class="glyphicon glyphicon-info-sign"></span>  Više informacija
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>

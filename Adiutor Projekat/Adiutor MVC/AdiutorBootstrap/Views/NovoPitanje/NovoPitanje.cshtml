@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "NovoPitanje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("//cdn.ckeditor.com/4.5.9/standard/ckeditor.js")
+
+<textarea name="textarea" id="textarea"></textarea>
+
+<script>
+    CKEDITOR.replace('textarea');
+</script>

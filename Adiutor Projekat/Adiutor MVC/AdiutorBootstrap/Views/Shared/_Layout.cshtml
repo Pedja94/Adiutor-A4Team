@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Adiutor</title>
+    @Styles.Render("~/Content/Bootstrap")
+    @Styles.Render("~/Content/Stilovi")
+   <!--@Scripts.Render("~/bundles/modernizr")--> 
+
+    
+
+</head>
+<body>
+    <!-- Part 1: Wrap all page content here -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand imePortala">
+                    <span> <img alt="Logo" height="30" src="~/Content/Images/logo.png" /></span>Adiutor
+                </a>
+            </div>
+            
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Početna", "Pocetna", "Home")</li>
+                    <li>@Html.ActionLink("O nama", "About", "Home")</li>
+                    
+                    <li></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nalog<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <!--<li class="dropdown-header">Nav header</li>-->
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">Odjavi se</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Registracija", "Registracija", "Registracija")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+        <div class="container marginaLayout">
+           @RenderBody()
+        </div>
+
+        <div id="push"></div>
+    
+
+    <div id="footer">
+        <div class="container">
+            <p class="pull-right"><a href="#">Nazad na vrh stranice</a></p>
+            <p class="f1">&copy; 2016 Milos Mladenovic, A4 &middot; <a href="Struktura.aspx"></a>&middot;</p>
+        </div>
+    </div>
+
+
+           @Scripts.Render("~/bundles/jquery")
+           @Scripts.Render("~/Scripts/Bootstrap")
+           @Scripts.Render("~/Scripts/MojaSkripta")
+           @RenderSection("scripts", required: false)
+</body>
+</html>
+    

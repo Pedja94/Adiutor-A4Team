@@ -1,0 +1,90 @@
+﻿@model AdiutorBootstrap.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Prijava";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Upotrebite informacije o svom nalogu da se prijavite na portal</h4>
+                <hr />
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                           @* @Html.LabelFor(m => m.RememberMe)*@ 
+                            @Html.LabelFor(m=>m.RememberMe);
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                </div>
+                <p>
+                    @Html.ActionLink("Registruj se", "Registracija","Registracija") ukoliko ne poseduješ nalog.
+                </p>
+            }
+        </section>
+    </div>
+    @*<div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>*@
+    <div class="col-lg-6 col-md-12">
+        <div class="jumbotron jumbotronPocetna">
+            <div style="clear:both;">
+                <div class="panel col-md-6 col-sm-6 col-xs-5">
+                    <h1 id="heder" align="center">Adiutor</h1>
+                    <p id="par1" align="center">
+                        <i>
+                            Portal na kome  možete  pronaći   odgovore,
+                            rešenja i savete za sve ono što vas interesuje
+                            i pravi probleme prilikom učenja.
+                            Registrujte se
+                            sada i pronadjite ono što vas zanima.
+                        </i>
+                    </p>
+                </div>
+
+                <div class="container col-md-6 deoSaSlikom col-sm-4 col-xs-4">
+                    <img id="slika12" src="~/Content/Images/slider-imagine.png" class="img-rounded " />
+                    <div class="dugme1">
+                        <button id="infoButton1" class="btn btn-success" data-toggle="popover" data-placement="left" title="    Dodatne informacije"
+                                data-content="Ovaj portal su napravili studenti III godine smera za Računarstvo i infomatiku, Elektronskog
+                         fakulteta u Nišu, kao studentski projekat iz predmeta Softversko inženjerstvo.">
+                            <span class="glyphicon glyphicon-info-sign"></span>  Više informacija
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

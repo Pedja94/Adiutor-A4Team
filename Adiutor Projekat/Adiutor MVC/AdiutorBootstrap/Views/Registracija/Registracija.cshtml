@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Registracija";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6 formaRegistracija skloniMarginuZaRegistraciju">
+    <div class=" ">
+        <style>
+            .center-page {
+                margin-top: 120px;
+            }
+        </style>
+
+    <form method="post" action="@Url.Action("Register", "Registracija")">
+            <label>Ime</label>
+            <input type="text" id="ime" class="form-control" placeholder="Ime" name="Ime" />
+            <label>Prezime</label>
+            <input type="text" id="prezime" class="form-control" placeholder="Prezime" name="Prezime" />
+            <label>Broj indeksa</label>
+            <input type="number" id="prezime" class="form-control" placeholder="Prezime" name="BrIndeksa" />
+            <label>Korisničko ime</label>
+            <input type="text" id="korisnickoIme" class="form-control" placeholder="Korisničko ime" name="KorisnickoIme" />
+            <label>Lozinka</label>
+            <input type="password" id="lozinka" class="form-control" placeholder="Lozinka" name="Lozinka" />
+            <label>Potvrdi lozinku</label>
+            <input type="password" id="potvrdaLozinke" class="form-control" placeholder="Lozinka" name="PotvrdiLozinku" />
+            <label>E-mail adresa</label>
+            <input type="text" id="email" class="form-control" placeholder="Adresa e-pošte" name="eMail" />
+            <span>
+                <button id="registrujSe" class="btn btn-success space-vert">Registruj se</button>
+            </span>
+    </form>
+</div>
+
+
+</div>
+

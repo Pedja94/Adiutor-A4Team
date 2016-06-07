@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Odabir_predmeta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="col-lg-5 smerovi">
+    <ul class="nav nav-tabs nav-stacked navigacija">
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">I godina<b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li id="semestar1"><a href="#">I semestar</a></li>
+                <li id="semestar2"><a href="#">II semestar</a></li>
+                <li class="divider"></li>                
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Računarstvo i informatika <b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li class="active"><a href="#">II godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar3RII">III semestar</a></li>
+                <li><a href="#" id="semestar4RII">IV semestar</a></li>
+                <li class="active"><a href="#">III godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar5RII">V semestar</a></li>
+                <li><a href="#" id="semestar6RII">VI semestar</a></li>
+                <li class="active"><a href="#">IV godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar7RII">VII semestar</a></li>
+                <li><a id="semestar8RII" href="#">VIII semestar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Energetika<b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li class="active"><a href="#">II godina</a></li>
+                <li class="divider"></li>
+                <li ><a href="#" id="semestar3ENER">III semestar</a></li>
+                <li ><a href="#" id="semestar4ENER">IV semestar</a></li>
+                <li class="active"><a href="#">III godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar5ENER">V semestar</a></li>
+                <li><a href="#" id="semestar6ENER">VI semestar</a></li>
+                <li class="active"><a href="#">IV godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar7ENER">VII semestar</a></li>
+                <li><a href="#" id="semestar8ENER">VIII semestar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Telekomunikacije<b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li class="active"><a href="#">II godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar3TELE">III semestar</a></li>
+                <li><a href="#" id="semestar4TELE">IV semestar</a></li>
+                <li class="active"><a href="#">III godina</a></li>
+                <li class="divider"></li>
+                <li ><a href="#" id="semestar5TELE">V semestar</a></li>
+                <li><a href="#" id="semestar6TELE">VI semestar</a></li>
+                <li class="active"><a href="#">IV godina</a></li>
+                <li class="divider"></li>
+                <li ><a href="#" id="semestar7TELE">VII semestar</a></li>
+                <li><a href="#" id="semestar8TELE">VIII semestar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Elektronske komponente i mikrosistemi<b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li class="active"><a href="#">II godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar3EKM">III semestar</a></li>
+                <li><a href="#" id="semestar4EKM">IV semestar</a></li>
+                <li class="active"><a href="#">III godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar5EKM">V semestar</a></li>
+                <li><a href="#" id="semestar6EKM">VI semestar</a></li>
+                <li class="active"><a href="#">IV godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar7EKM">VII semestar</a></li>
+                <li><a href="#" id="semestar8EKM">VIII semestar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Elektronika i mikroprocesorska tehnika<b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li class="active"><a href="#">II godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar3ELEK">III semestar</a></li>
+                <li><a href="#" id="semestar4ELEK">IV semestar</a></li>
+                <li class="active"><a href="#">III godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar5ELEK">V semestar</a></li>
+                <li><a href="#" id="semestar6ELEK">VI semestar</a></li>
+                <li class="active"><a href="#">IV godina</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="semestar7ELEK">VII semestar</a></li>
+                <li><a href="#" id="semestar8ELEK">VIII semestar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Upravljanje sistemima<b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li class="active"><a href="#">II godina</a></li>
+                <li class="divider"></li>
+                <li ><a href="#" id="semestar3AUTO">III semestar</a></li>
+                <li id="semestar4AUTO"><a href="#">IV semestar</a></li>
+                <li class="active"><a href="#">III godina</a></li>
+                <li class="divider"></li>
+                <li id="semestar5AUTO"><a href="#">V semestar</a></li>
+                <li id="semestar6AUTO"><a href="#">VI semestar</a></li>
+                <li class="active"><a href="#">IV godina</a></li>
+                <li class="divider"></li>
+                <li id="semestar7AUTO"><a href="#">VII semestar</a></li>
+                <li id="semestar8AUTO"><a href="#">VIII semestar</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+<div class="col-lg-5 col-md-6">
+    <div class="panel panel-info panel1">
+        <div class="panel-heading hedingOpredmetima"><h3 id="naslovOpredmetima">Spisak predmeta po smerovima i semestru</h3></div>
+    </div>
+
+    <div id="informacijeOpredmetima">
+
+        
+    </div> 
+</div>
