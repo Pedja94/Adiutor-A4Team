@@ -18,7 +18,7 @@ namespace AdiutorBootstrap.Models
 
             [Required]
             [Display(Name = "Broj indeksa")]
-            public decimal BrojIndeksa { get; set; }
+            public decimal? BrojIndeksa { get; set; }
 
             [Required]
             [Display(Name = "Korisničko ime")]

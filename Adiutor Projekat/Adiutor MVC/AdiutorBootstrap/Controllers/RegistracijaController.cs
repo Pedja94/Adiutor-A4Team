@@ -20,6 +20,7 @@ namespace AdiutorBootstrap.Controllers
         public ActionResult Registracija()
         {
             RegistracijaModels model = new RegistracijaModels();
+            model.BrojIndeksa = null;
             return View(model);
         }
 
@@ -40,7 +41,7 @@ namespace AdiutorBootstrap.Controllers
             {
                 KorisnikDTO user = new KorisnikDTO()
                  {
-                     BrojIndeksa = model.BrojIndeksa,
+                     BrojIndeksa = (decimal) model.BrojIndeksa,
                      Email = model.Email,
                      GodinaStudija = 1,
                      Ime = model.Ime,
