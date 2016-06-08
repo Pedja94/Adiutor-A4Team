@@ -17,13 +17,7 @@ namespace AdiutorBootstrap.Controllers
         {
             if (Session["Id"] != null)
             {
-                OdabirPredmetaModel model = new OdabirPredmetaModel();
-                List<SmerDTO> lista = Smerovi.VratiSve();
-                foreach (SmerDTO smer in lista)
-                {
-                    model.Smerovi.Add(new SmerModel(smer.Id, smer.Ime));
-                }
-                return View(model);
+                return View();
             }
             else
             {
