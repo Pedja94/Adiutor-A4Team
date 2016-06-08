@@ -59,7 +59,7 @@ namespace AdiutorBootstrap.Controllers
             }
             else
             {
-                return RedirectToAction("Registracija", "Registracija");
+                return View("Registracija", model);
             }
               
         }

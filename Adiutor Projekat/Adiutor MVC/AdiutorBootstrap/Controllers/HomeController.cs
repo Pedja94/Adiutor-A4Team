@@ -34,7 +34,8 @@ namespace AdiutorBootstrap.Controllers
 
         public ActionResult Pocetna()
         {
-            return View();
+            LogInModel model = new LogInModel();
+            return View(model);
         }
 
         [HttpPost]
@@ -49,7 +50,7 @@ namespace AdiutorBootstrap.Controllers
             }
             else
             {
-                return View("Pocetna");
+                return View("Pocetna", model);
             }
         }
 
