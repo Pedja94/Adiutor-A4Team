@@ -12,12 +12,14 @@
                 @Html.LabelFor(m => m.username, new { @class="col-md-4 col-sm-6 control-label", @id="korisnickoImeLbl" })
                 <div class="col-md-4 col-sm-6">
                     @Html.TextBoxFor(m => m.username, new { @class="form-control",@name="username",})
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.password, new { @class="col-md-4 col-sm-6 control-label", @id="lozinkaLbl"})
                 <div class="col-md-4 col-sm-6">
                     @Html.PasswordFor(m=>m.password, new { @class="form-control",@name="password",@id="password"})
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
 
                 </div>
             </div>
@@ -37,7 +39,12 @@
             <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
-                    <label id="lblError" class="text-danger"></label>
+                    <label id="lblError" class="text-danger">
+                        @if (ViewBag.BadLogin != null && ViewBag.BadLogin)
+                        {
+                            <p>Nepostojće korisničko ime ili nevalidna lozinka.</p>
+                        }
+                    </label>
                 </div>
             </div>
         </div>

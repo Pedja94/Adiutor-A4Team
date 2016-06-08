@@ -46,10 +46,14 @@ namespace AdiutorBootstrap.Controllers
             {
                 Session["Id"] = user.Id;
                 Session["Role"] = user.RoleId;
+                Session["Username"] = user.Username;
+                Session["Ime"] = user.Ime;
+                Session["Prezime"] = user.Prezime;
                 return RedirectToAction("Odabir_predmeta", "Odabir_predmeta");
             }
             else
             {
+                ViewBag.BadLogin = true;
                 return View("Pocetna", model);
             }
         }
@@ -59,16 +63,19 @@ namespace AdiutorBootstrap.Controllers
         [HttpGet]//trebace nam i kontroler za odjavljivanje sa naloga, nakon sto se neko prijavi
         public ActionResult LogOut()
         {
-            if (Session["Id"] != null && Session["Role"]!=null) 
+            if (Session["Id"] != null) 
             {
                 Session["Id"] = null;
                 Session["Role"] = null;
+                Session["Username"] = null;
+                Session["Ime"] = null;
+                Session["Prezime"] = null;
 
                 return RedirectToAction("Pocetna", "Home");
             }
             else
             {
-                return View("Pocetna");
+                return RedirectToAction("Pocetna", "Home");
             }
         }
 
