@@ -41,6 +41,9 @@
             this.teorijskiProjekatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.prikaziIIzmeniToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.prakticniProjekatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dodajToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.prikaziIIzmeniToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,10 +53,11 @@
             this.predmetToolStripMenuItem,
             this.studentToolStripMenuItem,
             this.timToolStripMenuItem,
-            this.teorijskiProjekatToolStripMenuItem});
+            this.teorijskiProjekatToolStripMenuItem,
+            this.prakticniProjekatToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(419, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -149,11 +153,34 @@
             this.prikaziIIzmeniToolStripMenuItem3.Text = "Prikazi i Izmeni";
             this.prikaziIIzmeniToolStripMenuItem3.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem3_Click);
             // 
+            // prakticniProjekatToolStripMenuItem
+            // 
+            this.prakticniProjekatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem4,
+            this.prikaziIIzmeniToolStripMenuItem4});
+            this.prakticniProjekatToolStripMenuItem.Name = "prakticniProjekatToolStripMenuItem";
+            this.prakticniProjekatToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
+            this.prakticniProjekatToolStripMenuItem.Text = "Prakticni Projekat";
+            // 
+            // dodajToolStripMenuItem4
+            // 
+            this.dodajToolStripMenuItem4.Name = "dodajToolStripMenuItem4";
+            this.dodajToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.dodajToolStripMenuItem4.Text = "Dodaj";
+            this.dodajToolStripMenuItem4.Click += new System.EventHandler(this.dodajToolStripMenuItem4_Click);
+            // 
+            // prikaziIIzmeniToolStripMenuItem4
+            // 
+            this.prikaziIIzmeniToolStripMenuItem4.Name = "prikaziIIzmeniToolStripMenuItem4";
+            this.prikaziIIzmeniToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.prikaziIIzmeniToolStripMenuItem4.Text = "Prikazi i Izmeni";
+            this.prikaziIIzmeniToolStripMenuItem4.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem4_Click);
+            // 
             // MDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(419, 261);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -182,5 +209,8 @@
         private System.Windows.Forms.ToolStripMenuItem teorijskiProjekatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem prakticniProjekatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem4;
     }
 }

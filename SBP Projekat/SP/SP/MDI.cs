@@ -88,5 +88,23 @@ namespace SP
             // Display the new form.
             newMDIChild.Show();
         }
+
+        private void dodajToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            FormDodajPrakticniProjekat newMDIChild = new FormDodajPrakticniProjekat();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            // Display the new form.
+            newMDIChild.Show();
+        }
+
+        private void prikaziIIzmeniToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            FormPrakticniProjekat newMDIChild = new FormPrakticniProjekat();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            // Display the new form.
+            newMDIChild.Show();
+        }
     }
 }
