@@ -9,7 +9,7 @@ namespace Studentski_projekti.Entiteti
 {
     public class Tim
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
         public virtual string Ime { get; set; } 
         public virtual int BrojClanova { get; set; }
 
