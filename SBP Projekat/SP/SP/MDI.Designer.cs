@@ -38,6 +38,9 @@
             this.timToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.prikaziIIzmeniToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.teorijskiProjekatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.prikaziIIzmeniToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +49,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.predmetToolStripMenuItem,
             this.studentToolStripMenuItem,
-            this.timToolStripMenuItem});
+            this.timToolStripMenuItem,
+            this.teorijskiProjekatToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(284, 24);
@@ -122,6 +126,29 @@
             this.prikaziIIzmeniToolStripMenuItem2.Text = "Prikazi i Izmeni";
             this.prikaziIIzmeniToolStripMenuItem2.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem2_Click);
             // 
+            // teorijskiProjekatToolStripMenuItem
+            // 
+            this.teorijskiProjekatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem3,
+            this.prikaziIIzmeniToolStripMenuItem3});
+            this.teorijskiProjekatToolStripMenuItem.Name = "teorijskiProjekatToolStripMenuItem";
+            this.teorijskiProjekatToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.teorijskiProjekatToolStripMenuItem.Text = "Teorijski Projekat";
+            // 
+            // dodajToolStripMenuItem3
+            // 
+            this.dodajToolStripMenuItem3.Name = "dodajToolStripMenuItem3";
+            this.dodajToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.dodajToolStripMenuItem3.Text = "Dodaj";
+            this.dodajToolStripMenuItem3.Click += new System.EventHandler(this.dodajToolStripMenuItem3_Click);
+            // 
+            // prikaziIIzmeniToolStripMenuItem3
+            // 
+            this.prikaziIIzmeniToolStripMenuItem3.Name = "prikaziIIzmeniToolStripMenuItem3";
+            this.prikaziIIzmeniToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.prikaziIIzmeniToolStripMenuItem3.Text = "Prikazi i Izmeni";
+            this.prikaziIIzmeniToolStripMenuItem3.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem3_Click);
+            // 
             // MDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,5 +179,8 @@
         private System.Windows.Forms.ToolStripMenuItem timToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem teorijskiProjekatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem3;
     }
 }

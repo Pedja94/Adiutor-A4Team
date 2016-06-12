@@ -8,7 +8,7 @@ namespace Studentski_projekti.Entiteti
 {
     public class Projekat
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
         public virtual string Ime { get; set; }
         public virtual string SkolskaGodina { get; set; }
         public virtual string PojedinacnoIliGrupno { get; set; }  //obrati paznju, mozda pravi problem
