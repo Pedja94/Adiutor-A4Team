@@ -18,6 +18,7 @@ namespace SP.Data_Access
             {
                 s.SaveOrUpdate(Item);
                 s.Flush();
+                MessageBox.Show("Uspešno ste dodali podatke");
 
             }
             catch (Exception e)
@@ -34,6 +35,7 @@ namespace SP.Data_Access
 
                 s.Delete(item);
                 s.Flush();
+                MessageBox.Show("Uspešno ste obrisali podatke");
 
             }
             catch (Exception e)
@@ -66,8 +68,9 @@ namespace SP.Data_Access
             try
             {
                 s.Update(Item);
-
+                
                 s.Flush();
+                MessageBox.Show("Uspešno ste načinili izmene");
 
             }
             catch (Exception e)
@@ -90,7 +93,7 @@ namespace SP.Data_Access
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                
                 return null;
             }
         }
