@@ -32,13 +32,17 @@
             this.predmetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prikaziIIzmeniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.studentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dodajToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.prikaziIIzmeniToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.predmetToolStripMenuItem});
+            this.predmetToolStripMenuItem,
+            this.studentToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(284, 24);
@@ -68,6 +72,29 @@
             this.prikaziIIzmeniToolStripMenuItem.Text = "Prikazi i Izmeni";
             this.prikaziIIzmeniToolStripMenuItem.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem_Click);
             // 
+            // studentToolStripMenuItem
+            // 
+            this.studentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem1,
+            this.prikaziIIzmeniToolStripMenuItem1});
+            this.studentToolStripMenuItem.Name = "studentToolStripMenuItem";
+            this.studentToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.studentToolStripMenuItem.Text = "Student";
+            // 
+            // dodajToolStripMenuItem1
+            // 
+            this.dodajToolStripMenuItem1.Name = "dodajToolStripMenuItem1";
+            this.dodajToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.dodajToolStripMenuItem1.Text = "Dodaj";
+            this.dodajToolStripMenuItem1.Click += new System.EventHandler(this.dodajToolStripMenuItem1_Click);
+            // 
+            // prikaziIIzmeniToolStripMenuItem1
+            // 
+            this.prikaziIIzmeniToolStripMenuItem1.Name = "prikaziIIzmeniToolStripMenuItem1";
+            this.prikaziIIzmeniToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.prikaziIIzmeniToolStripMenuItem1.Text = "Prikazi i Izmeni";
+            this.prikaziIIzmeniToolStripMenuItem1.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem1_Click);
+            // 
             // MDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -92,5 +119,8 @@
         private System.Windows.Forms.ToolStripMenuItem predmetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem studentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem1;
     }
 }
