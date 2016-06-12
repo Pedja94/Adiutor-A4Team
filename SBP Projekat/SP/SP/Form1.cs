@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using NHibernate;
 using Studentski_projekti.Entiteti;
 using Studentski_projekti.Mapiranja;
+using SP.Data_Access;
 
 namespace SP
 {
@@ -769,5 +770,11 @@ namespace SP
             }
         }
 
+        private void button27_Click(object sender, EventArgs e)
+        {
+            ISession s = DataLayer.GetSession();
+
+            Crud<Knjiga>.ReturnAll(s);
+        }
     }
 }
