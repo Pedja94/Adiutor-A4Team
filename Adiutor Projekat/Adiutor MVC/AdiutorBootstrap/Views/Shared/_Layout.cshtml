@@ -45,7 +45,8 @@
                             <li>@Html.ActionLink("Odjavi se","LogOut","Home")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Registracija", "Registracija", "Registracija")</li>
+                    <li>@if(Session["Id"]==null)
+                        {@Html.ActionLink("Registracija", "Registracija", "Registracija")}</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
             </div><!--/.nav-collapse -->
