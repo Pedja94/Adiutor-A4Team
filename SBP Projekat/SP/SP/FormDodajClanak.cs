@@ -13,9 +13,9 @@ using Studentski_projekti.Entiteti;
 
 namespace SP
 {
-    public partial class FormDodajRad : Form
+    public partial class FormDodajClanak : Form
     {
-        public FormDodajRad()
+        public FormDodajClanak()
         {
             InitializeComponent();
         }
@@ -28,17 +28,16 @@ namespace SP
                 GodinaIzdavanja = int.Parse(textBox2.Text)
             };
 
-            Rad r = new Rad
+            Clanak c = new Clanak
             {
-                MestoObjavljivanja = textBox4.Text,
-                URL = textBox3.Text,
-                FormatDokumenta = textBox5.Text,
-                Literatura = l     
+                Broj_casopisa = int.Parse(textBox3.Text),
+                ISSN = textBox4.Text,
+                Literatura = l
             };
 
             ISession s = DataLayer.GetSession();
             Crud<Literatura>.Create(s, l);
-            Crud<Rad>.Create(s, r);
+            Crud<Clanak>.Create(s, c);
             s.Close();
         }
     }

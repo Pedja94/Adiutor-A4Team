@@ -142,5 +142,23 @@ namespace SP
             // Display the new form.
             newMDIChild.Show();
         }
+
+        private void dodajToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            FormDodajClanak newMDIChild = new FormDodajClanak();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            // Display the new form.
+            newMDIChild.Show();
+        }
+
+        private void prikaziIIzmeniToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            FormClanak newMDIChild = new FormClanak();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            // Display the new form.
+            newMDIChild.Show();
+        }
     }
 }
