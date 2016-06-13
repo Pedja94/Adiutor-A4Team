@@ -32,6 +32,7 @@ namespace SP
                 textBox8.Text = k.Literatura.GodinaIzdavanja.ToString();
                 textBox7.Text = k.ISBN;
                 textBox6.Text = k.Izdavac;
+                textBox10.Text = k.Literatura.Id.ToString();
             }
             catch (Exception ex)
             {
@@ -74,21 +75,23 @@ namespace SP
             {
                 ISession s = DataLayer.GetSession();
 
+                Literatura l = new Literatura
+                {
+                    Id = int.Parse(textBox10.Text),
+                    Naslov = textBox9.Text,
+                    GodinaIzdavanja = int.Parse(textBox8.Text)
+                };
+
                 Knjiga k = new Knjiga
                 {
                     ISBN = textBox7.Text,
-                    Izdavac = textBox6.Text
+                    Izdavac = textBox6.Text,
+                    Literatura = l
                 };
-
-                //Literatura l = new Literatura
-                //{
-                //    Naslov = textBox9.Text,
-                //    GodinaIzdavanja = int.Parse(textBox8.Text)
-                //};
 
                 k.Id = int.Parse(textBox5.Text);
 
-                //Crud<Literatura>.Update(s, l);
+                Crud<Literatura>.Update(s, l);
                 Crud<Knjiga>.Update(s, k);
                 s.Close();
             }

@@ -49,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,11 +242,20 @@
             this.textBox9.Size = new System.Drawing.Size(100, 20);
             this.textBox9.TabIndex = 76;
             // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(112, 244);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(100, 20);
+            this.textBox10.TabIndex = 84;
+            this.textBox10.Visible = false;
+            // 
             // FormKnjiga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 367);
+            this.Controls.Add(this.textBox10);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox6);
@@ -297,5 +307,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }
