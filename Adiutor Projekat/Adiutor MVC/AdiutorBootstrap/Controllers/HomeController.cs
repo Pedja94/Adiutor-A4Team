@@ -82,6 +82,13 @@ namespace AdiutorBootstrap.Controllers
                 korisnik.Slika = user.Slika;
                 korisnik.Email = user.Email;
 
+                List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
+             
+              
+               
+                ViewBag.Items = ListaPostavljenihPitanja;
+             
+
                 return View("KorisnickiPanel",korisnik);
             }
             else

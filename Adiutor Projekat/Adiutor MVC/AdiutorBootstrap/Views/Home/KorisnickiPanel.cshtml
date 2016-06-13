@@ -5,10 +5,6 @@
 }
 @Styles.Render("~/Content/KorisnickiPanelStilovi.css")
 
-                </td>
-
-                <td>
-
 
 <div id="korisnik" class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
     @*ovaj div ce da sluzi za smestanje profilne slike*@
@@ -78,6 +74,18 @@ else if (ViewBag.Izmena == true)
              <a id="dugmePredmet" href="@Url.Action("Odabir_predmeta","Odabir_predmeta")" class="btn btn-success">Odaberi ručno predmete koji te interesuju</a>
          </div> 
     </form>
+
+    <form>
+        <ul>
+           @*@foreach (var item in ViewBag.Items)
+           {
+               <li>@item.Tekst</li>
+           }*@ 
+
+        </ul>
+    </form>
+
+
 </div>    
 
  
