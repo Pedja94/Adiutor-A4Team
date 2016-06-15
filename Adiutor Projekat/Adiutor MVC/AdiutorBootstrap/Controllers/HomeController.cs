@@ -47,17 +47,8 @@ namespace AdiutorBootstrap.Controllers
         {
             if (Session["Id"] == null)
             {
-<<<<<<< HEAD
+
                 return View();
-            }
-            else
-            {
-                LogInModel model = new LogInModel();
-                return View(model);
-            }
-=======
-                LogInModel model = new LogInModel();
-                return View(model);
             }
             else
             {
@@ -71,7 +62,7 @@ namespace AdiutorBootstrap.Controllers
         public ActionResult KorisnickiPanel()
         {
             return View();
->>>>>>> origin/master
+
         }
 
         [HttpPost]
@@ -82,17 +73,11 @@ namespace AdiutorBootstrap.Controllers
             {
                 Session["Id"] = user.Id;
                 Session["Role"] = user.RoleId;
-<<<<<<< HEAD
                 ViewBag.foto= user.Slika;
                 ViewBag.Ime = user.Ime;
                 ViewBag.Prezime = user.Prezime;
                 ViewBag.Username = user.Username;
-                Session["Username"] = user.Username;
-                Session["Ime"] = user.Ime;
-                Session["Prezime"] = user.Prezime;
-          
-                return View("KorisnickiPanel");
-=======
+
                 Session["Username"] = user.Username;
                 Session["Ime"] = user.Ime;
                 Session["Prezime"] = user.Prezime;
@@ -115,14 +100,10 @@ namespace AdiutorBootstrap.Controllers
                 korisnik.Email = user.Email;
 
                 List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
-             
-              
-               
                 ViewBag.Items = ListaPostavljenihPitanja;
              
-
                 return View("KorisnickiPanel",korisnik);
->>>>>>> origin/master
+
             }
             else
             {

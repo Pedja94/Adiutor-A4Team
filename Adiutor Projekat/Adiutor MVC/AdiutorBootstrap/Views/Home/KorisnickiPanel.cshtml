@@ -1,71 +1,92 @@
 ﻿@model AdiutorBootstrap.Models.KorisnikModel
-
+   
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@*<div class="nav1 nav navbar-fixed-top">
-    <img id="slika1PanelKorisnika" class="img-circle" src="~/Content/Images/Milos.jpg" />
-</div>
+@Styles.Render("~/Content/KorisnickiPanelStilovi.css")
 
 
-
-<div class="col-lg-6 col-md-12">
-       
-</div>
-
-
-<div class="col-lg-6 col-md-12">
-    <h1>Ovo je moje pitanje</h1>
-    <table class="reply">
-        <tbody>
-            <tr>
-                <td class="votecell">
-                    <div class="vote">
-                        <p><a class="plus" href="#"><span class="glyphicon glyphicon-plus-sign"></span></a></p>
-                        <p><a class="number">5</a></p>
-                        <p><a class="minus" href="#"><span class="glyphicon glyphicon-minus-sign"></span></a></p>
-                    </div>
-                </td>
-
-                <td>
-                    <div class="text-reply">
-                        Odgovor na pitanje je sledece!!!!!!!!!
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                Komentar1
-            </tr>
-
-            <tr>
-                Komentar2
-            </tr>
-        </tbody>>
-    </table>
-</div>*@
-
-<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="korisnik" class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
     @*ovaj div ce da sluzi za smestanje profilne slike*@
+    <form method="post" action="@Url.Action("IzmeniPodatkeZahtev","Home")">
+        <div id="profilnaSlika" class="col-lg-6 col-md-3 col-sm-3 col-xs-6">
+            <img src=@Model.Slika class="img-thumbnail" />
+            @Html.HiddenFor(m => m.Slika, new { })
+            @if(ViewBag.Izmena!=true) 
+            {
+                <button id="izmeniPodatkeBtn" type="submit" class="btn btn-danger">Izmeni podatke</button>
+            }
+            else
+            {
+                
+            }
+           </div>
+    </form>
 
-    <div id="profilnaSlika" class="col-lg-3 col-md-3 col-sm-4">
-        <img src=@ViewBag.foto class="img-thumbnail"/>
+@if (ViewBag.Izmena != true) 
+{ 
+    <div id="opisi" class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
+        <label>Ime: &nbsp;  </label>@Model.Ime<br />
+        <label>Prezime: &nbsp; </label>@Model.Prezime<br />
+        <label>Korisničko ime: &nbsp; </label>@Model.Username<br />
+        <label>Broj indeksa:&nbsp;  </label>@Model.BrojIndeksa<br />
+        <label>Smer:&nbsp;  </label>@Model.Smer <br />
+        <label>Opis:&nbsp;  </label><div class="opisKorisnika">@Model.Opis</div>
+        <label>E-mail adresa:&nbsp; </label>@Model.Email<br />
     </div>
 
-    <div id="opisi" class="col-lg-5 col-md-7 col-sm-8 col-xs-7">
-        <label>Ime: </label>
-        @Html.LabelFor(m => m.Ime, new { })
-        <label>Prezime: </label> @ViewBag.Prezime <br />
-        <label>Korisničko ime: </label> @ViewBag.Username<br />
-        <label>Broj indeksa: </label>
-    </div>
+}
+else if (ViewBag.Izmena == true)
+{    <form method="post" action="@Url.Action("IzmeniPodatke","Home")">
+      <div id="opisi" class="col-lg-6 col-md-7 col-sm-4 col-xs-4">
+        <label>Ime: &nbsp;  </label>@Html.TextBoxFor(m => m.Ime, new { @class = "form-control", @name = "Ime" })<br />
+        <label>Prezime: &nbsp; </label>@Html.TextBoxFor(m => m.Prezime, new { @class = "form-control", @name = "Prezime" })<br />
+        <label>Korisničko ime: &nbsp; </label><br />
+        <label>Broj indeksa:&nbsp;  </label>@Html.TextBoxFor(m => m.BrojIndeksa, new { @class = "form-control", @name = "BrojIndeksa" })<br />
+        <label>Smer:&nbsp;  </label>@Html.TextBoxFor(m => m.Smer, new { @class = "form-control", @name = "Smer" }) <br />
+        <label>Opis:&nbsp;  </label>@Html.TextAreaFor(m => m.Opis, new { @class = "form-control", @name = "Opis" })
+        <label>E-mail adresa:&nbsp; </label>@Html.TextBoxFor(m => m.Email, new { @class = "form-control", @name = "E-mail" })<br />
+       
 
+               <div>
+                   Aploudujte svoju profilnu fotografiju na besplatan servis  za hosting nazvan <a href="http://www.postimg.org">Postimg</a> i zatim postavite direktni link u tekstualnoj kutiji ispod ovog teksta.
+               </div>
+               @Html.TextBoxFor(m => m.Slika, new { @class = "form-control", @name = "Slika" })
+          <button id="izmeni" type="submit" class="btn btn-danger">Izmeni</button>
+          <br />
+          </div>
+       
+        </form>
+}   
 
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 forma-za-pretrazivanje-i-navigaciju">
+    <form method="post" action="@Url.Action("","")">
+        <div id="grupa">
+            <b>Pretraži portal:</b><input id="traziInput" name="Pretrazi" type="text" size="25" class="form-control" />
+        </div>
+        <br />
+        <br />
+         <div>
+             <a id="dugmePredmet" href="@Url.Action("Odabir_predmeta","Odabir_predmeta")" class="btn btn-success">Odaberi ručno predmete koji te interesuju</a>
+         </div> 
+    </form>
+
+    <form>
+        <ul>
+           @*@foreach (var item in ViewBag.Items)
+           {
+               <li>@item.Tekst</li>
+           }*@ 
+
+        </ul>
+    </form>
 
 
 </div>    
-   
+
+ 
 
