@@ -18,7 +18,7 @@ namespace AdiutorBootstrap.Models
 
             [Required]
             [Display(Name = "Broj indeksa")]
-            public decimal BrojIndeksa { get; set; }
+            public decimal? BrojIndeksa { get; set; }
 
             [Required]
             [Display(Name = "Korisničko ime")]
@@ -39,6 +39,7 @@ namespace AdiutorBootstrap.Models
             [Required]
             [Display(Name = "E-mail")]
             [DataType(DataType.EmailAddress)]
+            [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Email { get; set; }
     }
 }

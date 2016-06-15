@@ -28,28 +28,38 @@
     { 
     <form method="post" action="@Url.Action("Register", "Registracija")">
     
-            @Html.ValidationSummary()  
+             
             @Html.LabelFor(m => m.Ime, new { })   
-            @Html.TextBoxFor(m => m.Ime, new { @class = "form-control", @id="ime",@name="Ime",@placeholder="Ime" })      
+            @Html.TextBoxFor(m => m.Ime, new { @class = "form-control", @id="ime",@name="Ime",@placeholder="Ime" })   
+            @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })  
+            <br /> 
         <!--    <input type="text" id="ime" class="form-control" placeholder="Ime" name="Ime" />-->
             @Html.LabelFor(m => m.Prezime, new { })
             @Html.TextBoxFor(m => m.Prezime, new { @class = "form-control", @id = "prezime", @name = "Prezime", @placeholder = "Prezime" })
+            @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+        <br /> 
          <!--   <input type="text" id="prezime" class="form-control" placeholder="Prezime" name="Prezime" />-->
             @Html.LabelFor(m => m.BrojIndeksa, new { })
-            @Html.TextBoxFor(m => m.BrojIndeksa, new { @class = "form-control", @id = "brojIndeksa", @name = "BrojIndeksa", @placeholder = "Broj indeksa" })
+            @Html.TextBoxFor(m => m.BrojIndeksa, new { @class = "form-control", @id = "brojIndeksa", @name = "BrojIndeksa", @placeholder = "Broj indeksa", @value = "" })
+            @Html.ValidationMessageFor(model => model.BrojIndeksa, "", new { @class = "text-danger" })
+        <br /> 
           <!-- <input type="number" id="prezime" class="form-control" placeholder="Prezime" name="BrojIndeksa" />--> 
             @Html.LabelFor(m => m.Username, new { @value="Korisničko ime"})
             @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @id = "korisnickoIme", @name = "Username" ,@placeholder="Korisničko ime"})
-
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        <br /> 
             @Html.LabelFor(m => m.Password, new { })
             @Html.PasswordFor(m => m.Password, new { @class="form-control", @id="lozinka",@name="Password",@placeholder="Lozinka"})
-   
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        <br /> 
             @Html.LabelFor(m => m.ConfirmPassword, new { })
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @id = "potvrdaLozinke", @name = "ConfirmPassword", @placeholder = "Potvrdi lozinku" })
-          
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        <br /> 
             @Html.LabelFor(m => m.Email, new { })
             @Html.TextBoxFor(m => m.Email, new { @class="form-control",@id="email",@name="Email",@placeholder="Adresa e-pošte"})
-
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        <br /> 
             <span>
                 <button id="registrujSe" class="btn btn-success space-vert" data-target="#myModal">Registruj se</button>
             </span>
@@ -68,11 +78,11 @@
                             <h4 class="modal-title">Informacije o registraciji</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Uspešno ste se registrovali na Adiutor.</p>
+                            <p>Link za potvrdu vam je poslat na vašu e-mail adresu.</p>
                         </div>
                         <div class="modal-footer">
                             <form method="get" action="@Url.Action("Pocetna","Home")">
-                                <button type="submit" class="btn btn-default" >Prijava</button>
+                                <button type="submit" class="btn btn-default" >Povratak na početnu</button>
                             </form>
                         </div>
                         

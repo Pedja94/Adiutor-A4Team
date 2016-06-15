@@ -183,49 +183,49 @@ namespace Business.DataAccess
             }
         }
 
-        static public List<PredmetDTO> VratiSve(int smerID)
-        {
-            try
-            {
-                ISession s = DataLayer.GetSession();
+        //static public List<PredmetDTO> VratiSve(int smerID)
+        //{
+        //    try
+        //    {
+        //        ISession s = DataLayer.GetSession();
 
 
-                List<Predmet> Predmeti = (from k in s.Query<Predmet>()
-                                          select k).ToList<Predmet>();
+        //        List<Predmet> Predmeti = (from k in s.Query<Predmet>()
+        //                                  select k).ToList<Predmet>();
 
-                List<PredmetDTO> retVal = new List<PredmetDTO>();
+        //        List<PredmetDTO> retVal = new List<PredmetDTO>();
 
-                foreach (Predmet p in Predmeti)
-                {
-                    PredmetDTO pre = new PredmetDTO()
-                    {
-                        Id = p.Id,
-                        GodinaStudija = p.GodinaStudija,
-                        Naziv = p.Naziv,
-                        Semestar = p.Semestar,
+        //        foreach (Predmet p in Predmeti)
+        //        {
+        //            PredmetDTO pre = new PredmetDTO()
+        //            {
+        //                Id = p.Id,
+        //                GodinaStudija = p.GodinaStudija,
+        //                Naziv = p.Naziv,
+        //                Semestar = p.Semestar,
                         
-                    };
+        //            };
 
-                    if (p.ZaduzeniProfesor != null)
-                    {
-                        pre.ProfesorId = p.ZaduzeniProfesor.Id;
-                    }
-                    else
-                    {
-                        pre.ProfesorId = 0;
-                    }
+        //            if (p.ZaduzeniProfesor != null)
+        //            {
+        //                pre.ProfesorId = p.ZaduzeniProfesor.Id;
+        //            }
+        //            else
+        //            {
+        //                pre.ProfesorId = 0;
+        //            }
 
-                    retVal.Add(pre);
-                }
+        //            retVal.Add(pre);
+        //        }
 
-                return retVal;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-        }
+        //        return retVal;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        return null;
+        //    }
+        //}
 
         public static void DodajZaduzenog(int Id, ProfesorDTO p)
         {

@@ -1,12 +1,7 @@
-﻿@model AdiutorBootstrap.Models.RegistracijaModels
+﻿@model AdiutorBootstrap.Models.KorisnikModel
 
-@{
-    ViewBag.Title = "KorisnickiPanel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@Styles.Render("~/Content/KorisnickiPanelStilovi.css")
-
 
 @*<div class="nav1 nav navbar-fixed-top">
     <img id="slika1PanelKorisnika" class="img-circle" src="~/Content/Images/Milos.jpg" />
@@ -50,21 +45,19 @@
     </table>
 </div>*@
 
-<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
     @*ovaj div ce da sluzi za smestanje profilne slike*@
 
-    <div id="profilnaSlika" class="col-lg-3 col-md-3 col-sm-4"  >
-        <img  src=@ViewBag.foto />
+    <div id="profilnaSlika" class="col-lg-3 col-md-3 col-sm-4">
+        <img src=@ViewBag.foto class="img-thumbnail"/>
     </div>
-    <label>WHATFUCK</label>
-    <div id="opisi" class="col-lg-3 col-md-3 col-sm-6">
-        <label>Ime:</label>
-        <label>Gluposti</label>
-        <label>@ViewBag.Ime</label><br />
-        <div class="nekidiv">blah</div>
-        <label>Prezime:</label><label>@ViewBag.Prezime</label><br />
-        <label>Korisnicko ime:</label><label>@ViewBag.Username</label><br />
 
+    <div id="opisi" class="col-lg-5 col-md-7 col-sm-8 col-xs-7">
+        <label>Ime: </label>
+        @Html.LabelFor(m => m.Ime, new { })
+        <label>Prezime: </label> @ViewBag.Prezime <br />
+        <label>Korisničko ime: </label> @ViewBag.Username<br />
+        <label>Broj indeksa: </label>
     </div>
 
 

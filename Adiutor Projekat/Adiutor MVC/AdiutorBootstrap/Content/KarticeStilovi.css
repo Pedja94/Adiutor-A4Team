@@ -20,8 +20,8 @@
 
 
 .tekst{
-    font-family:"Helvetica Neue";
-    font-size:20px;
+    font-family:"Merriweather";
+    font-size:16px;
     left:2px;
     position:relative;
     border-radius:5px;
@@ -50,7 +50,7 @@
     left:40%;
     font-size:18px;
     color:#2bb27d;
-    font-family:"Helvetica Neue";
+    font-family:'Calibri';
 }
 
 .tagovi_container{

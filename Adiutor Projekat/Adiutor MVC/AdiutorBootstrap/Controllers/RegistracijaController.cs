@@ -20,6 +20,7 @@ namespace AdiutorBootstrap.Controllers
         public ActionResult Registracija()
         {
             RegistracijaModels model = new RegistracijaModels();
+            model.BrojIndeksa = null;
             return View(model);
         }
 
@@ -40,7 +41,7 @@ namespace AdiutorBootstrap.Controllers
             {
                 KorisnikDTO user = new KorisnikDTO()
                  {
-                     BrojIndeksa = model.BrojIndeksa,
+                     BrojIndeksa = (decimal) model.BrojIndeksa,
                      Email = model.Email,
                      GodinaStudija = 1,
                      Ime = model.Ime,
@@ -51,19 +52,47 @@ namespace AdiutorBootstrap.Controllers
                      Smer = null,
                      Username = model.Username,
                      RoleId = 1,
-                     StatusId = 1
+                     StatusId = 2
                  };
                 Korisnici.Dodaj(user);
+                user = Korisnici.Nadji(model.Username);
+                SendMail(user);
                 ViewBag.Articles = "one";
                 return View("Registracija");
             }
             else
             {
-                return RedirectToAction("Registracija", "Registracija");
+                return View("Registracija", model);
             }
               
         }
 
+        public void SendMail(KorisnikDTO user)
+        {
+            System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+                new System.Net.Mail.MailAddress("adiutorA4Team@outlook.com", "Web Registracija"),
+                new System.Net.Mail.MailAddress(user.Email));
+            m.Subject = "Potvrda e-mail adrese";
+            m.Body = string.Format("Dear {0}<BR/>Hvala vam što ste se registrovali na našem sajtu. Kliknite na link ispod da bi ste završili registaciju: <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.Username, Url.Action("ConfirmEmail", "Registracija", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme));
+            m.IsBodyHtml = true;
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp-mail.outlook.com");
+            smtp.Credentials = new System.Net.NetworkCredential("adiutorA4Team@outlook.com", "9A4rules");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
+        }
+
+        [AllowAnonymous] 
+        public ActionResult ConfirmEmail(string Token, string Email)
+        {
+            int id = Int32.Parse(Token);
+            KorisnikDTO user = Korisnici.Procitaj(id);
+            if (user != null)
+            {
+                Korisnici.PromeniStatus(user, 1);
+            }
+
+            return RedirectToAction("Pocetna", "Home");
+        }
 
         public ActionResult Popup()
         {
