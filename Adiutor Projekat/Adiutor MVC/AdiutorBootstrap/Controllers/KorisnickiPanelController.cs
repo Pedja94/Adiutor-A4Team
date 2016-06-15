@@ -12,7 +12,14 @@ namespace AdiutorBootstrap.Controllers
         // GET: /KorisnickiPanel/
         public ActionResult KorisnickiPanel()
         {
-            return View();
+            if (Session["Id"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Pocetna", "Home");
+            }
         }
 	}
 }

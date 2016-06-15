@@ -1,1 +1,63 @@
+<<<<<<< HEAD
 ﻿
+=======
+﻿#opisi{
+    font-family:Tahoma;
+    background-size:300px;
+    background-image:none;
+
+}
+
+#izmeniPodatkeBtn{
+    position:relative;
+    left:18%;
+    margin-top:5px;
+}
+
+#grupa{
+    align-content:center;
+}
+
+#traziInput{
+    max-width:300px;
+    float:right;
+    position:relative;
+    left:0px;
+}
+
+.forma-za-pretrazivanje-i-navigaciju{
+    padding-top:40px;
+}
+
+#dugmePredmet{
+    position:relative;
+    left:28%;
+    margin:20px;
+}
+
+#korisnik{
+    background-color:rgba(119, 158, 203, 0.56);
+    /*background-color:#aec6cf;*/
+    border-radius:8px;
+    padding:8px;
+
+}
+
+#profilnaSlika{
+    margin-top:10px;
+
+}
+
+#izmeni{
+    margin:8px;
+    position:relative;
+    left:22%;
+
+}
+
+.opisKorisnika{
+    background-color:rgba(255, 105, 97, 0.20);
+    border-radius:8px;
+    padding:5px;
+}
+>>>>>>> origin/master

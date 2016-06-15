@@ -38,6 +38,11 @@ namespace AdiutorBootstrap.Models
         [Display(Name = "Godina:")]
         public string GodinaStudija { get; set; }
 
+<<<<<<< HEAD
+=======
+        [Display(Name = "Fotografija:")]
+        public string Slika { get; set; }
+>>>>>>> origin/master
         
 
 

@@ -1,0 +1,45 @@
+﻿@model AdiutorBootstrap.Models.PredmetModel
+
+@{
+    ViewBag.Title = "Predmet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@Styles.Render("~/Content/PredmetStilovi.css")
+
+
+<div id="container" class="col-lg-5 col-md-6 col-sm-10 col-xs-10">
+    <h1 name="nazivPredmeta" id="nazivPredmeta">@Html.DisplayTextFor(m=> m.NazivPredmeta )</h1>
+    <hr />
+    <div class="semestar-godina-smer">
+        <h4 id="zadProfesor">Zaduženi profesor: @Html.DisplayTextFor(m => m.ZaduzeniProfesor)  &nbsp; &nbsp; </h4>
+        <h4>Semestar: @Html.DisplayTextFor(m=>m.Semestar) &nbsp; |</h4>
+
+    </div>
+    <hr />
+    <div class="opisPredmeta">
+        <!--ovde neki opis iz modela kad se napravi--> 
+        <article id="opisPredmeta">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</article>
+
+    </div>
+  <br />
+</div>
+<br />
+
+<div id="oblastiPredmeta" class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
+    <form action="@Url.Action("Oblasti","Oblasti")" method="get">
+        @foreach(var oblast in Model.Oblasti)
+        {
+            <div id="karticaOblast" >
+                <div id="nazivOblasti">
+                   <a href="~/Oblast/Oblast/@oblast.Naziv">@oblast.Naziv</a>
+                </div>
+                <article id="opisOblasti">@oblast.Opis</article>
+            </div>
+            <br />
+        }
+
+    </form>
+
+
+</div>

@@ -73,7 +73,11 @@ namespace AdiutorBootstrap.Controllers
                 new System.Net.Mail.MailAddress("adiutorA4Team@outlook.com", "Web Registracija"),
                 new System.Net.Mail.MailAddress(user.Email));
             m.Subject = "Potvrda e-mail adrese";
+<<<<<<< HEAD
             m.Body = string.Format("Dear {0}<BR/>Hvala vam što ste se registrovali na našem sajtu. Kliknite na link ispod da bi ste završili registaciju: <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.Username, Url.Action("ConfirmEmail", "Registracija", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme));
+=======
+            m.Body = string.Format("Dear {0}<BR/>Hvala vam što ste se registrovali na naš sajt. Kliknite na link ispod da biste završili registaciju: <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.Username, Url.Action("ConfirmEmail", "Registracija", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme));
+>>>>>>> origin/master
             m.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp-mail.outlook.com");
             smtp.Credentials = new System.Net.NetworkCredential("adiutorA4Team@outlook.com", "9A4rules");

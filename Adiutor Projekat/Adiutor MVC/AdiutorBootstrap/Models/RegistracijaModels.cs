@@ -32,7 +32,7 @@ namespace AdiutorBootstrap.Models
 
 
             [DataType(DataType.Password)]
-            [Display(Name = "Potvrdi lozinku")]
+            [Display(Name = "Nepotvrdi lozinku")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 

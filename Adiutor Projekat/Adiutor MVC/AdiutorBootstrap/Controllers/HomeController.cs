@@ -47,6 +47,7 @@ namespace AdiutorBootstrap.Controllers
         {
             if (Session["Id"] == null)
             {
+<<<<<<< HEAD
                 return View();
             }
             else
@@ -54,6 +55,23 @@ namespace AdiutorBootstrap.Controllers
                 LogInModel model = new LogInModel();
                 return View(model);
             }
+=======
+                LogInModel model = new LogInModel();
+                return View(model);
+            }
+            else
+            {
+                LogInModel model=new LogInModel();
+                model.username=(string)Session["Username"];
+                model.password=(string)Session["Password"];
+                return LogIn(model);
+            }
+        }
+
+        public ActionResult KorisnickiPanel()
+        {
+            return View();
+>>>>>>> origin/master
         }
 
         [HttpPost]
@@ -64,6 +82,7 @@ namespace AdiutorBootstrap.Controllers
             {
                 Session["Id"] = user.Id;
                 Session["Role"] = user.RoleId;
+<<<<<<< HEAD
                 ViewBag.foto= user.Slika;
                 ViewBag.Ime = user.Ime;
                 ViewBag.Prezime = user.Prezime;
@@ -73,6 +92,37 @@ namespace AdiutorBootstrap.Controllers
                 Session["Prezime"] = user.Prezime;
           
                 return View("KorisnickiPanel");
+=======
+                Session["Username"] = user.Username;
+                Session["Ime"] = user.Ime;
+                Session["Prezime"] = user.Prezime;
+                Session["Password"] = user.Password;
+                Session["GodinaStudija"] = user.GodinaStudija;
+                ViewBag.foto = user.Slika;
+                ViewBag.brIndeksa = user.BrojIndeksa;
+                Session["Status"] = user.StatusId;
+
+                //sada ovde treba da inicijalizujemo elemente korisnickog modela svim podacima iz baze
+
+                KorisnikModel korisnik=new KorisnikModel();
+                korisnik.Ime = user.Ime;
+                korisnik.Prezime = user.Prezime;
+                korisnik.Username = user.Username;
+                korisnik.Opis = user.Opis;
+                korisnik.Smer = user.Smer;
+                korisnik.BrojIndeksa = user.BrojIndeksa;
+                korisnik.Slika = user.Slika;
+                korisnik.Email = user.Email;
+
+                List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
+             
+              
+               
+                ViewBag.Items = ListaPostavljenihPitanja;
+             
+
+                return View("KorisnickiPanel",korisnik);
+>>>>>>> origin/master
             }
             else
             {
@@ -100,6 +150,51 @@ namespace AdiutorBootstrap.Controllers
             {
                 return RedirectToAction("Pocetna", "Home");
             }
+        }
+
+
+        [HttpPost]
+        public ActionResult IzmeniPodatkeZahtev()
+        {
+            ViewBag.Izmena = true;
+            KorisnikDTO user = Korisnici.Nadji((string)Session["Username"]);
+            KorisnikModel korisnik = new KorisnikModel();
+            korisnik.Ime = user.Ime;
+            korisnik.Prezime = user.Prezime;
+            korisnik.Username = user.Username;
+            korisnik.Opis = user.Opis;
+            korisnik.Smer = user.Smer;
+            korisnik.BrojIndeksa = user.BrojIndeksa;
+            korisnik.Slika = user.Slika;
+            korisnik.Email = user.Email;
+
+            return View("KorisnickiPanel", korisnik);
+        }
+
+        [HttpPost]
+        public ActionResult IzmeniPodatke(KorisnikModel korisnik)
+        {
+            KorisnikDTO korisnikZaIzmenu = new KorisnikDTO();
+            korisnikZaIzmenu.Ime = korisnik.Ime;
+            korisnikZaIzmenu.Prezime = korisnik.Prezime;
+            korisnikZaIzmenu.Email = korisnik.Email;
+            korisnikZaIzmenu.Slika = korisnik.Slika;
+            korisnikZaIzmenu.Password = (string)Session["Password"];
+            korisnikZaIzmenu.Id = (int)Session["Id"];
+            korisnikZaIzmenu.GodinaStudija = (decimal)Session["GodinaStudija"];
+            korisnikZaIzmenu.RoleId= (int)Session["Role"];
+            korisnikZaIzmenu.StatusId = (int)Session["Status"];
+            korisnikZaIzmenu.Username = (string)Session["Username"];
+            korisnikZaIzmenu.Opis = korisnik.Opis; 
+            korisnikZaIzmenu.BrojIndeksa = korisnik.BrojIndeksa;
+            korisnikZaIzmenu.Smer = korisnik.Smer;
+            
+        
+            korisnik.Username = (string)Session["Username"];
+            Korisnici.Izmeni(korisnikZaIzmenu);
+
+            return View("KorisnickiPanel", korisnik);
+
         }
 
     }
