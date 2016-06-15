@@ -31,10 +31,29 @@ namespace AdiutorBootstrap.Controllers
             return View();
         }
 
+        public ActionResult KorisnickiPanel(KorisnikModel korisnik)
+        {
+            KorisnikDTO user = Korisnici.Nadji(korisnik.Username);
+            if (Session["Id"] != null && (int)Session["Id"]==user.Id)
+            {
+                
+            }
+              return View("KorisnickiPanel");
+        }
+
+
 
         public ActionResult Pocetna()
         {
-            return View();
+            if (Session["Id"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                LogInModel model = new LogInModel();
+                return View(model);
+            }
         }
 
         [HttpPost]
@@ -45,11 +64,20 @@ namespace AdiutorBootstrap.Controllers
             {
                 Session["Id"] = user.Id;
                 Session["Role"] = user.RoleId;
-                return RedirectToAction("Odabir_predmeta", "Odabir_predmeta");
+                ViewBag.foto= user.Slika;
+                ViewBag.Ime = user.Ime;
+                ViewBag.Prezime = user.Prezime;
+                ViewBag.Username = user.Username;
+                Session["Username"] = user.Username;
+                Session["Ime"] = user.Ime;
+                Session["Prezime"] = user.Prezime;
+          
+                return View("KorisnickiPanel");
             }
             else
             {
-                return View("Pocetna");
+                ViewBag.BadLogin = true;
+                return View("Pocetna", model);
             }
         }
 
@@ -58,16 +86,19 @@ namespace AdiutorBootstrap.Controllers
         [HttpGet]//trebace nam i kontroler za odjavljivanje sa naloga, nakon sto se neko prijavi
         public ActionResult LogOut()
         {
-            if (Session["Id"] != null && Session["Role"]!=null) 
+            if (Session["Id"] != null) 
             {
                 Session["Id"] = null;
                 Session["Role"] = null;
+                Session["Username"] = null;
+                Session["Ime"] = null;
+                Session["Prezime"] = null;
 
                 return RedirectToAction("Pocetna", "Home");
             }
             else
             {
-                return View("Pocetna");
+                return RedirectToAction("Pocetna", "Home");
             }
         }
 
