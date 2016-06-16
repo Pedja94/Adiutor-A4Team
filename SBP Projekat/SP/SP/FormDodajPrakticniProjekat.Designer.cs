@@ -41,13 +41,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(157, 162);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(118, 20);
             this.textBox1.TabIndex = 41;
             // 
             // label1
@@ -63,7 +65,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(156, 122);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.Size = new System.Drawing.Size(119, 20);
             this.textBox4.TabIndex = 39;
             // 
             // label4
@@ -79,7 +81,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(156, 81);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.Size = new System.Drawing.Size(119, 20);
             this.textBox3.TabIndex = 37;
             // 
             // label3
@@ -95,7 +97,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(156, 42);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(119, 20);
             this.textBox2.TabIndex = 35;
             // 
             // label2
@@ -109,7 +111,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(182, 276);
+            this.button1.Location = new System.Drawing.Point(181, 313);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 33;
@@ -121,7 +123,7 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(157, 201);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.Size = new System.Drawing.Size(118, 20);
             this.textBox5.TabIndex = 43;
             // 
             // label5
@@ -137,7 +139,7 @@
             // 
             this.textBox6.Location = new System.Drawing.Point(157, 239);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
+            this.textBox6.Size = new System.Drawing.Size(118, 20);
             this.textBox6.TabIndex = 45;
             // 
             // label6
@@ -149,11 +151,30 @@
             this.label6.TabIndex = 44;
             this.label6.Text = "Programski jezik";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(95, 277);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 13);
+            this.label7.TabIndex = 47;
+            this.label7.Text = "Predmet";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(154, 274);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 46;
+            // 
             // FormDodajPrakticniProjekat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 325);
+            this.ClientSize = new System.Drawing.Size(287, 348);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox5);
@@ -189,5 +210,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
