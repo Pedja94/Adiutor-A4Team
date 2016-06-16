@@ -167,5 +167,12 @@ namespace SP
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
         }
+
+        private void dodajLiteraturuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DodajLiteraturu newMDIChild = new DodajLiteraturu();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
     }
 }
