@@ -22,8 +22,8 @@ namespace Studentski_projekti.Mapiranja
             Map(x => x.DatumPredaje).Column("DATUM_PREDAJE");
             Map(x => x.DatumBiranja).Column("DATUM_BIRANJA");
 
-            HasMany(x => x.Projekti).KeyColumn("PROJEKAT_ID").Cascade.All();
-            HasMany(x => x.Timovi).KeyColumn("TIM_ID").Cascade.All();
+            References(x => x.Projekat).Column("PROJEKAT_ID");
+            References(x => x.Tim).Column("TIM_ID");
             
         }
 

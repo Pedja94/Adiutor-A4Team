@@ -161,16 +161,9 @@ namespace SP
             newMDIChild.Show();
         }
 
-        private void teorijskiProjekatToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void poveziSaProjektomToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PostaviTeorijskiProjekat newMDIChild = new PostaviTeorijskiProjekat();
-            newMDIChild.MdiParent = this;
-            newMDIChild.Show();
-        }
-
-        private void prakticniProjekatToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            PostaviPrakticniProjekat newMDIChild = new PostaviPrakticniProjekat();
+            PoveziSaProjektom newMDIChild = new PoveziSaProjektom();
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
         }

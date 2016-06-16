@@ -13,17 +13,7 @@ namespace Studentski_projekti.Entiteti
         public virtual DateTime DatumBiranja { get; set; }
         public virtual DateTime DatumPredaje { get; set;  } 
 
-        public virtual IList<Projekat> Projekti { get; set; }
-        public virtual IList<Tim> Timovi { get; set;}
-
-
-        public ProjekatTim ()
-        {
-
-            Projekti = new List<Projekat>();
-            Timovi = new List<Tim>();
-
-        }
-
+        public virtual Projekat Projekat { get; set; }
+        public virtual Tim Tim { get; set;}
     }
 }
