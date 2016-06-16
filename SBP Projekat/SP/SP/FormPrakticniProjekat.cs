@@ -26,14 +26,16 @@ namespace SP
             {
                 ISession s = DataLayer.GetSession();
 
-                PrakticniProjekat t = Crud<PrakticniProjekat>.Read(s, int.Parse(textBox5.Text));
+                //PrakticniProjekat t = Crud<PrakticniProjekat>.Read(s, int.Parse(textBox5.Text));
+                neaktivno();
 
-                textBox9.Text = t.Ime;
-                textBox8.Text = t.SkolskaGodina;
-                textBox7.Text = t.PojedinacnoIliGrupno;
-                textBox11.Text = t.BrojIzvestaja.ToString();
-                textBox10.Text = t.Opis;
-                textBox6.Text = t.ProgramskiJezik;
+                textBox9.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                textBox8.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                textBox7.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                textBox11.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                textBox10.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                textBox6.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                textBox5.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -41,18 +43,25 @@ namespace SP
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void neaktivno()
         {
-            if (textBox5.Text != "")
-            {
-                textBox9.ReadOnly = false;
-                textBox8.ReadOnly = false;
-                textBox7.ReadOnly = false;
-                textBox6.ReadOnly = false;
-                textBox10.ReadOnly = false;
-                textBox11.ReadOnly = false;
-                button7.Visible = true;
-            }
+            textBox9.ReadOnly = true;
+            textBox8.ReadOnly = true;
+            textBox7.ReadOnly = true;
+            textBox6.ReadOnly = true;
+            textBox10.ReadOnly = true;
+            textBox11.ReadOnly = true;
+            button7.Visible = false;
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {   
+            textBox9.ReadOnly = false;
+            textBox8.ReadOnly = false;
+            textBox7.ReadOnly = false;
+            textBox6.ReadOnly = false;
+            textBox10.ReadOnly = false;
+            textBox11.ReadOnly = false;
+            button7.Visible = true;   
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -61,12 +70,15 @@ namespace SP
             try
             {
                 Crud<PrakticniProjekat>.Delete(s, int.Parse(textBox5.Text));
+
+                neaktivno();
                 textBox9.Text = "";
                 textBox8.Text = "";
                 textBox7.Text = "";
                 textBox6.Text = "";
                 textBox10.Text = "";
                 textBox11.Text = "";
+                textBox5.Text = "";
             }
             catch (Exception ex)
             {
@@ -93,6 +105,8 @@ namespace SP
                 t.Id = int.Parse(textBox5.Text);
 
                 Crud<PrakticniProjekat>.Update(s, t);
+                s.Close();
+                neaktivno();
             }
             catch (Exception ex)
             {
@@ -105,8 +119,11 @@ namespace SP
             try
             {
                 ISession s = DataLayer.GetSession();
-
+                neaktivno();
                 dataGridView1.DataSource = Crud<PrakticniProjekat>.ReturnAll(s);
+                dataGridView1.Columns[3].Visible = false;
+                dataGridView1.Columns[7].Visible = false;
+                dataGridView1.Columns[8].Visible = false;
             }
             catch (Exception ex)
             {

@@ -27,13 +27,14 @@ namespace SP
             {
                 ISession s = DataLayer.GetSession();
 
-                Clanak c = Crud<Clanak>.Read(s, int.Parse(textBox5.Text));
+                //Clanak c = Crud<Clanak>.Read(s, int.Parse(textBox5.Text));
 
-                textBox9.Text = c.Literatura.Naslov;
-                textBox8.Text = c.Literatura.GodinaIzdavanja.ToString();
-                textBox7.Text = c.ISSN;
-                textBox6.Text = c.Broj_casopisa.ToString();
-                textBox10.Text = c.Literatura.Id.ToString();
+                textBox9.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).Naslov;
+                textBox8.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).GodinaIzdavanja.ToString();
+                textBox7.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                textBox6.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                textBox10.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).Id.ToString();
+                textBox5.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -43,14 +44,13 @@ namespace SP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text != "")
-            {
-                textBox9.ReadOnly = false;
-                textBox8.ReadOnly = false;
-                textBox7.ReadOnly = false;
-                textBox6.ReadOnly = false;
-                button7.Visible = true;
-            }
+            
+            textBox9.ReadOnly = false;
+            textBox8.ReadOnly = false;
+            textBox7.ReadOnly = false;
+            textBox6.ReadOnly = false;
+            button7.Visible = true;
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -63,6 +63,8 @@ namespace SP
                 textBox8.Text = "";
                 textBox7.Text = "";
                 textBox6.Text = "";
+                textBox5.Text = "";
+                textBox10.Text = "";
             }
             catch (Exception ex)
             {
@@ -109,6 +111,8 @@ namespace SP
                 ISession s = DataLayer.GetSession();
 
                 dataGridView1.DataSource = Crud<Clanak>.ReturnAll(s);
+                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[3].Visible = false;
             }
             catch (Exception ex)
             {

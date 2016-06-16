@@ -35,7 +35,6 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -57,7 +56,7 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(121, 280);
+            this.textBox10.Location = new System.Drawing.Point(120, 247);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(100, 20);
             this.textBox10.TabIndex = 106;
@@ -66,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 89);
+            this.label2.Location = new System.Drawing.Point(14, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 101;
@@ -75,7 +74,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 51);
+            this.label1.Location = new System.Drawing.Point(64, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 100;
@@ -83,7 +82,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(121, 86);
+            this.textBox8.Location = new System.Drawing.Point(120, 53);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(100, 20);
@@ -91,7 +90,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(121, 48);
+            this.textBox9.Location = new System.Drawing.Point(120, 15);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(100, 20);
@@ -99,7 +98,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(121, 241);
+            this.button7.Location = new System.Drawing.Point(120, 208);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(100, 23);
             this.button7.TabIndex = 97;
@@ -110,19 +109,11 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(121, 12);
+            this.textBox5.Location = new System.Drawing.Point(120, 285);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 96;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(87, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(16, 13);
-            this.label5.TabIndex = 95;
-            this.label5.Text = "Id";
+            this.textBox5.Visible = false;
             // 
             // dataGridView1
             // 
@@ -221,7 +212,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 205);
+            this.label3.Location = new System.Drawing.Point(9, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 112;
@@ -229,7 +220,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(121, 202);
+            this.textBox6.Location = new System.Drawing.Point(120, 169);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(100, 20);
@@ -238,7 +229,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 169);
+            this.label4.Location = new System.Drawing.Point(40, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 13);
             this.label4.TabIndex = 110;
@@ -247,7 +238,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 127);
+            this.label6.Location = new System.Drawing.Point(7, 94);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 109;
@@ -255,7 +246,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(121, 162);
+            this.textBox7.Location = new System.Drawing.Point(120, 129);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(100, 20);
@@ -263,7 +254,7 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(121, 124);
+            this.textBox11.Location = new System.Drawing.Point(120, 91);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(100, 20);
@@ -287,7 +278,6 @@
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -315,7 +305,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
