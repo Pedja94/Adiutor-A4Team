@@ -48,7 +48,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.textBox4.Location = new System.Drawing.Point(101, 141);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -66,7 +66,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.textBox3.Location = new System.Drawing.Point(101, 104);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -84,7 +84,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.textBox1.Location = new System.Drawing.Point(101, 64);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -153,7 +153,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.textBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.textBox2.Location = new System.Drawing.Point(101, 28);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);

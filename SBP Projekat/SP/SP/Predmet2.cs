@@ -20,12 +20,10 @@ namespace SP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try { 
+            try {
                 ISession s = DataLayer.GetSession();
 
-                //string str = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                //Predmet p = Crud<Predmet>.Read(s, int.Parse(textBox5.Text));
-                //Predmet p = Predmeti.Find(s, textBox2.Text);
+                neaktivno();
 
                 textBox1.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 textBox2.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
@@ -42,15 +40,16 @@ namespace SP
         private void button3_Click(object sender, EventArgs e)
         {
             ISession s = DataLayer.GetSession();
-            try { 
+            try {
                 Crud<Predmet>.Delete(s, int.Parse(textBox5.Text));
+                neaktivno();
                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
                 textBox4.Text = "";
                 textBox5.Text = "";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -58,14 +57,21 @@ namespace SP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text != "")
-            {
-                textBox1.ReadOnly = false;
-                //textBox2.ReadOnly = false;
-                textBox3.ReadOnly = false;
-                textBox4.ReadOnly = false;
-                button4.Visible = true;
-            }
+
+            textBox1.ReadOnly = false;
+            textBox2.ReadOnly = false;
+            textBox3.ReadOnly = false;
+            textBox4.ReadOnly = false;
+            button4.Visible = true;
+
+        }
+
+        private void neaktivno() {
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
+            textBox3.ReadOnly = true;
+            textBox4.ReadOnly = true;
+            button4.Visible = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -86,17 +92,8 @@ namespace SP
 
                 Crud<Predmet>.Update(s, p);
 
-
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-
-                textBox1.ReadOnly = true;
-                textBox2.ReadOnly = true;
-                textBox3.ReadOnly = true;
-                textBox4.ReadOnly = true;
-                button4.Visible = false;
+                neaktivno();
+              
             }
             catch (Exception ex)
             {
@@ -108,7 +105,7 @@ namespace SP
         {
             try {
                 ISession s = DataLayer.GetSession();
-
+                neaktivno();
                 dataGridView1.DataSource = Crud<Predmet>.ReturnAll(s);
                 dataGridView1.Columns[0].Visible = false;
             }
@@ -118,9 +115,5 @@ namespace SP
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

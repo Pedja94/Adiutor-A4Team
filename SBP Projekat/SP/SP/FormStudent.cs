@@ -54,12 +54,23 @@ namespace SP
             }
         }
 
+        private void neaktivno() {
+            textBox10.ReadOnly = true;
+            textBox9.ReadOnly = true;
+            textBox8.ReadOnly = true;
+            textBox7.ReadOnly = true;
+            textBox6.ReadOnly = true;
+            button7.Visible = false;
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             ISession s = DataLayer.GetSession();
             try
             {
                 Crud<Student>.Delete(s, int.Parse(textBox5.Text));
+                neaktivno();
                 textBox10.Text = "";
                 textBox9.Text = "";
                 textBox8.Text = "";
@@ -89,6 +100,7 @@ namespace SP
                 student.BrojIndeksa = int.Parse(textBox10.Text);
 
                 Crud<Student>.Update(s, student);
+                neaktivno();
             }
             catch (Exception ex)
             {
@@ -101,7 +113,7 @@ namespace SP
             try
             {
                 ISession s = DataLayer.GetSession();
-
+                neaktivno();
                 dataGridView1.DataSource = Crud<Student>.ReturnAll(s);
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[6].Visible = false;

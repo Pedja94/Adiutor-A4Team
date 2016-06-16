@@ -28,6 +28,7 @@ namespace SP
                 ISession s = DataLayer.GetSession();
 
                 //Clanak c = Crud<Clanak>.Read(s, int.Parse(textBox5.Text));
+                neaktivno();
 
                 textBox9.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).Naslov;
                 textBox8.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).GodinaIzdavanja.ToString();
@@ -53,12 +54,22 @@ namespace SP
             
         }
 
+        private void neaktivno()
+        {
+            textBox9.ReadOnly = true;
+            textBox8.ReadOnly = true;
+            textBox7.ReadOnly = true;
+            textBox6.ReadOnly = true;
+            button7.Visible = false;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             ISession s = DataLayer.GetSession();
             try
             {
                 Crud<Clanak>.Delete(s, int.Parse(textBox5.Text));
+                neaktivno();
                 textBox9.Text = "";
                 textBox8.Text = "";
                 textBox7.Text = "";
@@ -97,6 +108,7 @@ namespace SP
                 Crud<Literatura>.Update(s, l);
                 Crud<Clanak>.Update(s, c);
                 s.Close();
+                neaktivno();
             }
             catch (Exception ex)
             {
@@ -109,7 +121,7 @@ namespace SP
             try
             {
                 ISession s = DataLayer.GetSession();
-
+                neaktivno();
                 dataGridView1.DataSource = Crud<Clanak>.ReturnAll(s);
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[3].Visible = false;
