@@ -181,6 +181,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 100;
+           // this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label7
             // 
@@ -190,6 +191,7 @@
             this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 101;
             this.label7.Text = "Lista autora";
+//            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // FormDodajRad
             // 
@@ -215,6 +217,7 @@
             this.Controls.Add(this.button1);
             this.Name = "FormDodajRad";
             this.Text = "FormDodajRad";
+//            this.Load += new System.EventHandler(this.FormDodajRad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
