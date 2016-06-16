@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace SP.Data_Access
 {
     public static class Clanci
+
     {
         public static Clanak Find(ISession s, string name)
         {
