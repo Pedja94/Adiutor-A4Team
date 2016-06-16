@@ -160,5 +160,19 @@ namespace SP
             // Display the new form.
             newMDIChild.Show();
         }
+
+        private void teorijskiProjekatToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            PostaviTeorijskiProjekat newMDIChild = new PostaviTeorijskiProjekat();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
+
+        private void prakticniProjekatToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            PostaviPrakticniProjekat newMDIChild = new PostaviPrakticniProjekat();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
     }
 }
