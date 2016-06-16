@@ -26,13 +26,14 @@ namespace SP
             {
                 ISession s = DataLayer.GetSession();
 
-                Student student = Crud<Student>.Read(s, int.Parse(textBox5.Text));
+                //Student student = Crud<Student>.Read(s, int.Parse(textBox5.Text));
 
-                textBox10.Text = student.BrojIndeksa.ToString();
-                textBox9.Text = student.Ime;
-                textBox8.Text = student.ImeRoditelja;
-                textBox7.Text = student.Prezime;
-                textBox6.Text = student.Smer;
+                textBox10.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                textBox9.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                textBox8.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                textBox7.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                textBox6.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                textBox5.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -102,6 +103,8 @@ namespace SP
                 ISession s = DataLayer.GetSession();
 
                 dataGridView1.DataSource = Crud<Student>.ReturnAll(s);
+                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[6].Visible = false;
             }
             catch (Exception ex)
             {

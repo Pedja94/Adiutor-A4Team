@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SP.Data_Access;
 using NHibernate;
 using Studentski_projekti.Entiteti;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SP
 {
@@ -18,6 +15,7 @@ namespace SP
         public Predmet2()
         {
             InitializeComponent();
+            dataGridView1.MultiSelect = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -25,12 +23,15 @@ namespace SP
             try { 
                 ISession s = DataLayer.GetSession();
 
-                Predmet p = Crud<Predmet>.Read(s, int.Parse(textBox5.Text));
+                //string str = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                //Predmet p = Crud<Predmet>.Read(s, int.Parse(textBox5.Text));
+                //Predmet p = Predmeti.Find(s, textBox2.Text);
 
-                textBox1.Text = p.Sifra;
-                textBox2.Text = p.Ime;
-                textBox3.Text = p.Semestar.ToString();
-                textBox4.Text = p.Katedra;
+                textBox1.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                textBox2.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                textBox3.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                textBox4.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                textBox5.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -57,10 +58,10 @@ namespace SP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text != "")
+            if (textBox2.Text != "")
             {
                 textBox1.ReadOnly = false;
-                textBox2.ReadOnly = false;
+                //textBox2.ReadOnly = false;
                 textBox3.ReadOnly = false;
                 textBox4.ReadOnly = false;
                 button4.Visible = true;
@@ -102,18 +103,24 @@ namespace SP
 
             }
         }
-
+        
         private void button5_Click(object sender, EventArgs e)
         {
             try {
                 ISession s = DataLayer.GetSession();
 
                 dataGridView1.DataSource = Crud<Predmet>.ReturnAll(s);
+                dataGridView1.Columns[0].Visible = false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
