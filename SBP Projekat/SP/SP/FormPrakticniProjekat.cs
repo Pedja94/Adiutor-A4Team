@@ -15,6 +15,8 @@ namespace SP
 {
     public partial class FormPrakticniProjekat : Form
     {
+        public Predmet predmet;
+
         public FormPrakticniProjekat()
         {
             InitializeComponent();
@@ -24,9 +26,6 @@ namespace SP
         {
             try
             {
-                ISession s = DataLayer.GetSession();
-
-                //PrakticniProjekat t = Crud<PrakticniProjekat>.Read(s, int.Parse(textBox5.Text));
                 neaktivno();
 
                 textBox9.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
@@ -36,6 +35,12 @@ namespace SP
                 textBox10.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 textBox6.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 textBox5.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+
+                ISession s = DataLayer.GetSession();
+                int id = int.Parse(textBox5.Text);
+                PrakticniProjekat pp = Crud<PrakticniProjekat>.Read(s, id);
+                predmet = pp.Predmet;
+                s.Close();
             }
             catch (Exception ex)
             {
@@ -98,7 +103,8 @@ namespace SP
                     SkolskaGodina = textBox8.Text,
                     PojedinacnoIliGrupno = textBox7.Text,
                     Opis = textBox10.Text,
-                    ProgramskiJezik = textBox6.Text
+                    ProgramskiJezik = textBox6.Text,
+                    Predmet = predmet
                 };
 
                 t.BrojIzvestaja = int.Parse(textBox11.Text);

@@ -15,6 +15,8 @@ namespace SP
 {
     public partial class FormTeorijskiProjekat : Form
     {
+        public Predmet predmet;
+
         public FormTeorijskiProjekat()
         {
             InitializeComponent();
@@ -24,8 +26,6 @@ namespace SP
         {
             try
             {
-                ISession s = DataLayer.GetSession();
-
                 //TeorijskiProjekat t = Crud<TeorijskiProjekat>.Read(s, int.Parse(textBox5.Text));
                 neaktivno();
 
@@ -34,6 +34,12 @@ namespace SP
                 textBox7.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
                 textBox6.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 textBox5.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+
+                ISession s = DataLayer.GetSession();
+                int id = int.Parse(textBox5.Text);
+                TeorijskiProjekat tp = Crud<TeorijskiProjekat>.Read(s, id);
+                predmet = tp.Predmet;
+                s.Close();
             }
             catch (Exception ex)
             {
@@ -88,7 +94,8 @@ namespace SP
                 {
                     Ime = textBox9.Text,
                     SkolskaGodina = textBox8.Text,
-                    PojedinacnoIliGrupno = textBox7.Text
+                    PojedinacnoIliGrupno = textBox7.Text,
+                    Predmet = predmet
                 };
 
                 t.MaxBrojStrana = int.Parse(textBox6.Text);
