@@ -170,7 +170,7 @@ namespace SP
 
         private void dodajLiteraturuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DodajLiteraturu newMDIChild = new DodajLiteraturu();
+            FormDodajLiteraturu newMDIChild = new FormDodajLiteraturu();
             newMDIChild.MdiParent = this;
             newMDIChild.Show();
         }

@@ -18,7 +18,7 @@ namespace Studentski_projekti.Mapiranja
 
             Id(x => x.Id, "OSNOVNA_LITERATURA_ID").GeneratedBy.TriggerIdentity();
 
-            HasMany(x => x.Literatura).KeyColumn("LITERATURA_ID").Cascade.All().Inverse();
+            HasMany(x => x.Literatura).KeyColumn("LITERATURA_ID").Cascade.All();//.Inverse();
             References(x => x.TeorijskiProjekat).Cascade.All().Column("TEORIJSKI_PROJEKAT_ID");
     
         }
