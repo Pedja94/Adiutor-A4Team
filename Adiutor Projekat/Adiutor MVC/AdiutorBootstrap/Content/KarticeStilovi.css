@@ -12,7 +12,7 @@
 .tekst_pitanja{
     width:500px;
     min-height:80px;
-    background-color:#2bb27d;
+    background-color:rgba(119, 158, 203, 1);
     border-radius:5px;
     border:1px  blue;
     

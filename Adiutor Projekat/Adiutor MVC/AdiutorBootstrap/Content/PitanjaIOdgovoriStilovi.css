@@ -4,6 +4,294 @@
 
 #buttonPlus,#buttonMinus{
     border-radius:50%;
+    border:double;
+    margin:4px;
  
 }
 
+
+#odgovori{
+    /*background-image:url(Images/pattern1.png);*/
+    background-color:rgba(240, 255, 255, 0.77);
+    min-height:800px;
+    position:relative;
+    left:28%;
+}
+
+#pitanjeIautor{
+    background-color:rgba(239, 149, 149, 0.05);
+    min-height:300px;
+    border-radius:12px;
+    position:relative;
+    left:10%;
+   
+}
+
+#pozadina{
+    background-image:url(Images/pattern1.png);
+}
+
+#informacije{
+    min-height:20%;
+    position:relative;
+   
+}
+
+#slikaKorisnika{
+   max-height:50%;
+   max-width:100%;
+   padding-left:25px;
+}
+
+#slika{
+    border-right:1px solid black;
+}
+
+
+.cke{
+    position:relative;
+    left:36%;
+    max-width:70%;
+    max-height:400px;
+}
+
+#upload{
+    position:relative;
+    left:60%;
+}
+
+
+.kartica{
+    width:inherit;
+    min-height:inherit;
+    background-color:#ffe4e1;
+    border-radius:7px;
+    border:1px solid white;
+    position:relative;
+    left:0%;
+}
+
+
+.tekst_pitanja{
+    width:inherit;
+    min-height:80px;
+    background-color:rgba(119, 158, 203, 1);
+    border-radius:5px;
+    border:1px  blue;
+    margin:0px;
+    
+}
+
+
+.tekst{
+    font-family:"Merriweather";
+    font-size:16px;
+    left:2px;
+    position:relative;
+    border-radius:5px;
+    width:80%;
+    left:15%;
+       
+}
+
+.dodatni_atributi{
+    height:10%;
+}
+
+.brOdgovora_container{
+    
+    width:100%;
+    position:relative;
+    height:25%;
+    padding-bottom:10px;
+}
+
+
+
+.broj{
+    position:relative;
+    top:2px;
+    left:40%;
+    font-size:18px;
+    color:#2bb27d;
+    font-family:'Calibri';
+}
+
+.tagovi_container{
+    
+    width:100%;
+    height:35px;
+    border-top:1px solid lightblue;
+
+}
+
+.tagovi{
+    color:midnightblue;
+    position:relative;
+    
+    float:left;
+    top:2px;
+}
+
+
+
+.autor_vreme_container{
+    height:25px;
+    border:2px blue;
+    background-color:#fbf6f6;
+    border-radius:3px;
+    border-bottom-left-radius:0px;
+    border-bottom-right-radius:0px;
+    width:100%;
+    
+}
+
+.imeAutora{
+    position:relative;
+    float:right;
+    width:40%;
+    top:2px;
+    left:10%;
+}
+
+.vremeIdatum{
+    width:60%;
+    position:relative;
+    float:left;
+    left:50px;
+    top:2px;
+}
+
+
+
+/*stilovi za tabelu*/
+#pitanje{
+   min-width:100%;
+   border-radius:5px;
+   min-height:inherit;
+}
+
+#informacijeOpitanju{
+    width:100%;
+    height:20%;
+    border-bottom-style: groove;
+    border-bottom-color: azure;
+
+}
+
+#profilnaSl{
+    width:15%;
+    border-right:1px black;
+}
+
+#imeAutora{
+    padding-left:5px;
+    /* border-right:1px solid black;*/
+    min-width:40%;
+    font-family:Tahoma;
+    font-style:italic;
+    font-size:18px;
+}
+
+#vreme{
+    padding-left:8px;
+    font-family:Tahoma;
+    border-right-style:groove;
+    width:20%;
+}
+
+#nazivOblasti{
+    font-family:Tahoma;
+}
+
+#tekst-pitanja{
+    min-height:60%;
+    border-bottom-style: groove;
+    border-bottom-color: azure;
+    font-family:Tahoma;
+    padding:8px;
+}
+
+#samTekst{
+    padding:8px;
+}
+
+#kontejnerTagova{
+    min-height:20%;
+}
+
+.containerSlike{
+    width:60px;
+    height:60px;
+    overflow:hidden;
+}
+
+.image-container {
+    background-image: url('https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/13232944_10209153813620640_8681434930084924708_n.jpg?oh=f388a66ec528253460eb85f5df839faa&oe=57E11FC3');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    margin:5px;
+    
+}
+
+body{
+    margin-top:60px;
+    background-repeat:no-repeat;
+    background-color:white;
+}
+
+#tagovi{
+    height:15%;
+}
+
+#tabelaOdgovori{
+    border-style:double;
+    min-width:inherit;
+    background-color:rgba(240, 255, 255, 0.77);
+    border-radius:2px;
+    min-height:200px;
+    border-right:none;
+    border-left:none;
+    margin:2px;
+    padding:2px;
+}
+
+#odgovori{
+    padding:2px;
+   
+}
+
+#plusIminus{
+    /*xborder-top:1px solid black;
+    border-top-style:groove;
+    border-left:1px solid black;
+      */
+        text-align:center;
+
+
+}
+
+#brojOdgovora{
+    text-align:center;
+}
+
+#autorOdgovora{
+    text-align:center;
+}
+
+#vremeOdgovora{
+    text-align:center;
+}
+
+#samTekstOdgovora{
+    padding:8px;
+}
+
+#informacijeOodgovorima{
+    border-bottom-style:groove;
+    border-bottom-color:aquamarine;
+    font-family:Tahoma;
+
+}

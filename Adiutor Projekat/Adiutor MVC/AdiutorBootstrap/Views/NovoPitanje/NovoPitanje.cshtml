@@ -11,3 +11,15 @@
 <script>
     CKEDITOR.replace('textarea');
 </script>
+
+<button id="upload" class="btn btn-default" onclick="myFunction()" >Predaj pitanje</button>
+
+<script type="text/javascript">
+    {
+       function myFunction(){
+              var tekst = CKEDITOR.instances.textarea.getData();
+              alert(tekst);
+              window.location = "Home/Pocetna";
+           }
+}
+</script>

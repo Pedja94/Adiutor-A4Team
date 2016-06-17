@@ -14,6 +14,20 @@ namespace AdiutorBootstrap.Models
         [Display(Name="Datum i vreme postavljanja pitanja")]
         public DateTime DatumVreme { get; set; }
 
+        [Display(Name = "Autor pitanja")]
+        public string AutorPitanja { get; set; }
+
+        [Display(Name = "Slika autora")]
+        public string SlikaAutora { get; set; }
+
+        public string Oblast { get; set; }
+
+        public IList<TagModel> Tagovi { get; set; }
+
+        public PitanjeModel()
+        {
+            Tagovi = new List<TagModel>();
+        }
         
     }
 

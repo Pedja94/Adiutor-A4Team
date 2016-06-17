@@ -1,14 +1,188 @@
-﻿
+﻿@model AdiutorBootstrap.Models.PitanjaOdgovoriKomentariModel
 @{
     ViewBag.Title = "PitanjeIOdgovori";
 }
 @Styles.Render("~/Content/PitanjaIOdgovoriStilovi.css")
+@Scripts.Render("//cdn.ckeditor.com/4.5.9/standard/ckeditor.js")
+
+<div id="pozadina">
+    <div id="pitanjeIautor" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        @*<div id="informacije">
+            <div id="slika" class="col-lg-3 col-md-3">
+                <img id="slikaKorisnika" src="https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/13232944_10209153813620640_8681434930084924708_n.jpg?oh=f388a66ec528253460eb85f5df839faa&oe=57E11FC3" />
+            </div>
+            <div id="imeAutora" class="col-lg-3 col-md-3">
+                neko ime
+            </div>
+        </div>
+        <hr />*@
+        @*<div class="kartica">
+            <div class="tekst_pitanja">
+
+                <div class="autor_vreme_container">
+                    <div class="vremeIdatum">24.5.2016. | 13:55 </div>
+                    <div class="imeAutora"><a href="#">Milos Mladenovic</a></div>
+                </div>
+
+                <div class="tekst">
+                    <p>Šta se dešava kada nakon case u switch-case strukturi u C-u izostavim break?</p>
+                </div>
+
+                <div class="tagovi_container">
+                    <div class="tagovi">
+                        <a href="#">#neki</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="dodatni_atributi">
+
+                <div class="brOdgovora_container">
+                    <div class="broj">
+                       
+                    </div>
+                </div>
+
+            </div>
+        </div>*@
+        <table id="pitanje" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <tr id="informacijeOpitanju">
+                <td id="profilnaSl">
+                    @*ovde ide profilna slika*@
+           
+                    <div class="image-container img-rounded">
+                        @*<img id="slikaKorisnikaa"  src="https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/13232944_10209153813620640_8681434930084924708_n.jpg?oh=f388a66ec528253460eb85f5df839faa&oe=57E11FC3" />*@
+                    </div>
+                </td>
+                <td id="imeAutora" style="text-align:center">
+                   <a href="@Html.DisplayTextFor(m=> m.Pitanje.AutorPitanja)"> @Html.DisplayTextFor(m => m.Pitanje.AutorPitanja)</a>
+                </td>
+                <td id="vreme" style="text-align:center">
+
+                    @Html.DisplayTextFor(m=> m.Pitanje.DatumVreme)                    
+                </td>
+                <td id="nazivOblasti" style="text-align:center">
+                    @Html.DisplayTextFor(m => m.Pitanje.Oblast)
+                </td>
+               
+            </tr>
+            <tr id="tekst-pitanja" style="text-align:center">
+                <td id="samTekst" colspan="4">
+                   @* "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."*@
+                    @Html.DisplayTextFor(m=> m.Pitanje.Text)
+                </td>
+           </tr>
+            <tr id="kontejnerTagova" style="text-align:center">
+                <td colspan="4" id="tagovi">
+                   @foreach (var tag in @Model.Pitanje.Tagovi)
+                   {
+                       <a href="Tagovi?tag=@tag.Ime">#@tag.Ime</a>
+                   }
+                </td>
+            </tr>
 
 
-<div class="pitanjeIautor">
-    <button id="buttonPlus" class="btn btn-success" name="buttonPlus">
+        </table>
+
+
+    </div>
+
+    <div id="odgovori" class="col-lg-6 col-md-9 col-sm-9 col-xs-10">
+        @for (var i = 0; i < 1;i++ )
+        {
+           <table id="tabelaOdgovori">
+               <tr id="informacijeOodgovorima">
+                   <td id="brojOdgovora">
+                       @(i+1). odgovor
+                   </td>
+                   <td id="autorOdgovora">
+                       @*@Html.DisplayTextFor(m=> m.Odgovori[i].Autor)*@
+                       Caslav Stojanovic
+                   </td>
+                   <td id="vremeOdgovora">
+                       @Html.DisplayTextFor(m=>m.Odgovori[i].DatumVreme)
+                   </td>
+               </tr>
+               <tr id="tekstOdgovora">
+                   <td id="samTekstOdgovora" colspan="3">
+                       <div>Nesto pise</div>
+                       <div>
+                           <p>&lt;latex&gt;</p>
+
+                           <h1>Naslov o necemu</h1>
+
+                           <ol>
+                               <li>Citat o Drazi Mihailovi</li>
+                               <li>Potrazi informacije koje su ti potrebne</li>
+                               <li>pregledaj</li>
+                           </ol>
+
+                           <blockquote>
+                               <ul>
+                                   <li>Lorem ipsum loton cinamet agri butan lorem sanet, sacni cenov.</li>
+                               </ul>
+                           </blockquote>                   
+                       </div>
+                   </td>
+               </tr>
+               <tr id="ocene">
+                   <td></td>
+                   <td></td>
+                   <td id="plusIminus">
+                       <button id="buttonPlus" class="btn btn-success" name="buttonPlus">+</button>
+                        @Html.DisplayTextFor(m => m.Odgovori[i].Pozitivno)
+                        <button id="buttonMinus" class="btn btn-danger" name="buttonMinus">-</button>
+                        @Html.DisplayTextFor(m=> m.Odgovori[i].Negativno)
+                   </td>
+               </tr>
+           </table>
+            
+        }
+
+
+
+    </div>
+  
+    <div class="editor col-lg-9 col-md-9 col-sm-10 col-xs-9">
+
+        <textarea name="textarea" id="textarea"></textarea>
+
+        <script>
+            CKEDITOR.replace('textarea');
+        </script>
+        <br />
+
+        <button id="upload" class="btn btn-default" onclick="myFunction()">Predaj odgovor</button>
+
+        <script type="text/javascript">
+            {
+                function myFunction() {
+                    var tekst = CKEDITOR.instances.textarea.getData();
+                    alert(tekst);
+
+                }
+            }
+        </script>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<button id="buttonPlus" class="btn btn-success" name="buttonPlus">
         +
     </button>
     <button id="buttonMinus" class="btn btn-danger" name="buttonMinus">-</button>
-</div>
 
+        --> 
+</div>
