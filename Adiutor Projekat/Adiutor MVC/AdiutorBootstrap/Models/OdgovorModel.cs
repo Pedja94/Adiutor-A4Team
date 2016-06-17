@@ -9,6 +9,8 @@ namespace AdiutorBootstrap.Models
 {
     public class OdgovorModel
     {
+        public int Id { get; set; }
+
         [Display(Name="Tekst odgovora:")]
         public string Text { get; set; }
 

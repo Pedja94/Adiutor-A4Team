@@ -5,6 +5,9 @@
 @Styles.Render("~/Content/PitanjaIOdgovoriStilovi.css")
 @Scripts.Render("//cdn.ckeditor.com/4.5.9/standard/ckeditor.js")
 
+@{
+    bool dodajKomentar = false;
+}
 <div id="pozadina">
     <div id="pitanjeIautor" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
         @*<div id="informacije">
@@ -77,7 +80,7 @@
                 <td colspan="4" id="tagovi">
                    @foreach (var tag in @Model.Pitanje.Tagovi)
                    {
-                       <a href="Tagovi?tag=@tag.Ime">#@tag.Ime</a>
+                       <a href="Tagovi?tag=@tag.Ime" name="tag">#@tag.Ime</a>
                    }
                 </td>
             </tr>
@@ -89,7 +92,8 @@
     </div>
 
     <div id="odgovori" class="col-lg-6 col-md-9 col-sm-9 col-xs-10">
-        @for (var i = 0; i < 1;i++ )
+        @{var i=0;}
+        @foreach (var odgovor in @Model.Odgovori)
         {
            <table id="tabelaOdgovori">
                <tr id="informacijeOodgovorima">
@@ -106,9 +110,10 @@
                </tr>
                <tr id="tekstOdgovora">
                    <td id="samTekstOdgovora" colspan="3">
-                       <div>Nesto pise</div>
                        <div>
-                           <p>&lt;latex&gt;</p>
+                           @Html.DisplayTextFor(m=> m.Odgovori[i].Text)
+                       </div>
+                       <div>
 
                            <h1>Naslov o necemu</h1>
 
@@ -127,8 +132,16 @@
                    </td>
                </tr>
                <tr id="ocene">
-                   <td></td>
-                   <td></td>
+                   <td id="posaljiKomentar" colspan="2">
+                       <a href="Komentar?komentarisi=true&id=@(i+1)">Komentarisi</a>
+                       @*<div class="dugme1">
+                           <button id="infoButton1" class="btn btn-success" data-toggle="popover" data-placement="down" title="    Dodatne informacije"
+                                   data-content="Ovaj portal su napravili studenti III godine smera za Računarstvo i infomatiku, Elektronskog
+                         fakulteta u Nišu, kao studentski projekat iz predmeta Softversko inženjerstvo.">
+                               <span class="glyphicon glyphicon-info-sign"></span>  Više informacija
+                           </button>
+                       </div>*@
+                    </td>
                    <td id="plusIminus">
                        <button id="buttonPlus" class="btn btn-success" name="buttonPlus">+</button>
                         @Html.DisplayTextFor(m => m.Odgovori[i].Pozitivno)
@@ -137,7 +150,8 @@
                    </td>
                </tr>
            </table>
-            
+            i++;
+                  
         }
 
 
@@ -170,7 +184,12 @@
 
 
 
-
+    <script>
+        $(document).ready(function () {
+            $('.btn').popover({ title: "Nesto", content: "<input type='text'/>", html: true, placement: "right" });
+        });
+        $(document).get()
+    </script>
 
 
 

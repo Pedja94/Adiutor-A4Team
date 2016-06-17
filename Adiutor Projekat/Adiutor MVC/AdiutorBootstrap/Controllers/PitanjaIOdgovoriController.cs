@@ -42,7 +42,17 @@ namespace AdiutorBootstrap.Controllers
             odgovor.Odobreno = true;
             odgovor.DatumVreme = DateTime.Now;
 
+            OdgovorModel odgovor1 = new OdgovorModel();
+            odgovor1.Pozitivno = 115;
+            odgovor1.Negativno = 23;
+            odgovor1.Text = "Pokusaj sa CKE Editorom.";
+            odgovor1.Odobreno = true;
+            odgovor1.DatumVreme = DateTime.Now;
+
+
+
             model.Odgovori.Add(odgovor);
+            model.Odgovori.Add(odgovor1);
 
             return View(model);
         }

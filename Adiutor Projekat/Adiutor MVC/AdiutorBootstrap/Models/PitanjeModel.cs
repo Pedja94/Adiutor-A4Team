@@ -8,6 +8,8 @@ namespace AdiutorBootstrap.Models
 {
     public class PitanjeModel
     {
+        public int Id { get; set; }
+        
         [Display(Name="Tekst pitanja")]
         public string Text { get; set; }
 

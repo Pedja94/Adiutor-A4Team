@@ -12,7 +12,7 @@
 
 #odgovori{
     /*background-image:url(Images/pattern1.png);*/
-    background-color:rgba(240, 255, 255, 0.77);
+    background-color:rgba(43, 178, 125, 0.52);
     min-height:800px;
     position:relative;
     left:28%;
@@ -247,15 +247,17 @@ body{
 }
 
 #tabelaOdgovori{
-    border-style:double;
+    
+    border-color:#2bb27d;
     min-width:inherit;
     background-color:rgba(240, 255, 255, 0.77);
-    border-radius:2px;
+    border-radius:3px;
     min-height:200px;
     border-right:none;
     border-left:none;
-    margin:2px;
-    padding:2px;
+    margin:5px;
+    padding:5px;
+    margin-bottom:10px;
 }
 
 #odgovori{
@@ -268,7 +270,8 @@ body{
     border-top-style:groove;
     border-left:1px solid black;
       */
-        text-align:center;
+        text-align:right;
+        padding-right:15px;
 
 
 }
@@ -294,4 +297,21 @@ body{
     border-bottom-color:aquamarine;
     font-family:Tahoma;
 
+}
+
+
+#posaljiKomentar{
+    text-align:center;
+}
+
+#cke_1_top{
+    background-color:white;
+}
+
+.cke_top{
+    background:white;
+}
+
+#cke_1_bottom{
+    background:white;
 }
