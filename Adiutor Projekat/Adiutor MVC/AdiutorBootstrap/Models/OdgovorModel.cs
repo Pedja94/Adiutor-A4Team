@@ -26,6 +26,7 @@ namespace AdiutorBootstrap.Models
         [Display(Name = "Datum i vreme odgovora:")]
         public DateTime DatumVreme { get; set; }
 
+        public string AutorOdgovora { get; set; }
     }
 
 

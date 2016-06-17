@@ -88,6 +88,7 @@ namespace AdiutorBootstrap.Controllers
                 Session["Status"] = user.StatusId;
 
                 //sada ovde treba da inicijalizujemo elemente korisnickog modela svim podacima iz baze
+                
 
                 KorisnikModel korisnik=new KorisnikModel();
                 korisnik.Ime = user.Ime;
@@ -99,10 +100,24 @@ namespace AdiutorBootstrap.Controllers
                 korisnik.Slika = user.Slika;
                 korisnik.Email = user.Email;
 
-                List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
-                ViewBag.Items = ListaPostavljenihPitanja;
              
-                return View("KorisnickiPanel",korisnik);
+                
+                List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
+                List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
+                int i=1;
+                foreach (var pitanjce in ListaPostavljenihPitanja)
+                {
+                    PitanjaKorisnika[i].Id = pitanjce.Id;
+                    PitanjaKorisnika[i].Oblast = pitanjce.OblastId.ToString();
+                    PitanjaKorisnika[i].Text = pitanjce.Tekst;
+                    i++;
+                }
+
+                KorisnickiPanelModel panel = new KorisnickiPanelModel();
+                panel.Korisnik = korisnik;
+                panel.Pitanja = PitanjaKorisnika;
+             
+                return View("KorisnickiPanel",panel);
 
             }
             else

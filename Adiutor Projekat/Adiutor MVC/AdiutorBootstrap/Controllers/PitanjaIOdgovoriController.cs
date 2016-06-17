@@ -17,6 +17,22 @@ namespace AdiutorBootstrap.Controllers
         {
             PitanjaOdgovoriKomentariModel model = new PitanjaOdgovoriKomentariModel();
             PitanjeModel pitanje = new PitanjeModel();
+
+
+            List<OdgovorDTO> odgovori = Odgovori.VratiSve(pitanje.Id);
+            //u listi sada imamo sve odgovore, ostaje da njihove parametre prosledimo modelu
+
+            OdgovoriModel odgovoriModel = new OdgovoriModel();
+            int i=0;
+            foreach (var odg in odgovori)
+            {
+                odgovoriModel.ListaOdgovora[i].Text = odg.Tekst;
+                odgovoriModel.ListaOdgovora[i].Pozitivno = odg.Plus;
+                odgovoriModel.ListaOdgovora[i].Negativno = odg.Minus;
+                odgovoriModel.ListaOdgovora[i].Id = odg.Id;
+              
+            }
+
             pitanje.Text = "Kako koristiti HTML editor na svom sajtu i koji je najbolji?";
             pitanje.AutorPitanja = "Miloš Mladenović";
             pitanje.DatumVreme = DateTime.Now;
