@@ -20,6 +20,7 @@ namespace Database.Mapiranja
             Map(x => x.Naziv).Column("NAZIV");
             Map(x => x.GodinaStudija).Column("GODINA_STUDIJA");
             Map(x => x.Semestar).Column("SEMESTAR");
+            Map(x => x.Opis).Column("OPIS");
 
             References(x => x.ZaduzeniProfesor).Column("ZADUZEN_ID").LazyLoad();
 

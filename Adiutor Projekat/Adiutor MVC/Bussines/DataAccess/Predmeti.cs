@@ -48,6 +48,7 @@ namespace Business.DataAccess
                     GodinaStudija = c.GodinaStudija,
                     Naziv = c.Naziv,
                     Semestar = c.Semestar,
+                    Opis = c.Opis,
                     ZaduzeniProfesor = prof
                 };
 
@@ -74,7 +75,8 @@ namespace Business.DataAccess
                     Id = p.Id,
                     GodinaStudija = p.GodinaStudija,
                     Naziv = p.Naziv,
-                    Semestar = p.Semestar
+                    Semestar = p.Semestar,
+                    Opis = p.Opis
                 };
 
                 if (p.ZaduzeniProfesor != null)
@@ -114,7 +116,8 @@ namespace Business.DataAccess
                     Id = c.Id,
                     GodinaStudija = c.GodinaStudija,
                     Naziv = c.Naziv,
-                    Semestar = c.Semestar
+                    Semestar = c.Semestar,
+                    Opis = c.Opis
                 };
 
                 if(prof.Id != 0)
@@ -160,7 +163,7 @@ namespace Business.DataAccess
                         GodinaStudija = p.GodinaStudija,
                         Naziv = p.Naziv,
                         Semestar = p.Semestar,
-                        
+                        Opis = p.Opis
                     };
 
                     if (p.ZaduzeniProfesor != null)
@@ -297,7 +300,7 @@ namespace Business.DataAccess
                         Naziv = predmet.Naziv,
                         Semestar = predmet.Semestar,
                         GodinaStudija = predmet.GodinaStudija,
-                        
+                        Opis = predmet.Opis
                     };
                     if (predmet.ZaduzeniProfesor != null)
                     {

@@ -18,6 +18,8 @@ namespace Database.Mapiranja
 
             Map(x => x.Ime).Column("IME");
 
+            Map(x => x.Opis).Column("OPIS");
+
             References(x => x.PripadaPredmetu).Column("PREDMET_ID").LazyLoad();
 
         }

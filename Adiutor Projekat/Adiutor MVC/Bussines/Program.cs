@@ -215,27 +215,27 @@ namespace Bussines
                 //};
 
                 //Oblasti.Dodaj(oblast);
-                //OblastDTO ob = Oblasti.Procitaj(38);
+                OblastDTO ob = Oblasti.Procitaj(58);
                 //ob.Ime = "Nova oblast";
                 //Oblasti.Izmeni(ob);
                 //Oblasti.VratiSve();
                 //Oblasti.Obrisi(38);
 
-                LiteraturaDTO lt = new LiteraturaDTO
-                {
-                    Link = "neki link",
-                    Naziv = "Knjiga",
-                    OblastId = 58
-                };
+                //LiteraturaDTO lt = new LiteraturaDTO
+                //{
+                //    Link = "neki link",
+                //    Naziv = "Knjiga",
+                //    OblastId = 58
+                //};
 
-                Literature.Dodaj(lt);
+                //Literature.Dodaj(lt);
 
-                LiteraturaDTO lit = Literature.Procitaj(37);
-                lit.Naziv = "noviiiii";
-                Literature.Izmeni(lit);
-                Literature.VratiSve(58);
-                Literature.Obrisi(37);
-               
+                //LiteraturaDTO lit = Literature.Procitaj(37);
+                //lit.Naziv = "noviiiii";
+                //Literature.Izmeni(lit);
+                //Literature.VratiSve(58);
+                //Literature.Obrisi(37);
+                PredmetDTO p = Predmeti.Procitaj(21);
                 
             }
             catch (Exception e)

@@ -26,6 +26,7 @@ namespace Business.DataAccess
                 Oblast obl = new Oblast()
                 {
                     Ime = c.Ime,
+                    Opis = c.Opis,
                     PripadaPredmetu = pre
                 };
 
@@ -70,6 +71,7 @@ namespace Business.DataAccess
                 {
                     Id = p.Id,
                     Ime = p.Ime,
+                    Opis = p.Opis,
                     PredmetId = p.PripadaPredmetu.Id
                 };
 
@@ -101,6 +103,7 @@ namespace Business.DataAccess
                 {
                     Id = c.Id,
                     Ime = c.Ime,
+                    Opis = c.Opis,
                     PripadaPredmetu = pre
                 };
 
@@ -134,6 +137,7 @@ namespace Business.DataAccess
                     {
                         Id = obl.Id,
                         Ime = obl.Ime,
+                        Opis = obl.Opis,
                         PredmetId = obl.PripadaPredmetu.Id
                     };
                     retVal.Add(dto);

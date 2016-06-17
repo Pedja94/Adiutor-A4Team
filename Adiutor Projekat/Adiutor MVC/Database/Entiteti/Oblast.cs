@@ -9,7 +9,10 @@ namespace Database.Entiteti
     public class Oblast
     {
         public virtual int Id { get; set; }
+
         public virtual string Ime { get; set; }
+
+        public virtual string Opis { get; set; }
 
         public virtual Predmet PripadaPredmetu { get; set; }
 

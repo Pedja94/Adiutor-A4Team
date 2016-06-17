@@ -13,6 +13,8 @@ namespace Database.Entiteti
         public virtual int GodinaStudija { get; set; }
         public virtual int Semestar { get; set; }
 
+        public virtual string Opis { get; set; }
+
         public virtual Profesor ZaduzeniProfesor { get; set; } //Dodaj zaduzenog u bazi
 
         public virtual IList<Smer> PripadaSmerovima { get; set; }
