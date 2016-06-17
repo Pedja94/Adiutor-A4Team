@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using SP.Data_Access;
 using NHibernate;
 using Studentski_projekti.Entiteti;
-
+using SP.Wrappers;
 
 namespace SP
 {
@@ -30,11 +30,11 @@ namespace SP
                 //Clanak c = Crud<Clanak>.Read(s, int.Parse(textBox5.Text));
                 neaktivno();
 
-                textBox9.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).Naslov;
-                textBox8.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).GodinaIzdavanja.ToString();
+                textBox9.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                textBox8.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
                 textBox7.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 textBox6.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                textBox10.Text = ((Literatura)dataGridView1.CurrentRow.Cells[3].Value).Id.ToString();
+                textBox10.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
                 textBox5.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             }
             catch (Exception ex)
@@ -122,7 +122,24 @@ namespace SP
             {
                 ISession s = DataLayer.GetSession();
                 neaktivno();
-                dataGridView1.DataSource = Crud<Clanak>.ReturnAll(s);
+                
+                List<Clanak> lista = Crud<Clanak>.ReturnAll(s);
+                List<WClanak> lista2 = new List<WClanak>();
+
+                foreach (Clanak r in lista)
+                {
+                    WClanak clanak = new WClanak
+                    {
+                        Id = r.Id,
+                        Naslov = r.Literatura.Naslov,
+                        GodinaIzdavanja = r.Literatura.GodinaIzdavanja,
+                        Broj_casopisa = r.Broj_casopisa,
+                        ISSN = r.ISSN,
+                        LiteraturaId = r.Literatura.Id
+                    };
+                    lista2.Add(clanak);
+                }
+                dataGridView1.DataSource = lista2;
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[3].Visible = false;
             }
