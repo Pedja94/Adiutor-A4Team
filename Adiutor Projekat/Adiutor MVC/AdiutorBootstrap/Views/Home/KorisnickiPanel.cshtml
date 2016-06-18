@@ -10,8 +10,8 @@
     @*ovaj div ce da sluzi za smestanje profilne slike*@
     <form method="post" action="@Url.Action("IzmeniPodatkeZahtev","Home")">
         <div id="profilnaSlika" class="col-lg-6 col-md-3 col-sm-3 col-xs-6">
-            <img src=@Model.Slika class="img-thumbnail" />
-            @Html.HiddenFor(m => m.Slika, new { })
+            <img src=@Model.Korisnik.Slika class="img-thumbnail" />
+            @Html.HiddenFor(m => m.Korisnik.Slika, new { })
             @if(ViewBag.Izmena!=true) 
             {
                 <button id="izmeniPodatkeBtn" type="submit" class="btn btn-danger">Izmeni podatke</button>
@@ -79,10 +79,12 @@ else if (ViewBag.Izmena == true)
       
             <fieldset>
                 <legend>Postavljena pitanja:</legend>
-                @foreach(var pitanje in @Model.Pitanja)
-                {
-                    <a href="" name="postavljenoPitanje'+@pitanje'">@{new string(pitanje.Text.Take(20).ToArray()}</a>
-                }
+                <ul>
+                    @foreach (var pitanje in @Model.Pitanja)
+                    {
+                        <li id="postavljenaPitanja">@Html.ActionLink(@pitanje.Text.Substring(0, 8), "KlikNaLink", new {Id=pitanje.Id})</li>
+                    }
+                </ul>
             </fieldset>
 
     </form>

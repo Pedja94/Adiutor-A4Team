@@ -92,73 +92,95 @@
 
     </div>
 
-    <div id="odgovori" class="col-lg-6 col-md-9 col-sm-9 col-xs-10">
-        @{var i=0;}
-        @foreach (var odgovor in @Model.Odgovori)
-        {
-           <table id="tabelaOdgovori">
-               <tr id="informacijeOodgovorima">
-                   <td id="brojOdgovora">
-                       @(i+1). odgovor
-                   </td>
-                   <td id="autorOdgovora">
-                       @*@Html.DisplayTextFor(m=> m.Odgovori[i].Autor)*@
-                       Caslav Stojanovic
-                   </td>
-                   <td id="vremeOdgovora">
-                       @Html.DisplayTextFor(m=>m.Odgovori[i].DatumVreme)
-                   </td>
-               </tr>
-               <tr id="tekstOdgovora">
-                   <td id="samTekstOdgovora" colspan="3">
-                       <div>
-                           @Html.DisplayTextFor(m=> m.Odgovori[i].Text)
-                       </div>
-                       <div>
-
-                           <h1>Naslov o necemu</h1>
-
-                           <ol>
-                               <li>Citat o Drazi Mihailovi</li>
-                               <li>Potrazi informacije koje su ti potrebne</li>
-                               <li>pregledaj</li>
-                           </ol>
-
-                           <blockquote>
-                               <ul>
-                                   <li>Lorem ipsum loton cinamet agri butan lorem sanet, sacni cenov.</li>
-                               </ul>
-                           </blockquote>                   
-                       </div>
-                   </td>
-               </tr>
-               <tr id="ocene">
-                   <td id="posaljiKomentar" colspan="2">
-                       <a href="Komentar?komentarisi=true&id=@(i+1)">Komentarisi</a>
-                       @*<div class="dugme1">
-                           <button id="infoButton1" class="btn btn-success" data-toggle="popover" data-placement="down" title="    Dodatne informacije"
-                                   data-content="Ovaj portal su napravili studenti III godine smera za Računarstvo i infomatiku, Elektronskog
-                         fakulteta u Nišu, kao studentski projekat iz predmeta Softversko inženjerstvo.">
-                               <span class="glyphicon glyphicon-info-sign"></span>  Više informacija
-                           </button>
-                       </div>*@
-                    </td>
-                   <td id="plusIminus">
-                       <button id="buttonPlus" class="btn btn-success" name="buttonPlus">+</button>
-                        @Html.DisplayTextFor(m => m.Odgovori[i].Pozitivno)
-                        <button id="buttonMinus" class="btn btn-danger" name="buttonMinus">-</button>
-                        @Html.DisplayTextFor(m=> m.Odgovori[i].Negativno)
-                   </td>
-               </tr>
-           </table>
-            i++;
-                  
-        }
+    <div id="grupisano" class="col-lg-10 col-md-10">
+        <div id="pitanja" class="col-lg-4 col-md-4 col-sm-9 col-xs-10">
+            <fieldset>
+                <legend>Slična postavljena pitanja:</legend>
+                <ul>
+                    @for (var j = 0; j < 10; j++)
+                    {
+                        <li id="postavljenaPitanja">
+                            <a href="postavljenoPitanje" name="postavljenoPitanje">Neki link na slicno pitanje</a>
+                            
+                        </li>
+                    }
+                    @*ovde ce sem slicnog pitanja stajati i njegovih prvih 5 tagova*@
+                </ul>
+            </fieldset>
 
 
 
+        </div>
+
+
+
+        <div id="odgovori" class="col-lg-6 col-md-7 col-sm-9 col-xs-10">
+            @{var i = 0;}
+            @foreach (var odgovor in @Model.Odgovori)
+            {
+                <table id="tabelaOdgovori">
+                    <tr id="informacijeOodgovorima">
+                        <td id="brojOdgovora">
+                            @(i + 1). odgovor
+                        </td>
+                        <td id="autorOdgovora">
+                            @*@Html.DisplayTextFor(m=> m.Odgovori[i].Autor)*@
+                            Caslav Stojanovic
+                        </td>
+                        <td id="vremeOdgovora">
+                            @Html.DisplayTextFor(m => m.Odgovori[i].DatumVreme)
+                        </td>
+                    </tr>
+                    <tr id="tekstOdgovora">
+                        <td id="samTekstOdgovora" colspan="3">
+                            <div>
+                                @Html.DisplayTextFor(m => m.Odgovori[i].Text)
+                            </div>
+                            <div>
+
+                                <h1>Naslov o necemu</h1>
+
+                                <ol>
+                                    <li>Citat o Drazi Mihailovi</li>
+                                    <li>Potrazi informacije koje su ti potrebne</li>
+                                    <li>pregledaj</li>
+                                </ol>
+
+                                <blockquote>
+                                    <ul>
+                                        <li>Lorem ipsum loton cinamet agri butan lorem sanet, sacni cenov.</li>
+                                    </ul>
+                                </blockquote>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="ocene">
+                        <td id="posaljiKomentar" colspan="2">
+                            <a href="Komentar?komentarisi=true&id=@(i+1)">Komentarisi</a>
+                            @*<div class="dugme1">
+                                    <button id="infoButton1" class="btn btn-success" data-toggle="popover" data-placement="down" title="    Dodatne informacije"
+                                            data-content="Ovaj portal su napravili studenti III godine smera za Računarstvo i infomatiku, Elektronskog
+                                  fakulteta u Nišu, kao studentski projekat iz predmeta Softversko inženjerstvo.">
+                                        <span class="glyphicon glyphicon-info-sign"></span>  Više informacija
+                                    </button>
+                                </div>*@
+                        </td>
+                        <td id="plusIminus">
+                            <button id="buttonPlus" class="btn btn-success" name="buttonPlus">+</button>
+                            @Html.DisplayTextFor(m => m.Odgovori[i].Pozitivno)
+                            <button id="buttonMinus" class="btn btn-danger" name="buttonMinus">-</button>
+                            @Html.DisplayTextFor(m => m.Odgovori[i].Negativno)
+                        </td>
+                    </tr>
+                </table>
+                i++;
+
+            }
+
+            
+        </div>
+       
     </div>
-  
     <div class="editor col-lg-9 col-md-9 col-sm-10 col-xs-9">
 
         <textarea name="textarea" id="textarea"></textarea>
@@ -180,6 +202,21 @@
             }
         </script>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
 
 
 

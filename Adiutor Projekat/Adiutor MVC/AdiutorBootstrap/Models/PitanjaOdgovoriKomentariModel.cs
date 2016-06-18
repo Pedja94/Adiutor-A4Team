@@ -12,10 +12,13 @@ namespace AdiutorBootstrap.Models
         public IList<OdgovorModel> Odgovori { get; set; }
         public IList<KomentarModel> Komentari { get; set; }
 
+        public IList<PitanjeModel> SlicnaPitanja { get; set; }
+
         public PitanjaOdgovoriKomentariModel()
         {
             Odgovori = new List<OdgovorModel>();
             Komentari = new List<KomentarModel>();
+            SlicnaPitanja = new List<PitanjeModel>();
         }
     }
 }

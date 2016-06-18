@@ -59,6 +59,15 @@ namespace AdiutorBootstrap.Controllers
             }
         }
 
+        public ActionResult KlikNaLink(int Id)
+        {
+            Console.WriteLine(Id);
+            PitanjaOdgovoriKomentariModel model = new PitanjeIOdgovoriController().PitanjeIOdgovori1(Id);
+            TempData["model"] = model;
+            return RedirectToAction("Klik", "PitanjeIOdgovori");
+        }
+
+
         public ActionResult KorisnickiPanel()
         {
             return View();
@@ -104,13 +113,17 @@ namespace AdiutorBootstrap.Controllers
                 
                 List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
                 List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
-                int i=1;
+
                 foreach (var pitanjce in ListaPostavljenihPitanja)
                 {
-                    PitanjaKorisnika[i].Id = pitanjce.Id;
-                    PitanjaKorisnika[i].Oblast = pitanjce.OblastId.ToString();
-                    PitanjaKorisnika[i].Text = pitanjce.Tekst;
-                    i++;
+                    PitanjeModel pit = new PitanjeModel
+                    {
+                        DatumVreme=pitanjce.DatumVreme,
+                        Id=pitanjce.Id,
+                        Text=pitanjce.Tekst,
+                        AutorPitanja=pitanjce.KorisnikId.ToString()
+                    };
+                    PitanjaKorisnika.Add(pit);
                 }
 
                 KorisnickiPanelModel panel = new KorisnickiPanelModel();
@@ -144,13 +157,13 @@ namespace AdiutorBootstrap.Controllers
             }
             else
             {
-                return RedirectToAction("Pocetna", "Home");
+                return RedirectToAction("Pocetna", "Home"); 
             }
         }
 
 
         [HttpPost]
-        public ActionResult IzmeniPodatkeZahtev()
+        public ActionResult IzmeniPodatkeZahtev(KorisnickiPanelModel model)
         {
             ViewBag.Izmena = true;
             KorisnikDTO user = Korisnici.Nadji((string)Session["Username"]);
@@ -164,30 +177,35 @@ namespace AdiutorBootstrap.Controllers
             korisnik.Slika = user.Slika;
             korisnik.Email = user.Email;
 
-            return View("KorisnickiPanel", korisnik);
+            KorisnickiPanelModel panel = new KorisnickiPanelModel();
+            panel.Korisnik = korisnik;
+            panel.Pitanja = model.Pitanja;
+
+            return View("KorisnickiPanel", panel);
         }
 
         [HttpPost]
-        public ActionResult IzmeniPodatke(KorisnikModel korisnik)
+        public ActionResult IzmeniPodatke(KorisnickiPanelModel korisnik)
         {
             KorisnikDTO korisnikZaIzmenu = new KorisnikDTO();
-            korisnikZaIzmenu.Ime = korisnik.Ime;
-            korisnikZaIzmenu.Prezime = korisnik.Prezime;
-            korisnikZaIzmenu.Email = korisnik.Email;
-            korisnikZaIzmenu.Slika = korisnik.Slika;
+            korisnikZaIzmenu.Ime = korisnik.Korisnik.Ime;
+            korisnikZaIzmenu.Prezime = korisnik.Korisnik.Prezime;
+            korisnikZaIzmenu.Email = korisnik.Korisnik.Email;
+            korisnikZaIzmenu.Slika = korisnik.Korisnik.Slika;
             korisnikZaIzmenu.Password = (string)Session["Password"];
             korisnikZaIzmenu.Id = (int)Session["Id"];
             korisnikZaIzmenu.GodinaStudija = (decimal)Session["GodinaStudija"];
             korisnikZaIzmenu.RoleId= (int)Session["Role"];
             korisnikZaIzmenu.StatusId = (int)Session["Status"];
             korisnikZaIzmenu.Username = (string)Session["Username"];
-            korisnikZaIzmenu.Opis = korisnik.Opis; 
-            korisnikZaIzmenu.BrojIndeksa = korisnik.BrojIndeksa;
-            korisnikZaIzmenu.Smer = korisnik.Smer;
+            korisnikZaIzmenu.Opis = korisnik.Korisnik.Opis; 
+            korisnikZaIzmenu.BrojIndeksa = korisnik.Korisnik.BrojIndeksa;
+            korisnikZaIzmenu.Smer = korisnik.Korisnik.Smer;
             
         
-            korisnik.Username = (string)Session["Username"];
+            korisnik.Korisnik.Username = (string)Session["Username"];
             Korisnici.Izmeni(korisnikZaIzmenu);
+
 
             return View("KorisnickiPanel", korisnik);
 

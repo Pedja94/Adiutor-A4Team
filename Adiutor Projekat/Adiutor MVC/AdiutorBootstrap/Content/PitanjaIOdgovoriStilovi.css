@@ -13,9 +13,9 @@
 #odgovori{
     /*background-image:url(Images/pattern1.png);*/
     background-color:rgba(43, 178, 125, 0.52);
-    min-height:800px;
+    min-height:100%;
     position:relative;
-    left:28%;
+    min-width:60%;
 }
 
 #pitanjeIautor{
@@ -50,14 +50,14 @@
 
 .cke{
     position:relative;
-    left:36%;
+    left:49%;
     max-width:70%;
     max-height:400px;
 }
 
 #upload{
     position:relative;
-    left:60%;
+    left:78%;
 }
 
 
@@ -296,6 +296,8 @@ body{
     border-bottom-style:groove;
     border-bottom-color:aquamarine;
     font-family:Tahoma;
+    padding:10px;
+    
 
 }
 
@@ -314,4 +316,18 @@ body{
 
 #cke_1_bottom{
     background:white;
+}
+
+#pitanja{
+        
+    background-color: rgba(43, 178, 125, 0.52);
+    min-height: 100%;
+
+   
+}
+
+
+#grupisano{
+    position:relative;
+    left:10%;
 }
