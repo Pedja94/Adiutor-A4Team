@@ -34,7 +34,7 @@ namespace SP
                 textBox8.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
                 textBox7.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 textBox6.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                textBox10.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                textBox10.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
                 textBox5.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             }
             catch (Exception ex)

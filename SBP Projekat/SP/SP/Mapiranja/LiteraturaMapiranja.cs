@@ -25,8 +25,8 @@ namespace Studentski_projekti.Mapiranja
             HasManyToMany(x => x.Autori).Table("LITERATURA_AUTOR").ParentKeyColumn("LITERATURA_ID")
                 .ChildKeyColumn("AUTOR_ID").Cascade.All();
 
-            //HasMany(x => x.OsnovnaLiteratura).KeyColumn("LITERATURA_ID");
-            //HasMany(x => x.DodatnaLiteratura).KeyColumn("LITERATURA_ID");
+            HasMany(x => x.OsnovnaLiteratura).KeyColumn("OSNOVNA_LITERATURA.LITERATURA_ID");
+            HasMany(x => x.DodatnaLiteratura).KeyColumn("DODATNA_LITERATURA.LITERATURA_ID");
 
 
         }

@@ -29,11 +29,11 @@ namespace SP
                 //TeorijskiProjekat t = Crud<TeorijskiProjekat>.Read(s, int.Parse(textBox5.Text));
                 neaktivno();
 
-                textBox9.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                textBox8.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-                textBox7.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                textBox9.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                textBox8.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                textBox7.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
                 textBox6.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                textBox5.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                textBox5.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
 
                 ISession s = DataLayer.GetSession();
                 int id = int.Parse(textBox5.Text);
@@ -118,9 +118,11 @@ namespace SP
                 ISession s = DataLayer.GetSession();
                 neaktivno();
                 dataGridView1.DataSource = Crud<TeorijskiProjekat>.ReturnAll(s);
-                //dataGridView1.Columns[1].Visible = false;
-                //dataGridView1.Columns[5].Visible = false;
-                //dataGridView1.Columns[6].Visible = false;
+                dataGridView1.Columns[1].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[3].Visible = false;
+                dataGridView1.Columns[7].Visible = false;
+                dataGridView1.Columns[8].Visible = false;
             }
             catch (Exception ex)
             {
