@@ -43,11 +43,6 @@ namespace SP
             int index = comboBox1.SelectedIndex;
             int id = IdPredmeta[index];
 
-            foreach (WebStranice ws in listaStranica)
-            {
-                Crud<WebStranice>.Create(s, ws);
-            }
-
             Predmet predmet = Crud<Predmet>.Read(s, id);
             PrakticniProjekat p = new PrakticniProjekat
             {
@@ -58,10 +53,15 @@ namespace SP
                 Opis = textBox5.Text,
                 ProgramskiJezik = textBox6.Text,
                 Predmet = predmet,
-                WebStranice = listaStranica
             };
 
             Crud<PrakticniProjekat>.Create(s, p);
+
+            foreach (WebStranice ws in listaStranica)
+            {
+                ws.PrakticniProjekat = p;
+                Crud<WebStranice>.Create(s, ws);
+            }
 
             s.Close();
 
