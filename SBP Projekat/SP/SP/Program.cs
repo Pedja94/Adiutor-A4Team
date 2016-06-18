@@ -19,7 +19,7 @@ namespace SP
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MDI());
+                Application.Run(new MDI2());
 
             }
             catch (Exception ex)
