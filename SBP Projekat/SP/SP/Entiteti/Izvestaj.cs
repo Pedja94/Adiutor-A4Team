@@ -8,7 +8,7 @@ namespace Studentski_projekti.Entiteti
 {
     public class Izvestaj
     {
-        public virtual int Id { get; protected set; }
+        public virtual int Id { get; set; }
         public virtual string Opis { get; set; }
         public virtual DateTime RokPredaje { get; set; }
         public virtual DateTime VremePredaje { get; set; }

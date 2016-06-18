@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SP
 {
-    public partial class MDI : Form
+    public partial class MDI2 : Form
     {
-        public MDI()
+        public MDI2()
         {
             InitializeComponent();
         }
@@ -161,35 +161,40 @@ namespace SP
             newMDIChild.Show();
         }
 
-        //private void poveziSaProjektomToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    PoveziSaProjektom newMDIChild = new PoveziSaProjektom();
-        //    newMDIChild.MdiParent = this;
-        //    newMDIChild.Show();
-        //}
-
-        private void dodajLiteraturuToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dodajToolStripMenuItem8_Click(object sender, EventArgs e)
         {
-            FormDodajLiteraturu newMDIChild = new FormDodajLiteraturu();
+            FormDodajIzvestaj newMDIChild = new FormDodajIzvestaj();
+            // Set the Parent Form of the Child window.
             newMDIChild.MdiParent = this;
+            // Display the new form.
             newMDIChild.Show();
         }
 
         private void prikaziIIzmeniToolStripMenuItem8_Click(object sender, EventArgs e)
         {
             FormIzvestaj newMDIChild = new FormIzvestaj();
+            // Set the Parent Form of the Child window.
             newMDIChild.MdiParent = this;
+            // Display the new form.
             newMDIChild.Show();
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         private void dodajToolStripMenuItem9_Click(object sender, EventArgs e)
         {
+            FormDodajLiteraturu newMDIChild = new FormDodajLiteraturu();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            // Display the new form.
+            newMDIChild.Show();
+        }
 
+        private void poveziSaProjektomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPoveziSaProjektom newMDIChild = new FormPoveziSaProjektom();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            // Display the new form.
+            newMDIChild.Show();
         }
     }
 }

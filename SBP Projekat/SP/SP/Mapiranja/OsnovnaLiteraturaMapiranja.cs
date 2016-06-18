@@ -18,8 +18,8 @@ namespace Studentski_projekti.Mapiranja
 
             Id(x => x.Id, "OSNOVNA_LITERATURA_ID").GeneratedBy.TriggerIdentity();
 
-            References(x => x.Literatura).Column("LITERATURA_ID").Cascade.All();
-            References(x => x.TeorijskiProjekat).Cascade.All().Column("TEORIJSKI_PROJEKAT_ID");
+            References(x => x.Literatura).Column("LITERATURA_ID").Cascade.Delete();
+            References(x => x.TeorijskiProjekat).Column("TEORIJSKI_PROJEKAT_ID");
     
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace SP
 {
-    partial class MDI
+    partial class MDI2
     {
         /// <summary>
         /// Required designer variable.
@@ -38,11 +38,9 @@
             this.timToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.prikaziIIzmeniToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.poveziSaProjektomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.teorijskiProjekatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.prikaziIIzmeniToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.dodajLiteraturuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prakticniProjekatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.prikaziIIzmeniToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,18 +57,27 @@
             this.dodajToolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.prikaziIIzmeniToolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajToolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
-            this.prikaziIIzmeniToolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.poveziSaProjektomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.predmetToolStripMenuItem,
+            this.studentToolStripMenuItem,
+            this.timToolStripMenuItem,
+            this.teorijskiProjekatToolStripMenuItem,
+            this.prakticniProjekatToolStripMenuItem,
+            this.knjigaToolStripMenuItem,
+            this.radToolStripMenuItem,
+            this.clanakToolStripMenuItem,
+            this.izvestajToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(651, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(666, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // predmetToolStripMenuItem
             // 
@@ -131,54 +138,40 @@
             // dodajToolStripMenuItem2
             // 
             this.dodajToolStripMenuItem2.Name = "dodajToolStripMenuItem2";
-            this.dodajToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.dodajToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.dodajToolStripMenuItem2.Text = "Dodaj";
             this.dodajToolStripMenuItem2.Click += new System.EventHandler(this.dodajToolStripMenuItem2_Click);
             // 
             // prikaziIIzmeniToolStripMenuItem2
             // 
             this.prikaziIIzmeniToolStripMenuItem2.Name = "prikaziIIzmeniToolStripMenuItem2";
-            this.prikaziIIzmeniToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.prikaziIIzmeniToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.prikaziIIzmeniToolStripMenuItem2.Text = "Prikazi i Izmeni";
             this.prikaziIIzmeniToolStripMenuItem2.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem2_Click);
-            // 
-            // poveziSaProjektomToolStripMenuItem
-            // 
-            this.poveziSaProjektomToolStripMenuItem.Name = "poveziSaProjektomToolStripMenuItem";
-            this.poveziSaProjektomToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.poveziSaProjektomToolStripMenuItem.Text = "Povezi sa projektom";
-            this.poveziSaProjektomToolStripMenuItem.Click += new System.EventHandler(this.poveziSaProjektomToolStripMenuItem_Click);
             // 
             // teorijskiProjekatToolStripMenuItem
             // 
             this.teorijskiProjekatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dodajToolStripMenuItem3,
             this.prikaziIIzmeniToolStripMenuItem3,
-            this.dodajLiteraturuToolStripMenuItem});
+            this.dodajToolStripMenuItem9});
             this.teorijskiProjekatToolStripMenuItem.Name = "teorijskiProjekatToolStripMenuItem";
             this.teorijskiProjekatToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
-            this.teorijskiProjekatToolStripMenuItem.Text = "Teorijski Projekat";
+            this.teorijskiProjekatToolStripMenuItem.Text = "Teorijski projekat";
             // 
             // dodajToolStripMenuItem3
             // 
             this.dodajToolStripMenuItem3.Name = "dodajToolStripMenuItem3";
-            this.dodajToolStripMenuItem3.Size = new System.Drawing.Size(156, 22);
+            this.dodajToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.dodajToolStripMenuItem3.Text = "Dodaj";
             this.dodajToolStripMenuItem3.Click += new System.EventHandler(this.dodajToolStripMenuItem3_Click);
             // 
             // prikaziIIzmeniToolStripMenuItem3
             // 
             this.prikaziIIzmeniToolStripMenuItem3.Name = "prikaziIIzmeniToolStripMenuItem3";
-            this.prikaziIIzmeniToolStripMenuItem3.Size = new System.Drawing.Size(156, 22);
+            this.prikaziIIzmeniToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.prikaziIIzmeniToolStripMenuItem3.Text = "Prikazi i Izmeni";
             this.prikaziIIzmeniToolStripMenuItem3.Click += new System.EventHandler(this.prikaziIIzmeniToolStripMenuItem3_Click);
-            // 
-            // dodajLiteraturuToolStripMenuItem
-            // 
-            this.dodajLiteraturuToolStripMenuItem.Name = "dodajLiteraturuToolStripMenuItem";
-            this.dodajLiteraturuToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.dodajLiteraturuToolStripMenuItem.Text = "Dodaj literaturu";
-            this.dodajLiteraturuToolStripMenuItem.Click += new System.EventHandler(this.dodajLiteraturuToolStripMenuItem_Click);
             // 
             // prakticniProjekatToolStripMenuItem
             // 
@@ -187,7 +180,7 @@
             this.prikaziIIzmeniToolStripMenuItem4});
             this.prakticniProjekatToolStripMenuItem.Name = "prakticniProjekatToolStripMenuItem";
             this.prakticniProjekatToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
-            this.prakticniProjekatToolStripMenuItem.Text = "Prakticni Projekat";
+            this.prakticniProjekatToolStripMenuItem.Text = "Prakticni projekat";
             // 
             // dodajToolStripMenuItem4
             // 
@@ -251,6 +244,9 @@
             // 
             // clanakToolStripMenuItem
             // 
+            this.clanakToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem7,
+            this.prikaziIIzmeniToolStripMenuItem7});
             this.clanakToolStripMenuItem.Name = "clanakToolStripMenuItem";
             this.clanakToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.clanakToolStripMenuItem.Text = "Clanak";
@@ -271,6 +267,9 @@
             // 
             // izvestajToolStripMenuItem
             // 
+            this.izvestajToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem8,
+            this.prikaziIIzmeniToolStripMenuItem8});
             this.izvestajToolStripMenuItem.Name = "izvestajToolStripMenuItem";
             this.izvestajToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.izvestajToolStripMenuItem.Text = "Izvestaj";
@@ -278,7 +277,9 @@
             // dodajToolStripMenuItem8
             // 
             this.dodajToolStripMenuItem8.Name = "dodajToolStripMenuItem8";
-            this.dodajToolStripMenuItem8.Size = new System.Drawing.Size(32, 19);
+            this.dodajToolStripMenuItem8.Size = new System.Drawing.Size(152, 22);
+            this.dodajToolStripMenuItem8.Text = "Dodaj";
+            this.dodajToolStripMenuItem8.Click += new System.EventHandler(this.dodajToolStripMenuItem8_Click);
             // 
             // prikaziIIzmeniToolStripMenuItem8
             // 
@@ -290,27 +291,27 @@
             // dodajToolStripMenuItem9
             // 
             this.dodajToolStripMenuItem9.Name = "dodajToolStripMenuItem9";
-            this.dodajToolStripMenuItem9.Size = new System.Drawing.Size(152, 22);
-            this.dodajToolStripMenuItem9.Text = "Dodaj";
+            this.dodajToolStripMenuItem9.Size = new System.Drawing.Size(159, 22);
+            this.dodajToolStripMenuItem9.Text = "Dodaj Literaturu";
             this.dodajToolStripMenuItem9.Click += new System.EventHandler(this.dodajToolStripMenuItem9_Click);
             // 
-            // prikaziIIzmeniToolStripMenuItem9
+            // poveziSaProjektomToolStripMenuItem
             // 
-            this.prikaziIIzmeniToolStripMenuItem9.Name = "prikaziIIzmeniToolStripMenuItem9";
-            this.prikaziIIzmeniToolStripMenuItem9.Size = new System.Drawing.Size(152, 22);
-            this.prikaziIIzmeniToolStripMenuItem9.Text = "Prikazi i Izmeni";
+            this.poveziSaProjektomToolStripMenuItem.Name = "poveziSaProjektomToolStripMenuItem";
+            this.poveziSaProjektomToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.poveziSaProjektomToolStripMenuItem.Text = "Povezi sa Projektom";
+            this.poveziSaProjektomToolStripMenuItem.Click += new System.EventHandler(this.poveziSaProjektomToolStripMenuItem_Click);
             // 
-            // MDI
+            // MDI2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 261);
+            this.ClientSize = new System.Drawing.Size(666, 261);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MDI";
-            this.Text = "MDI";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Name = "MDI2";
+            this.Text = "MDI2";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -345,12 +346,10 @@
         private System.Windows.Forms.ToolStripMenuItem clanakToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem7;
-        private System.Windows.Forms.ToolStripMenuItem poveziSaProjektomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dodajLiteraturuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem izvestajToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem9;
-        private System.Windows.Forms.ToolStripMenuItem prikaziIIzmeniToolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem poveziSaProjektomToolStripMenuItem;
     }
 }

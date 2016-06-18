@@ -22,7 +22,7 @@ namespace Studentski_projekti.Mapiranja
             Map(x => x.Ime, "IME");
 
             HasManyToMany(x => x.Literatura).Table("LITERATURA_AUTOR").ParentKeyColumn("AUTOR_ID")
-                 .ChildKeyColumn("LITERATURA_ID").Cascade.All();
+                 .ChildKeyColumn("LITERATURA_ID").Cascade.All().Inverse();
 
 
         }
