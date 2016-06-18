@@ -21,7 +21,15 @@ namespace Studentski_projekti.Mapiranja
 
             Map(x => x.MaxBrojStrana, "MAX_BROJ_STRANA");
 
+            HasManyToMany(x => x.dodatnaLiteratura).Table("DODATNA_LITERATURA")
+                .ParentKeyColumn("TEORIJSKI_PROJEKAT_ID")
+                .ChildKeyColumn("LITERATURA_ID")
+                .Cascade.SaveUpdate();
 
+            HasManyToMany(x => x.osnovnaLiteratura).Table("OSNOVNA_LITERATURA")
+                .ParentKeyColumn("TEORIJSKI_PROJEKAT_ID")
+                .ChildKeyColumn("LITERATURA_ID")
+                .Cascade.SaveUpdate();
         }
 
     }

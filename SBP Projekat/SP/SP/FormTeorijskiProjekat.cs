@@ -118,9 +118,9 @@ namespace SP
                 ISession s = DataLayer.GetSession();
                 neaktivno();
                 dataGridView1.DataSource = Crud<TeorijskiProjekat>.ReturnAll(s);
-                dataGridView1.Columns[1].Visible = false;
-                dataGridView1.Columns[5].Visible = false;
-                dataGridView1.Columns[6].Visible = false;
+                //dataGridView1.Columns[1].Visible = false;
+                //dataGridView1.Columns[5].Visible = false;
+                //dataGridView1.Columns[6].Visible = false;
             }
             catch (Exception ex)
             {

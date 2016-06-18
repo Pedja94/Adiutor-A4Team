@@ -12,5 +12,14 @@ namespace Studentski_projekti.Entiteti
         public virtual string ProgramskiJezik { get; set;  }
         public virtual int BrojIzvestaja { get; set; }
 
+        public virtual IList<Izvestaj> Izvestaji { get; set; }
+        public virtual IList<WebStranice> WebStranice { get; set; }
+
+        public PrakticniProjekat()
+        {
+            Izvestaji = new List<Izvestaj>();
+            WebStranice = new List<WebStranice>();
+        }
+
     }
 }

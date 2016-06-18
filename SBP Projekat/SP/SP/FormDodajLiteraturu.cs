@@ -21,7 +21,7 @@ namespace SP
         public List<int> IdLiterature;
         public List<Literatura> osnovna;
         public List<Literatura> dodatna;
-
+        ISession s = DataLayer.GetSession();
 
         public FormDodajLiteraturu()
         {
@@ -33,7 +33,7 @@ namespace SP
             osnovna = new List<Literatura>();
             dodatna = new List<Literatura>();
 
-            ISession s = DataLayer.GetSession();
+            //ISession s = DataLayer.GetSession();
             List<TeorijskiProjekat> projekti = Crud<TeorijskiProjekat>.ReturnAll(s);
             imenaProjekta = new List<string>();
             IdProjekta = new List<int>();
@@ -57,18 +57,19 @@ namespace SP
            
 
 
-            s.Close();
+            //s.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ISession s = DataLayer.GetSession();
 
+            //ISession s = DataLayer.GetSession();
             int index = comboBox2.SelectedIndex;
             //string lit = imenaLiterature[index];
 
             int id = IdLiterature[index];
             Literatura lit = Crud<Literatura>.Read(s, id);
+            //lit = (Literatura)s.GetSessionImplementation().PersistenceContext.Unproxy(lit);
             osnovna.Add(lit);
 
             dataGridView1.DataSource = null;
@@ -78,15 +79,19 @@ namespace SP
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[2].Visible = false;
             dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+
+            //s.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ISession s = DataLayer.GetSession();
 
             int index = comboBox2.SelectedIndex;
             int id = IdLiterature[index];
             Literatura lit = Crud<Literatura>.Read(s, id);
+            //lit = (Literatura)s.GetSessionImplementation().PersistenceContext.Unproxy(lit);
             dodatna.Add(lit);
 
             dataGridView2.DataSource = null;
@@ -96,40 +101,42 @@ namespace SP
             dataGridView2.Columns[0].Visible = false;
             dataGridView2.Columns[2].Visible = false;
             dataGridView2.Columns[3].Visible = false;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+
+
+            //s.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ISession s = DataLayer.GetSession();
-
-
+            //s = DataLayer.GetSession();
             int index = comboBox1.SelectedIndex;
             int id = IdProjekta[index];
             TeorijskiProjekat tp = Crud<TeorijskiProjekat>.Read(s, id);
 
-            OsnovnaLiteratura ol = new OsnovnaLiteratura
-            {
-                TeorijskiProjekat = tp
-            };
+            //OsnovnaLiteratura ol = new OsnovnaLiteratura
+            //{
+            //    TeorijskiProjekat = tp
+            //};
 
-            foreach (Literatura o in osnovna)
-            { 
-                ol.Literatura.Add(o);
-            }
+            tp.osnovnaLiteratura = osnovna;
+            tp.dodatnaLiteratura = dodatna;
 
-            Crud<OsnovnaLiteratura>.Create(s, ol);
+            Crud<TeorijskiProjekat>.Update(s, tp);
 
-            DodatnaLiteratura dl = new DodatnaLiteratura
-            {
-                TeorijskiProjekat = tp
-            };
+            //foreach(Literatura l in osnovna)
+            //{
+            //    OsnovnaLiteratura ol = new OsnovnaLiteratura
+            //    {
+            //        TeorijskiProjekat = tp,
+            //        Literatura = l
+            //    };
 
-            foreach (Literatura d in osnovna)
-            {
-                dl.Literatura.Add(d);
-            }
+            //    Crud<OsnovnaLiteratura>.Create(s, ol);
+            //}
 
-            Crud<DodatnaLiteratura>.Create(s, dl);
+            s.Close();
         }
     }
 }

@@ -286,10 +286,10 @@ namespace SP
             {
                 String l = "Osnovna literatura teorijkog projekta " + c.TeorijskiProjekat.Ime + " je: ";
 
-                foreach (Literatura element in c.Literatura)
-                {
-                    l += element.Naslov + ", ";
-                }
+                //foreach (Literatura element in c.Literatura)
+                //{
+                //    l += element.Naslov + ", ";
+                //}
 
                 MessageBox.Show(l);
             }
@@ -312,10 +312,10 @@ namespace SP
             {
                 String l = "Dodatna literatura teorijkog projekta " + c.TeorijskiProjekat.Ime + " je: ";
 
-                foreach (Literatura element in c.Literatura)
-                {
-                    l += element.Naslov + ", ";
-                }
+                //foreach (Literatura element in c.Literatura)
+                //{
+                //    l += element.Naslov + ", ";
+                //}
 
                 MessageBox.Show(l);
             }

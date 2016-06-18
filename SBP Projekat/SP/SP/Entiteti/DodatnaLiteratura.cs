@@ -10,13 +10,8 @@ namespace Studentski_projekti.Entiteti
     {
         public virtual int Id { get; protected set; }
 
-        public virtual IList<Literatura> Literatura { get; set; }
+        public virtual Literatura Literatura { get; set; }
         public virtual TeorijskiProjekat TeorijskiProjekat { get; set; }
-
-        public DodatnaLiteratura ()
-        {
-            Literatura = new List<Literatura>();
-        }
         
     }
 }

@@ -15,11 +15,14 @@ namespace Studentski_projekti.Entiteti
         //ostali imaju ka literaturi
 
         public virtual IList<Autor> Autori { get; set; }
+        public virtual IList<DodatnaLiteratura> DodatnaLiteratura { get; set; }
+        public virtual IList<OsnovnaLiteratura> OsnovnaLiteratura { get; set; }
 
         public Literatura()
         {
             Autori = new List<Autor>();
-
+            DodatnaLiteratura = new List<DodatnaLiteratura>();
+            OsnovnaLiteratura = new List<OsnovnaLiteratura>();
         }
 
 
