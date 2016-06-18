@@ -101,8 +101,8 @@ namespace SP
             dataGridView2.Columns[0].Visible = false;
             dataGridView2.Columns[2].Visible = false;
             dataGridView2.Columns[3].Visible = false;
-            dataGridView1.Columns[4].Visible = false;
-            dataGridView1.Columns[5].Visible = false;
+            dataGridView2.Columns[4].Visible = false;
+            dataGridView2.Columns[5].Visible = false;
 
 
             //s.Close();

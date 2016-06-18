@@ -35,6 +35,11 @@ namespace SP
             ISession s = DataLayer.GetSession();
             Crud<Predmet>.Create(s, p);
 
+            textBox2.Text = "";
+            textBox1.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+
             s.Close();
         }
 

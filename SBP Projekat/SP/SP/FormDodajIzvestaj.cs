@@ -49,6 +49,11 @@ namespace SP
             i.PrakticniProjekat = pp;
 
             Crud<Izvestaj>.Create(s, i);
+
+            textBox9.Text = "";
+            textBox8.Text = "";
+            textBox7.Text = "";
+
         }
     }
 }

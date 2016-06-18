@@ -75,6 +75,7 @@ namespace SP
             textBox4.Text = "";
             textBox5.Text = "";
             textBox5.Text = "";
+            textBox6.Text = "";
             textBox7.Text = "";
         }
 

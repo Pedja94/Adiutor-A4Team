@@ -53,6 +53,11 @@ namespace SP
 
             Crud<TeorijskiProjekat>.Create(s, t);
 
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+
             s.Close();
        }
     }
