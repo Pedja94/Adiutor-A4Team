@@ -17,9 +17,11 @@ namespace SP
     {
         public List<string> imenaPredmeta;
         public List<int> IdPredmeta;
+        public IList<WebStranice> listaStranica;
 
         public FormDodajPrakticniProjekat()
         {
+            listaStranica = new List<WebStranice>();
             InitializeComponent();
             ISession s = DataLayer.GetSession();
             List<Predmet> predmeti = Crud<Predmet>.ReturnAll(s);
@@ -31,7 +33,7 @@ namespace SP
                 IdPredmeta.Add(p.Id);
             }
             s.Close();
-
+            dataGridView1.MultiSelect = false;
             comboBox1.DataSource = imenaPredmeta;
         }
 
@@ -50,12 +52,62 @@ namespace SP
                 PojedinacnoIliGrupno = textBox4.Text,
                 Opis = textBox5.Text,
                 ProgramskiJezik = textBox6.Text,
-                Predmet = predmet
+                Predmet = predmet,
             };
 
             Crud<PrakticniProjekat>.Create(s, p);
 
+            foreach (WebStranice ws in listaStranica)
+            {
+                ws.PrakticniProjekat = p;
+                Crud<WebStranice>.Create(s, ws);
+            }
+
             s.Close();
+
+            dataGridView1.DataSource = null;
+            dataGridView1.Update();
+            dataGridView1.Refresh();
+
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox5.Text = "";
+            textBox7.Text = "";
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            WebStranice str = new WebStranice()
+            {
+                URL = textBox7.Text
+            };
+            listaStranica.Add(str);
+            dataGridView1.DataSource = null;
+            dataGridView1.Update();
+            dataGridView1.Refresh();
+            dataGridView1.DataSource = listaStranica;
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[2].Visible = false;
+            textBox7.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                int pos = dataGridView1.CurrentRow.Index;
+                listaStranica.RemoveAt(pos);
+                dataGridView1.DataSource = null;
+                dataGridView1.Update();
+                dataGridView1.Refresh();
+                dataGridView1.DataSource = listaStranica;
+                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
+            }
+        }
+
     }
 }
