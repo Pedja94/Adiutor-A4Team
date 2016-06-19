@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Business.DataAccess;
+using Business.DTO;
 
 namespace AdiutorBootstrap.Controllers
 {
@@ -22,6 +24,11 @@ namespace AdiutorBootstrap.Controllers
             }
         }
 
-       public ActionResult KlikNaKorisnika(int korisnikId)
+        public ActionResult KlikNaKorisnika(int korisnikId)
+        {
+            KorisnikDTO kor = Korisnici.Procitaj(korisnikId);
+
+            return View();
+        }
 	}
 }

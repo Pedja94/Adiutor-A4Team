@@ -1,5 +1,4 @@
 ﻿@model AdiutorBootstrap.Models.KorisnickiPanelModel
-   
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,7 +11,7 @@
         <div id="profilnaSlika" class="col-lg-6 col-md-3 col-sm-3 col-xs-6">
             <img src=@Model.Korisnik.Slika class="img-thumbnail" />
             @Html.HiddenFor(m => m.Korisnik.Slika, new { })
-            @if(ViewBag.Izmena!=true && (int)Session["Id"]!=@Model.Korisnik.Id) 
+            @if(ViewBag.Izmena!=true && (int)Session["Id"]==@Model.Korisnik.Id) 
             {
                 <button id="izmeniPodatkeBtn" type="submit" class="btn btn-danger">Izmeni podatke</button>
             }
@@ -65,7 +64,7 @@ else if (ViewBag.Izmena == true)
 
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 forma-za-pretrazivanje-i-navigaciju">
     
-    @if ((int)Session["Id"] != @Model.Korisnik.Id)
+    @if ((int)Session["Id"] == @Model.Korisnik.Id)
     { 
         <form method="post" action="@Url.Action("","")">
             <div id="grupa">
