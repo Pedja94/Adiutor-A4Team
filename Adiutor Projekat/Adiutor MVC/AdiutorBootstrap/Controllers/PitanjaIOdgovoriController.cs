@@ -113,6 +113,7 @@ namespace AdiutorBootstrap.Controllers
                     DatumVreme = pit.DatumVreme,
                     Text = pit.Tekst,
                     AutorPitanja = autorPitanja.Ime,
+                    AutorId=autorPitanja.Id,
                 };
                 oblast.Pitanja.ListaPitanja.Add(p);
             }

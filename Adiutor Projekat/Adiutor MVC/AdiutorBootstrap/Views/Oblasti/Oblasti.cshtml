@@ -20,7 +20,7 @@
                         <div class="vremeIdatum">
                             @pitanje.DatumVreme
                         </div>
-                        <div class="imeAutora">@Html.ActionLink(pitanje.AutorPitanja,"KlikNaAutora",new{AutorId=pitanje.AutorPitanja})</div>
+                        <div class="imeAutora">@Html.ActionLink(pitanje.AutorPitanja, "KlikNaKorisnika","KorisnickiPanel", new { korisnikId = pitanje.AutorId },null)</div>
                     </div>
 
                     <div class="tekst">

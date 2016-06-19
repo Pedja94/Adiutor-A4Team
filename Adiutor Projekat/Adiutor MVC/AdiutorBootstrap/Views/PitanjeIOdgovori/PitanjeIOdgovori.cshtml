@@ -62,8 +62,8 @@
                     </div>
                 </td>
                 <td id="imeAutora" style="text-align:center">
-                  
-                   <a href="@Html.DisplayTextFor(m=> m.Pitanje.AutorPitanja)"> @Html.DisplayTextFor(m => m.Pitanje.AutorPitanja)</a>
+                  @Html.ActionLink(@Model.Pitanje.AutorPitanja, "KlikNaKorisnika", "KorisnickiPanel", new { korisnikId=@Model.Pitanje.AutorId },null)
+               
                 </td>
                 <td id="vreme" style="text-align:center">
                     @Html.DisplayTextFor(m=> m.Pitanje.DatumVreme)                    
