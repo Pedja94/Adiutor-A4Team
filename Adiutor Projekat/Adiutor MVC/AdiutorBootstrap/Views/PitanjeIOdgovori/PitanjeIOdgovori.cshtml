@@ -63,11 +63,10 @@
                    <a href="@Html.DisplayTextFor(m=> m.Pitanje.AutorPitanja)"> @Html.DisplayTextFor(m => m.Pitanje.AutorPitanja)</a>
                 </td>
                 <td id="vreme" style="text-align:center">
-
                     @Html.DisplayTextFor(m=> m.Pitanje.DatumVreme)                    
                 </td>
                 <td id="nazivOblasti" style="text-align:center">
-                    @Html.DisplayTextFor(m => m.Pitanje.Oblast)
+                    @Html.ActionLink(@Model.Pitanje.Oblast, "KlikNaLink", new { idOblasti=@Model.Pitanje.OblastId})
                 </td>
                
             </tr>

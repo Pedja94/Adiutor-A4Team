@@ -84,8 +84,44 @@ namespace AdiutorBootstrap.Controllers
             return View("PitanjeIOdgovori",model1);
         }
 
+        public ActionResult KlikNaLink(int idOblasti)
+        {
+       
+            OblastModel oblast = new OblastModel();
 
-        public PitanjaOdgovoriKomentariModel PitanjeIOdgovori1(int idPitanja)
+            OblastDTO obl = Business.DataAccess.Oblasti.Procitaj(idOblasti);
+            oblast.Naziv = obl.Ime;
+            oblast.Opis = obl.Opis;
+
+            foreach (var liter in Literature.VratiSve(idOblasti))
+            {
+                LiteraturaModel l = new LiteraturaModel()
+                {
+                    Id = liter.Id,
+                    Naziv = liter.Naziv,
+                    Link = liter.Link
+                };
+                oblast.Literatura.Add(l);
+            }
+
+            foreach (var pit in Pitanja.VratiSvaPitanjaOblasti(idOblasti))
+            {
+                KorisnikDTO autorPitanja = Korisnici.Procitaj(pit.KorisnikId);
+                PitanjeModel p = new PitanjeModel()
+                {
+                    Id = pit.Id,
+                    DatumVreme = pit.DatumVreme,
+                    Text = pit.Tekst,
+                    AutorPitanja = autorPitanja.Ime,
+                };
+                oblast.Pitanja.ListaPitanja.Add(p);
+            }
+
+            return View("~/Views/Oblasti/Oblasti.cshtml", oblast);
+  
+        }
+
+        public ActionResult PitanjeIOdgovori1(int idPitanja)
         {
             PitanjaOdgovoriKomentariModel model = new PitanjaOdgovoriKomentariModel();
             PitanjeModel pitanje = new PitanjeModel();
@@ -105,24 +141,31 @@ namespace AdiutorBootstrap.Controllers
 
             }
             PitanjeDTO pit = Pitanja.Procitaj(idPitanja);
+            List<TagDTO> tagovi = Pitanja.VratiSveTagovePitanja(idPitanja);
             KorisnikDTO kor = Korisnici.Procitaj(pit.KorisnikId);
             OblastDTO obl=Oblasti.Procitaj(pit.OblastId);
+            
 
             pitanje.Text = pit.Tekst;
             pitanje.AutorPitanja = kor.Ime;
             pitanje.DatumVreme = pit.DatumVreme;
             pitanje.Oblast = obl.Ime;
+            pitanje.OblastId = pit.OblastId;
+            pitanje.AutorId = kor.Id;
 
 
-            TagModel tag1 = new TagModel();
-            tag1.Ime = "programiranje";
-            TagModel tag2 = new TagModel();
-            tag2.Ime = "web";
-            TagModel tag3 = new TagModel();
-            tag3.Ime = "javascript";
-            pitanje.Tagovi.Add(tag1);
-            pitanje.Tagovi.Add(tag2);
-            pitanje.Tagovi.Add(tag3);
+            foreach (var tag in tagovi)
+            {
+                TagModel tag1 = new TagModel()
+                {
+                    TagIme=tag.TagIme,
+                    Ime=tag.Ime,
+                    Opis=tag.Opis
+
+                };
+                pitanje.Tagovi.Add(tag1);
+            }
+
 
 
             model.Pitanje = pitanje;
@@ -150,7 +193,7 @@ namespace AdiutorBootstrap.Controllers
             model.Odgovori.Add(odgovor);
             model.Odgovori.Add(odgovor1);
 
-            return model;
+            return View("PitanjeIOdgovori",model);
         }
 
 	}

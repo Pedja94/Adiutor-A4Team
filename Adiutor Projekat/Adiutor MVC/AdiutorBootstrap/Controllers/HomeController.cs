@@ -59,13 +59,13 @@ namespace AdiutorBootstrap.Controllers
             }
         }
 
-        public ActionResult KlikNaLink(int Id)
-        {
-            Console.WriteLine(Id);
-            PitanjaOdgovoriKomentariModel model = new PitanjeIOdgovoriController().PitanjeIOdgovori1(Id);
-            TempData["model"] = model;
-            return RedirectToAction("Klik", "PitanjeIOdgovori");
-        }
+        //public ActionResult KlikNaLink(int Id)
+        //{
+        //    Console.WriteLine(Id);
+        //    PitanjaOdgovoriKomentariModel model = new PitanjeIOdgovoriController().PitanjeIOdgovori1(Id);
+        //    TempData["model"] = model;
+        //    return RedirectToAction("Klik", "PitanjeIOdgovori");
+        //}
 
 
         public ActionResult KorisnickiPanel()
@@ -108,6 +108,7 @@ namespace AdiutorBootstrap.Controllers
                 korisnik.BrojIndeksa = user.BrojIndeksa;
                 korisnik.Slika = user.Slika;
                 korisnik.Email = user.Email;
+                korisnik.Id = user.Id;
 
              
                 

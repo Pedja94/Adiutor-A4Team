@@ -16,6 +16,7 @@ namespace AdiutorBootstrap.Models
         public KorisnickiPanelModel()
         {
             Pitanja = new List<PitanjeModel>();
+            Korisnik = new KorisnikModel();
         }
     }
 }

@@ -12,5 +12,7 @@ namespace AdiutorBootstrap.Models
         public string Opis { get; set; }
 
         public string TagIme { get; set; }
+
+        public int TagID { get; set; }
     }
 }

@@ -10,5 +10,15 @@ namespace AdiutorBootstrap.Models
         public string Naziv { get; set; }
 
         public string Opis { get; set; }
+
+        public PitanjaSetModel Pitanja { get; set; }
+
+        public IList<LiteraturaModel> Literatura { get; set; }
+
+        public OblastModel()
+        {
+            Literatura = new List<LiteraturaModel>();
+            Pitanja = new PitanjaSetModel();
+        }
     }
 }

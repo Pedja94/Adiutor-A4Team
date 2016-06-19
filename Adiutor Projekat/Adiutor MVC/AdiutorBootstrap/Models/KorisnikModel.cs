@@ -42,6 +42,9 @@ namespace AdiutorBootstrap.Models
         [Display(Name = "Fotografija:")]
         public string Slika { get; set; }
 
+        public int Id { get; set; }
+
+
         
 
 

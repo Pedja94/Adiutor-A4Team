@@ -23,6 +23,9 @@ namespace AdiutorBootstrap.Models
         public string SlikaAutora { get; set; }
 
         public string Oblast { get; set; }
+        public int OblastId { get; set; }
+
+        public int AutorId { get; set; }
 
         public IList<TagModel> Tagovi { get; set; }
 

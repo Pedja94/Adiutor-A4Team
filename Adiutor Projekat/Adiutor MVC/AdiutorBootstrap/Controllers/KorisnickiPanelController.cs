@@ -22,6 +22,6 @@ namespace AdiutorBootstrap.Controllers
             }
         }
 
-       
+       public ActionResult KlikNaKorisnika(int korisnikId)
 	}
 }

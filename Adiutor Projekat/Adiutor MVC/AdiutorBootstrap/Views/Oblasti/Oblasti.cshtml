@@ -1,4 +1,6 @@
-﻿@{
+﻿@model AdiutorBootstrap.Models.OblastModel
+
+@{
     ViewBag.Title = "Oblasti";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,23 +11,28 @@
 
 <form>
  <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
-        @for (var i = 1; i <10; i++)
+        @foreach (var pitanje in @Model.Pitanja.ListaPitanja)
         {
             <div class="kartica">
                 <div class="tekst_pitanja">
 
                     <div class="autor_vreme_container">
-                        <div class="vremeIdatum">24.5.2016. | 13:55 </div>
-                        <div class="imeAutora"><a href="#">Milos Mladenovic</a></div>
+                        <div class="vremeIdatum">
+                            @pitanje.DatumVreme
+                        </div>
+                        <div class="imeAutora">@Html.ActionLink(pitanje.AutorPitanja,"KlikNaAutora",new{AutorId=pitanje.AutorPitanja})</div>
                     </div>
 
                     <div class="tekst">
-                        <p>Šta se dešava kada nakon case u switch-case strukturi u C-u izostavim break?</p>
+                        <p>@Html.ActionLink(@pitanje.Text, "PitanjeIOdgovori1", new { idPitanja=pitanje.Id })</p>
                     </div>
 
                     <div class="tagovi_container">
                         <div class="tagovi">
-                            <a href="#">#neki</a>
+                             @foreach (var tag in pitanje.Tagovi)
+                             {
+                               @Html.ActionLink(tag.Ime,"TagPretraga",new{ tagId=tag.TagID})   
+                             }
                         </div>
 
                     </div>
@@ -35,7 +42,7 @@
 
                     <div class="brOdgovora_container">
                         <div class="broj">
-                            @i odgovora
+                                x odgovora
                         </div>
                     </div>
 
@@ -46,6 +53,7 @@
         }
 
     </div>
+   
 
 </form>
 
