@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/Bootstrap")
     @Styles.Render("~/Content/Stilovi")
    <!--@Scripts.Render("~/bundles/modernizr")--> 
-
+    
     
 
 </head>
@@ -29,9 +29,25 @@
             
             <div id="navbar" class="collapse navbar-collapse pull-right">
                 <ul class="nav navbar-nav">
+                    <li>
+                        <form action="@Url.Action("TrazenjePoTagu","Oblasti")" method="post">
+                            @if (Session["Id"] != null)
+                    {
+
+                        <div id="trazenjeGrupa" class="input-group input-group-sm" > 
+        
+                           <input id="traziNavbar" name="tagovi" type="text" size="18" class="form-control" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-search" id="lupa"><input type="submit" id="btn1" hidden="hidden" /></span></span>
+                        </div>
+                       
+
+                    }
+                    </form>
+                </li>
                     <li class="active">@Html.ActionLink("Početna", "Pocetna", "Home")</li>
                     <li>@Html.ActionLink("O nama", "About", "Home")</li>
-                    @*<li><span class="glyphicon glyphicon-search"></span></li>*@
+                 
+
                     <li></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nalog<span class="caret"></span></a>

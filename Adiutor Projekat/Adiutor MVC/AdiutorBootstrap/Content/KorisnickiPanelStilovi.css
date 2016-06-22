@@ -12,13 +12,24 @@
     margin-top:5px;
 }
 
+
+#labela{
+    float:left;
+}
+
+
+#pretrazi{
+    float:right;
+}
+
+
 #grupa{
     align-content:center;
 }
 
 #traziInput{
     max-width:300px;
-    float:right;
+    /*float:right;*/
     position:relative;
     left:0px;
 }

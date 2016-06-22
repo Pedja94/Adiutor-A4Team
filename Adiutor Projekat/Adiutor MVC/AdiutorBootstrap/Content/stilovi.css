@@ -394,3 +394,28 @@ body {
     top: 50px;
     width:100px;
 }
+
+
+#btn1{
+   
+}
+
+/*#traziNavbar{
+    margin-top:10px;
+    margin-right:20px;
+    padding-right:20px;
+    position:relative;
+    right:5%;
+}
+
+#lupa{
+    position:relative;
+    float:left;
+}*/
+
+
+#trazenjeGrupa{
+    position:relative;
+    top:10px;
+    right:10px;
+}
