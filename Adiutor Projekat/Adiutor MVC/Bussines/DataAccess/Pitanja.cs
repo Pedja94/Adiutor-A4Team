@@ -32,6 +32,7 @@ namespace Business.DataAccess
                 Pitanje Pitanje = new Pitanje
                 {
                     Tekst = c.Tekst,
+                    Naslov = c.Naslov,
                     DatumVreme = c.DatumVreme,
                     PripadaOblasti = oblast,
                     ImaKorisnika = korisnik,
@@ -77,6 +78,7 @@ namespace Business.DataAccess
                 PitanjeDTO Pitanje = new PitanjeDTO
                 {
                     Id = p.Id,
+                    Naslov = p.Naslov,
                     KorisnikId = p.ImaKorisnika.Id,
                     OblastId = p.PripadaOblasti.Id,
                     DatumVreme = p.DatumVreme,
@@ -119,7 +121,8 @@ namespace Business.DataAccess
                     ImaKorisnika = korisnik,
                     PripadaOblasti = oblast,
                     DatumVreme = c.DatumVreme,
-                    Tekst = c.Tekst
+                    Tekst = c.Tekst,
+                    Naslov = c.Naslov
                 };
 
                 s.Update(Pitanje);
@@ -154,6 +157,7 @@ namespace Business.DataAccess
                     {
                         Id = pitanje.Id,
                         Tekst = pitanje.Tekst,
+                        Naslov = pitanje.Naslov,
                         DatumVreme = pitanje.DatumVreme,
                         KorisnikId = pitanje.ImaKorisnika.Id,
                         OblastId = pitanje.PripadaOblasti.Id
@@ -189,6 +193,7 @@ namespace Business.DataAccess
                     {
                         Id = pitanje.Id,
                         Tekst = pitanje.Tekst,
+                        Naslov = pitanje.Naslov,
                         DatumVreme = pitanje.DatumVreme,
                         KorisnikId = pitanje.ImaKorisnika.Id,
                         OblastId = pitanje.PripadaOblasti.Id
@@ -236,6 +241,7 @@ namespace Business.DataAccess
                     {
                         Id = pitanje.Id,
                         Tekst = pitanje.Tekst,
+                        Naslov = pitanje.Naslov,
                         DatumVreme = pitanje.DatumVreme,
                         KorisnikId = pitanje.ImaKorisnika.Id,
                         OblastId = pitanje.PripadaOblasti.Id

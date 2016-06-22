@@ -84,6 +84,38 @@ namespace Business.DataAccess
 
         }
 
+        static public TagDTO Nadji(string tag_ime)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Tag p = (from k in s.Query<Tag>()
+                           where (k.TagIme == tag_ime)
+                           select k).SingleOrDefault();
+
+                TagDTO tag = new TagDTO
+                {
+                    Id = p.Id,
+                    TagIme = p.TagIme,
+                    Ime = p.Ime,
+                    Opis = p.Opis
+                };
+
+                s.Flush();
+                s.Close();
+
+                return tag;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+        }
+
         static public void Izmeni(TagDTO c)
         {
             try

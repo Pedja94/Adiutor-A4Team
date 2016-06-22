@@ -172,19 +172,20 @@ namespace Bussines
 
 
 
-                //PitanjeDTO pitanje = new PitanjeDTO
-                //{
-                //    Tekst = "Da li je",
-                //    DatumVreme = new DateTime(2015, 5, 25),
-                //    KorisnikId = 37,
-                //    OblastId = 37
-                //};
+                PitanjeDTO pitanje = new PitanjeDTO
+                {
+                    Naslov = "Novo pitanje",
+                    Tekst = "Da li je",
+                    DatumVreme = new DateTime(2015, 5, 25),
+                    KorisnikId = 37,
+                    OblastId = 37
+                };
 
                 //Pitanja.Dodaj(pitanje);
-                //PitanjeDTO pt = Pitanja.Procitaj(38);
+                //PitanjeDTO pt = Pitanja.Procitaj(97);
                 //pt.Tekst = "nesto drugo";
                 //Pitanja.Izmeni(pt);
-                //Pitanja.Obrisi(38);
+                //Pitanja.Obrisi(37);
                 //Pitanja.VratiSvaPitanjaKorisnika(37);
                 //Pitanja.VratiSvaPitanjaOblasti(37);
 
@@ -235,7 +236,9 @@ namespace Bussines
                 //Literature.Izmeni(lit);
                 //Literature.VratiSve(58);
                 //Literature.Obrisi(37);
-                PredmetDTO p = Predmeti.Procitaj(21);
+                //PredmetDTO p = Predmeti.Procitaj(21);
+
+                Tagovi.Nadji("web");
                 
             }
             catch (Exception e)

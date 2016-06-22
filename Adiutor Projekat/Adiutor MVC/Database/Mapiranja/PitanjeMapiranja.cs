@@ -18,6 +18,7 @@ namespace Database.Mapiranja
 
             Map(x => x.Tekst).Column("TEKST");
             Map(x => x.DatumVreme).Column("DATUM_VREME");
+            Map(x => x.Naslov).Column("NASLOV");
 
             References(x => x.ImaKorisnika).Column("KORISNIK_ID").LazyLoad();
             References(x => x.PripadaOblasti).Column("OBLAST_ID").LazyLoad();
