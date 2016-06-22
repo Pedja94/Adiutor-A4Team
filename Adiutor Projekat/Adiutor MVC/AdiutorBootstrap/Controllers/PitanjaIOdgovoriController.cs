@@ -130,9 +130,8 @@ namespace AdiutorBootstrap.Controllers
 
             List<OdgovorDTO> odgovori = Odgovori.VratiSve(pitanje.Id);
             //u listi sada imamo sve odgovore, ostaje da njihove parametre prosledimo modelu
-
-            OdgovoriModel odgovoriModel = new OdgovoriModel();
             int i = 0;
+            OdgovoriModel odgovoriModel = new OdgovoriModel();
             foreach (var odg in odgovori)
             {
                 odgovoriModel.ListaOdgovora[i].Text = odg.Tekst;

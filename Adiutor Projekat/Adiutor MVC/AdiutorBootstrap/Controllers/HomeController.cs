@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using AdiutorBootstrap.Models;
 using Business.DTO;
 using Business.DataAccess;
-
+using AdiutorBootstrap.Controllers;
 
 namespace AdiutorBootstrap.Controllers
 {
@@ -114,16 +114,10 @@ namespace AdiutorBootstrap.Controllers
                 
                 List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
                 List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
-
+                KorisnickiPanelController con = new KorisnickiPanelController();
                 foreach (var pitanjce in ListaPostavljenihPitanja)
                 {
-                    PitanjeModel pit = new PitanjeModel
-                    {
-                        DatumVreme=pitanjce.DatumVreme,
-                        Id=pitanjce.Id,
-                        Text=pitanjce.Tekst,
-                        AutorPitanja=pitanjce.KorisnikId.ToString()
-                    };
+                    PitanjeModel pit = con.VratiPitanjaKorisnikaModel(pitanjce);
                     PitanjaKorisnika.Add(pit);
                 }
 

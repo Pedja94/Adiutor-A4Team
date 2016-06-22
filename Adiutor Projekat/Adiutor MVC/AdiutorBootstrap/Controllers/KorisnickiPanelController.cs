@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Business.DataAccess;
 using Business.DTO;
 using AdiutorBootstrap.Models;
+using AdiutorBootstrap.Controllers;
+
 
 namespace AdiutorBootstrap.Controllers
 {
@@ -29,30 +31,64 @@ namespace AdiutorBootstrap.Controllers
         {
             KorisnikDTO kor = Korisnici.Procitaj(korisnikId);
             KorisnickiPanelModel korisnickiPanel = new KorisnickiPanelModel();
-            korisnickiPanel.Korisnik.Id = kor.Id;
-            korisnickiPanel.Korisnik.Ime = kor.Ime;
-            korisnickiPanel.Korisnik.Opis = kor.Opis;
-            korisnickiPanel.Korisnik.Slika = kor.Slika;
-            korisnickiPanel.Korisnik.Smer = kor.Smer;
-            korisnickiPanel.Korisnik.Username = kor.Username;
-            korisnickiPanel.Korisnik.Prezime = kor.Prezime;
-            korisnickiPanel.Korisnik.GodinaStudija = kor.GodinaStudija.ToString();
-            korisnickiPanel.Korisnik.Email = kor.Email;
-            korisnickiPanel.Korisnik.BrojIndeksa = kor.BrojIndeksa;
+            korisnickiPanel.Korisnik = VratiKorisnikModel(korisnikId);
 
             foreach(var pitanje in Pitanja.VratiSvaPitanjaKorisnika(korisnikId))
             {
-                PitanjeModel pit = new PitanjeModel()
-                {
-                    Text=pitanje.Tekst,
-                    Id=pitanje.Id,
-                    DatumVreme=pitanje.DatumVreme,
-                };
-                korisnickiPanel.Pitanja.Add(pit);
+                korisnickiPanel.Pitanja.Add(VratiPitanjaKorisnikaModel(pitanje));
             }
 
 
             return View("~/Views/Home/KorisnickiPanel.cshtml",korisnickiPanel);
         }
+
+
+
+        public KorisnikModel VratiKorisnikModel(int korisnikId)
+        {
+            KorisnikDTO kor = Korisnici.Procitaj(korisnikId);
+            KorisnikModel Korisnik = new KorisnikModel();
+            Korisnik.Id = kor.Id;
+            Korisnik.Ime = kor.Ime;
+            Korisnik.Opis = kor.Opis;
+            Korisnik.Slika = kor.Slika;
+            Korisnik.Smer = kor.Smer;
+            Korisnik.Username = kor.Username;
+            Korisnik.Prezime = kor.Prezime;
+            Korisnik.GodinaStudija = kor.GodinaStudija.ToString();
+            Korisnik.Email = kor.Email;
+            Korisnik.BrojIndeksa = kor.BrojIndeksa;
+
+            return Korisnik;
+        }
+
+
+        public  PitanjeModel VratiPitanjaKorisnikaModel(PitanjeDTO pitanje)
+        {
+            PitanjeModel pit = new PitanjeModel()
+            {
+                Text=pitanje.Tekst,
+                Id = pitanje.Id,
+                DatumVreme = pitanje.DatumVreme,
+                AutorId=pitanje.KorisnikId,
+                OblastId=pitanje.OblastId,
+            };
+
+            foreach(var tag in Pitanja.VratiSveTagovePitanja(pit.Id))
+            {
+                TagModel tg = new TagModel()
+                {
+                    TagID=tag.Id,
+                    Ime=tag.Ime,
+                    TagIme=tag.TagIme,
+                    Opis=tag.Opis
+                };
+                pit.Tagovi.Add(tg);
+            }
+
+            return pit;
+
+        }
+
 	}
 }

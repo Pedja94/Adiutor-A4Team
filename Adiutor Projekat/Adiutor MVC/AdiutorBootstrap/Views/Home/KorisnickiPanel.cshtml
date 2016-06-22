@@ -84,8 +84,23 @@ else if (ViewBag.Izmena == true)
                 <legend>Postavljena pitanja:</legend>
                 <ul>
                     @foreach (var pitanje in @Model.Pitanja)
-                    {
-                        <li id="postavljenaPitanja">@Html.ActionLink(@pitanje.Text.Substring(0, 8), "PitanjeIOdgovori1","PitanjeIOdgovori", new {idPitanja=pitanje.Id},null)</li>
+                    {   
+                        
+                        <li id="postavljenaPitanja">
+                            <div id="pitanjeSaTagovima">
+                                <div id="tekstPitanja">
+                                    @Html.ActionLink(@pitanje.Text.Substring(0, 8), "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idPitanja = pitanje.Id }, null)
+                                 </div>
+                                 <div id="tagoviKontejner">
+                                     @foreach (var tag in pitanje.Tagovi)
+                                     {
+                                       @Html.ActionLink("#"+@tag.TagIme+ " | ", "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idTaga = tag.TagID }, null)
+                                       
+                                     }
+                                     
+                                 </div>
+                            </div>
+                        </li>
                     }
                 </ul>
             </fieldset>

@@ -61,6 +61,26 @@
 
 
 
+#pitanjeSaTagovima{
+    background:rgba(153, 228, 121, 0.72);
+    display:table;
+    border:1px solid black;
+    margin:2px;
+    padding:2px;
+}
+
+#tekstPitanja{
+    display:table-header-group;
+    border-bottom:double;
+
+}
+
+#tagoviKontejner{
+    display:table-footer-group;
+     
+
+}
+
 
 fieldset{
     display: block;
@@ -81,9 +101,7 @@ fieldset{
     border-color: threedface;
 }
 
-#postavljenaPitanja{
 
-}
 
 legend{
     display: block;
@@ -99,3 +117,4 @@ legend{
     border-color: initial;
     width:auto;
 }
+
