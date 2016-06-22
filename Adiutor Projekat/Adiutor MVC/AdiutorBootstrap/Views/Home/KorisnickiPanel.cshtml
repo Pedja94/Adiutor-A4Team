@@ -66,9 +66,10 @@ else if (ViewBag.Izmena == true)
     
     @if ((int)Session["Id"] == @Model.Korisnik.Id)
     { 
-        <form method="post" action="@Url.Action("","")">
+        <form method="post" action="@Url.Action("TrazenjePoTagu","Oblasti")">
             <div id="grupa">
-                <b>Pretraži portal:</b><input id="traziInput" name="Pretrazi" type="text" size="25" class="form-control" />
+                <b>Pretraži portal:</b><input id="traziInput" name="tagovi" type="text" size="25" class="form-control" />
+                <input type="submit" class="btn btn-success" value="Pretrazi"/>
             </div>
             <br />
             <br />
@@ -79,7 +80,6 @@ else if (ViewBag.Izmena == true)
     }
     
     <form>
-      
             <fieldset>
                 <legend>Postavljena pitanja:</legend>
                 <ul>
