@@ -259,6 +259,44 @@ namespace Business.DataAccess
             }
         }
 
+        static public List<PitanjeDTO> VratiSvaPitanjaTaga(string tag_ime)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<PitanjeDTO> retVal = new List<PitanjeDTO>();
+
+
+                Tag t = (from k in s.Query<Tag>()
+                         where (k.TagIme == tag_ime)
+                         select k).SingleOrDefault();
+
+                IList<Pitanje> pitanja = t.PripadaPitanjima;
+
+                foreach (Pitanje pitanje in pitanja)
+                {
+                    PitanjeDTO dto = new PitanjeDTO()
+                    {
+                        Id = pitanje.Id,
+                        Tekst = pitanje.Tekst,
+                        Naslov = pitanje.Naslov,
+                        DatumVreme = pitanje.DatumVreme,
+                        KorisnikId = pitanje.ImaKorisnika.Id,
+                        OblastId = pitanje.PripadaOblasti.Id
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
 
         static public List<TagDTO> VratiSveTagovePitanja(int PitanjeId)
         {
