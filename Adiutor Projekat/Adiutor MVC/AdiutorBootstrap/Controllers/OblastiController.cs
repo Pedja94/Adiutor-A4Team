@@ -105,7 +105,7 @@ namespace AdiutorBootstrap.Controllers
                             AutorPitanja = autorPitanja.Ime,
                             AutorId=autorPitanja.Id,
                             NaslovPitanja=pit.Naslov,
-                            Tagovi=tagoviPitanja
+                            Tagovi=TagoviController.TagoviPitanja(pit.Id),
                     };
                     oblast.Pitanja.ListaPitanja.Add(p);
                 

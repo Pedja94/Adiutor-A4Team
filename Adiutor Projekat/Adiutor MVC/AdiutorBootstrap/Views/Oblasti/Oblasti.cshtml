@@ -31,7 +31,7 @@
                         <div class="tagovi">
                              @foreach (var tag in pitanje.Tagovi)
                              {
-                               @Html.ActionLink(tag.Ime,"TagPretraga",new{ tagId=tag.TagID})   
+                               @Html.ActionLink("#"+tag.Ime+ "    ","TrazenjePoTagu",new{ tagovi="#"+tag.TagIme})   
                              }
                         </div>
 
