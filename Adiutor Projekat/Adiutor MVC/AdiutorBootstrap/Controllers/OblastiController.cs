@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AdiutorBootstrap.Models;
 using Business.DataAccess;
 using Business.DTO;
+using AdiutorBootstrap.Controllers;
 
 namespace AdiutorBootstrap.Controllers
 {
@@ -103,6 +104,8 @@ namespace AdiutorBootstrap.Controllers
                             Text = pit.Tekst,
                             AutorPitanja = autorPitanja.Ime,
                             AutorId=autorPitanja.Id,
+                            NaslovPitanja=pit.Naslov,
+                            Tagovi=tagoviPitanja
                     };
                     oblast.Pitanja.ListaPitanja.Add(p);
                 

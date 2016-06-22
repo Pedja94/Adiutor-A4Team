@@ -27,6 +27,8 @@ namespace AdiutorBootstrap.Models
 
         public int AutorId { get; set; }
 
+        public string NaslovPitanja { get; set; }
+
         public IList<TagModel> Tagovi { get; set; }
 
         public PitanjeModel()
