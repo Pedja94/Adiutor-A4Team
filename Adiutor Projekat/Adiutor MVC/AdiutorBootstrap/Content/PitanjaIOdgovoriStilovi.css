@@ -331,3 +331,19 @@ body{
     position:relative;
     left:10%;
 }
+
+#postavljenaPitanja{
+    border:double;
+    border-color:rgba(119, 158, 203, 1);
+    margin-bottom:5px;
+    align-content:center;
+    text-align:center;
+}
+
+#tekstPitanja{
+    
+}
+
+#link{
+    color:#1b1414;
+}

@@ -20,6 +20,7 @@
 
 #pretrazi{
     float:right;
+    display:none;
 }
 
 
@@ -29,7 +30,7 @@
 
 #traziInput{
     max-width:300px;
-    /*float:right;*/
+    float:right;
     position:relative;
     left:0px;
 }

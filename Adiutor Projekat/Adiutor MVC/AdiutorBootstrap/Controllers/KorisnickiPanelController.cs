@@ -72,6 +72,7 @@ namespace AdiutorBootstrap.Controllers
                 DatumVreme = pitanje.DatumVreme,
                 AutorId=pitanje.KorisnikId,
                 OblastId=pitanje.OblastId,
+                NaslovPitanja=pitanje.Naslov,
             };
 
             foreach(var tag in Pitanja.VratiSveTagovePitanja(pit.Id))

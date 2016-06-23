@@ -14,6 +14,8 @@ namespace AdiutorBootstrap.Models
 
         public IList<PitanjeModel> SlicnaPitanja { get; set; }
 
+
+
         public PitanjaOdgovoriKomentariModel()
         {
             Odgovori = new List<OdgovorModel>();

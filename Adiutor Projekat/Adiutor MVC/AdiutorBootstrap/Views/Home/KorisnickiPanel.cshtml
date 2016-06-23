@@ -90,7 +90,7 @@ else if (ViewBag.Izmena == true)
                         <li id="postavljenaPitanja">
                             <div id="pitanjeSaTagovima">
                                 <div id="tekstPitanja">
-                                    @Html.ActionLink(@pitanje.Text.Substring(0, 8), "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idPitanja = pitanje.Id }, null)
+                                    @Html.ActionLink(@pitanje.NaslovPitanja, "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idPitanja = pitanje.Id }, null)
                                  </div>
                                  <div id="tagoviKontejner">
                                      @foreach (var tag in pitanje.Tagovi)

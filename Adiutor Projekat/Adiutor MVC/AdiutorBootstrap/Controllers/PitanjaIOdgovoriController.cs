@@ -126,7 +126,7 @@ namespace AdiutorBootstrap.Controllers
         {
             PitanjaOdgovoriKomentariModel model = new PitanjaOdgovoriKomentariModel();
             PitanjeModel pitanje = new PitanjeModel();
-
+      
 
             List<OdgovorDTO> odgovori = Odgovori.VratiSve(pitanje.Id);
             //u listi sada imamo sve odgovore, ostaje da njihove parametre prosledimo modelu
@@ -145,6 +145,8 @@ namespace AdiutorBootstrap.Controllers
             KorisnikDTO kor = Korisnici.Procitaj(pit.KorisnikId);
             OblastDTO obl=Oblasti.Procitaj(pit.OblastId);
             
+
+           
 
             pitanje.Text = pit.Tekst;
             pitanje.AutorPitanja = kor.Ime;
@@ -165,6 +167,20 @@ namespace AdiutorBootstrap.Controllers
                 };
                 pitanje.Tagovi.Add(tag1);
             }
+
+            string slicniTagovi="";
+
+            int prom=0;
+            foreach(var tag in tagovi)
+            {
+                if (prom < 2)
+                { 
+                    slicniTagovi=slicniTagovi+"#"+tag.TagIme+" ";
+                }
+                prom++;
+            }
+
+            model.SlicnaPitanja = OblastiController.PitanjaPoTagovima(slicniTagovi);
 
 
 

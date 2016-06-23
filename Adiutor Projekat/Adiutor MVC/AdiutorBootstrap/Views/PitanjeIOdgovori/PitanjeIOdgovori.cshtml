@@ -1,4 +1,6 @@
 ﻿@model AdiutorBootstrap.Models.PitanjaOdgovoriKomentariModel 
+           @*treba da ubacim u ovaj PitanjaIKOmentariMdel jos jedan model za oblast, da bih mogao da vratim rezutlate
+               pretrazivanja po prva dva taga*@
 
 @{
     ViewBag.Title = "PitanjeIOdgovori";
@@ -83,7 +85,7 @@
                 <td colspan="4" id="tagovi">
                    @foreach (var tag in @Model.Pitanje.Tagovi)
                    {
-                       <a href="Tagovi?tag=@tag.Ime" name="tag">#@tag.Ime</a>
+                        @Html.ActionLink("#"+tag.Ime+ "    ","TrazenjePoTagu","Oblasti",new{ tagovi="#"+tag.TagIme},null)   
                    }
                 </td>
             </tr>
@@ -99,11 +101,22 @@
             <fieldset>
                 <legend>Slična postavljena pitanja:</legend>
                 <ul>
-                    @for (var j = 0; j < 10; j++)
+                    @foreach (var pit in @Model.SlicnaPitanja)
                     {
                         <li id="postavljenaPitanja">
-                            <a href="postavljenoPitanje" name="postavljenoPitanje">Neki link na slicno pitanje</a>
-                            
+                            <div id="pitanjeSaTagovima">
+                                <div id="tekstPitanja">
+                                    @Html.ActionLink(@pit.NaslovPitanja, "PitanjeIOdgovori1", "PitanjeIOdgovori", new { @id = "link", idPitanja = pit.Id }, new {@id="link" })
+                                 </div>
+                                 <div id="tagoviKontejner">
+                                     @foreach (var tag in pit.Tagovi)
+                                     {
+                                       @Html.ActionLink("#" + @tag.TagIme + " | ", "TrazenjePoTagu", "Oblasti", new { tagovi = "#"+tag.TagIme }, null)
+                 
+                                     }
+                                     
+                                 </div>
+                            </div>
                         </li>
                     }
                     @*ovde ce sem slicnog pitanja stajati i njegovih prvih 5 tagova*@
