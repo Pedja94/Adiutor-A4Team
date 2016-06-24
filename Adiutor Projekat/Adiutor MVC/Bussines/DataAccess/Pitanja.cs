@@ -99,6 +99,39 @@ namespace Business.DataAccess
 
         }
 
+        static public PitanjeDTO Nadji(string naslov)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Pitanje p = (from k in s.Query<Pitanje>()
+                             where (k.Naslov == naslov)
+                             select k).SingleOrDefault();
+
+                PitanjeDTO Pitanje = new PitanjeDTO
+                {
+                    Id = p.Id,
+                    Naslov = p.Naslov,
+                    KorisnikId = p.ImaKorisnika.Id,
+                    OblastId = p.PripadaOblasti.Id,
+                    DatumVreme = p.DatumVreme,
+                    Tekst = p.Tekst
+                };
+
+                s.Flush();
+                s.Close();
+
+                return Pitanje;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+        }
         static public void Izmeni(PitanjeDTO c)
         {
             try
