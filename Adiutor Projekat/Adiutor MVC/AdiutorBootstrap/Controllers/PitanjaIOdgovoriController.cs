@@ -114,6 +114,7 @@ namespace AdiutorBootstrap.Controllers
                     Text = pit.Tekst,
                     AutorPitanja = autorPitanja.Ime,
                     AutorId=autorPitanja.Id,
+                    NaslovPitanja=pit.Naslov,
                 };
                 oblast.Pitanja.ListaPitanja.Add(p);
             }
