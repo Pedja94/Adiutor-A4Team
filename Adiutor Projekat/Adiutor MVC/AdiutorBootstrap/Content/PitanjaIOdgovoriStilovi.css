@@ -347,3 +347,8 @@ body{
 #link{
     color:#1b1414;
 }
+
+ul
+{
+    list-style-type: none;
+}

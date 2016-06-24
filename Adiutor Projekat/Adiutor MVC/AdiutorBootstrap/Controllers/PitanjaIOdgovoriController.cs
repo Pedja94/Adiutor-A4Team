@@ -122,7 +122,7 @@ namespace AdiutorBootstrap.Controllers
   
         }
 
-        public ActionResult PitanjeIOdgovori1(int idPitanja)
+        public  ActionResult PitanjeIOdgovori1(int idPitanja)
         {
             PitanjaOdgovoriKomentariModel model = new PitanjaOdgovoriKomentariModel();
             PitanjeModel pitanje = new PitanjeModel();
@@ -141,12 +141,16 @@ namespace AdiutorBootstrap.Controllers
 
             }
             PitanjeDTO pit = Pitanja.Procitaj(idPitanja);
+
+
+            //PitanjeDTO pit2 = Pitanja.Nadji(pit.Naslov);
+
             List<TagDTO> tagovi = Pitanja.VratiSveTagovePitanja(idPitanja);
             KorisnikDTO kor = Korisnici.Procitaj(pit.KorisnikId);
             OblastDTO obl=Oblasti.Procitaj(pit.OblastId);
-            
 
-           
+
+
 
             pitanje.Text = pit.Tekst;
             pitanje.AutorPitanja = kor.Ime;
@@ -154,6 +158,7 @@ namespace AdiutorBootstrap.Controllers
             pitanje.Oblast = obl.Ime;
             pitanje.OblastId = pit.OblastId;
             pitanje.AutorId = kor.Id;
+            pitanje.NaslovPitanja = pit.Naslov;
 
 
             foreach (var tag in tagovi)
@@ -193,12 +198,6 @@ namespace AdiutorBootstrap.Controllers
             odgovor.Odobreno = true;
             odgovor.DatumVreme = DateTime.Now;
 
-            OdgovorModel odgovor1 = new OdgovorModel();
-            odgovor1.Pozitivno = 115;
-            odgovor1.Negativno = 23;
-            odgovor1.Text = "Pokusaj sa CKE Editorom.";
-            odgovor1.Odobreno = true;
-            odgovor1.DatumVreme = DateTime.Now;
 
             var broj = pitanje.Tagovi.Count;
             foreach (var tag in pitanje.Tagovi)
@@ -207,10 +206,16 @@ namespace AdiutorBootstrap.Controllers
             }
 
             model.Odgovori.Add(odgovor);
-            model.Odgovori.Add(odgovor1);
 
-            return View("PitanjeIOdgovori",model);
+
+            return View("~/Views/PitanjeIOdgovori/PitanjeIOdgovori.cshtml",model);
         }
+
+        public PitanjeModel KreirajModelPitanja() 
+        {
+            return null;
+        }
+
 
 	}
 }

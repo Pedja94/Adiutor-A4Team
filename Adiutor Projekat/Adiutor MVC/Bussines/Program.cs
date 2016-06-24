@@ -9,7 +9,7 @@ using Database.Entiteti;
 using Business.DTO;
 using Business.DataAccess;
 
-namespace Bussines
+namespace Bussiness
 {
     class Program
     {

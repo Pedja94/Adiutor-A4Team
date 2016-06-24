@@ -11,7 +11,7 @@ using NHibernate.Linq;
 using Business.DataAccess;
 using Business.DTO;
 
-namespace Bussines.DataAccess
+namespace Business.DataAccess
 {
     public static class Pitanja_Tagovi
     {
