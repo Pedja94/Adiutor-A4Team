@@ -56,14 +56,14 @@ namespace AdiutorBootstrap.Controllers
             odgovor.Pozitivno = 65;
             odgovor.Negativno = 31;
             odgovor.Text = "Pokusaj sa CKE Editorom.";
-            odgovor.Odobreno = true;
+            odgovor.Odobreno = 1;
             odgovor.DatumVreme = DateTime.Now;
 
             OdgovorModel odgovor1 = new OdgovorModel();
             odgovor1.Pozitivno = 115;
             odgovor1.Negativno = 23;
             odgovor1.Text = "Pokusaj sa CKE Editorom.";
-            odgovor1.Odobreno = true;
+            odgovor1.Odobreno = 1;
             odgovor1.DatumVreme = DateTime.Now;
 
             var broj = pitanje.Tagovi.Count;
@@ -160,6 +160,7 @@ namespace AdiutorBootstrap.Controllers
             pitanje.OblastId = pit.OblastId;
             pitanje.AutorId = kor.Id;
             pitanje.NaslovPitanja = pit.Naslov;
+            pitanje.Id = pit.Id;
 
 
             foreach (var tag in tagovi)
@@ -192,12 +193,20 @@ namespace AdiutorBootstrap.Controllers
 
             model.Pitanje = pitanje;
 
-            OdgovorModel odgovor = new OdgovorModel();
-            odgovor.Pozitivno = 65;
-            odgovor.Negativno = 31;
-            odgovor.Text = "Pokusaj sa CKE Editorom.";
-            odgovor.Odobreno = true;
-            odgovor.DatumVreme = DateTime.Now;
+            foreach (var odg in Odgovori.VratiSve(pitanje.Id))
+            {
+                KorisnikDTO kor1 = Korisnici.Procitaj(odg.KorisnikId);
+                OdgovorModel odg1 = new OdgovorModel
+                {
+                    Odobreno=odg.Odobreno,
+                    DatumVreme=odg.DatumVreme,
+                    Negativno=odg.Minus,
+                    Pozitivno=odg.Plus,
+                    Text=odg.Tekst,
+                    AutorOdgovora=kor1.Ime,                    
+                };
+                model.Odgovori.Add(odg1);
+            }
 
 
             var broj = pitanje.Tagovi.Count;
@@ -206,7 +215,7 @@ namespace AdiutorBootstrap.Controllers
 
             }
 
-            model.Odgovori.Add(odgovor);
+         
 
 
             return View("~/Views/PitanjeIOdgovori/PitanjeIOdgovori.cshtml",model);
@@ -215,6 +224,25 @@ namespace AdiutorBootstrap.Controllers
         public PitanjeModel KreirajModelPitanja() 
         {
             return null;
+        }
+
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult PostaviOdgovor(int pitanjeId, string textarea)
+        {
+            OdgovorDTO odg = new OdgovorDTO();
+            odg.DatumVreme = DateTime.Now;
+            odg.KorisnikId = (int)Session["Id"];
+            odg.Minus = 0;
+            odg.Plus = 0;
+            odg.Odobreno = 1;
+            odg.Tekst = textarea;
+            odg.PitanjeId = pitanjeId;
+            Odgovori.Dodaj(odg);
+
+            return PitanjeIOdgovori1(pitanjeId);
+
         }
 
 
