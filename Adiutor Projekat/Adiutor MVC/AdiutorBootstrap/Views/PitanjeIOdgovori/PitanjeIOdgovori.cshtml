@@ -108,21 +108,24 @@
                     <ul>
                         @foreach (var pit in @Model.SlicnaPitanja)
                         {
-                            <li id="postavljenaPitanja">
-                                <div id="pitanjeSaTagovima">
-                                    <div id="tekstPitanja">
-                                        @Html.ActionLink(@pit.NaslovPitanja, "PitanjeIOdgovori1", "PitanjeIOdgovori", new { @id = "link", idPitanja = pit.Id }, new { @id = "link" })
-                                    </div>
-                                    <div id="tagoviKontejner">
-                                        @foreach (var tag in pit.Tagovi)
-                                        {
-                                            @Html.ActionLink("#" + @tag.TagIme + " | ", "TrazenjePoTagu", "Oblasti", new { tagovi = "#" + tag.TagIme }, null)
+                            if (pit.Id != @Model.Pitanje.Id)
+                            { 
+                                <li id="postavljenaPitanja">
+                                    <div id="pitanjeSaTagovima">
+                                        <div id="tekstPitanja">
+                                            @Html.ActionLink(@pit.NaslovPitanja, "PitanjeIOdgovori1", "PitanjeIOdgovori", new { @id = "link", idPitanja = pit.Id }, new { @id = "link" })
+                                        </div>
+                                        <div id="tagoviKontejner">
+                                            @foreach (var tag in pit.Tagovi)
+                                            {
+                                                @Html.ActionLink("#" + @tag.TagIme + " | ", "TrazenjePoTagu", "Oblasti", new { tagovi = "#" + tag.TagIme }, null)
 
-                                        }
+                                            }
 
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            }
                         }
                         @*ovde ce sem slicnog pitanja stajati i njegovih prvih 5 tagova*@
                     </ul>
