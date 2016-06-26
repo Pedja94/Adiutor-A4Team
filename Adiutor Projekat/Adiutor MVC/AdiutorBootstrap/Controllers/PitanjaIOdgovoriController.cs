@@ -139,6 +139,7 @@ namespace AdiutorBootstrap.Controllers
                 odgovoriModel.ListaOdgovora[i].Pozitivno = odg.Plus;
                 odgovoriModel.ListaOdgovora[i].Negativno = odg.Minus;
                 odgovoriModel.ListaOdgovora[i].Id = odg.Id;
+                odgovoriModel.ListaOdgovora[i].AutorId = odg.KorisnikId;
 
             }
             PitanjeDTO pit = Pitanja.Procitaj(idPitanja);
@@ -203,7 +204,10 @@ namespace AdiutorBootstrap.Controllers
                     Negativno=odg.Minus,
                     Pozitivno=odg.Plus,
                     Text=odg.Tekst,
-                    AutorOdgovora=kor1.Ime,                    
+                    AutorOdgovora=kor1.Ime,   
+                    AutorId=kor1.Id,
+                    Id=odg.Id,
+                    Komentari=NapraviListuKomentara(odg.Id),
                 };
                 model.Odgovori.Add(odg1);
             }
@@ -219,6 +223,30 @@ namespace AdiutorBootstrap.Controllers
 
 
             return View("~/Views/PitanjeIOdgovori/PitanjeIOdgovori.cshtml",model);
+        }
+
+        public List<KomentarModel> NapraviListuKomentara(int odgovorId)
+        {
+            List<KomentarDTO> komentari1 = Komentari.VratiSve(odgovorId);
+            List<KomentarModel> Komentaris = new List<KomentarModel>();
+
+            foreach (var kom in komentari1)
+            {
+                KorisnikDTO kor = Korisnici.Procitaj(kom.KorisnikId);
+                KomentarModel km = new KomentarModel 
+                {
+                    AutorId=kom.KorisnikId,
+                    Id=kom.Id,
+                    DatumVreme=kom.DatumVreme,
+                    ImeAutora=kor.Ime,
+                    OdgovorId=kom.OdgovorId,
+                    Text=kom.Tekst,
+                };
+                Komentaris.Add(km);
+            }
+
+            return Komentaris;
+
         }
 
         public PitanjeModel KreirajModelPitanja() 
@@ -245,6 +273,39 @@ namespace AdiutorBootstrap.Controllers
 
         }
 
+
+        [HttpPost]
+        public JsonResult DodajKomentar(string modelKomentara)
+        {
+            //KomentarDTO kom = new KomentarDTO();
+            //kom.DatumVreme = DateTime.Now;
+            //kom.KorisnikId = komentar.AutorId;
+            //kom.OdgovorId = komentar.OdgovorId;
+            //kom.Tekst = komentar.Text;
+
+            //Komentari.Dodaj(kom);
+
+            return Json(modelKomentara, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult DodajKomentar1(KomentarModel modelKomentara)
+        {
+            KomentarDTO kom = new KomentarDTO();
+            kom.DatumVreme = DateTime.Now;
+            kom.KorisnikId = modelKomentara.AutorId;
+            kom.OdgovorId = modelKomentara.OdgovorId;
+            kom.Tekst = modelKomentara.Text;
+
+            KorisnikDTO kor = Korisnici.Procitaj(kom.KorisnikId);
+            modelKomentara.ImeAutora = kor.Ime;
+
+            Komentari.Dodaj(kom);
+            modelKomentara.DatumVreme = DateTime.Now;
+
+
+            return Json(modelKomentara,JsonRequestBehavior.AllowGet);
+        }
 
 	}
 }

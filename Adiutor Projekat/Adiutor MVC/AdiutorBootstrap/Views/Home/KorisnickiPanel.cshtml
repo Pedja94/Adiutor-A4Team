@@ -95,8 +95,7 @@ else if (ViewBag.Izmena == true)
                                  <div id="tagoviKontejner">
                                      @foreach (var tag in pitanje.Tagovi)
                                      {
-                                       @Html.ActionLink("#"+@tag.TagIme+ " | ", "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idTaga = tag.TagID }, null)
-                                       
+                                      @Html.ActionLink("#" + tag.Ime + "    ", "TrazenjePoTagu", "Oblasti", new { tagovi = "#" + tag.TagIme }, null)
                                      }
                                      
                                  </div>

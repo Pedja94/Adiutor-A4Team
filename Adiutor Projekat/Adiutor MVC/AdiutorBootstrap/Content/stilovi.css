@@ -419,3 +419,58 @@ body {
     top:10px;
     right:10px;
 }
+
+
+#cke_1_top{
+    background:white;
+}
+
+.cke_top{
+    background:white;
+}
+
+#cke_1_bottom{
+    background:white;
+}
+
+#dodaj{
+    text-align:center;
+    font-family:'Adobe Garamond Pro';
+    margin-top:-10px;
+}
+
+#naslovPit{
+    display:grid;
+    margin-bottom:10px;
+   font-family:'Adobe Garamond Pro';
+}
+
+h3{
+    display:inline-block;
+
+}
+
+#forma1{
+    text-align:center;
+    align-content:center;
+  
+    width:100%;
+}
+
+#cke_textarea{
+
+}
+
+#upload{
+    margin:10px;
+}
+
+
+#dugmeItagovi{
+    display:inline-block;
+}
+
+#tg{
+    display:inline-block;
+    font-family:'Adobe Garamond Pro';   
+}

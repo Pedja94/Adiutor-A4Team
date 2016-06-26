@@ -77,7 +77,7 @@
                 </tr>
                 <tr id="naslov-pitanja" style="text-align:center">
                     <td id="samNaslov" colspan="4">
-                        <h2>  @Html.DisplayTextFor(m => m.Pitanje.NaslovPitanja)</h2>
+                        <h2 id="nsl">  @Html.DisplayTextFor(m => m.Pitanje.NaslovPitanja)</h2>
                     </td>
                 </tr>
                 <tr id="tekst-pitanja" style="text-align:center">
@@ -141,13 +141,13 @@
                 @{var i = 0;}
                 @foreach (var odgovor in @Model.Odgovori)
                 {
-                    <table id="tabelaOdgovori">
+                    <table id="tabelaOdgovori" class="@odgovor.Id">
                         <tr id="informacijeOodgovorima">
                             <td id="brojOdgovora">
                                 @(i + 1). odgovor
                             </td>
                             <td id="autorOdgovora">
-                                @Html.ActionLink(odgovor.AutorOdgovora, "KlikNaKorisnika", "KorisnickiPanel", new { korisnikId = odgovor.AutorOdgovora }, null)
+                                @Html.ActionLink(odgovor.AutorOdgovora, "KlikNaKorisnika", "KorisnickiPanel", new { korisnikId = odgovor.AutorId }, null)
                            
                             </td>
                             <td id="vremeOdgovora">
@@ -163,7 +163,7 @@
                         </tr>
                         <tr id="ocene">
                             <td id="posaljiKomentar" colspan="2">
-                                <a href="Komentar?komentarisi=true&id=@(i+1)">Komentarisi</a>
+                                <input type="button"  onclick="nactajFormuZaKomentar(@odgovor.Id)" value="Komentarisi"/>
                                 @*<div class="dugme1">
                                         <button id="infoButton1" class="btn btn-success" data-toggle="popover" data-placement="down" title="    Dodatne informacije"
                                                 data-content="Ovaj portal su napravili studenti III godine smera za Računarstvo i infomatiku, Elektronskog
@@ -180,6 +180,29 @@
                             </td>
                         </tr>
                     </table>
+                    <div id="komentari">
+                        <div id="kom+@odgovor.Id">
+                            @{int brojac = 0;}
+                            @foreach (var komentar in odgovor.Komentari)
+                            {
+                                if (brojac < 3)
+                                { 
+                                
+                                    <p class="paragrafiKomentari">
+                                        @komentar.Text
+                      
+                                    </p>
+                                }
+                                brojac++;
+                            }
+                        </div>
+                    </div>
+                    
+                    if (odgovor.Komentari.Count != 0) { 
+                    <div class="mestoZaPlus">
+                        <input id="pogledajKomentareSve" type="button" class="btn btn-default" value="Pogledaj sve"/>
+                    </div>
+                    }
                     i++;
 
                 }
@@ -201,13 +224,7 @@
 
             <button type="submit" id="upload" class="btn btn-default" onclick="myFunction()">Predaj odgovor</button>
 
-            <script type="text/javascript">
-                {
-                    function myFunction() {
-                       
-                    }
-                }
-            </script>
+           
         </div>
         </div>
 </form>
@@ -215,7 +232,105 @@
 
 
 
+<script type="text/javascript">
+                {
+                    function nactajFormuZaKomentar(id) {
+                        if(document.getElementById(id)==null){
+                            var odgovor = document.getElementsByClassName(id)[0];
+                            var komentar=document.createElement("textarea");
+                            komentar.type="text";
+                            komentar.size=25;
+                            komentar.id=id;
 
+                            var roditelj=document.getElementById("odgovori");
+
+                            roditelj.insertBefore(komentar,odgovor.nextSibling);
+
+                            var predajKomentar=document.createElement("a");
+                            predajKomentar.innerHTML="Posalji";
+                            predajKomentar.className="btn btn-default";
+                            predajKomentar.id="dugme"+id;
+                            predajKomentar.href="javascript:posaljiPodatke("+id+","+document.getElementById(id).nodeValue+")";
+                            predajKomentar.onclick="javascript:posaljiPodatke("+id+","+document.getElementById(id).nodeValue+")";
+
+
+                            roditelj.insertBefore(predajKomentar, komentar.nextSibling);
+
+                        }
+                        else{
+                            var roditelj=document.getElementById(id).parentNode;
+                            var child=document.getElementById(id);
+
+                            var dugme=document.getElementById("dugme"+id);
+
+                            roditelj.removeChild(child);
+                            roditelj.removeChild(dugme);
+
+                        }
+                    }
+
+                    function posaljiPodatke(odgovorId, tekstKomentara)
+                    {
+                        var tekstKomentara = document.getElementById(odgovorId).innerHTML;
+                        var tekst = document.getElementById(odgovorId);
+                        var samtekst = tekst.value;
+                        var idOdgovora=odgovorId;
+
+                        var modelKomentara={ Text:samtekst, OdgovorId:idOdgovora, AutorId:@Session["Id"]};
+
+                        //alert(JSON.stringify(modelKomentara));
+    
+                        $.get("DodajKomentar1", modelKomentara, function (data) {
+                            var string="kom+"+data.OdgovorId;
+                            var app=document.getElementById(string);
+
+                            var date = new Date(data.DatumVreme);
+                            
+                            var tabelaZaKomentar=document.createElement("table");
+                            tabelaZaKomentar.classList="tableZaKomentar";
+
+                            var imeIVreme=document.createElement("tr");
+
+                            var ime=document.createElement("td");
+                            ime.innerHTML=data.ImeAutora;
+
+                            var vreme=document.createElement("td");
+                            vreme.innerHTML=Date().substring(0,25);
+
+                            imeIVreme.appendChild(ime);
+                            imeIVreme.appendChild(vreme);
+
+                            tabelaZaKomentar.appendChild(imeIVreme);
+
+
+                            var kreiraniElement=document.createElement("tr");
+                            kreiraniElement.innerHTML=data.Text;
+                            kreiraniElement.classList="paragrafiKomentari";
+                            kreiraniElement.setAttribute("colspan",2);
+                            
+                            tabelaZaKomentar.appendChild(kreiraniElement);
+
+                            app.appendChild(tabelaZaKomentar);
+                            //$("#"+string).append("<div>" + data.Text + "</div>");
+                            
+                            var roditelj=document.getElementById(data.OdgovorId).parentNode;
+                            var child=document.getElementById(data.OdgovorId);
+
+                            var dugme=document.getElementById("dugme"+data.OdgovorId);
+
+                            roditelj.removeChild(child);
+                            roditelj.removeChild(dugme);
+
+                        });
+
+
+
+           
+
+                    }
+
+                }
+</script>
 
 
 
@@ -253,3 +368,5 @@
 
         --> 
 </div>
+
+@Scripts.Render("~/Scripts/SkriptaZaKomentar.js")

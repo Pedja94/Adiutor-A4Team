@@ -17,23 +17,17 @@ namespace AdiutorBootstrap.Models
         [Display(Name = "Datum i vreme postavljanja komentara")]
         public DateTime DatumVreme { get; set; }
 
-    }
+        public string ImeAutora { get; set; }
 
+        public int AutorId { get; set; }
 
-    public class Komentari
-    {
-        public List<KomentarModel> ListaKomentara { get; set; }
+        public int PitanjeId { get; set; }
 
-        public Komentari(params KomentarModel[] ViseKomentara)
-        {
-            ListaKomentara  = new List<KomentarModel>();
-
-            foreach (var KomentarModel in ViseKomentara)
-            {
-                ListaKomentara.Add(KomentarModel);
-            }
-        }
-        
+        public int OdgovorId { get; set; }
 
     }
+
+
+  
+
 }

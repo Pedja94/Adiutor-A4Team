@@ -24,6 +24,9 @@
     border-radius:12px;
     position:relative;
     left:10%;
+    overflow: hidden;
+    position: relative;
+
    
 }
 
@@ -166,9 +169,12 @@
 
 /*stilovi za tabelu*/
 #pitanje{
-   min-width:100%;
+   min-width:95%;
    border-radius:5px;
-   min-height:inherit;
+   min-height:95%;
+   position: absolute;
+   overflow: hidden;
+
 }
 
 #informacijeOpitanju{
@@ -214,6 +220,7 @@
 
 #samTekst{
     padding:8px;
+    font-size:14px;
 }
 
 #kontejnerTagova{
@@ -351,4 +358,41 @@ body{
 ul
 {
     list-style-type: none;
+}
+
+#samNaslov{
+    font-size:20px;
+    min-height:20%;
+  
+}
+#nsl{
+    font-size:25px;
+    padding:5px;
+    border-bottom-style:ridge;
+    border-bottom-width:1px;
+    display:inline-block;
+}
+
+tbody{
+
+    min-height:100%;
+}
+
+div[id*="kom"] 
+{
+    width:70%;
+    position:relative;
+    left:15%;
+
+}
+
+
+.paragrafiKomentari{
+    background:rgba(43, 178, 125, 0.87);
+}
+
+
+#pogledajKomentareSve{
+    position:relative;
+    left:35%;
 }

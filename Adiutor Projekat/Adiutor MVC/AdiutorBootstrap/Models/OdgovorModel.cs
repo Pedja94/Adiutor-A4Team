@@ -27,6 +27,16 @@ namespace AdiutorBootstrap.Models
         public DateTime DatumVreme { get; set; }
 
         public string AutorOdgovora { get; set; }
+
+        public int AutorId { get; set; }
+
+        public IList<KomentarModel> Komentari;
+
+        public OdgovorModel()
+        {
+            Komentari = new List<KomentarModel>();
+        }
+
     }
 
 

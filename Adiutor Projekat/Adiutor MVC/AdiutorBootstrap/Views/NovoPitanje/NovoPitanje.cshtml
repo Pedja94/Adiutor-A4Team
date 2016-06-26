@@ -4,38 +4,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("//cdn.ckeditor.com/4.5.9/standard/ckeditor.js")
-<form method="post" action="@Url.Action("DodajPitanje","NovoPitanje")">
-    <textarea name="naslovPitanja" id="textNaslov"></textarea>
+@Scripts.Render("//cdn.ckeditor.com/4.5.9/full/ckeditor.js")
+<form id="forma1" method="post" action="@Url.Action("DodajPitanje","NovoPitanje")">
+    <h1 id="dodaj">Dodaj novo pitanje</h1>
+    <div id="naslovPit">
+        <h3>Unesi naslov pitanja:</h3>
+        <input type="text" size="80" name="naslovPitanja" id="textNaslov" />
+    </div>
+    <div class="editor1 ">
+        <textarea name="textarea" id="textarea"></textarea>
+
+        <script>
+            CKEDITOR.replace('textarea');
+        </script>
+
+        <div id="dugmeItagovi">
+            <h3 id="tg">Unesi tagove:</h3>
+            <input type="text" name="tagovi" size="35" />
+            <button id="upload" class="btn btn-primary" onclick="myFunction()">Predaj pitanje</button>
+        </div>
 
 
-    <textarea name="textarea" id="textarea"></textarea>
 
-    <script>
-        CKEDITOR.replace('textarea');
-    </script>
+        <script type="text/javascript">
+            {
+                function myFunction() {
+                    var tekst = CKEDITOR.instances.textarea.getData();
+                    alert(tekst);
+                    window.location = "Home/Pocetna";
+                }
+
+                $('upload').click(function () {
 
 
-    <input type="text" name="tagovi" size="35"/>
-    <button id="upload" class="btn btn-default" onclick="myFunction()">Predaj pitanje</button>
+
+                })
 
 
+            }
+        </script>
+    </div>
 
 </form>
-<script type="text/javascript">
-    {
-       function myFunction(){
-              var tekst = CKEDITOR.instances.textarea.getData();
-              alert(tekst);
-              window.location = "Home/Pocetna";
-       }
-
-       $('upload').click(function () {
-
-
-
-       })
-
-
-}
-</script>
