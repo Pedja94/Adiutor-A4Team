@@ -307,5 +307,30 @@ namespace AdiutorBootstrap.Controllers
             return Json(modelKomentara,JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpPost]
+        public JsonResult OceniPozitivno(OdgovorModel odgovor)
+        {
+            OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
+            odg.Plus++;
+
+            Odgovori.Izmeni(odg);
+            odgovor.Pozitivno++;
+
+            return Json(odgovor, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult OceniNegativno(OdgovorModel odgovor)
+        {
+            OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
+            odg.Minus++;
+            odgovor.Negativno++;
+
+            Odgovori.Izmeni(odg);
+
+            return Json(odgovor, JsonRequestBehavior.AllowGet);
+        }
 	}
 }

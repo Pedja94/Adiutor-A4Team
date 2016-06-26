@@ -9,6 +9,12 @@
  
 }
 
+.batons{
+        border-radius:50%;
+    border:double;
+    margin:4px;
+}
+
 
 #odgovori{
     /*background-image:url(Images/pattern1.png);*/
