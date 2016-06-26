@@ -56,14 +56,14 @@ namespace AdiutorBootstrap.Controllers
             odgovor.Pozitivno = 65;
             odgovor.Negativno = 31;
             odgovor.Text = "Pokusaj sa CKE Editorom.";
-            odgovor.Odobreno = true;
+            odgovor.Odobreno = 1;
             odgovor.DatumVreme = DateTime.Now;
 
             OdgovorModel odgovor1 = new OdgovorModel();
             odgovor1.Pozitivno = 115;
             odgovor1.Negativno = 23;
             odgovor1.Text = "Pokusaj sa CKE Editorom.";
-            odgovor1.Odobreno = true;
+            odgovor1.Odobreno = 1;
             odgovor1.DatumVreme = DateTime.Now;
 
             var broj = pitanje.Tagovi.Count;
@@ -114,6 +114,7 @@ namespace AdiutorBootstrap.Controllers
                     Text = pit.Tekst,
                     AutorPitanja = autorPitanja.Ime,
                     AutorId=autorPitanja.Id,
+                    NaslovPitanja=pit.Naslov,
                 };
                 oblast.Pitanja.ListaPitanja.Add(p);
             }
@@ -122,11 +123,11 @@ namespace AdiutorBootstrap.Controllers
   
         }
 
-        public ActionResult PitanjeIOdgovori1(int idPitanja)
+        public  ActionResult PitanjeIOdgovori1(int idPitanja)
         {
             PitanjaOdgovoriKomentariModel model = new PitanjaOdgovoriKomentariModel();
             PitanjeModel pitanje = new PitanjeModel();
-
+      
 
             List<OdgovorDTO> odgovori = Odgovori.VratiSve(pitanje.Id);
             //u listi sada imamo sve odgovore, ostaje da njihove parametre prosledimo modelu
@@ -141,10 +142,16 @@ namespace AdiutorBootstrap.Controllers
 
             }
             PitanjeDTO pit = Pitanja.Procitaj(idPitanja);
+
+
+            //PitanjeDTO pit2 = Pitanja.Nadji(pit.Naslov);
+
             List<TagDTO> tagovi = Pitanja.VratiSveTagovePitanja(idPitanja);
             KorisnikDTO kor = Korisnici.Procitaj(pit.KorisnikId);
             OblastDTO obl=Oblasti.Procitaj(pit.OblastId);
-            
+
+
+
 
             pitanje.Text = pit.Tekst;
             pitanje.AutorPitanja = kor.Ime;
@@ -152,6 +159,8 @@ namespace AdiutorBootstrap.Controllers
             pitanje.Oblast = obl.Ime;
             pitanje.OblastId = pit.OblastId;
             pitanje.AutorId = kor.Id;
+            pitanje.NaslovPitanja = pit.Naslov;
+            pitanje.Id = pit.Id;
 
 
             foreach (var tag in tagovi)
@@ -166,23 +175,39 @@ namespace AdiutorBootstrap.Controllers
                 pitanje.Tagovi.Add(tag1);
             }
 
+            string slicniTagovi="";
+
+            int prom=0;
+            foreach(var tag in tagovi)
+            {
+                if (prom < 2)
+                { 
+                    slicniTagovi=slicniTagovi+"#"+tag.TagIme+" ";
+                }
+                prom++;
+            }
+
+            model.SlicnaPitanja = OblastiController.PitanjaPoTagovima(slicniTagovi);
+
 
 
             model.Pitanje = pitanje;
 
-            OdgovorModel odgovor = new OdgovorModel();
-            odgovor.Pozitivno = 65;
-            odgovor.Negativno = 31;
-            odgovor.Text = "Pokusaj sa CKE Editorom.";
-            odgovor.Odobreno = true;
-            odgovor.DatumVreme = DateTime.Now;
+            foreach (var odg in Odgovori.VratiSve(pitanje.Id))
+            {
+                KorisnikDTO kor1 = Korisnici.Procitaj(odg.KorisnikId);
+                OdgovorModel odg1 = new OdgovorModel
+                {
+                    Odobreno=odg.Odobreno,
+                    DatumVreme=odg.DatumVreme,
+                    Negativno=odg.Minus,
+                    Pozitivno=odg.Plus,
+                    Text=odg.Tekst,
+                    AutorOdgovora=kor1.Ime,                    
+                };
+                model.Odgovori.Add(odg1);
+            }
 
-            OdgovorModel odgovor1 = new OdgovorModel();
-            odgovor1.Pozitivno = 115;
-            odgovor1.Negativno = 23;
-            odgovor1.Text = "Pokusaj sa CKE Editorom.";
-            odgovor1.Odobreno = true;
-            odgovor1.DatumVreme = DateTime.Now;
 
             var broj = pitanje.Tagovi.Count;
             foreach (var tag in pitanje.Tagovi)
@@ -190,11 +215,36 @@ namespace AdiutorBootstrap.Controllers
 
             }
 
-            model.Odgovori.Add(odgovor);
-            model.Odgovori.Add(odgovor1);
+         
 
-            return View("PitanjeIOdgovori",model);
+
+            return View("~/Views/PitanjeIOdgovori/PitanjeIOdgovori.cshtml",model);
         }
+
+        public PitanjeModel KreirajModelPitanja() 
+        {
+            return null;
+        }
+
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult PostaviOdgovor(int pitanjeId, string textarea)
+        {
+            OdgovorDTO odg = new OdgovorDTO();
+            odg.DatumVreme = DateTime.Now;
+            odg.KorisnikId = (int)Session["Id"];
+            odg.Minus = 0;
+            odg.Plus = 0;
+            odg.Odobreno = 1;
+            odg.Tekst = textarea;
+            odg.PitanjeId = pitanjeId;
+            Odgovori.Dodaj(odg);
+
+            return PitanjeIOdgovori1(pitanjeId);
+
+        }
+
 
 	}
 }

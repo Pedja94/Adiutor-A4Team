@@ -99,6 +99,10 @@ namespace Business.DataAccess
 
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
         static public PitanjeDTO Nadji(string naslov)
         {
             try
@@ -106,6 +110,7 @@ namespace Business.DataAccess
                 ISession s = DataLayer.GetSession();
 
                 Pitanje p = (from k in s.Query<Pitanje>()
+<<<<<<< HEAD
                              where (k.Naslov == naslov)
                              select k).SingleOrDefault();
 
@@ -117,12 +122,30 @@ namespace Business.DataAccess
                     OblastId = p.PripadaOblasti.Id,
                     DatumVreme = p.DatumVreme,
                     Tekst = p.Tekst
+=======
+                         where (k.Naslov == naslov)
+                         select k).SingleOrDefault();
+
+                PitanjeDTO pit = new PitanjeDTO
+                {
+                    Id = p.Id,
+                    Naslov = p.Naslov,
+                    Tekst = p.Tekst,
+                    DatumVreme=p.DatumVreme,
+                    KorisnikId=p.ImaKorisnika.Id,
+                    OblastId=p.PripadaOblasti.Id,
+                    
+>>>>>>> origin/master
                 };
 
                 s.Flush();
                 s.Close();
 
+<<<<<<< HEAD
                 return Pitanje;
+=======
+                return pit;
+>>>>>>> origin/master
 
             }
             catch (Exception e)
@@ -132,6 +155,11 @@ namespace Business.DataAccess
             }
 
         }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
         static public void Izmeni(PitanjeDTO c)
         {
             try

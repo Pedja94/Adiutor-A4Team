@@ -12,6 +12,18 @@
     margin-top:5px;
 }
 
+
+#labela{
+    float:left;
+}
+
+
+#pretrazi{
+    float:right;
+    display:none;
+}
+
+
 #grupa{
     align-content:center;
 }

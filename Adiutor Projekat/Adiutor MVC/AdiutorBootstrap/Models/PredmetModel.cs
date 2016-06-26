@@ -24,6 +24,11 @@ namespace AdiutorBootstrap.Models
         [Display(Name = "Oblasti")]
         public IList<OblastModel> Oblasti { get; set; }
 
+        public int Id { get; set; }
+
+        public string OpisPredmeta { get; set; }
+
+
         public PredmetModel()
         {
             Oblasti = new List<OblastModel>();

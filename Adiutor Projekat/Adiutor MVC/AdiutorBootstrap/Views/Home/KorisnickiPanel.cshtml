@@ -62,14 +62,15 @@ else if (ViewBag.Izmena == true)
 
 
 
-<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 forma-za-pretrazivanje-i-navigaciju">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 forma-za-pretrazivanje-i-navigaciju">
     
     @if ((int)Session["Id"] == @Model.Korisnik.Id)
     { 
         <form method="post" action="@Url.Action("TrazenjePoTagu","Oblasti")">
             <div id="grupa">
-                <b>Pretraži portal:</b><input id="traziInput" name="tagovi" type="text" size="25" class="form-control" />
-                <input type="submit" class="btn btn-success" value="Pretrazi"/>
+                <b id="labela">Pretraži portal:</b><input id="traziInput" name="tagovi" type="text" size="25" class="form-control" />
+                <input type="submit" class="btn btn-success" value="Pretrazi" id="pretrazi" />
+
             </div>
             <br />
             <br />
@@ -89,7 +90,7 @@ else if (ViewBag.Izmena == true)
                         <li id="postavljenaPitanja">
                             <div id="pitanjeSaTagovima">
                                 <div id="tekstPitanja">
-                                    @Html.ActionLink(@pitanje.Text.Substring(0, 8), "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idPitanja = pitanje.Id }, null)
+                                    @Html.ActionLink(@pitanje.NaslovPitanja, "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idPitanja = pitanje.Id }, null)
                                  </div>
                                  <div id="tagoviKontejner">
                                      @foreach (var tag in pitanje.Tagovi)

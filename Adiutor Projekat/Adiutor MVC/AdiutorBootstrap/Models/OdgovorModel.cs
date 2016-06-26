@@ -15,7 +15,7 @@ namespace AdiutorBootstrap.Models
         public string Text { get; set; }
 
         [Display(Name = "Odobreno")]
-        public bool Odobreno { get; set; }
+        public int Odobreno { get; set; }
 
         [Display(Name = "Broj pozitivnih ocena:")]
         public int Pozitivno { get; set; }

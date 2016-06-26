@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AdiutorBootstrap.Models;
+using Business.DataAccess;
+using Business.DTO;
+
 
 namespace AdiutorBootstrap.Controllers
 {
@@ -40,5 +43,41 @@ namespace AdiutorBootstrap.Controllers
 
             return View(predmet);
         }
+
+
+        public ActionResult VratiPredmetPoId(int predmetId)
+        {
+            PredmetModel predmet = new PredmetModel();
+            PredmetDTO pred = Predmeti.Procitaj(predmetId);
+
+            predmet.GodinaStudija = pred.GodinaStudija;
+            predmet.Id = pred.Id;
+            predmet.NazivPredmeta = pred.Naziv;
+
+
+            //ovo samo zasad, jer je neprakticno
+            foreach (var oblast in Oblasti.VratiSve())
+            {
+                if (oblast.PredmetId == pred.Id)
+                {
+                    OblastModel obl = new OblastModel
+                    {
+                        Naziv=oblast.Ime,
+                        Opis=oblast.Opis,
+                    };
+                    predmet.Oblasti.Add(obl);
+                }
+            }
+
+            List<ProfesorDTO> profes = Profesori.VratiSve(pred.Id);
+            ProfesorDTO prof = Profesori.Procitaj(pred.ProfesorId);
+            predmet.ZaduzeniProfesor = profes[0].PunoIme;
+            predmet.OpisPredmeta = pred.Opis;
+            
+
+            return View("Predmet", predmet);
+        }
+
+       
     }
 }

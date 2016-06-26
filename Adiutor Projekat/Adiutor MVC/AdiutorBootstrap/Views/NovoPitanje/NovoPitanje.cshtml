@@ -1,25 +1,41 @@
-﻿
+﻿@model AdiutorBootstrap.Models.KorisnikModel
 @{
     ViewBag.Title = "NovoPitanje";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Scripts.Render("//cdn.ckeditor.com/4.5.9/standard/ckeditor.js")
+<form method="post" action="@Url.Action("DodajPitanje","NovoPitanje")">
+    <textarea name="naslovPitanja" id="textNaslov"></textarea>
 
-<textarea name="textarea" id="textarea"></textarea>
 
-<script>
-    CKEDITOR.replace('textarea');
-</script>
+    <textarea name="textarea" id="textarea"></textarea>
 
-<button id="upload" class="btn btn-default" onclick="myFunction()" >Predaj pitanje</button>
+    <script>
+        CKEDITOR.replace('textarea');
+    </script>
 
+
+    <input type="text" name="tagovi" size="35"/>
+    <button id="upload" class="btn btn-default" onclick="myFunction()">Predaj pitanje</button>
+
+
+
+</form>
 <script type="text/javascript">
     {
        function myFunction(){
               var tekst = CKEDITOR.instances.textarea.getData();
               alert(tekst);
               window.location = "Home/Pocetna";
-           }
+       }
+
+       $('upload').click(function () {
+
+
+
+       })
+
+
 }
 </script>

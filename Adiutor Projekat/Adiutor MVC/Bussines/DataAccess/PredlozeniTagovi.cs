@@ -8,6 +8,7 @@ using Database.Entiteti;
 using Database;
 using NHibernate.Linq;
 using Business.DTO;
+using Business.DataAccess;
 
 namespace Business.DataAccess
 {
