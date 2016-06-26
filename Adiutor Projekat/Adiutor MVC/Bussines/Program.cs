@@ -239,7 +239,7 @@ namespace Bussiness
                 //PredmetDTO p = Predmeti.Procitaj(21);
 
                 Tagovi.Nadji("web");
-                
+                Pitanja.Nadji("Novo pitanje");   
             }
             catch (Exception e)
             {
