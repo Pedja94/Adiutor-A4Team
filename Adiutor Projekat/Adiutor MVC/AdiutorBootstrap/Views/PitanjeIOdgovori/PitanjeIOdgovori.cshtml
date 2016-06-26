@@ -163,7 +163,7 @@
                         </tr>
                         <tr id="ocene">
                             <td id="posaljiKomentar" colspan="2">
-                                <input type="button"  onclick="nactajFormuZaKomentar(@odgovor.Id)" value="Komentarisi"/>
+                                <input type="button"  class="btn btn-link" onclick="nactajFormuZaKomentar(@odgovor.Id)" value="Komentarisi"/>
                                 @*<div class="dugme1">
                                         <button id="infoButton1" class="btn btn-success" data-toggle="popover" data-placement="down" title="    Dodatne informacije"
                                                 data-content="Ovaj portal su napravili studenti III godine smera za Računarstvo i infomatiku, Elektronskog
@@ -186,24 +186,40 @@
                             @foreach (var komentar in odgovor.Komentari)
                             {
                                 if (brojac < 3)
-                                { 
-                                
-                                    <p class="paragrafiKomentari">
-                                        @komentar.Text
-                      
-                                    </p>
+                                {
+                                    <table class="tableZaKomentar">
+                                        <tr class="imeIvreme">
+                                            <td>
+                                                <a href="/KorisnickiPanel/KlikNaKorisnika?korisnikId=@komentar.AutorId">@komentar.ImeAutora</a> 
+                                                &nbsp;
+                                            </td>
+                                            <td id="tekstKomentara">
+                                                @komentar.DatumVreme
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <p class="paragrafiKomentari">
+
+                                                    @komentar.Text
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                   
                                 }
                                 brojac++;
                             }
                         </div>
                     </div>
                     
-                    if (odgovor.Komentari.Count != 0) { 
+                            if (odgovor.Komentari.Count != 0)
+                            { 
                     <div class="mestoZaPlus">
-                        <input onclick="PregledajSveKomentare" id="pogledajKomentareSve" type="button" class="btn btn-default" value="Pogledaj sve"/>
+                        <input onclick="PregledajSveKomentare(@odgovor.Id)" id="pogledajKomentareSve+@odgovor.Id" type="button" class="btn btn-link pogledaj" value="Pogledaj sve"/>
                     </div>
-                    }
-                    i++;
+                            }
+                            i++;
 
                 }
 
@@ -268,75 +284,131 @@
 
             }
         }
+ 
 
-        function posaljiPodatke(odgovorId, tekstKomentara)
-        {
-            var tekstKomentara = document.getElementById(odgovorId).innerHTML;
-            var tekst = document.getElementById(odgovorId);
-            var samtekst = tekst.value;
-            var idOdgovora=odgovorId;
+    function posaljiPodatke(odgovorId, tekstKomentara)
+    {
+        var tekstKomentara = document.getElementById(odgovorId).innerHTML;
+        var tekst = document.getElementById(odgovorId);
+        var samtekst = tekst.value;
+        var idOdgovora=odgovorId;
 
-            var modelKomentara={ Text:samtekst, OdgovorId:idOdgovora, AutorId:@Session["Id"]};
+        var modelKomentara={ Text:samtekst, OdgovorId:idOdgovora, AutorId:@Session["Id"]};
 
-            //alert(JSON.stringify(modelKomentara));
+        //alert(JSON.stringify(modelKomentara));
     
-            $.get("DodajKomentar1", modelKomentara, function (data) {
-                var string="kom+"+data.OdgovorId;
-                var app=document.getElementById(string);
+        $.get("DodajKomentar1", modelKomentara, function (data) {
+            var string="kom+"+data.OdgovorId;
+            var app=document.getElementById(string);
 
-                var date = new Date(data.DatumVreme);
+            var date = new Date(data.DatumVreme);
                             
-                var tabelaZaKomentar=document.createElement("table");
-                tabelaZaKomentar.classList="tableZaKomentar";
+            var tabelaZaKomentar=document.createElement("table");
+            tabelaZaKomentar.classList="tableZaKomentar";
 
-                var imeIVreme=document.createElement("tr");
+            var imeIVreme=document.createElement("tr");
+            imeIVreme.classList="imeIvreme";
 
-                var ime=document.createElement("td");
+            var ime=document.createElement("td");
 
-                var imelink=document.createElement("a");
-                imelink.href="/KorisnickiPanel/KlikNaKorisnika?korisnikId="+data.AutorId;
-                imelink.innerHTML=data.ImeAutora;
+            var imelink=document.createElement("a");
+            imelink.href="/KorisnickiPanel/KlikNaKorisnika?korisnikId="+data.AutorId;
+            imelink.innerHTML=data.ImeAutora;
 
-                ime.appendChild(imelink);
+            ime.appendChild(imelink);
 
-                var vreme=document.createElement("td");
-                vreme.innerHTML=Date().substring(0,25);
+            var vreme=document.createElement("td");
+            vreme.innerHTML=Date().substring(0,25);
 
-                imeIVreme.appendChild(ime);
-                imeIVreme.appendChild(vreme);
+            imeIVreme.appendChild(ime);
+            imeIVreme.appendChild(vreme);
 
-                tabelaZaKomentar.appendChild(imeIVreme);
+            tabelaZaKomentar.appendChild(imeIVreme);
 
 
-                var kreiraniElement=document.createElement("tr");
-                kreiraniElement.innerHTML=data.Text;
-                kreiraniElement.classList="paragrafiKomentari";
-                kreiraniElement.setAttribute("colspan",2);
+            var kreiraniElement=document.createElement("tr");
+            kreiraniElement.innerHTML=data.Text;
+            kreiraniElement.classList="paragrafiKomentari";
+            kreiraniElement.setAttribute("colspan",2);
                             
-                tabelaZaKomentar.appendChild(kreiraniElement);
+            tabelaZaKomentar.appendChild(kreiraniElement);
 
-                app.appendChild(tabelaZaKomentar);
-                //$("#"+string).append("<div>" + data.Text + "</div>");
+            app.appendChild(tabelaZaKomentar);
+            //$("#"+string).append("<div>" + data.Text + "</div>");
                             
-                var roditelj=document.getElementById(data.OdgovorId).parentNode;
-                var child=document.getElementById(data.OdgovorId);
+            var roditelj=document.getElementById(data.OdgovorId).parentNode;
+            var child=document.getElementById(data.OdgovorId);
 
-                var dugme=document.getElementById("dugme"+data.OdgovorId);
+            var dugme=document.getElementById("dugme"+data.OdgovorId);
 
-                roditelj.removeChild(child);
-                roditelj.removeChild(dugme);
+            roditelj.removeChild(child);
+            roditelj.removeChild(dugme);
 
+        });
+    }
+
+
+        function PregledajSveKomentare(odgovorId)
+        {
+            var odgovor={Id:odgovorId};
+
+            $.post("VratiSveKomentare",odgovor,function(data)
+            {
+                $.each(data.Komentari,function(index){
+                    var string="kom+"+data.Id;
+                    var app=document.getElementById(string);
+
+                    var date = new Date(data.Komentari[index].DatumVreme);
+                            
+                    var tabelaZaKomentar=document.createElement("table");
+                    tabelaZaKomentar.classList="tableZaKomentar";
+
+                    var imeIVreme=document.createElement("tr");
+                    imeIVreme.classList="imeIvreme";
+
+                    var ime=document.createElement("td");
+
+                    var imelink=document.createElement("a");
+                    imelink.href="/KorisnickiPanel/KlikNaKorisnika?korisnikId="+data.AutorId;
+                    imelink.innerHTML=data.Komentari[index].ImeAutora;
+
+                    ime.appendChild(imelink);
+
+                    var vreme=document.createElement("td");
+                    vreme.innerHTML=Date().substring(0,25);
+
+                    imeIVreme.appendChild(ime);
+                    imeIVreme.appendChild(vreme);
+
+                    tabelaZaKomentar.appendChild(imeIVreme);
+                        
+                    var paragrafGdeStojiTekst=document.createElement("p");
+                    paragrafGdeStojiTekst.classList="paragrafiKomentari"
+                    paragrafGdeStojiTekst.innerHTML=data.Komentari[index].Text;
+
+
+
+                    var kreiraniElement=document.createElement("tr");
+                    kreiraniElement.setAttribute("colspan",2);
+
+                    kreiraniElement.appendChild(paragrafGdeStojiTekst);
+                            
+                    tabelaZaKomentar.appendChild(kreiraniElement);
+
+                    app.appendChild(tabelaZaKomentar);
+                    var roditelj=document.getElementById("pogledajKomentareSve+"+data.Id).parentNode;
+                    var child=document.getElementById("pogledajKomentareSve+"+data.Id);
+
+     
+
+                    roditelj.removeChild(child);
+                    
+               
+                });
             });
-
-
-
-           
-
         }
-
-        function PregledajSveKomentare(odgovorId){
-
-        }    
+            
+            
 
 
         function OceniPozitivno(odgovorId){
@@ -351,7 +423,7 @@
         }
         
         function OceniNegativno(odgovorId){
-            var brojMineva=document.getElementById("plusevi+"+odgovorId).innerHTML;
+            var brojMineva=document.getElementById("minusevi+"+odgovorId).innerHTML;
 
             var odgovor={ Id:odgovorId, Negativno:brojMineva};
 
