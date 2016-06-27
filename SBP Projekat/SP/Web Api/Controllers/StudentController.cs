@@ -22,13 +22,20 @@ namespace Test.Controllers
         {
             IEnumerable<Student> studenti = Crud<Student>.ReturnAll(sesija);
 
+            foreach (Student student in studenti)
+            {
+                student.Timovi = null;
+            }
+
             return studenti;
         }
 
         // GET api/clanak/5
         public Student Get(int id)
         {
-            return Crud<Student>.Read(sesija, id);
+            Student student =  Crud<Student>.Read(sesija, id);
+            student.Timovi = null;
+            return student;
         }
 
         // POST api/clanak

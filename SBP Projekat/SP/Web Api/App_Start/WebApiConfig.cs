@@ -11,7 +11,14 @@ namespace Web_Api
         {
             // Web API configuration and services
 
-            // Web API routes
+           // Web API routes
+            //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
+
+            //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling 
+               // = Newtonsoft.Json.ReferenceLoopHandling.Serialize; 
+            //config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling 
+               // = Newtonsoft.Json.PreserveReferencesHandling.Objects; 
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
