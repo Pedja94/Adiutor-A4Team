@@ -15,11 +15,11 @@ namespace Test.Controllers
 {
     public class StudentController : ApiController
     {
+        ISession sesija = DataLayer.GetSession();
+
         // GET api/clanak
         public IEnumerable<Student> Get()
         {
-            ISession sesija = DataLayer.GetSession();
-
             IEnumerable<Student> studenti = Crud<Student>.ReturnAll(sesija);
 
             return studenti;
@@ -28,27 +28,26 @@ namespace Test.Controllers
         // GET api/clanak/5
         public Student Get(int id)
         {
-            ISession sesija = DataLayer.GetSession();
             return Crud<Student>.Read(sesija, id);
         }
 
-        //// POST api/clanak
-        //public void Post([FromBody]Student student)
-        //{
-        //    Crud<Student>.Create(sesija, student);
-        //}
+        // POST api/clanak
+        public void Post([FromBody]Student student)
+        {
+            Crud<Student>.Create(sesija, student);
+        }
 
-        //// PUT api/clanak/5
-        //public void Put(int id, [FromBody]Student student)
-        //{
-        //    Crud<Student>.Update(sesija, student);
-        //}
+        // PUT api/clanak/5
+        public void Put(int id, [FromBody]Student student)
+        {
+            Crud<Student>.Update(sesija, student);
+        }
 
-        //// DELETE api/clanak/5
-        //public void Delete(int id)
-        //{
-        //    Crud<Student>.Delete(sesija, id);
-        //}
+        // DELETE api/clanak/5
+        public void Delete(int id)
+        {
+            Crud<Student>.Delete(sesija, id);
+        }
 
     }
 }
