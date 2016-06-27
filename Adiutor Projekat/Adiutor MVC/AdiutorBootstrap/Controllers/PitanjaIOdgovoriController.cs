@@ -307,5 +307,60 @@ namespace AdiutorBootstrap.Controllers
             return Json(modelKomentara,JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpPost]
+        public JsonResult OceniPozitivno(OdgovorModel odgovor)
+        {
+            OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
+            odg.Plus++;
+
+            Odgovori.Izmeni(odg);
+            odgovor.Pozitivno++;
+
+            return Json(odgovor, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult OceniNegativno(OdgovorModel odgovor)
+        {
+            OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
+            odg.Minus++;
+            odgovor.Negativno++;
+
+            Odgovori.Izmeni(odg);
+
+            return Json(odgovor, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult VratiSveKomentare(OdgovorModel odgovor)
+        {
+            OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
+            List<KomentarDTO> KomentariOdgovora = Komentari.VratiSve(odg.Id);
+            if (KomentariOdgovora.Count > 3)
+            {
+                //ovde smo kad ima vise od tri komentara koji treba da budu prikazani ispod odgovora
+                for (int i = 3; i < KomentariOdgovora.Count; i++)
+                {
+                    KorisnikDTO kor=Korisnici.Procitaj(KomentariOdgovora[i].KorisnikId);
+                    KomentarModel kom = new KomentarModel()
+                    {
+                        ImeAutora=kor.Ime,
+                        Text=KomentariOdgovora[i].Tekst,
+                        DatumVreme=KomentariOdgovora[i].DatumVreme,
+                        Id=KomentariOdgovora[i].Id,
+
+                    };
+                    odgovor.Komentari.Add(kom);
+                }
+
+                return Json(odgovor, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(null);
+            }
+        }
 	}
 }

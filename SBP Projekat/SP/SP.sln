@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP", "SP\SP.csproj", "{F2DC9519-2832-4ED2-8864-0466335592FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web Api", "Web Api\Web Api.csproj", "{2E3FF50F-C79F-41D9-9C76-5DFA8B45C3B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F2DC9519-2832-4ED2-8864-0466335592FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2DC9519-2832-4ED2-8864-0466335592FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2DC9519-2832-4ED2-8864-0466335592FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3FF50F-C79F-41D9-9C76-5DFA8B45C3B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3FF50F-C79F-41D9-9C76-5DFA8B45C3B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3FF50F-C79F-41D9-9C76-5DFA8B45C3B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3FF50F-C79F-41D9-9C76-5DFA8B45C3B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

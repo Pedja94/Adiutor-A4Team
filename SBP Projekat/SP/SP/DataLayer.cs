@@ -10,7 +10,7 @@ using Studentski_projekti.Mapiranja;
 
 namespace SP
 {
-    class DataLayer
+    public class DataLayer
     {
         private static ISessionFactory _factory = null;
         private static object objLock = new object();

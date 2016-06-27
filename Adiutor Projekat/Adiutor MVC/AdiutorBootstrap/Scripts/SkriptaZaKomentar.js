@@ -1,5 +1,6 @@
 ﻿
 window.onload=function(){
+
     function nactajFormuZaKomentar(id) {
         if(document.getElementById(id)==null){
             var odgovor = document.getElementsByClassName(id)[0];
@@ -89,7 +90,7 @@ window.onload=function(){
 
         });
 
-
+    
 
            
 
