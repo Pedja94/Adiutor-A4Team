@@ -41,6 +41,8 @@ namespace Test.Controllers
         // POST api/clanak
         public void Post([FromBody]Rad Rad)
         {
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Rad.Literatura = new Literatura() { Id = 81 };
             Crud<Rad>.Create(sesija, Rad);
         }
@@ -48,6 +50,8 @@ namespace Test.Controllers
         // PUT api/clanak/5
         public void Put(int id, [FromBody]Rad Rad)
         {
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Rad.Literatura = new Literatura() { Id = 81 };
             Crud<Rad>.Update(sesija, Rad);
         }

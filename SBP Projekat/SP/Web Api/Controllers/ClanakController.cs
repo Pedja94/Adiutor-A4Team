@@ -41,7 +41,8 @@ namespace Web_Api.Controllers
         // POST api/clanak
         public void Post([FromBody]Clanak Clanak)
         {
-            //da ne bi pucalo prilikom insert
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Clanak.Literatura = new Literatura() { Id = 81};
             Crud<Clanak>.Create(sesija, Clanak);
         }
@@ -49,6 +50,8 @@ namespace Web_Api.Controllers
         // PUT api/clanak/5
         public void Put(int id, [FromBody]Clanak Clanak)
         {
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Clanak.Literatura = new Literatura() { Id = 81 };
             Crud<Clanak>.Update(sesija, Clanak);
         }

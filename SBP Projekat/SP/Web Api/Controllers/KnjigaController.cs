@@ -41,6 +41,8 @@ namespace Test.Controllers
         // POST api/clanak
         public void Post([FromBody]Knjiga Knjiga)
         {
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Knjiga.Literatura = new Literatura() { Id = 81 };
             Crud<Knjiga>.Create(sesija, Knjiga);
         }
@@ -48,6 +50,8 @@ namespace Test.Controllers
         // PUT api/clanak/5
         public void Put(int id, [FromBody]Knjiga Knjiga)
         {
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Knjiga.Literatura = new Literatura() { Id = 81 };
             Crud<Knjiga>.Update(sesija, Knjiga);
         }

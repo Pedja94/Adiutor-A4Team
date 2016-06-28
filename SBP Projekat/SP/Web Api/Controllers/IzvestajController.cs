@@ -41,6 +41,8 @@ namespace Test.Controllers
         // POST api/clanak
         public void Post([FromBody]Izvestaj Izvestaj)
         {
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Izvestaj.PrakticniProjekat = new PrakticniProjekat() { Id = 167};
             Crud<Izvestaj>.Create(sesija, Izvestaj);
         }
@@ -48,6 +50,8 @@ namespace Test.Controllers
         // PUT api/clanak/5
         public void Put(int id, [FromBody]Izvestaj Izvestaj)
         {
+            //linija je dodata da bi mogli da testiramo sa objektima koje dobijemo kao rezultat 
+            //kontrolera ge. Potavlja se objekat iz baze, zbog toga sto je u odgovarajucoj tabeli spoljni kljuc obavezan
             Izvestaj.PrakticniProjekat = new PrakticniProjekat() { Id = 167 };
             Crud<Izvestaj>.Update(sesija, Izvestaj);
         }
