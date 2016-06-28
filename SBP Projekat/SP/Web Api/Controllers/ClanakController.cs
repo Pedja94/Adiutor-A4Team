@@ -41,12 +41,15 @@ namespace Web_Api.Controllers
         // POST api/clanak
         public void Post([FromBody]Clanak Clanak)
         {
+            //da ne bi pucalo prilikom insert
+            Clanak.Literatura = new Literatura() { Id = 81};
             Crud<Clanak>.Create(sesija, Clanak);
         }
 
         // PUT api/clanak/5
         public void Put(int id, [FromBody]Clanak Clanak)
         {
+            Clanak.Literatura = new Literatura() { Id = 81 };
             Crud<Clanak>.Update(sesija, Clanak);
         }
 

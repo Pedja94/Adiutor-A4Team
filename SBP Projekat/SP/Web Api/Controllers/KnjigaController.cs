@@ -41,12 +41,14 @@ namespace Test.Controllers
         // POST api/clanak
         public void Post([FromBody]Knjiga Knjiga)
         {
+            Knjiga.Literatura = new Literatura() { Id = 81 };
             Crud<Knjiga>.Create(sesija, Knjiga);
         }
 
         // PUT api/clanak/5
         public void Put(int id, [FromBody]Knjiga Knjiga)
         {
+            Knjiga.Literatura = new Literatura() { Id = 81 };
             Crud<Knjiga>.Update(sesija, Knjiga);
         }
 

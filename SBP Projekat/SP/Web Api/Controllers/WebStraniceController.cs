@@ -41,12 +41,14 @@ namespace Test.Controllers
         // POST api/clanak
         public void Post([FromBody]WebStranice WebStranice)
         {
+            WebStranice.PrakticniProjekat = new PrakticniProjekat() { Id = 167 };
             Crud<WebStranice>.Create(sesija, WebStranice);
         }
 
         // PUT api/clanak/5
         public void Put(int id, [FromBody]WebStranice WebStranice)
         {
+            WebStranice.PrakticniProjekat = Crud<PrakticniProjekat>.Read(sesija, 170);
             Crud<WebStranice>.Update(sesija, WebStranice);
         }
 

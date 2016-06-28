@@ -47,12 +47,14 @@ namespace Test.Controllers
         // POST api/clanak
         public void Post([FromBody]PrakticniProjekat PrakticniProjekat)
         {
+            PrakticniProjekat.Predmet = new Predmet() { Id = 44};
             Crud<PrakticniProjekat>.Create(sesija, PrakticniProjekat);
         }
 
         // PUT api/clanak/5
         public void Put(int id, [FromBody]PrakticniProjekat PrakticniProjekat)
         {
+            PrakticniProjekat.Predmet = new Predmet() { Id = 44 };
             Crud<PrakticniProjekat>.Update(sesija, PrakticniProjekat);
         }
 
