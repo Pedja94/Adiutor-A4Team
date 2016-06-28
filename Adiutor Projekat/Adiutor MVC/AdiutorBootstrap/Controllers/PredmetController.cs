@@ -53,6 +53,7 @@ namespace AdiutorBootstrap.Controllers
             predmet.GodinaStudija = pred.GodinaStudija;
             predmet.Id = pred.Id;
             predmet.NazivPredmeta = pred.Naziv;
+            predmet.Semestar = pred.Semestar;
 
 
             //ovo samo zasad, jer je neprakticno
@@ -69,9 +70,17 @@ namespace AdiutorBootstrap.Controllers
                 }
             }
 
-            List<ProfesorDTO> profes = Profesori.VratiSve(pred.Id);
-            ProfesorDTO prof = Profesori.Procitaj(pred.ProfesorId);
-            predmet.ZaduzeniProfesor = profes[0].PunoIme;
+            //List<ProfesorDTO> profes = Profesori.VratiSve(pred.Id);
+            if (pred.ProfesorId != 0)
+            {
+                ProfesorDTO prof = Profesori.Procitaj(pred.ProfesorId);
+                predmet.ZaduzeniProfesor = prof.PunoIme;
+            }
+            else
+            {
+                predmet.ZaduzeniProfesor = "Nema";
+            }
+
             predmet.OpisPredmeta = pred.Opis;
             
 

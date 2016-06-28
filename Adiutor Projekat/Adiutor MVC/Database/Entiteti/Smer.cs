@@ -10,6 +10,8 @@ namespace Database.Entiteti
     {
         public virtual int Id { get; set; }
         public virtual string Ime { get; set; }
+        public virtual int PocSem { get; set; }
+        public virtual int KrajSem { get; set; }
 
         public virtual IList<Predmet> ImaPredmete { get; set; }
 

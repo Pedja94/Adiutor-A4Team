@@ -17,6 +17,8 @@ namespace Database.Mapiranja
             Id(x => x.Id).Column("ID").GeneratedBy.TriggerIdentity();
 
             Map(x => x.Ime).Column("IME");
+            Map(x => x.PocSem).Column("POC_SEM");
+            Map(x => x.KrajSem).Column("KRAJ_SEM");
 
             HasManyToMany(x => x.ImaPredmete).Table("PREDMET_SMER").ParentKeyColumn("SMER_ID")
                 .ChildKeyColumn("PREDMET_ID")

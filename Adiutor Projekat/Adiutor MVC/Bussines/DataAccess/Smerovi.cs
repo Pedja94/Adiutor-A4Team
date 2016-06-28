@@ -22,6 +22,8 @@ namespace Business.DataAccess
                 Smer Smer = new Smer
                 {
                     Ime = c.Ime,
+                    PocSem = c.PocSem,
+                    KrajSem = c.KrajSem
                 };
 
                 s.SaveOrUpdate(Smer);
@@ -63,7 +65,9 @@ namespace Business.DataAccess
                 SmerDTO Smer = new SmerDTO
                 {
                     Id = p.Id,
-                    Ime = p.Ime
+                    Ime = p.Ime,
+                    PocSem = p.PocSem,
+                    KrajSem = p.KrajSem
                 };
 
                 s.Flush();
@@ -89,7 +93,9 @@ namespace Business.DataAccess
                 Smer Smer = new Smer
                 {
                     Id = c.Id,
-                    Ime = c.Ime
+                    Ime = c.Ime,
+                    PocSem = c.PocSem,
+                    KrajSem = c.KrajSem
                 };
                 s.Update(Smer);
 
@@ -120,7 +126,9 @@ namespace Business.DataAccess
                     SmerDTO dto = new SmerDTO()
                     {
                         Id = Smer.Id,
-                        Ime = Smer.Ime
+                        Ime = Smer.Ime,
+                        PocSem = Smer.PocSem,
+                        KrajSem = Smer.KrajSem
                     };
 
                     retVal.Add(dto);

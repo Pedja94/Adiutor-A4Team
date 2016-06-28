@@ -1,10 +1,10 @@
-﻿window.onload=function()
-{
-    var lista = new ListePredmeta();
-    lista.crtaj();
+﻿//window.onload=function()
+//{
+//    //var lista = new ListePredmeta();
+//    //lista.crtaj();
  
 
-}
+//}
 
 
 

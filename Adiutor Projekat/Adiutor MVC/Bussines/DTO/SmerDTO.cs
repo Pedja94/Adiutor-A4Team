@@ -10,5 +10,7 @@ namespace Business.DTO
     {
         public int Id { get; set; }
         public string Ime { get; set; }
+        public int PocSem { get; set; }
+        public int KrajSem { get; set; }
     }
 }
