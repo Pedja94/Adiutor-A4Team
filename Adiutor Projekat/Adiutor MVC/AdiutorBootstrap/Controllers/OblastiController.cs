@@ -33,13 +33,27 @@ namespace AdiutorBootstrap.Controllers
         public ActionResult TrazenjePoTagu(string tagovi){
 
             try
-            {         
-                return View("~/Views/Oblasti/Oblasti.cshtml",VratiOblastPretrage(tagovi));
-              
+            {
+                if (tagovi[0] == '#')
+                { 
+
+                    return View("~/Views/Oblasti/Oblasti.cshtml",VratiOblastPretrage(tagovi));
+                }
+                else if(Korisnici.Nadji(tagovi)!=null)
+                {
+                    //sada ovde treba da vratimo korinsicki panel trazenog korisnika
+                    KorisnikDTO kor = Korisnici.Nadji(tagovi);
+                    HomeController con = new HomeController();
+                    return View("~/Views/Home/KorisnickiPanel.cshtml",con.KreirajKorisnickiPanelModel(kor.Id));
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch (Exception e)
-            {
-                return View("~/Views/Home/KorisnickiPanel.cshtml");
+             {
+                 return null;
             }
 
         }
@@ -142,6 +156,7 @@ namespace AdiutorBootstrap.Controllers
             }
             else
             {
+                //ukoliko je poceo da unosi korisnik nesto razlicito od taga, verovatno je pokusao da trazi  po imenu korisnika
                 return null;
             }
 

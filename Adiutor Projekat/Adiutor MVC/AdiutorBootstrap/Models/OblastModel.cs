@@ -15,6 +15,9 @@ namespace AdiutorBootstrap.Models
 
         public IList<LiteraturaModel> Literatura { get; set; }
 
+        public int Id { get; set; }
+
+
         public OblastModel()
         {
             Literatura = new List<LiteraturaModel>();

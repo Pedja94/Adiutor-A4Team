@@ -172,37 +172,80 @@ namespace AdiutorBootstrap.Controllers
             korisnik.Slika = user.Slika;
             korisnik.Email = user.Email;
 
+
+            List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
+            List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
+            KorisnickiPanelController con = new KorisnickiPanelController();
+            foreach (var pitanjce in ListaPostavljenihPitanja)
+            {
+                PitanjeModel pit = con.VratiPitanjaKorisnikaModel(pitanjce);
+                PitanjaKorisnika.Add(pit);
+            }
+
             KorisnickiPanelModel panel = new KorisnickiPanelModel();
             panel.Korisnik = korisnik;
-            panel.Pitanja = model.Pitanja;
+            panel.Pitanja = PitanjaKorisnika;
+             
 
             return View("KorisnickiPanel", panel);
         }
 
+        public KorisnickiPanelModel KreirajKorisnickiPanelModel(int korisnikId)
+        {
+            ViewBag.Izmena = false;
+            KorisnikDTO user = Korisnici.Procitaj(korisnikId);
+            //KorisnikDTO user = Korisnici.Nadji((string)Session["Username"]);
+            KorisnikModel korisnik = new KorisnikModel();
+            korisnik.Ime = user.Ime;
+            korisnik.Prezime = user.Prezime;
+            korisnik.Username = user.Username;
+            korisnik.Opis = user.Opis;
+            korisnik.Smer = user.Smer;
+            korisnik.BrojIndeksa = user.BrojIndeksa;
+            korisnik.Slika = user.Slika;
+            korisnik.Email = user.Email;
+            korisnik.Id = korisnikId;
+
+            List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
+            List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
+            KorisnickiPanelController con = new KorisnickiPanelController();
+            foreach (var pitanjce in ListaPostavljenihPitanja)
+            {
+                PitanjeModel pit = con.VratiPitanjaKorisnikaModel(pitanjce);
+                PitanjaKorisnika.Add(pit);
+            }
+
+            KorisnickiPanelModel panel = new KorisnickiPanelModel();
+            panel.Korisnik = korisnik;
+            panel.Pitanja = PitanjaKorisnika;
+
+            return panel;
+        }
+
         [HttpPost]
-        public ActionResult IzmeniPodatke(KorisnickiPanelModel korisnik)
+        public ActionResult IzmeniPodatke(KorisnikModel korisnik)
         {
             KorisnikDTO korisnikZaIzmenu = new KorisnikDTO();
-            korisnikZaIzmenu.Ime = korisnik.Korisnik.Ime;
-            korisnikZaIzmenu.Prezime = korisnik.Korisnik.Prezime;
-            korisnikZaIzmenu.Email = korisnik.Korisnik.Email;
-            korisnikZaIzmenu.Slika = korisnik.Korisnik.Slika;
+            korisnikZaIzmenu.Ime = korisnik.Ime;
+            korisnikZaIzmenu.Prezime = korisnik.Prezime;
+            korisnikZaIzmenu.Email = korisnik.Email;
+            korisnikZaIzmenu.Slika = korisnik.Slika;
             korisnikZaIzmenu.Password = (string)Session["Password"];
             korisnikZaIzmenu.Id = (int)Session["Id"];
             korisnikZaIzmenu.GodinaStudija = (decimal)Session["GodinaStudija"];
             korisnikZaIzmenu.RoleId= (int)Session["Role"];
             korisnikZaIzmenu.StatusId = (int)Session["Status"];
             korisnikZaIzmenu.Username = (string)Session["Username"];
-            korisnikZaIzmenu.Opis = korisnik.Korisnik.Opis; 
-            korisnikZaIzmenu.BrojIndeksa = korisnik.Korisnik.BrojIndeksa;
-            korisnikZaIzmenu.Smer = korisnik.Korisnik.Smer;
+            korisnikZaIzmenu.Opis = korisnik.Opis; 
+            korisnikZaIzmenu.BrojIndeksa = korisnik.BrojIndeksa;
+            korisnikZaIzmenu.Smer = korisnik.Smer;
             
         
-            korisnik.Korisnik.Username = (string)Session["Username"];
+            korisnik.Username = (string)Session["Username"];
             Korisnici.Izmeni(korisnikZaIzmenu);
 
 
-            return View("KorisnickiPanel", korisnik);
+            return View("KorisnickiPanel", KreirajKorisnickiPanelModel((int)Session["Id"]));
 
         }
 

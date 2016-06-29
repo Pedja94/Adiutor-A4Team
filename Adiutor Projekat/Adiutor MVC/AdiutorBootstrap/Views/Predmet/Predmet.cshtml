@@ -30,12 +30,12 @@
 <br />
 
 <div id="oblastiPredmeta" class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
-    <form action="@Url.Action("Oblasti","Oblasti")" method="get">
+    <form action="@Url.Action("KlikNaLink","PitanjeIOdgovori")" method="get">
         @foreach(var oblast in Model.Oblasti)
         {
             <div id="karticaOblast" >
                 <div id="nazivOblasti">
-                   <a href="~/Oblasti/Oblasti?oblast=@oblast.Naziv">@oblast.Naziv</a>
+                   @Html.ActionLink(@oblast.Naziv, "KlikNaLink", "PitanjeIOdgovori", new { idOblasti = oblast.Id },null)
                 </div>
                 <article id="opisOblasti">@oblast.Opis</article>
             </div>

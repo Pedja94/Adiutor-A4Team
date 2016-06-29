@@ -65,6 +65,7 @@ namespace AdiutorBootstrap.Controllers
                     {
                         Naziv=oblast.Ime,
                         Opis=oblast.Opis,
+                        Id=oblast.Id,
                     };
                     predmet.Oblasti.Add(obl);
                 }

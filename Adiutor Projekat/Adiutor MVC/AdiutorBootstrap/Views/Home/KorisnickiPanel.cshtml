@@ -36,7 +36,7 @@
 
 }
 else if (ViewBag.Izmena == true)
-{    <form method="post" action="@Url.Action("IzmeniPodatke","Home")">
+{    <form method="post" action="@Url.Action("IzmeniPodatke", "Home")">
       <div id="opisi" class="col-lg-6 col-md-7 col-sm-4 col-xs-4">
         <label>Ime: &nbsp;  </label>@Html.TextBoxFor(m => m.Korisnik.Ime, new { @class = "form-control", @name = "Ime" })<br />
         <label>Prezime: &nbsp; </label>@Html.TextBoxFor(m => m.Korisnik.Prezime, new { @class = "form-control", @name = "Prezime" })<br />
@@ -52,6 +52,7 @@ else if (ViewBag.Izmena == true)
                </div>
                @Html.TextBoxFor(m => m.Korisnik.Slika, new { @class = "form-control", @name = "Slika" })
           <button id="izmeni" type="submit" class="btn btn-danger">Izmeni</button>
+           @Html.ActionLink("Probaj", "IzmeniPodatke", "Home", new {korisnik=@Model}, null)
           <br />
           </div>
        
