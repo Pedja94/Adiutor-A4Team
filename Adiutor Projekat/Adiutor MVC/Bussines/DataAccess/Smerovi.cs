@@ -84,6 +84,38 @@ namespace Business.DataAccess
 
         }
 
+        static public SmerDTO Nadji(string ime)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Smer p = (from k in s.Query<Smer>()
+                                    where (k.Ime == ime)
+                                    select k).SingleOrDefault();
+
+                SmerDTO smer = new SmerDTO
+                {
+                    Id = p.Id,
+                    Ime = p.Ime,
+                    PocSem = p.PocSem,
+                    KrajSem = p.KrajSem
+                };
+
+                s.Flush();
+                s.Close();
+
+                return smer;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+        }
+
         static public void Izmeni(SmerDTO c)
         {
             try

@@ -151,5 +151,36 @@ namespace Business.DataAccess
                 return null;
             }
         }
+        static public OblastDTO Nadji(string ime)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Oblast p = (from k in s.Query<Oblast>()
+                         where (k.Ime == ime)
+                         select k).SingleOrDefault();
+
+                OblastDTO obl = new OblastDTO
+                {
+                    Id = p.Id,
+                    Ime = p.Ime,
+                    Opis = p.Opis,
+                    PredmetId = p.PripadaPredmetu.Id
+                };
+
+                s.Flush();
+                s.Close();
+
+                return obl;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+        }
     }
 }

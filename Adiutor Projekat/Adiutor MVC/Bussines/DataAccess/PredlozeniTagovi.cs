@@ -119,6 +119,40 @@ namespace Business.DataAccess
 
         }
 
+        static public Predlozeni_TagDTO Nadji(string tag_ime)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Predlozeni_Tag p = (from k in s.Query<Predlozeni_Tag>()
+                         where (k.TagIme == tag_ime)
+                         select k).SingleOrDefault();
+
+                Predlozeni_TagDTO tag = new Predlozeni_TagDTO
+                {
+                    Id = p.Id,
+                    TagIme = p.TagIme,
+                    Ime = p.Ime,
+                    Opis = p.Opis,
+                    DatumObrade = p.DatumObrade,
+                    DatumPostavljanja = p.DatumPostavljanja
+                };
+
+                s.Flush();
+                s.Close();
+
+                return tag;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+        }
+
         static public List<Predlozeni_TagDTO> VratiSve()
         {
             try

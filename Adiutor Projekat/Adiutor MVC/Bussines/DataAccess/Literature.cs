@@ -120,6 +120,38 @@ namespace Business.DataAccess
 
         }
 
+        static public LiteraturaDTO Nadji(string ime)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Literatura p = (from k in s.Query<Literatura>()
+                         where (k.Naziv == ime)
+                         select k).SingleOrDefault();
+
+                LiteraturaDTO l = new LiteraturaDTO
+                {
+                    Id = p.Id,
+                    Link = p.Link,
+                    Naziv = p.Naziv,
+                    OblastId = p.PripadaOblasti.Id
+                };
+
+                s.Flush();
+                s.Close();
+
+                return l;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+        }
+
         //static public List<Literatura> VratiSve()
         //{
         //    try
