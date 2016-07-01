@@ -116,6 +116,39 @@ namespace Business.DataAccess
 
         }
 
+        static public List<TagDTO> VratiSveKojePocinjuSa(string slova)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<Tag> tagovi = (from k in s.Query<Tag>()
+                                        where k.TagIme.StartsWith(slova)
+                                        select k).ToList<Tag>();
+
+                List<TagDTO> retVal = new List<TagDTO>();
+
+                foreach (Tag tag in tagovi)
+                {
+                    TagDTO dto = new TagDTO()
+                    {
+                        Id = tag.Id,
+                        Ime = tag.Ime,
+                        Opis = tag.Opis,
+                        TagIme = tag.TagIme
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
         static public void Izmeni(TagDTO c)
         {
             try
