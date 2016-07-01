@@ -151,6 +151,40 @@ namespace Business.DataAccess
                 return null;
             }
         }
+
+        static public List<OblastDTO> VratiSveKojePocinjuSa(string slova)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<Oblast> Oblasti = (from k in s.Query<Oblast>()
+                                        where k.Ime.StartsWith(slova)
+                                        select k).ToList<Oblast>();
+
+                List<OblastDTO> retVal = new List<OblastDTO>();
+
+                foreach (Oblast obl in Oblasti)
+                {
+                    OblastDTO dto = new OblastDTO()
+                    {
+                        Id = obl.Id,
+                        Ime = obl.Ime,
+                        Opis = obl.Opis,
+                        PredmetId = obl.PripadaPredmetu.Id
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
         static public OblastDTO Nadji(string ime)
         {
             try
