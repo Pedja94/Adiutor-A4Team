@@ -69,7 +69,11 @@ else if (ViewBag.Izmena == true)
     { 
         <form method="post" action="@Url.Action("TrazenjePoTagu","Oblasti")">
             <div id="grupa">
-                <b id="labela">Pretraži portal:</b><input id="traziInput" name="tagovi" type="text" size="25" class="form-control" />
+                <b id="labela">Pretraži portal:</b>
+                <input list="listaTagova" id="traziInput" name="tagovi" type="text" size="25" class="form-control" onkeyup="ajaxPozivTagovi()" />
+                <datalist id="listaTagova">
+
+                </datalist>
                 <input type="submit" class="btn btn-success" value="Pretrazi" id="pretrazi" />
 
             </div>
@@ -109,7 +113,61 @@ else if (ViewBag.Izmena == true)
     </form>
 
     
-</div>    
+</div> 
+
+
+<script type="text/javascript">
+            {
+                function ajaxPozivTagovi() {
+                    if ($('#traziInput').val()[$('#traziInput').val().length - 1] != '#' && ($('#traziInput').val().length == 2)) {
+                        var prvoSlovoTaga = $('#tagsLista').val()[1];
+                        var prvoS = { PrvoSlovo: prvoSlovoTaga }
+
+                        if ($('#traziInput').val()[0] == '#') {
+                            $.post("VratiSveTagove", prvoS, function (data) {
+                                $.each(data, function (index) {
+                                    var opcija = document.createElement("option");
+                                    opcija.value = "#" + data[index];
+
+                                    var roditelj = document.getElementById("listaTagova");
+                                    $('#listaTagova').empty();
+                                    roditelj.appendChild(opcija);
+                                });
+                            });
+                        }
+                    }
+
+
+                    if ($('#traziInput').val()[($('#traziInput').val().length) - 3] == ' ' && $('#traziInput').val()[$('#traziInput').val().length - 2] == '#')
+                    {
+                        //ako je blanko pretposlednji uneti znak, a poslednji #, znaci da kucamo sledeci tag
+
+                        var uneseniTagovi = $('#traziInput').val();
+
+                        var prvoSlovoTaga = $('#traziInput').val()[$('#traziInput').val().length - 1];
+                        var prvoS = { PrvoSlovo: prvoSlovoTaga }
+
+                        $.post("VratiSveTagove", prvoS, function (data) {
+                            $.each(data, function (index) {
+                                var opcija = document.createElement("option");
+                                opcija.value = uneseniTagovi + data[index];
+
+                                var roditelj = document.getElementById("listaTagova");
+                                $('#listaTagova').empty();
+                                roditelj.appendChild(opcija);
+
+                            });
+                         });
+
+
+
+
+                    }
+
+                }
+
+            }
+</script>   
 
  
 

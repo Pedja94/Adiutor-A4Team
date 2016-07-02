@@ -9,10 +9,17 @@
 
 
 <div id="container" class="col-lg-5 col-md-6 col-sm-10 col-xs-10">
-    <h1 name="nazivPredmeta" id="nazivPredmeta">@Html.DisplayTextFor(m=> m.NazivPredmeta )</h1>
+    <h1 name="nazivPredmeta" id="nazivPredmeta">@Html.DisplayTextFor(m=> m.NazivPredmeta)</h1>
     <hr />
     <div class="semestar-godina-smer">
-        <h4 id="zadProfesor">Zaduženi profesor: @Html.DisplayTextFor(m => m.ZaduzeniProfesor)  &nbsp; &nbsp; </h4>
+        <h4 id="zadProfesor">Zaduženi profesor: @if (Model.PregledaProfesor == false) { 
+                                                    @Html.DisplayTextFor(m => m.ZaduzeniProfesor)
+                                                 }
+                                                else
+                                                {
+                                                    @Html.TextBoxFor(m => m.ZaduzeniProfesor, new { @class="form-control"})
+                                                }
+            </h4>
         <h4>Semestar: @Html.DisplayTextFor(m=>m.Semestar) &nbsp; |</h4>
 
     </div>
@@ -21,23 +28,48 @@
 
         <!--ovde neki opis iz modela kad se napravi--> 
         <article id="opisPredmeta">
-            @Model.OpisPredmeta   
+          @if (Model.PregledaProfesor == false)
+          {  
+            @Model.OpisPredmeta  
+          }
+          else
+          {
+              @Html.TextAreaFor(m => m.OpisPredmeta, new {@class = "form-control", @name = "Opis" });
+          } 
         </article>
 
+        @Html.HiddenFor(m => m.Id)
+        
+
+        @if (Model.PregledaProfesor == true)
+        {
+             @Html.HiddenFor(m => m.Id)
+            <form method="post" action="@Url.Action("IzmeniPodatkeOPredmetuZahtev","Predmet")">
+                @Html.ActionLink("Izmeni podatke", "IzmeniPodatkeOPredmetuZahtev", new { predmetId = @Model.Id }, new { @class = "btn btn-success" })
+            </form>
+        }
     </div>
   <br />
 </div>
 <br />
 
 <div id="oblastiPredmeta" class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
+    <button class="btn btn-default" id="dodajOblast" onclick="DodajOblast()"><span class="glyphicon glyphicon-plus" ></span>Dodaj novu oblast</button>
+    <br />
     <form action="@Url.Action("KlikNaLink","PitanjeIOdgovori")" method="get">
         @foreach(var oblast in Model.Oblasti)
         {
             <div id="karticaOblast" >
                 <div id="nazivOblasti">
-                   @Html.ActionLink(@oblast.Naziv, "KlikNaLink", "PitanjeIOdgovori", new { idOblasti = oblast.Id },null)
+                    @Html.ActionLink(@oblast.Naziv, "KlikNaLink", "PitanjeIOdgovori", new { idOblasti = oblast.Id },null)                 
                 </div>
-                <article id="opisOblasti">@oblast.Opis</article>
+                <article id="opisOblasti">
+                    @if (true == true)
+                    {     
+                       @oblast.Opis
+                    }
+                    
+                </article>
             </div>
             <br />
         }
@@ -46,3 +78,60 @@
 
 
 </div>
+
+
+
+<script>
+    {
+        function DodajOblast()
+        {
+            if ($('#sadrzaj').length)
+            {
+                $('#sadrzaj').remove();
+                $('#sadrzaj2').remove();
+                $('#dodajBtn').remove();
+            }
+            else {
+
+                $('#dodajOblast').after("<div id='sadrzaj2'></div>");
+                $('#sadrzaj2').append("<label id='lblOpis'>Opis oblasti: &nbsp; </label>");
+                $('#lblOpis').append("<textarea id='opisOblasti' class='form-control'></textarea>");
+
+                $('#dodajOblast').after("<div id='sadrzaj'></div>");
+                $('#sadrzaj').append("<label id='lblNaslov'>Naslov oblasti: &nbsp; </label>");
+                $('#lblNaslov').append("<input type='text' id='naslovOblasti' class='form-control' size='20' />");
+
+                $('#sadrzaj2').append("<br/>");
+                $('#sadrzaj2').append("<button id='dodajBtn' onclick='DodajNovuOblast(@Model.Id)' class='btn btn-success'>Dodaj</button>");
+
+
+               
+               
+            }
+
+        }
+
+        function DodajNovuOblast(idPredmeta)
+        {
+            var uneseniTagovi = $('#traziInput').val();
+
+            var nazivOblasti = $('#naslovOblasti').val();
+            var tekstOblasti = $('#opisOblasti').val();
+
+            var oblast = { ImeOblasti: nazivOblasti, OpisOblasti: tekstOblasti, PredmetId: idPredmeta };
+
+            $.post("DodajNovuOblast", oblast, function (data) {
+                //hendler funkcija;
+                $('#oblastiPredmeta').append("<div id='karticaOblast'><div id='nazivOblasti'>"+data.ImeOblasti+"</div> <article id='opisOblasti'>"+ data.OpisOblasti+"</article></div>");
+
+
+
+
+
+                $('#sadrzaj').remove();
+                $('#sadrzaj2').remove();
+                $('#dodajBtn').remove();
+            });
+        }
+    }
+</script>

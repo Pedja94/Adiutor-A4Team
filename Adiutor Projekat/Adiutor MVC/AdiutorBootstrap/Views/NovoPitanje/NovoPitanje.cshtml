@@ -6,6 +6,8 @@
 }
 
 @Scripts.Render("//cdn.ckeditor.com/4.5.9/full/ckeditor.js")
+@Styles.Render("~/Content/NovoPitanjeStilovi.css")
+
 <form id="forma1" method="post" action="@Url.Action("DodajPitanje","NovoPitanje")">
     <h1 id="dodaj">Dodaj novo pitanje</h1>
     <div id="naslovPit">
@@ -17,7 +19,7 @@
             <br />
             <h3>Unesi ime oblasti:</h3>
        <input list="oblastiLista" onkeyup="ajaxPoziv()" id="obl" name="imeOblasti"/>
-          <datalist name="SveOblasti" id="oblastiLista" >
+          <datalist id="oblastiLista" >
 
         </datalist>
         }
@@ -31,13 +33,19 @@
 
         <div id="dugmeItagovi">
             <h3 id="tg">Unesi tagove:</h3>
-            <input list="tagoviLista" name="tagovi" size="35" id="tagsLista" onkeyup="ajaxPozivTagovi()"/>
+            <input list="tagoviLista" name="tagovi" size="35" class="kont" id="tagsLista" onkeyup="ajaxPozivTagovi()"/>
             <datalist id="tagoviLista">
 
 
             </datalist>
-            <button id="upload" class="btn btn-primary" onkeyup="myFunction()">Predaj pitanje</button>
+            <button id="upload" class="btn btn-primary">Predaj pitanje</button>
+            <br />
         </div>
+
+
+
+
+       
 
 
 
@@ -57,18 +65,20 @@
         <script type="text/javascript">
             {
                 function ajaxPoziv() {
-                    if ($('#obl').val().length == 0) {
+                    if ($('#obl').val().length == 1) {
                         var prvoSlovoPitanja = $('#obl').val()[0];
 
                         var prvoS = { PrvoSlovo: prvoSlovoPitanja }
 
 
                         $.post("VratiOblastiPoPrvomSlovu", prvoS, function (prvoS){
+                            $('#oblastiLista').empty();
                             $.each(prvoS.ListaOblasti, function (index) {
                                 var opcija = document.createElement("option");
                                 opcija.value = prvoS.ListaOblasti[index];
 
                                 var roditelj = document.getElementById("oblastiLista");
+                               
                                 roditelj.appendChild(opcija);
                                  });
                             });
@@ -84,12 +94,13 @@
 
                         if ($('#tagsLista').val()[0] == '#') {
                             $.post("VratiSveTagove", prvoS, function (data) {
+                                $('#tagoviLista').empty();
                                 $.each(data, function (index) {
                                     var opcija = document.createElement("option");
                                     opcija.value = "#" + data[index];
 
                                     var roditelj = document.getElementById("tagoviLista");
-                                    $('#tagoviLista').empty();
+                                   
                                     roditelj.appendChild(opcija);
                                 });
                             });
@@ -100,19 +111,22 @@
                     if ($('#tagsLista').val()[($('#tagsLista').val().length) - 3] ==' ' && $('#tagsLista').val()[$('#tagsLista').val().length - 2] == '#')
                     {
                         //ako je blanko pretposlednji uneti znak, a poslednji #, znaci da kucamo sledeci tag
-                   
-                        var uneseniTagovi = $('#tagsLista').val();
                         
+                        var uneseniTagovi1 = $('#tagsLista').val();
+                        
+                        var uneseniTagovi = uneseniTagovi1.substring(0, uneseniTagovi1.length - 1);
+
                         var prvoSlovoTaga = $('#tagsLista').val()[$('#tagsLista').val().length-1];
                         var prvoS = { PrvoSlovo: prvoSlovoTaga }
 
                         $.post("VratiSveTagove", prvoS, function (data) {
+                            $('#tagovLista').empty();
                             $.each(data, function (index) {
                                 var opcija = document.createElement("option");
                                 opcija.value = uneseniTagovi + data[index];
 
                                 var roditelj = document.getElementById("tagoviLista");
-                                $('#tagovLista').empty();
+                               
                                 roditelj.appendChild(opcija);
 
                             });
@@ -125,6 +139,33 @@
 
                 }
 
+                function PredloziTag()
+                {
+                    //ova funkcija treba da pokrene bootstrap modal
+                    var imeTaga = $('#nameOfTag').val();
+                    var tagIme = $('#tagName').val();
+                    var opisTaga = $('#tagDescription').val();
+
+
+                    var model = {Ime:imeTaga, Opis:opisTaga, TagIme:tagIme};
+
+                    $.post("/Tagovi/PredloziTag", model, function (data) {
+                       
+                        $('#mdl').modal('hide');
+
+
+                    });
+                }
+
+                $('#mdl').on('show.bs.modal', function () {
+                    $(this).find('.modal-body').css({
+                        width: 'auto', //probably not needed
+                        height: 'auto', //probably not needed 
+                        'max-height': '100%',
+                        'max-width':'80%'
+                    });
+                });
+
             }
         </script>
 
@@ -132,3 +173,18 @@
     </div>
 
 </form>
+
+<div id="upl"><label class="nnt"><h3>Niste našli odgarajući tag?</h3></label><button id="upload" class="btn btn-danger" @*onclick="PredloziTag()"*@ data-toggle="modal" data-target=".bs-example-modal-sm">Predloži novi tag</button></div>
+
+
+<div id="mdl" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <br />
+            <div><label class="lbl">Ime taga:</label><input id="nameOfTag" type="text" class="kontrole form-control"/></div>
+            <div><label class="lbl">Skraćeno ime taga: </label><input id="tagName" type="text" class="kontrole form-control" /></div>
+            <div><label class="lbl">Opis taga: </label><textarea id="tagDescription" class="kontrole form-control"></textarea></div>
+            <button id="dugmeDodaj" class="btn btn-primary" onclick="PredloziTag()">Predlozi</button>
+        </div>
+    </div>
+</div>

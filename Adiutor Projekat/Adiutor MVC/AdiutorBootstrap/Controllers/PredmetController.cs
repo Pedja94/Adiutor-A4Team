@@ -19,6 +19,9 @@ namespace AdiutorBootstrap.Controllers
             predmet.NazivPredmeta = "Osnovi elektrotehnike 2";
             predmet.GodinaStudija = 1;
             predmet.ZaduzeniProfesor = "Branko Brejking";
+            predmet.PregledaProfesor = true;
+            predmet.Id = 33;
+            predmet.OpisPredmeta = "Kurs Osnovi elektrotehnike 1 se, prema novom nastavnom programu, izvodi u prvom semestru osnovnih studija na Elektronskom fakultetu u Nišu.";
 
             OblastModel oblast1 = new OblastModel
             {
@@ -94,6 +97,28 @@ namespace AdiutorBootstrap.Controllers
             return View("Predmet", predmet);
         }
 
-       
+
+
+        public ActionResult IzmeniPodatkeOPredmetuZahtev (int predmetId)
+        {
+            ViewBag.Izmena = true;
+            PredmetDTO pred = Predmeti.Procitaj(predmetId);
+            return View();
+        }
+
+
+        public JsonResult DodajNovuOblast(NovaOblastModel oblast)
+        {
+            OblastDTO obl=new OblastDTO();
+            obl.Ime=oblast.ImeOblasti;
+            obl.Opis=oblast.ImeOblasti;
+            obl.PredmetId=oblast.PredmetId;
+
+            Oblasti.Dodaj(obl);
+
+
+            return Json(oblast, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

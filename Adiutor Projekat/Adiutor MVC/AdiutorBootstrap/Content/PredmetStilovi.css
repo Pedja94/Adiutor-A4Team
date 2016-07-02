@@ -56,17 +56,42 @@
    font-family:Tahoma;
 }
 
-@media screen and (max-width:767px)
-{
-    #karticaOblast{
-        left:15%;
+@media screen and (max-width:767px) {
+    #karticaOblast {
+        left: 15%;
     }
-    #opisPredmeta{
-        margin-top:20px;
+
+    #opisPredmeta {
+        margin-top: 20px;
     }
-    #container{
-       margin-bottom:50px;
-       position:relative;
-       left:7%;
+
+    #container {
+        margin-bottom: 50px;
+        position: relative;
+        left: 7%;
     }
+}
+
+
+#dodajOblast{
+    position:relative;
+    left:45%;
+    margin-bottom:20px;
+}
+
+#sadrzaj,#sadrzaj2{
+    margin:5px;
+    position:relative;
+    left:35%;
+}
+
+#dodajBtn{
+    position:relative;
+    left:10%;
+}
+
+#naslovOblasti{
+    position:relative;
+    left:9%;
+    width:78%;
 }

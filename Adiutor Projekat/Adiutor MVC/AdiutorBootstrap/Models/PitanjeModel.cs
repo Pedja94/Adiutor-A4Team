@@ -31,6 +31,8 @@ namespace AdiutorBootstrap.Models
 
         public IList<TagModel> Tagovi { get; set; }
 
+        public int BrojOdgovora { get; set; }
+
     
         public PitanjeModel()
         {

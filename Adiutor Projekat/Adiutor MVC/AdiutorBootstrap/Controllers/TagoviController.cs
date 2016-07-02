@@ -40,5 +40,19 @@ namespace AdiutorBootstrap.Controllers
             return ModelTagova;
 
         }
+
+        [HttpPost]
+        public JsonResult PredloziTag(TagModel tag)
+        {
+            Predlozeni_TagDTO tg = new Predlozeni_TagDTO();
+            tg.DatumPostavljanja = DateTime.Now;
+            tg.Ime = tag.Ime;
+            tg.TagIme = tag.TagIme;
+            tg.Opis = tag.Opis;
+
+            PredlozeniTagovi.Dodaj(tg);
+
+            return Json(tag, JsonRequestBehavior.AllowGet);
+        }
 	}
 }

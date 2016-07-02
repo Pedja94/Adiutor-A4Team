@@ -14,5 +14,10 @@ namespace AdiutorBootstrap.Models
         public string TagIme { get; set; }
 
         public int TagID { get; set; }
+
+        //za predloznei tag koristicemo jos jedan property
+
+        public DateTime DatumPostavljanja { get; set; }
+
     }
 }

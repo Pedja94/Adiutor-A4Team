@@ -138,6 +138,8 @@ namespace AdiutorBootstrap.Controllers
                 foreach (var pit in PronadjenaPitanja)
                 {
                     KorisnikDTO autorPitanja = Korisnici.Procitaj(pit.KorisnikId);
+                    List<OdgovorDTO> odgovori = Odgovori.VratiSve(pit.Id);
+
                     PitanjeModel p = new PitanjeModel()
                     {
                         Id = pit.Id,
@@ -147,6 +149,7 @@ namespace AdiutorBootstrap.Controllers
                         AutorId = autorPitanja.Id,
                         NaslovPitanja = pit.Naslov,
                         Tagovi = TagoviController.TagoviPitanja(pit.Id),
+                        BrojOdgovora=odgovori.Count,
                     };
                     PitanjaZaVracanje.Add(p);
                 }
