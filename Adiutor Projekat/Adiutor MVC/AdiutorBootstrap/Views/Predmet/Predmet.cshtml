@@ -54,8 +54,9 @@
 <br />
 
 <div id="oblastiPredmeta" class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
-    <button class="btn btn-default" id="dodajOblast" onclick="DodajOblast()"><span class="glyphicon glyphicon-plus" ></span>Dodaj novu oblast</button>
-    <br />
+    <button class="btn btn-default" id="dodajOblast" @*onclick="DodajOblast()"*@ data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-plus"></span>Dodaj novu oblast</button>
+    @*<div id="upl"><button id="upload" class="btn btn-danger" @*onclick="PredloziTag()"*@ @*data-toggle="modal" data-target=".bs-example-modal-sm">Predloži novi tag</button></div>*@
+
     <form action="@Url.Action("KlikNaLink","PitanjeIOdgovori")" method="get">
         @foreach(var oblast in Model.Oblasti)
         {
@@ -110,13 +111,13 @@
             }
 
         }
-
+        
         function DodajNovuOblast(idPredmeta)
         {
             var uneseniTagovi = $('#traziInput').val();
 
-            var nazivOblasti = $('#naslovOblasti').val();
-            var tekstOblasti = $('#opisOblasti').val();
+            var nazivOblasti = $('#naslovObl').val();
+            var tekstOblasti = $('#opisObl').val();
 
             var oblast = { ImeOblasti: nazivOblasti, OpisOblasti: tekstOblasti, PredmetId: idPredmeta };
 
@@ -124,14 +125,22 @@
                 //hendler funkcija;
                 $('#oblastiPredmeta').append("<div id='karticaOblast'><div id='nazivOblasti'>"+data.ImeOblasti+"</div> <article id='opisOblasti'>"+ data.OpisOblasti+"</article></div>");
 
-
-
-
-
-                $('#sadrzaj').remove();
-                $('#sadrzaj2').remove();
-                $('#dodajBtn').remove();
+              
             });
+    
         }
     }
 </script>
+
+
+
+<div id="mdl" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <br />
+            <div><label class="lbl">Ime oblasti:</label><input id="naslovObl" type="text" class="kontrole form-control" /></div>
+            <div><label class="lbl">Opis oblasti: </label><textarea id="opisObl" class="kontrole form-control"></textarea></div>
+            <button id="dugmeDodaj" class="btn btn-primary" onclick="DodajNovuOblast(@Model.Id)">Dodaj</button>
+        </div>
+    </div>
+</div>
