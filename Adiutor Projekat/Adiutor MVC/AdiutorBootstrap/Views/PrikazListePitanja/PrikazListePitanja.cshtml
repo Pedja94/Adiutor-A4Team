@@ -1,16 +1,17 @@
 ﻿@model AdiutorBootstrap.Models.OblastModel
 
-@{
-    ViewBag.Title = "Oblasti";
+@{ 
+    ViewBag.Title = "PrikazListePitanja";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 @Styles.Render("~/Content/KarticeStilovi")
 @Styles.Render("https://fonts.googleapis.com/css?family=Merriweather")
 
 
 <form>
- <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
         @foreach (var pitanje in @Model.Pitanja.ListaPitanja)
         {
             <div class="kartica">
@@ -29,10 +30,10 @@
 
                     <div class="tagovi_container">
                         <div class="tagovi">
-                             @foreach (var tag in pitanje.Tagovi)
-                             {
-                               @Html.ActionLink("#" + tag.Ime + "    ", "TrazenjePoTagu", new { tagovi = "#" + tag.TagIme })   
-                             }
+                            @foreach (var tag in pitanje.Tagovi)
+                            {
+                                @Html.ActionLink("#" + tag.Ime + "    ", "TrazenjePoTagu", new { tagovi = "#" + tag.TagIme })
+                            }
                         </div>
 
                     </div>
@@ -42,7 +43,7 @@
 
                     <div class="brOdgovora_container">
                         <div class="broj">
-                                x odgovora
+                            x odgovora
                         </div>
                     </div>
 
@@ -53,11 +54,11 @@
         }
 
     </div>
-   
+
 
 </form>
 
-<form method="get" action="@Url.Action("NovoPitanje", "NovoPitanje", new { idOblasti = Model.Id })">
+<form method="get" action="@Url.Action("NovoPitanje","NovoPitanje")">
     <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -69,15 +70,17 @@
         </div>
 
 
-        <div class="container postaviPitanje" >
-            <button id="postaviNovoPitanje" type="submit" class="btn btn-primary" >Postavi novo pitanje</button>
+        <div class="container postaviPitanje">
+            <button id="postaviNovoPitanje" type="submit" class="btn btn-primary">Postavi novo pitanje</button>
         </div>
 
 
     </div>
 
-    
+
 
 </form>
+
+
 
 

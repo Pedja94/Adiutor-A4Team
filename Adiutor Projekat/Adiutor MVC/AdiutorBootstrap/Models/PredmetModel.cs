@@ -28,6 +28,8 @@ namespace AdiutorBootstrap.Models
 
         public string OpisPredmeta { get; set; }
 
+        public bool PregledaProfesor { get; set; }
+
 
         public PredmetModel()
         {

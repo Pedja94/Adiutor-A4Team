@@ -1,4 +1,5 @@
-﻿@model AdiutorBootstrap.Models.KorisnikModel
+﻿@model AdiutorBootstrap.Models.NovoPitanjeModel
+
 @{
     ViewBag.Title = "NovoPitanje";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,6 +11,16 @@
     <div id="naslovPit">
         <h3>Unesi naslov pitanja:</h3>
         <input type="text" size="80" name="naslovPitanja" id="textNaslov" />
+        
+        @if (Model != null)
+        {
+            <br />
+            <h3>Unesi ime oblasti:</h3>
+       <input list="oblastiLista" onkeypress="ajaxPoziv()" id="obl" name="imeOblasti"/>
+          <datalist name="SveOblasti" id="oblastiLista" >
+
+        </datalist>
+        }
     </div>
     <div class="editor1 ">
         <textarea name="textarea" id="textarea"></textarea>
@@ -20,7 +31,11 @@
 
         <div id="dugmeItagovi">
             <h3 id="tg">Unesi tagove:</h3>
-            <input type="text" name="tagovi" size="35" />
+            <input list="tagoviLista" name="tagovi" size="35" id="tagsLista" onkeypress="ajaxPozivTagovi()"/>
+            <datalist id="tagoviLista">
+
+
+            </datalist>
             <button id="upload" class="btn btn-primary" onclick="myFunction()">Predaj pitanje</button>
         </div>
 
@@ -30,19 +45,70 @@
             {
                 function myFunction() {
                     var tekst = CKEDITOR.instances.textarea.getData();
-                    alert(tekst);
                     window.location = "Home/Pocetna";
                 }
 
-                $('upload').click(function () {
-
-
-
-                })
 
 
             }
         </script>
+
+
+        <script type="text/javascript">
+            {
+                function ajaxPoziv() {
+                    if ($('#obl').val().length == 0) {
+                        var prvoSlovoPitanja = $('#obl').val()[0];
+
+                        var prvoS = { PrvoSlovo: prvoSlovoPitanja }
+
+
+                        $.post("VratiOblastiPoPrvomSlovu", prvoS, function (prvoS){
+                            $.each(prvoS.ListaOblasti, function (index) {
+                                var opcija = document.createElement("option");
+                                opcija.value = prvoS.ListaOblasti[index];
+
+                                var roditelj = document.getElementById("oblastiLista");
+                                roditelj.appendChild(opcija);
+                                 });
+                            });
+                      }
+
+                }
+
+
+                function ajaxPozivTagovi() {
+                    if ($('#tagsLista').val().length < 2) {
+                        var prvoSlovoTaga = $('#tagsLista').val()[1];
+                        var prvoS = { PrvoSlovo: prvoSlovoTaga }
+
+                        if ($('#tagsLista').val()[0] == '#') {
+                            $.post("VratiSveTagove", prvoS, function (data) {
+                                $.each(data, function (index) {
+                                    var opcija = document.createElement("option");
+                                    opcija.value = "#" + data[index];
+
+                                    var roditelj = document.getElementById("tagoviLista");
+                                    roditelj.appendChild(opcija);
+                                });
+                            });
+                        }
+                    }
+
+                    if ($('#tagsLista').val()[$('tagsLista').val().length - 2] ==' ' && $('#tagsLista').val()[$('tagsLista').val().length - 1] == '#')
+                    {
+                        //ako je blanko pretposlednji uneti znak, a poslednji #, znaci da kucamo sledeci tag
+
+
+
+                    }
+
+                }
+
+            }
+        </script>
+
+
     </div>
 
 </form>

@@ -56,6 +56,7 @@ namespace AdiutorBootstrap.Controllers
             predmet.Semestar = pred.Semestar;
 
 
+
             //ovo samo zasad, jer je neprakticno
             foreach (var oblast in Oblasti.VratiSve())
             {
@@ -75,6 +76,11 @@ namespace AdiutorBootstrap.Controllers
             if (pred.ProfesorId != 0)
             {
                 ProfesorDTO prof = Profesori.Procitaj(pred.ProfesorId);
+                if (prof.Id == (int)Session["Id"])
+                    predmet.PregledaProfesor = true;
+                else
+                    predmet.PregledaProfesor = false;
+
                 predmet.ZaduzeniProfesor = prof.PunoIme;
             }
             else

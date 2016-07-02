@@ -162,6 +162,7 @@ namespace AdiutorBootstrap.Controllers
             pitanje.AutorId = kor.Id;
             pitanje.NaslovPitanja = pit.Naslov;
             pitanje.Id = pit.Id;
+            pitanje.SlikaAutora = kor.Slika;
 
 
             foreach (var tag in tagovi)

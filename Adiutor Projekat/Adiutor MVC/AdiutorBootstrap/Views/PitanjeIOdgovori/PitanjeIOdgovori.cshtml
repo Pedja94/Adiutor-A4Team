@@ -59,7 +59,13 @@
                     <td id="profilnaSl">
                         @*ovde ide profilna slika*@
 
-                        <div class="image-container img-rounded">
+                        <div class="image-container img-rounded" background-image="@Model.Pitanje.SlikaAutora">
+                            <style>
+                                .image-container {
+                                    background-image: @Model.Pitanje.SlikaAutora;
+                                   
+                                }
+                            </style>
                             @*<img id="slikaKorisnikaa"  src="https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/13232944_10209153813620640_8681434930084924708_n.jpg?oh=f388a66ec528253460eb85f5df839faa&oe=57E11FC3" />*@
                         </div>
                     </td>
