@@ -474,3 +474,14 @@ h3{
     display:inline-block;
     font-family:'Adobe Garamond Pro';   
 }
+
+
+.kontrola{
+    width:78%;
+    margin-top:9px;
+    display: inline;
+}
+
+.inp{
+    display:block;
+}

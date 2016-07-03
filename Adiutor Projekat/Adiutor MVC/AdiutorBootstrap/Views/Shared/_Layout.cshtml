@@ -34,11 +34,13 @@
                             @if (Session["Id"] != null)
                     {
 
-                        <div id="trazenjeGrupa" class="input-group input-group-sm" > 
-                 
-                           <input id="traziNavbar" name="tagovi" type="text" size="18" class="form-control" />
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-search" id="lupa"><input type="submit" id="btn1" hidden="hidden" /></span></span>
+                        @*<div id="trazenjeGrupa" class="input-group input-group-sm" >*@
+                        <div class="inp">
+                             <input id="traziNavbar" name="tagovi" type="text" size="18" class="kontrola form-control" />
+                             <button class="btn btn-default" id="btnsrch"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
+                            @*<span class="input-group-addon"><span class="glyphicon glyphicon-search" id="lupa"><input type="submit" id="btn1" hidden="hidden" /></span></span>
+                        </div>*@
                        
 
                     }

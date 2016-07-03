@@ -120,11 +120,12 @@ else if (ViewBag.Izmena == true)
             {
                 function ajaxPozivTagovi() {
                     if ($('#traziInput').val()[$('#traziInput').val().length - 1] != '#' && ($('#traziInput').val().length == 2)) {
-                        var prvoSlovoTaga = $('#tagsLista').val()[1];
+                        var prvoSlovoTaga = $('#traziInput').val()[1];
                         var prvoS = { PrvoSlovo: prvoSlovoTaga }
 
                         if ($('#traziInput').val()[0] == '#') {
-                            $.post("VratiSveTagove", prvoS, function (data) {
+                            $.post("/NovoPitanje/VratiSveTagove", prvoS, function (data) {
+                                $('#tagoviLista').empty();
                                 $.each(data, function (index) {
                                     var opcija = document.createElement("option");
                                     opcija.value = "#" + data[index];
@@ -142,12 +143,15 @@ else if (ViewBag.Izmena == true)
                     {
                         //ako je blanko pretposlednji uneti znak, a poslednji #, znaci da kucamo sledeci tag
 
-                        var uneseniTagovi = $('#traziInput').val();
+                        var uneseniTagovi1 = $('#tagsLista').val();
 
-                        var prvoSlovoTaga = $('#traziInput').val()[$('#traziInput').val().length - 1];
+                        var uneseniTagovi = uneseniTagovi1.substring(0, uneseniTagovi1.length - 1);
+
+                        var prvoSlovoTaga = $('#tagsLista').val()[$('#tagsLista').val().length - 1];
                         var prvoS = { PrvoSlovo: prvoSlovoTaga }
 
-                        $.post("VratiSveTagove", prvoS, function (data) {
+                        $.post("/NovoPitanje/VratiSveTagove", prvoS, function (data) {
+                            $('#tagovLista').empty();
                             $.each(data, function (index) {
                                 var opcija = document.createElement("option");
                                 opcija.value = uneseniTagovi + data[index];
