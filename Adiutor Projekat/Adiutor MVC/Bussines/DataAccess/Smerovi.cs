@@ -174,6 +174,40 @@ namespace Business.DataAccess
             }
         }
 
+        static public List<SmerDTO> VratiSveSmerove(int PredmetId)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<SmerDTO> retVal = new List<SmerDTO>();
+
+
+                Predmet t = s.Load<Predmet>(PredmetId);
+                IList<Smer> smerovi = t.PripadaSmerovima;
+
+                foreach (Smer smer in smerovi)
+                {
+                    SmerDTO dto = new SmerDTO()
+                    {
+                        Id = smer.Id,
+                        Ime = smer.Ime,
+                        PocSem = smer.PocSem,
+                        KrajSem = smer.KrajSem
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
         public static void DodajPredmetSmeru(int PredmetId, int SmerId) {
 
             Predmet_SmerDTO ps = new Predmet_SmerDTO

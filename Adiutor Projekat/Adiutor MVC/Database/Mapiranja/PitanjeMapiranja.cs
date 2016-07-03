@@ -25,8 +25,7 @@ namespace Database.Mapiranja
 
 
             HasManyToMany(x => x.ImaTagove).Table("PITANJE_TAG").ParentKeyColumn("PITANJE_ID")
-                .ChildKeyColumn("TAG_ID")
-                .Cascade.All();
+                .ChildKeyColumn("TAG_ID");
 
         }
     }

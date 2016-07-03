@@ -1,0 +1,56 @@
+﻿@model List<AdiutorBootstrap.Models.AdminPredmetModel>
+
+@{
+    ViewBag.Title = "AdministracijaPredmeta";
+}
+
+<header>
+    <h2 class="center">Administracija Predmeta</h2>
+</header>
+
+<div class="row">
+    <form action="@Url.Action("DodajPredmet", "Administracija")" method="get">
+        <input type="submit" class="btn btn-success" value="Dodaj predmet" />
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    @if (Model.Count > 0)
+    {
+        <table class="col-lg-6 table">
+            <thead>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Godina studija</th>
+                    <th>Semestar</th>
+                    <th>Smer</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var predmet in Model)
+                {
+                    <tr>
+                        <td>@predmet.Naziv</td>
+                        <td>@predmet.GodinaStudija</td>
+                        <td>@predmet.Semestar</td>
+                        <td>@predmet.smerIme</td>
+                        <td><a href="/Predmet/VratiPredmetPoId?predmetId=@predmet.Id">Prikaži predmet</a></td>
+                        <td><a href="/Administracija/PostaviZaduzenog?predmetId=@predmet.Id">Postavi zaduženog</a></td>
+                        <td><a href="/Administracija/ObrisiPredmet?predmetId=@predmet.Id">Obriši</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="col-lg-6">Nema predmeta u bazi.</p>
+    }
+    <div class="col-lg-3"></div>
+</div>
+
+

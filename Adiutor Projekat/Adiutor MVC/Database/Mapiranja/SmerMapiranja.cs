@@ -21,8 +21,7 @@ namespace Database.Mapiranja
             Map(x => x.KrajSem).Column("KRAJ_SEM");
 
             HasManyToMany(x => x.ImaPredmete).Table("PREDMET_SMER").ParentKeyColumn("SMER_ID")
-                .ChildKeyColumn("PREDMET_ID")
-                .Cascade.All();
+                .ChildKeyColumn("PREDMET_ID");
         }
     }
 }

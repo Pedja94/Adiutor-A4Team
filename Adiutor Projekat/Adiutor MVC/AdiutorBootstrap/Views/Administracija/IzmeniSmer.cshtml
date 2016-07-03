@@ -1,0 +1,75 @@
+﻿@model AdiutorBootstrap.Models.SmerModel
+@{
+    ViewBag.Title = "IzmeniSmer";
+}
+
+<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6 formaRegistracija skloniMarginuZaRegistraciju">
+    <div class=" ">
+        <style>
+            .center-page {
+                margin-top: 120px;
+            }
+        </style>
+
+        <form method="post" action="@Url.Action("IzmeniSmer", "Administracija")">
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            @Html.LabelFor(m => m.Ime, new { })
+            @Html.TextBoxFor(m => m.Ime, new { @class = "form-control", @id = "ime", @name = "Ime", @placeholder = "Ime" })
+            @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+            <br />
+
+            <p><strong>Početni semestar</strong></p>
+            <select name="PocSem">
+                @for (int i = 1; i <= 10; i++)
+                {
+                    if (Model.PocSem == i)
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+            </select>
+            <br />
+
+            <p><strong>Završni semestar</strong></p>
+            <select name="KrajSem">
+                @for (int i = 1; i <= 10; i++)
+                {
+                    if (Model.KrajSem == i)
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+            </select>
+            @if (Model.Error)
+            {
+                <br />
+                <p class="text-danger">Završni semestar mora da bude veći od početnog!</p> 
+            }
+            <br />
+
+            @if (Model.Id == -1)
+            {
+                @*<input type="button" value="Dodaj" class="btn btn-default" />*@
+                <span>
+                    <input type="submit" class="btn btn-success space-vert" value="Dodaj" />
+                </span>
+            }
+            else
+            {
+                <span>
+                    <input type="submit" class="btn btn-success space-vert"value="Izmeni" />
+                </span>
+            }
+
+        </form>
+    </div>
+</div>

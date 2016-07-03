@@ -33,8 +33,9 @@ namespace Business.DataAccess
             }
         }
 
-        public static void Dodaj(PredmetDTO c)
+        public static int Dodaj(PredmetDTO c)
         {
+            int ret = 0;
             try
             {
                 ISession s = DataLayer.GetSession();
@@ -53,12 +54,16 @@ namespace Business.DataAccess
                 };
 
                 s.Save(pre);
+                ret = pre.Id;
                 s.Flush();
                 s.Close();
+
+                return ret;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return ret;
             }
         }
 

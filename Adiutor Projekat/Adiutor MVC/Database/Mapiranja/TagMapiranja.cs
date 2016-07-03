@@ -21,9 +21,7 @@ namespace Database.Mapiranja
             Map(x => x.Opis).Column("OPIS");
 
             HasManyToMany(x => x.PripadaPitanjima).Table("PITANJE_TAG").ParentKeyColumn("TAG_ID")
-                .ChildKeyColumn("PITANJE_ID")
-                .Cascade.All();
-
+                .ChildKeyColumn("PITANJE_ID");
         }
     }
 }

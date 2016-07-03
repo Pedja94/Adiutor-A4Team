@@ -4,13 +4,47 @@
     ViewBag.Title = "AdministracijaSmerova";
 }
 
-<h2>AdministracijaSmerova</h2>
+<header>
+    <h2 class="center">Administracija Smerova</h2>
+</header>
+
+<div class="row">
+    <form action="@Url.Action("IzmeniSmer", "Administracija")" method="get">
+        <input type="hidden" value="-1" name="smerId"/>
+        <input type="submit" class="btn btn-success" value="Dodaj smer"/>
+    </form>
+</div>
 
 <div class="row">
     <div class="col-lg-3"></div>
-    <div class="col-lg-6">
-
-    </div>
+        @if (Model.Count > 0)
+        {
+            <table class="col-lg-6 table">
+                <thead>
+                    <tr>
+                        <th>Ime</th>
+                        <th>Prvi smemestar</th>
+                        <th>Poslednji semestar</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var smer in Model)
+                    {
+                        <tr>
+                            <td>@smer.Ime</td><td>@smer.PocSem</td><td>@smer.KrajSem</td>
+                            <td><a href="/Administracija/IzmeniSmer?smerId=@smer.Id">Izmeni</a></td>
+                            <td><a href="/Administracija/ObrisiSmer?smerId=@smer.Id">Obriši</a></td>
+                        </tr> 
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="col-lg-6">Nema smerova u bazi.</p>
+        }
     <div class="col-lg-3"></div>
 </div>
 

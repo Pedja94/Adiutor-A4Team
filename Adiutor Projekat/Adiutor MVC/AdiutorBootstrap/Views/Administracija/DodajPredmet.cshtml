@@ -1,0 +1,52 @@
+﻿@model AdiutorBootstrap.Models.AdminPredmetModel
+@{
+    ViewBag.Title = "DodajPredmet";
+}
+
+<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6 formaRegistracija skloniMarginuZaRegistraciju">
+    <div class=" ">
+        <style>
+            .center-page {
+                margin-top: 120px;
+            }
+        </style>
+
+        <form method="post" action="@Url.Action("DodajPredmet", "Administracija")">
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            @Html.LabelFor(m => m.Naziv, new { })
+            @Html.TextBoxFor(m => m.Naziv, new { @class = "form-control", @id = "naziv", @name = "Naziv", @placeholder = "Naziv" })
+            @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+            <br />
+
+            <p><strong>Semestar</strong></p>
+            <select name="Semestar">
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <br />
+
+            <p><strong>Smer</strong></p>
+            <select name="smerId">
+                @for (int i = 0; i < Model.listaSmerova.Count; i++)
+                {
+                    <option value="@Model.listaSmerova[i].Id">@Model.listaSmerova[i].Ime</option>
+                }
+            </select>
+            <br />
+
+            @Html.LabelFor(m => m.Opis, new { })
+            @Html.TextAreaFor(m => m.Opis, new { @class = "form-control", @id = "opis", @name = "Opis", @placeholder = "Opis" })
+            @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+            <br />
+
+            <span>
+                <input type="submit" class="btn btn-success space-vert" value="Dodaj" />
+            </span>
+
+        </form>
+    </div>
+</div>
+

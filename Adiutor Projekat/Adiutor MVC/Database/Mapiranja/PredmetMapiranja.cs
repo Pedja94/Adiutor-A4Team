@@ -26,9 +26,7 @@ namespace Database.Mapiranja
 
             HasManyToMany(x => x.PripadaSmerovima).Table("PREDMET_SMER")
                  .ParentKeyColumn("PREDMET_ID")
-                 .ChildKeyColumn("SMER_ID")
-                 .Cascade.All();
-                 //.Inverse();
+                 .ChildKeyColumn("SMER_ID");
         }
     }
 }
