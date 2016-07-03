@@ -13,39 +13,39 @@ namespace AdiutorBootstrap.Controllers
     public class PredmetController : Controller
     {
         // GET: Predmet
-        public ActionResult Predmet()
-        {
-            PredmetModel predmet = new PredmetModel();
-            predmet.NazivPredmeta = "Osnovi elektrotehnike 2";
-            predmet.GodinaStudija = 1;
-            predmet.ZaduzeniProfesor = "Branko Brejking";
-            predmet.PregledaProfesor = true;
-            predmet.Id = 33;
-            predmet.OpisPredmeta = "Kurs Osnovi elektrotehnike 1 se, prema novom nastavnom programu, izvodi u prvom semestru osnovnih studija na Elektronskom fakultetu u Nišu.";
+        //public ActionResult Predmet()
+        //{
+        //    PredmetModel predmet = new PredmetModel();
+        //    predmet.NazivPredmeta = "Osnovi elektrotehnike 2";
+        //    predmet.GodinaStudija = 1;
+        //    predmet.ZaduzeniProfesor = "Branko Brejking";
+        //    predmet.PregledaProfesor = true;
+        //    predmet.Id = 33;
+        //    predmet.OpisPredmeta = "Kurs Osnovi elektrotehnike 1 se, prema novom nastavnom programu, izvodi u prvom semestru osnovnih studija na Elektronskom fakultetu u Nišu.";
 
-            OblastModel oblast1 = new OblastModel
-            {
-                Naziv = "Elektrostatika",
-                Opis = "Ovo je elektrostatika, bavi se statickim naelektrisanjem i tako dalje cestica i tako dalje."
-            };
+        //    OblastModel oblast1 = new OblastModel
+        //    {
+        //        Naziv = "Elektrostatika",
+        //        Opis = "Ovo je elektrostatika, bavi se statickim naelektrisanjem i tako dalje cestica i tako dalje."
+        //    };
 
-            OblastModel oblast2 = new OblastModel
-            {
-                Naziv = "Elektromagnetika",
-                Opis = "Ovo je elektrostatika, bavi se statickim naelektrisanjem i tako dalje cestica i tako dalje."
-            };
+        //    OblastModel oblast2 = new OblastModel
+        //    {
+        //        Naziv = "Elektromagnetika",
+        //        Opis = "Ovo je elektrostatika, bavi se statickim naelektrisanjem i tako dalje cestica i tako dalje."
+        //    };
 
-            OblastModel oblast3 = new OblastModel
-            {
-                Naziv = "Elektrostatika",
-                Opis = "Ovo je elektrostatika, bavi se statickim naelektrisanjem i tako dalje cestica i tako dalje."
-            };
-            predmet.Oblasti.Add(oblast1);
-            predmet.Oblasti.Add(oblast2);
-            predmet.Oblasti.Add(oblast3);
+        //    OblastModel oblast3 = new OblastModel
+        //    {
+        //        Naziv = "Elektrostatika",
+        //        Opis = "Ovo je elektrostatika, bavi se statickim naelektrisanjem i tako dalje cestica i tako dalje."
+        //    };
+        //    predmet.Oblasti.Add(oblast1);
+        //    predmet.Oblasti.Add(oblast2);
+        //    predmet.Oblasti.Add(oblast3);
 
-            return View(predmet);
-        }
+        //    return View(predmet);
+        //}
 
 
         public ActionResult VratiPredmetPoId(int predmetId)

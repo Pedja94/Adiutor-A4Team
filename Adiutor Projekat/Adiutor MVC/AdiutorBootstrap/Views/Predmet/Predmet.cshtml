@@ -54,9 +54,11 @@
 <br />
 
 <div id="oblastiPredmeta" class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
-    <button class="btn btn-default" id="dodajOblast" @*onclick="DodajOblast()"*@ data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-plus"></span>Dodaj novu oblast</button>
-    @*<div id="upl"><button id="upload" class="btn btn-danger" @*onclick="PredloziTag()"*@ @*data-toggle="modal" data-target=".bs-example-modal-sm">Predloži novi tag</button></div>*@
-
+    @if (@Model.PregledaProfesor == true)
+    { 
+         <button class="btn btn-default" id="dodajOblast" @*onclick="DodajOblast()"*@ data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-plus"></span>Dodaj novu oblast</button>
+        @*div id="upl"><button id="upload" class="btn btn-danger" @*onclick="PredloziTag()"*@ @*data-toggle="modal" data-target=".bs-example-modal-sm">Predloži novi tag</button></div>*@
+    }
     <form action="@Url.Action("KlikNaLink","PitanjeIOdgovori")" method="get">
         @foreach(var oblast in Model.Oblasti)
         {

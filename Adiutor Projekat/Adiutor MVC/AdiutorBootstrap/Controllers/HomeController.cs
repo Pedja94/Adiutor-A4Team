@@ -44,7 +44,7 @@ namespace AdiutorBootstrap.Controllers
 
 
 
-        public ActionResult Pocetna()
+        public  ActionResult Pocetna()
         {
             if (Session["Id"] == null)
             {
