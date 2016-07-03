@@ -76,9 +76,9 @@ namespace AdiutorBootstrap.Controllers
             }
 
             //List<ProfesorDTO> profes = Profesori.VratiSve(pred.Id);
-            if (pred.ProfesorId != 0)
+            if (pred.ZaduzenId != 0)
             {
-                ProfesorDTO prof = Profesori.Procitaj(pred.ProfesorId);
+                ProfesorDTO prof = Profesori.Procitaj(pred.ZaduzenId);
                 if (prof.Id == (int)Session["Id"])
                     predmet.PregledaProfesor = true;
                 else

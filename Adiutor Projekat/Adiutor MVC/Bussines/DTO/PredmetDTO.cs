@@ -13,6 +13,6 @@ namespace Business.DTO
         public int GodinaStudija { get; set; }
         public int Semestar { get; set; }
         public string Opis { get; set; }
-        public int ProfesorId { get; set; }
+        public int ZaduzenId { get; set; }
     }
 }

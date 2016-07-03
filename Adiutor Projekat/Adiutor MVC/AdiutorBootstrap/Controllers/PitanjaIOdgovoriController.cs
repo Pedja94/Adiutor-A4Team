@@ -164,7 +164,7 @@ namespace AdiutorBootstrap.Controllers
             pitanje.NaslovPitanja = pit.Naslov;
             pitanje.Id = pit.Id;
             pitanje.SlikaAutora = kor.Slika;
-            pitanje.ProfesorId = pred.ProfesorId;
+            pitanje.ProfesorId = pred.ZaduzenId;
 
 
             foreach (var tag in tagovi)

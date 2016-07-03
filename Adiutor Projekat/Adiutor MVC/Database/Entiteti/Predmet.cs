@@ -15,7 +15,7 @@ namespace Database.Entiteti
 
         public virtual string Opis { get; set; }
 
-        public virtual Profesor ZaduzeniProfesor { get; set; } //Dodaj zaduzenog u bazi
+        public virtual Korisnik ZaduzeniProfesor { get; set; } //Dodaj zaduzenog u bazi
 
         public virtual IList<Smer> PripadaSmerovima { get; set; }
      

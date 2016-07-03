@@ -7,6 +7,7 @@ using NHibernate;
 using Database.Entiteti;
 using Database;
 using Business.DTO;
+using NHibernate.Linq;
 
 namespace Business.DataAccess
 {
@@ -239,6 +240,91 @@ namespace Business.DataAccess
                 return null;
             }
 
+        }
+
+        static public List<KorisnikDTO> VratiSve()
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<Korisnik> korisnici = (from k in s.Query<Korisnik>()
+                                            select k).ToList<Korisnik>();
+
+                List<KorisnikDTO> retVal = new List<KorisnikDTO>();
+
+                foreach (Korisnik st in korisnici)
+                {
+                    KorisnikDTO dto = new KorisnikDTO()
+                    {
+                        Id = st.Id,
+                        BrojIndeksa = st.BrojIndeksa,
+                        Email = st.Email,
+                        GodinaStudija = st.GodinaStudija,
+                        Ime = st.Ime,
+                        Opis = st.Opis,
+                        Password = st.Password,
+                        Prezime = st.Prezime,
+                        Slika = st.Slika,
+                        Smer = st.Smer,
+                        Username = st.Username,
+                        RoleId = st.ImaRolu.Id,
+                        StatusId = st.ImaStatus.Id
+
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        static public List<KorisnikDTO> VratiSve(int role)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<Korisnik> korisnici = (from k in s.Query<Korisnik>()
+                                            where k.ImaRolu.Id == role
+                                            select k).ToList<Korisnik>();
+
+                List<KorisnikDTO> retVal = new List<KorisnikDTO>();
+
+                foreach (Korisnik st in korisnici)
+                {
+                    KorisnikDTO dto = new KorisnikDTO()
+                    {
+                        Id = st.Id,
+                        BrojIndeksa = st.BrojIndeksa,
+                        Email = st.Email,
+                        GodinaStudija = st.GodinaStudija,
+                        Ime = st.Ime,
+                        Opis = st.Opis,
+                        Password = st.Password,
+                        Prezime = st.Prezime,
+                        Slika = st.Slika,
+                        Smer = st.Smer,
+                        Username = st.Username,
+                        RoleId = st.ImaRolu.Id,
+                        StatusId = st.ImaStatus.Id
+
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
 
         static public bool ProveriSifru(int id, string password)

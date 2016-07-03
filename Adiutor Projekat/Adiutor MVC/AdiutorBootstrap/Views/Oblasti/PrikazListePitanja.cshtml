@@ -7,11 +7,17 @@
 
 
 @Styles.Render("~/Content/KarticeStilovi")
+<<<<<<< HEAD
 @Styles.Render("~/Content/stilovi.css")
 @Styles.Render("https://fonts.googleapis.com/css?family=Merriweather")
 
 
 @if (Model != null) { 
+=======
+@Styles.Render("https://fonts.googleapis.com/css?family=Merriweather")
+
+
+>>>>>>> origin/master
 <form>
     <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
         @foreach (var pitanje in @Model.Pitanja.ListaPitanja)
@@ -59,6 +65,7 @@
 
 
 </form>
+<<<<<<< HEAD
 }
 else
 {
@@ -71,6 +78,9 @@ else
     
      </div>
 }
+=======
+
+>>>>>>> origin/master
 <form method="get" action="@Url.Action("NovoPitanje","NovoPitanje")">
     <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
         <div class="panel panel-info">
@@ -97,6 +107,7 @@ else
 
 
 
+<<<<<<< HEAD
 <style type="text/css">
     .losRezultat {
         margin-left: 25px;
@@ -110,3 +121,5 @@ else
         text-align:center;
     }
 </style>
+=======
+>>>>>>> origin/master

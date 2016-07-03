@@ -16,7 +16,7 @@
 
 <div class="row">
     <div class="col-lg-3"></div>
-    @if (Model.Count > 0)
+    @if (Model != null)
     {
         <table class="col-lg-6 table">
             <thead>
@@ -39,7 +39,7 @@
                         <td>@predmet.Semestar</td>
                         <td>@predmet.smerIme</td>
                         <td><a href="/Predmet/VratiPredmetPoId?predmetId=@predmet.Id">Prikaži predmet</a></td>
-                        <td><a href="/Administracija/PostaviZaduzenog?predmetId=@predmet.Id">Postavi zaduženog</a></td>
+                        <td><a href="/Administracija/PostaviZaduzenog?predmetId=@predmet.Id&predmetIme=@predmet.Naziv">Postavi zaduženog</a></td>
                         <td><a href="/Administracija/ObrisiPredmet?predmetId=@predmet.Id">Obriši</a></td>
                     </tr>
                 }
