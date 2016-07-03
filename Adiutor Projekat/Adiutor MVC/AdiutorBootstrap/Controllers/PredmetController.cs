@@ -78,13 +78,13 @@ namespace AdiutorBootstrap.Controllers
             //List<ProfesorDTO> profes = Profesori.VratiSve(pred.Id);
             if (pred.ZaduzenId != 0)
             {
-                ProfesorDTO prof = Profesori.Procitaj(pred.ZaduzenId);
+                KorisnikDTO prof = Korisnici.Procitaj(pred.ZaduzenId);
                 if (prof.Id == (int)Session["Id"])
                     predmet.PregledaProfesor = true;
                 else
                     predmet.PregledaProfesor = false;
 
-                predmet.ZaduzeniProfesor = prof.PunoIme;
+                predmet.ZaduzeniProfesor = prof.Ime + " " + prof.Prezime;
             }
             else
             {
