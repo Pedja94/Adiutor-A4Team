@@ -258,67 +258,67 @@ namespace Bussiness
                 //Korisnici_Odgovori.Nadji(37, 118);
                 //Odgovori.VratiOcenjeneOdgovoreKorisnika(37);
 
-                //PredmetDTO predmet1 = Predmeti.Procitaj(99);
+                PredmetDTO predmet1 = Predmeti.Procitaj(116);
 
-                //ProfesorDTO profa1 = new ProfesorDTO
-                //{
-                //    PunoIme = "Branislav Ranđelović",
-                //    PredmetId = predmet1.Id
-                //};
+                ProfesorDTO profa1 = new ProfesorDTO
+                {
+                    PunoIme = "Branislav Ranđelović",
+                    PredmetId = predmet1.Id
+                };
 
-                //Profesori.Dodaj(profa1);
+                Profesori.Dodaj(profa1);
 
-                //PredmetDTO predmet2 = Predmeti.Procitaj(61);
+                PredmetDTO predmet2 = Predmeti.Procitaj(118);
 
-                //ProfesorDTO profa2 = new ProfesorDTO
-                //{
-                //    PunoIme = "Vladan Mihajlović",
-                //    PredmetId = predmet2.Id
-                //};
+                ProfesorDTO profa2 = new ProfesorDTO
+                {
+                    PunoIme = "Vladan Mihajlović",
+                    PredmetId = predmet2.Id
+                };
 
-                //Profesori.Dodaj(profa2);
+                Profesori.Dodaj(profa2);
 
-                //PredmetDTO predmet3 = Predmeti.Procitaj(100);
+                PredmetDTO predmet3 = Predmeti.Procitaj(119);
 
-                //ProfesorDTO profa3 = new ProfesorDTO
-                //{
-                //    PunoIme = "Oliver Vojinović",
-                //    PredmetId = predmet3.Id
-                //};
+                ProfesorDTO profa3 = new ProfesorDTO
+                {
+                    PunoIme = "Oliver Vojinović",
+                    PredmetId = predmet3.Id
+                };
 
-                //Profesori.Dodaj(profa3);
+                Profesori.Dodaj(profa3);
 
-                //PredmetDTO predmet4 = Predmeti.Procitaj(101);
+                PredmetDTO predmet4 = Predmeti.Procitaj(120);
 
-                //ProfesorDTO profa4 = new ProfesorDTO
-                //{
-                //    PunoIme = "Miloš Radmanović",
-                //    PredmetId = predmet4.Id
-                //};
+                ProfesorDTO profa4 = new ProfesorDTO
+                {
+                    PunoIme = "Miloš Radmanović",
+                    PredmetId = predmet4.Id
+                };
 
-                //Profesori.Dodaj(profa4);
-
-
-                //PredmetDTO predmet5 = Predmeti.Procitaj(104);
-
-                //ProfesorDTO profa5 = new ProfesorDTO
-                //{
-                //    PunoIme = "Dragan Stojanović",
-                //    PredmetId = predmet5.Id
-                //};
-
-                //Profesori.Dodaj(profa5);
+                Profesori.Dodaj(profa4);
 
 
-                //PredmetDTO predmet6 = Predmeti.Procitaj(17);
+                PredmetDTO predmet5 = Predmeti.Procitaj(125);
 
-                //ProfesorDTO profa6 = new ProfesorDTO
-                //{
-                //    PunoIme = "Petar Rajković",
-                //    PredmetId = predmet6.Id
-                //};
+                ProfesorDTO profa5 = new ProfesorDTO
+                {
+                    PunoIme = "Dragan Stojanović",
+                    PredmetId = predmet5.Id
+                };
 
-                //Profesori.Dodaj(profa6);
+                Profesori.Dodaj(profa5);
+
+
+                PredmetDTO predmet6 = Predmeti.Procitaj(127);
+
+                ProfesorDTO profa6 = new ProfesorDTO
+                {
+                    PunoIme = "Petar Rajković",
+                    PredmetId = predmet6.Id
+                };
+
+                Profesori.Dodaj(profa6);
 
 
                 //PredmetDTO predmet7 = Predmeti.Procitaj(103);
@@ -331,35 +331,35 @@ namespace Bussiness
 
                 //Profesori.Dodaj(profa7);
 
-                //PredmetDTO predmet8 = Predmeti.Procitaj(102);
+                PredmetDTO predmet8 = Predmeti.Procitaj(121);
 
-                //ProfesorDTO profa8 = new ProfesorDTO
-                //{
-                //    PunoIme = "Vladimir Stanković",
-                //    PredmetId = predmet8.Id
-                //};
+                ProfesorDTO profa8 = new ProfesorDTO
+                {
+                    PunoIme = "Vladimir Stanković",
+                    PredmetId = predmet8.Id
+                };
 
-                //Profesori.Dodaj(profa8);
+                Profesori.Dodaj(profa8);
 
-                //PredmetDTO predmet9 = Predmeti.Procitaj(79);
+                PredmetDTO predmet9 = Predmeti.Procitaj(128);
 
-                //ProfesorDTO profa9 = new ProfesorDTO
-                //{
-                //    PunoIme = "Ivica Marković",
-                //    PredmetId = predmet9.Id
-                //};
+                ProfesorDTO profa9 = new ProfesorDTO
+                {
+                    PunoIme = "Ivica Marković",
+                    PredmetId = predmet9.Id
+                };
 
-                //Profesori.Dodaj(profa9);
+                Profesori.Dodaj(profa9);
 
-                //PredmetDTO predmet10 = Predmeti.Procitaj(41);
+                PredmetDTO predmet10 = Predmeti.Procitaj(129);
 
-                //ProfesorDTO profa10 = new ProfesorDTO
-                //{
-                //    PunoIme = "Milun Jevtić",
-                //    PredmetId = predmet10.Id
-                //};
+                ProfesorDTO profa10 = new ProfesorDTO
+                {
+                    PunoIme = "Aleksandar Dimitrijevic",
+                    PredmetId = predmet10.Id
+                };
 
-                //Profesori.Dodaj(profa10);
+                Profesori.Dodaj(profa10);
 
                 //Korisnik_OdgovorDTO ko = new Korisnik_OdgovorDTO
                 //{
@@ -409,10 +409,10 @@ namespace Bussiness
 
                 //Korisnici_Odgovori.Dodaj(ko5);
 
-                Korisnik_OdgovorDTO k1 = Korisnici_Odgovori.Nadji(37, 90);
-                Korisnik_OdgovorDTO k2 = Korisnici_Odgovori.Nadji(37, 100);
-                Korisnik_OdgovorDTO k3 = Korisnici_Odgovori.Nadji(78, 104);
-                Korisnik_OdgovorDTO k4 = Korisnici_Odgovori.Nadji(78, 85);
+                //Korisnik_OdgovorDTO k1 = Korisnici_Odgovori.Nadji(37, 90);
+                //Korisnik_OdgovorDTO k2 = Korisnici_Odgovori.Nadji(37, 100);
+                //Korisnik_OdgovorDTO k3 = Korisnici_Odgovori.Nadji(78, 104);
+                //Korisnik_OdgovorDTO k4 = Korisnici_Odgovori.Nadji(78, 85);
 
             }
             catch (Exception e)
