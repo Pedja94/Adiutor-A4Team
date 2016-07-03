@@ -238,6 +238,10 @@ DELETE CASCADE ;
 ALTER TABLE Korisnik_Odgovor ADD CONSTRAINT Korisnik_Odgovor_Odgovor_FK FOREIGN KEY ( Odgovor_ID ) REFERENCES Odgovor ( ID ) ON
 DELETE CASCADE ;
 
+ALTER TABLE Predmet
+DROP CONSTRAINT Predmet_Zaduzen_FK
+
+ALTER TABLE Predmet ADD CONSTRAINT Predmet_Zaduzen_FK FOREIGN KEY ( ZADUZEN_ID ) REFERENCES KORISNIK ( ID ) ;
 
 -- Oracle SQL Developer Data Modeler Summary Report: 
 -- 
