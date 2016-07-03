@@ -29,6 +29,9 @@ namespace Database.Mapiranja
             References(x => x.ImaKorisnika).Column("KORISNIK_ID").LazyLoad();
             References(x => x.PripadaPitanju).Column("PITANJE_ID").LazyLoad();
 
+            HasManyToMany(x => x.OcenjenOdKorisnika).Table("KORISNIK_ODGOVOR").ParentKeyColumn("ODGOVOR_ID")
+                .ChildKeyColumn("KORISNIK_ID")
+                .Cascade.All();
         } 
     }
 }

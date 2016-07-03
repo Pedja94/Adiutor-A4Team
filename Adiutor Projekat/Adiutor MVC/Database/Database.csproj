@@ -56,6 +56,7 @@
     <Compile Include="DataLayer.cs" />
     <Compile Include="Entiteti\Komentar.cs" />
     <Compile Include="Entiteti\Korisnik.cs" />
+    <Compile Include="Entiteti\Korisnik_Odgovor.cs" />
     <Compile Include="Entiteti\Literatura.cs" />
     <Compile Include="Entiteti\Oblast.cs" />
     <Compile Include="Entiteti\Odgovor.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Entiteti\Tag.cs" />
     <Compile Include="Mapiranja\KomentarMapiranja.cs" />
     <Compile Include="Mapiranja\KorisnikMaprianja.cs" />
+    <Compile Include="Mapiranja\Korisnik_OdgovorMapiranja.cs" />
     <Compile Include="Mapiranja\LiteraturaMapiranja.cs" />
     <Compile Include="Mapiranja\OblastMapiranja.cs" />
     <Compile Include="Mapiranja\OdgovorMapiranja.cs" />

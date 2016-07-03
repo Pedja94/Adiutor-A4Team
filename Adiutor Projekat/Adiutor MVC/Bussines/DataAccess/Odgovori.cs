@@ -226,6 +226,44 @@ namespace Business.DataAccess
 
         }
 
+        static public List<OdgovorDTO> VratiOcenjeneOdgovoreKorisnika(int KorisnikId)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<OdgovorDTO> retVal = new List<OdgovorDTO>();
+
+
+                Korisnik k = s.Load<Korisnik>(KorisnikId);
+                IList<Odgovor> odgovori = k.OcenjeniOdgovori;
+
+                foreach (Odgovor odg in odgovori)
+                {
+                    OdgovorDTO dto = new OdgovorDTO()
+                    {
+                        Id = odg.Id,
+                        DatumVreme = odg.DatumVreme,
+                        Minus = odg.Minus,
+                        Plus = odg.Plus,
+                        Odobreno = odg.Odobreno,
+                        Tekst = odg.Tekst,
+                        KorisnikId = odg.ImaKorisnika.Id,
+                        PitanjeId = odg.PripadaPitanju.Id
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
 
     }
 }

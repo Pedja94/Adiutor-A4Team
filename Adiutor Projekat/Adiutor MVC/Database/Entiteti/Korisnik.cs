@@ -22,5 +22,11 @@ namespace Database.Entiteti
 
         public virtual Role ImaRolu { get; set; }
         public virtual Status ImaStatus { get; set; }
+        public virtual IList<Odgovor> OcenjeniOdgovori { get; set; }
+
+        public Korisnik()
+        {
+            OcenjeniOdgovori = new List<Odgovor>();
+        }
     }
 }

@@ -17,7 +17,12 @@ namespace Database.Entiteti
 
         public virtual Korisnik ImaKorisnika { get; set; }
         public virtual Pitanje PripadaPitanju { get; set; }
+        public virtual IList<Korisnik> OcenjenOdKorisnika { get; set; }
 
+        public Odgovor()
+        {
+            OcenjenOdKorisnika = new List<Korisnik>();
+        }
 
     }
 }

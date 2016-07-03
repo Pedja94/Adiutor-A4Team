@@ -239,7 +239,24 @@ namespace Bussiness
                 //PredmetDTO p = Predmeti.Procitaj(21);
 
                 Tagovi.Nadji("web");
-                Pitanja.Nadji("Novo pitanje");   
+                Pitanja.Nadji("Novo pitanje");
+                Korisnik_OdgovorDTO ko = new Korisnik_OdgovorDTO
+                {
+                    KorisnikId = 37,
+                    OdgovorId = 104
+                };
+
+                Korisnik_OdgovorDTO ko1 = new Korisnik_OdgovorDTO
+                {
+                    KorisnikId = 37,
+                    OdgovorId = 118
+                };
+
+                Korisnici_Odgovori.Obrisi(17);
+                Korisnici_Odgovori.Dodaj(ko);
+                Korisnici_Odgovori.Dodaj(ko1);
+                Korisnici_Odgovori.Nadji(37, 118);
+                Odgovori.VratiOcenjeneOdgovoreKorisnika(37);
             }
             catch (Exception e)
             {
