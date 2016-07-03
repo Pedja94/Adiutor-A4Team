@@ -94,6 +94,9 @@ namespace AdiutorBootstrap.Controllers
             oblast.Opis = obl.Opis;
             oblast.Id = obl.Id;
 
+            PredmetDTO pr = Predmeti.Procitaj(obl.PredmetId);
+            oblast.ProfesorId = pr.ZaduzenId;
+
             foreach (var liter in Literature.VratiSve(idOblasti))
             {
                 LiteraturaModel l = new LiteraturaModel()

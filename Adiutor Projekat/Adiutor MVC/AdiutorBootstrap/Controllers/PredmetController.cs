@@ -70,6 +70,7 @@ namespace AdiutorBootstrap.Controllers
                         Naziv=oblast.Ime,
                         Opis=oblast.Opis,
                         Id=oblast.Id,
+                        ProfesorId=pred.ZaduzenId,
                     };
                     predmet.Oblasti.Add(obl);
                 }

@@ -10,10 +10,21 @@
 
 
 
-<div class="naz"><h1 class="nazivOblasti">@Model.Naziv</h1></div>
-<div class="literaturaContainer">
+<div class="biggerCon">
+    <div class="literaturaContainer">
+        @*<div id="literatura" class="col-lg-5 col-md-4 col-sm-6">
+                <h3>Literatura:</h3>
+            </div>*@
+        <div class="naz"><h1 class="nazivOblasti">@Model.Naziv</h1></div>
+        <ul id="listaLiterature" @*class="col-lg-5 col-md-4"*@>
+            <li><a href="http://www.wikipedia.org">Wikipedia</a></li>
+            @foreach (var lit in @Model.Literatura)
+            {
+                <li>@Html.ActionLink(lit.Naziv, lit.Link)</li>
+            }
+        </ul>
 
-
+    </div>
 </div>
 
 <form>

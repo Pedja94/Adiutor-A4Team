@@ -125,3 +125,47 @@
 p{
     margin-top:5px;
 }
+
+
+body {
+    margin-top:50px;
+}
+
+
+
+.naz{
+    font-family:'Adobe Garamond Pro';   
+
+}
+
+ul > li {
+    position: relative;
+    
+}
+ul{
+    list-style-type:none;
+}
+
+#literatura{
+    padding-bottom:30px;
+}
+
+#listaLiterature{
+    margin-bottom:20px;
+}
+
+
+.literaturaContainer{
+    border-radius:5px;
+    background-color:rgba(43, 178, 125, 0.36);
+    width:auto;
+    display:inline-block;
+    padding:10px;
+    align-content:center;
+  
+}
+
+
+.biggerCon{
+    text-align:center;
+}
