@@ -236,14 +236,17 @@ namespace Business.DataAccess
         //    }
         //}
 
-        public static void DodajZaduzenog(PredmetDTO predmet, KorisnikDTO profa)
+        public static void DodajZaduzenog(int predmetId, int profesorId)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                predmet.ZaduzenId = profa.Id;
-                Izmeni(predmet);
+                Predmet predmet = s.Load<Predmet>(predmetId);
+                Korisnik profesor = s.Load<Korisnik>(profesorId);
+                predmet.ZaduzeniProfesor = profesor;
+
+                s.Update(predmet);
                 s.Flush();
             }
             catch (Exception e)

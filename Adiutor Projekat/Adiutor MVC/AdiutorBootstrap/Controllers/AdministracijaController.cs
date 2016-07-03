@@ -197,10 +197,12 @@ namespace AdiutorBootstrap.Controllers
             return View(model);
         }
 
-        //[HttpGet]
-        //public ActionResult UpamtiZaduzenog(int predmetId, int profesorId)
-        //{
- 
-        //}
+        [HttpGet]
+        public ActionResult UpamtiZaduzenog(int predmetId, int profesorId)
+        {
+            Predmeti.DodajZaduzenog(predmetId, profesorId);
+
+            return RedirectToAction("AdministracijaPredmeta");
+        }
 	}
 }

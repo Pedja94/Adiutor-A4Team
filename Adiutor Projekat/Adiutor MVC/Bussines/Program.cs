@@ -413,9 +413,9 @@ namespace Bussiness
                 //Korisnik_OdgovorDTO k2 = Korisnici_Odgovori.Nadji(37, 100);
                 //Korisnik_OdgovorDTO k3 = Korisnici_Odgovori.Nadji(78, 104);
                 //Korisnik_OdgovorDTO k4 = Korisnici_Odgovori.Nadji(78, 85);
-                PredmetDTO pr = Predmeti.Procitaj(128);
-                KorisnikDTO k = Korisnici.Procitaj(37);
-                Predmeti.DodajZaduzenog(pr, k);
+                //PredmetDTO pr = Predmeti.Procitaj(128);
+                //KorisnikDTO k = Korisnici.Procitaj(37);
+                //Predmeti.DodajZaduzenog(pr, k);
             }
             catch (Exception e)
             {
