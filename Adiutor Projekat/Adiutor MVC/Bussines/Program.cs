@@ -361,53 +361,59 @@ namespace Bussiness
 
                 //Profesori.Dodaj(profa10);
 
-                Korisnik_OdgovorDTO ko = new Korisnik_OdgovorDTO
-                {
-                    KorisnikId = 78,
-                    OdgovorId = 118
-                };
+                //Korisnik_OdgovorDTO ko = new Korisnik_OdgovorDTO
+                //{
+                //    KorisnikId = 78,
+                //    OdgovorId = 118
+                //};
 
-                Korisnici_Odgovori.Dodaj(ko);
+                //Korisnici_Odgovori.Dodaj(ko);
 
-                Korisnik_OdgovorDTO ko1 = new Korisnik_OdgovorDTO
-                {
-                    KorisnikId = 78,
-                    OdgovorId = 85
-                };
+                //Korisnik_OdgovorDTO ko1 = new Korisnik_OdgovorDTO
+                //{
+                //    KorisnikId = 78,
+                //    OdgovorId = 85
+                //};
 
-                Korisnici_Odgovori.Dodaj(ko1);
+                //Korisnici_Odgovori.Dodaj(ko1);
 
-                Korisnik_OdgovorDTO ko2 = new Korisnik_OdgovorDTO
-                {
-                    KorisnikId = 37,
-                    OdgovorId = 118
-                };
+                //Korisnik_OdgovorDTO ko2 = new Korisnik_OdgovorDTO
+                //{
+                //    KorisnikId = 37,
+                //    OdgovorId = 118
+                //};
 
-                Korisnici_Odgovori.Dodaj(ko2);
+                //Korisnici_Odgovori.Dodaj(ko2);
 
-                Korisnik_OdgovorDTO ko3 = new Korisnik_OdgovorDTO
-                {
-                    KorisnikId = 78,
-                    OdgovorId = 104
-                };
+                //Korisnik_OdgovorDTO ko3 = new Korisnik_OdgovorDTO
+                //{
+                //    KorisnikId = 78,
+                //    OdgovorId = 104
+                //};
 
-                Korisnici_Odgovori.Dodaj(ko3);
+                //Korisnici_Odgovori.Dodaj(ko3);
 
-                Korisnik_OdgovorDTO ko4 = new Korisnik_OdgovorDTO
-                {
-                    KorisnikId = 78,
-                    OdgovorId = 90
-                };
+                //Korisnik_OdgovorDTO ko4 = new Korisnik_OdgovorDTO
+                //{
+                //    KorisnikId = 78,
+                //    OdgovorId = 90
+                //};
 
-                Korisnici_Odgovori.Dodaj(ko4);
+                //Korisnici_Odgovori.Dodaj(ko4);
 
-                Korisnik_OdgovorDTO ko5 = new Korisnik_OdgovorDTO
-                {
-                    KorisnikId = 37,
-                    OdgovorId = 90
-                };
+                //Korisnik_OdgovorDTO ko5 = new Korisnik_OdgovorDTO
+                //{
+                //    KorisnikId = 37,
+                //    OdgovorId = 90
+                //};
 
-                Korisnici_Odgovori.Dodaj(ko5);
+                //Korisnici_Odgovori.Dodaj(ko5);
+
+                Korisnik_OdgovorDTO k1 = Korisnici_Odgovori.Nadji(37, 90);
+                Korisnik_OdgovorDTO k2 = Korisnici_Odgovori.Nadji(37, 100);
+                Korisnik_OdgovorDTO k3 = Korisnici_Odgovori.Nadji(78, 104);
+                Korisnik_OdgovorDTO k4 = Korisnici_Odgovori.Nadji(78, 85);
+
             }
             catch (Exception e)
             {
