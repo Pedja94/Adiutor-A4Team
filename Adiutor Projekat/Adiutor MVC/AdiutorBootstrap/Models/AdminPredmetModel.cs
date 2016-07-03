@@ -33,6 +33,7 @@ namespace AdiutorBootstrap.Models
     public class ZaduzeniModel
     {
         public int predmetId { get; set; }
+        public string predmetIme { get; set; }
         public List<KorisnikModel> korisnici { get; set; }
     }
 }

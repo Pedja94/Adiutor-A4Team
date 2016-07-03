@@ -1,7 +1,43 @@
-﻿
+﻿@model AdiutorBootstrap.Models.ZaduzeniModel
 @{
     ViewBag.Title = "PostaviZaduzenog";
 }
 
-<h2>PostaviZaduzenog</h2>
+<header>
+    <h2 class="center">Postavi Zaduzenog za predmet @Model.predmetIme</h2>
+</header>
 
+<div class="row">
+    <div class="col-lg-3"></div>
+    @if (Model.korisnici != null)
+    {
+        <table class="col-lg-6 table">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var korisnik in Model.korisnici)
+                {
+                    <tr>
+                        <td>@korisnik.Ime</td>
+                        <td>@korisnik.Prezime</td>
+                        <td>@korisnik.Username</td>
+                        <td>@korisnik.Email</td>
+                        <td><a href="/Administracija/UpamtiZaduzenog?predmetId=@Model.predmetId&profesorId=@korisnik.Id">Postavi zaduženog</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="col-lg-6">Nema korisnika sa profesorskom privilegijom.</p>
+    }
+    <div class="col-lg-3"></div>
+</div>

@@ -177,9 +177,30 @@ namespace AdiutorBootstrap.Controllers
         }
 
         [HttpGet]
-        public ActionResult PostaviZaduzenog(int predmetId)
+        public ActionResult PostaviZaduzenog(int predmetId, string predmetIme)
         {
+            ZaduzeniModel model = new ZaduzeniModel();
+            List<KorisnikDTO> korisnici = Korisnici.VratiSve(2);
+            foreach (KorisnikDTO user in korisnici)
+            {
+                model.korisnici.Add(new KorisnikModel {
+                    Id = user.Id,
+                    Ime = user.Ime,
+                    Prezime = user.Prezime,
+                    Username = user.Username,
+                    Email = user.Email
+                });
+            }
 
+            model.predmetId = predmetId;
+            model.predmetIme = predmetIme;
+            return View(model);
         }
+
+        //[HttpGet]
+        //public ActionResult UpamtiZaduzenog(int predmetId, int profesorId)
+        //{
+ 
+        //}
 	}
 }
