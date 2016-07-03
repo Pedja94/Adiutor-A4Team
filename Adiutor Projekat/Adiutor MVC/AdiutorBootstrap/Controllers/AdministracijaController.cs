@@ -176,10 +176,10 @@ namespace AdiutorBootstrap.Controllers
             return RedirectToAction("AdministracijaPredmeta");
         }
 
-        //[HttpGet]
-        //public ActionResult PostaviZaduzenog(int predmetId)
-        //{
- 
-        //}
+        [HttpGet]
+        public ActionResult PostaviZaduzenog(int predmetId)
+        {
+
+        }
 	}
 }
