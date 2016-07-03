@@ -40,10 +40,11 @@ namespace Business.DataAccess
             {
                 ISession s = DataLayer.GetSession();
 
-                Profesor prof = new Profesor()
+                Korisnik prof = new Korisnik()
                 {
-                    Id = c.ProfesorId
+                    Id = c.ZaduzenId
                 };
+
                 Predmet pre = new Predmet()
                 {
                     GodinaStudija = c.GodinaStudija,
@@ -86,11 +87,11 @@ namespace Business.DataAccess
 
                 if (p.ZaduzeniProfesor != null)
                 {
-                    pre.ProfesorId = p.ZaduzeniProfesor.Id;
+                    pre.ZaduzenId = p.ZaduzeniProfesor.Id;
                 }
                 else
                 {
-                    pre.ProfesorId = 0;
+                    pre.ZaduzenId = 0;
                 }
                 s.Flush();
                 s.Close();
@@ -112,9 +113,9 @@ namespace Business.DataAccess
             {
                 ISession s = DataLayer.GetSession();
 
-                Profesor prof = new Profesor()
+                Korisnik prof = new Korisnik()
                 {
-                    Id = c.ProfesorId
+                    Id = c.ZaduzenId
                 };
                 Predmet pre = new Predmet()
                 {
@@ -173,11 +174,11 @@ namespace Business.DataAccess
 
                     if (p.ZaduzeniProfesor != null)
                     {
-                        pre.ProfesorId = p.ZaduzeniProfesor.Id;
+                        pre.ZaduzenId = p.ZaduzeniProfesor.Id;
                     }
                     else
                     {
-                        pre.ProfesorId = 0;
+                        pre.ZaduzenId = 0;
                     }
                     retVal.Add(pre);
                 }
@@ -235,14 +236,15 @@ namespace Business.DataAccess
         //    }
         //}
 
-        public static void DodajZaduzenog(int Id, ProfesorDTO p)
+        public static void DodajZaduzenog(PredmetDTO predmet, KorisnikDTO profa)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
-                PredmetDTO pr = Procitaj(Id);
-                pr.ProfesorId = p.Id;
-                Izmeni(pr);
+
+                predmet.ZaduzenId = profa.Id;
+                Izmeni(predmet);
+                s.Flush();
             }
             catch (Exception e)
             {
@@ -256,8 +258,9 @@ namespace Business.DataAccess
             {
                 ISession s = DataLayer.GetSession();
                 PredmetDTO pr = Procitaj(Id);
-                pr.ProfesorId = 0;
+                pr.ZaduzenId = 0;
                 Izmeni(pr);
+                s.Flush();
             }
             catch (Exception e)
             {
@@ -309,11 +312,11 @@ namespace Business.DataAccess
                     };
                     if (predmet.ZaduzeniProfesor != null)
                     {
-                        dto.ProfesorId = predmet.ZaduzeniProfesor.Id;
+                        dto.ZaduzenId = predmet.ZaduzeniProfesor.Id;
                     }
                     else
                     {
-                        dto.ProfesorId = 0;
+                        dto.ZaduzenId = 0;
                     }
 
                     retVal.Add(dto);
