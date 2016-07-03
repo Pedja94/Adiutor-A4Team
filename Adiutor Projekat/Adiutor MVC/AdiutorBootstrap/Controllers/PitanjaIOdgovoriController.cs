@@ -315,12 +315,22 @@ namespace AdiutorBootstrap.Controllers
         public JsonResult OceniPozitivno(OdgovorModel odgovor)
         {
             OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
-            O
-            
-            odg.Plus++;
+            int korisnikId = (int)Session["Id"];
+            Korisnik_OdgovorDTO nadji = Korisnici_Odgovori.Nadji((int)Session["Id"], odgovor.Id);
 
-            Odgovori.Izmeni(odg);
-            odgovor.Pozitivno++;
+            if(Korisnici_Odgovori.Nadji((int)Session["Id"], odgovor.Id)==null)
+            {
+                Korisnik_OdgovorDTO korOdg = new Korisnik_OdgovorDTO();
+                korOdg.KorisnikId = (int)Session["Id"];
+                korOdg.OdgovorId = odgovor.Id;
+
+                Korisnici_Odgovori.Dodaj(korOdg);
+
+                odg.Plus++;
+                Odgovori.Izmeni(odg);
+                odgovor.Pozitivno++;
+            }
+           
 
             return Json(odgovor, JsonRequestBehavior.AllowGet);
         }
@@ -330,8 +340,18 @@ namespace AdiutorBootstrap.Controllers
         public JsonResult OceniNegativno(OdgovorModel odgovor)
         {
             OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
-            odg.Minus++;
-            odgovor.Negativno++;
+            if (Korisnici_Odgovori.Nadji((int)Session["Id"], odgovor.Id) == null)
+            {
+                Korisnik_OdgovorDTO korOdg = new Korisnik_OdgovorDTO();
+                korOdg.KorisnikId = (int)Session["Id"];
+                korOdg.OdgovorId = odgovor.Id;
+
+                Korisnici_Odgovori.Dodaj(korOdg);
+
+                odg.Minus++;
+                Odgovori.Izmeni(odg);
+                odgovor.Negativno++;
+            }
 
             Odgovori.Izmeni(odg);
 
