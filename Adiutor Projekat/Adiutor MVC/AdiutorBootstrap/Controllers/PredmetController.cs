@@ -111,7 +111,7 @@ namespace AdiutorBootstrap.Controllers
         {
             OblastDTO obl=new OblastDTO();
             obl.Ime=oblast.ImeOblasti;
-            obl.Opis=oblast.ImeOblasti;
+            obl.Opis=oblast.OpisOblasti;
             obl.PredmetId=oblast.PredmetId;
 
             Oblasti.Dodaj(obl);
