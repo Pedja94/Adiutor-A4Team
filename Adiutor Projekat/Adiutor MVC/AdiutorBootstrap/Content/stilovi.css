@@ -347,6 +347,12 @@ body {
 .navbar{
 }
 
+
+/*.panel-heading{
+    padding-left:30px;
+    font-size:30px;
+}*/
+
 @media(max-width:517px) {
     .container .jumbotron,
     .container-fluid .jumbotron {
@@ -495,3 +501,11 @@ h3{
     align-content:center;
     text-align:center;
 }
+
+
+.panel{
+    align-content:center;
+    text-align:center;
+
+}
+

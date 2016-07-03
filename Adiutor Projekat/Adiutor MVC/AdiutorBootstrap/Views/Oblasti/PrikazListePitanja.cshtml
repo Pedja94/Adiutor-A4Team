@@ -1,0 +1,112 @@
+﻿@model AdiutorBootstrap.Models.OblastModel
+
+@{ 
+    ViewBag.Title = "PrikazListePitanja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Styles.Render("~/Content/KarticeStilovi")
+@Styles.Render("~/Content/stilovi.css")
+@Styles.Render("https://fonts.googleapis.com/css?family=Merriweather")
+
+
+@if (Model != null) { 
+<form>
+    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+        @foreach (var pitanje in @Model.Pitanja.ListaPitanja)
+        {
+            <div class="kartica">
+                <div class="tekst_pitanja">
+
+                    <div class="autor_vreme_container">
+                        <div class="vremeIdatum">
+                            @pitanje.DatumVreme
+                        </div>
+                        <div class="imeAutora">@Html.ActionLink(pitanje.AutorPitanja, "KlikNaKorisnika", "KorisnickiPanel", new { korisnikId = pitanje.AutorId }, null)</div>
+                    </div>
+
+                    <div class="tekst">
+                        <p>@Html.ActionLink(@pitanje.NaslovPitanja, "PitanjeIOdgovori1", "PitanjeIOdgovori", new { idPitanja = pitanje.Id }, null)</p>
+                    </div>
+
+                    <div class="tagovi_container">
+                        <div class="tagovi">
+                            @foreach (var tag in pitanje.Tagovi)
+                            {
+                                @Html.ActionLink("#" + tag.Ime + "    ", "TrazenjePoTagu", new { tagovi = "#" + tag.TagIme })
+                            }
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="dodatni_atributi">
+
+                    <div class="brOdgovora_container">
+                        <div class="broj">
+                            x odgovora
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <br />
+        }
+
+    </div>
+
+
+</form>
+}
+else
+{
+     <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+       
+     
+         <h3 class="losRezultat">  Vaša pretraga nije dala rezultata. Unesite druge tagove ili možete postaviti novo pitanje:</h3>
+       
+    
+    
+     </div>
+}
+<form method="get" action="@Url.Action("NovoPitanje","NovoPitanje")">
+    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <p class="paragraf">
+                    Pitanja slična onima koja ste tražili se nalaze sa vaše leve strane, sortirana po hronološkom redosledu. Ukoliko imate da postavite
+                    novo pitanje, kliknite na dugme ispod.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="container postaviPitanje">
+            <button id="postaviNovoPitanje" type="submit" class="btn btn-primary">Postavi novo pitanje</button>
+        </div>
+
+
+    </div>
+
+
+
+</form>
+
+
+
+
+<style type="text/css">
+    .losRezultat {
+        margin-left: 25px;
+        padding-left: 40px;
+        width:90%;
+        background:rgba(195, 29, 29, 0.48);
+        border-radius:5px;
+        padding:10px;
+        margin-top:5px;
+        padding:20px;
+        text-align:center;
+    }
+</style>

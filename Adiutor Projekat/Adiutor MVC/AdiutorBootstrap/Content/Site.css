@@ -123,3 +123,19 @@ body{
     	font-family: 'Open Sans', sans-serif;
         font-size:15px;
 }
+
+
+
+
+.losRezultat{
+    margin-left:20px;
+    padding-left:40px;
+    position:relative;
+    left:8%;
+}
+
+.panel{
+    align-content:center;
+    text-align:center;
+
+}

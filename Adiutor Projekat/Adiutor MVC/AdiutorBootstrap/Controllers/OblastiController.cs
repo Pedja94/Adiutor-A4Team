@@ -37,7 +37,7 @@ namespace AdiutorBootstrap.Controllers
                 if (tagovi[0] == '#')
                 { 
 
-                    return View("~/Views/Oblasti/Oblasti.cshtml",VratiOblastPretrage(tagovi));
+                    return View("~/Views/Oblasti/PrikazListePitanja.cshtml",VratiOblastPretrage(tagovi));
                 }
                 else if(Korisnici.Nadji(tagovi)!=null)
                 {
@@ -48,12 +48,12 @@ namespace AdiutorBootstrap.Controllers
                 }
                 else
                 {
-                    return null;
+                    return View("~/Views/Oblasti/PrikazListePitanja.cshtml", null);
                 }
             }
             catch (Exception e)
              {
-                 return null;
+                 return View("~/Views/Oblasti/PrikazListePitanja.cshtml", null);
             }
 
         }
