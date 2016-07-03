@@ -13,6 +13,14 @@ namespace AdiutorBootstrap.Models
 
         public List<string> ImenaSvihOblasti { get; set; }
 
+
+        public string NaslovPitanja { get; set; }
+
+        public string TekstPitanja { get; set; }
+
+        public string Tagovi { get; set; }
+
+        public bool Greska { get; set; }
         public NovoPitanjeModel()
         {
             ImenaSvihOblasti = new List<string>();

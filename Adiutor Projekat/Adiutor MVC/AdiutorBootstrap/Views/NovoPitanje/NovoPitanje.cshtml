@@ -7,25 +7,32 @@
 
 @Scripts.Render("//cdn.ckeditor.com/4.5.9/full/ckeditor.js")
 @Styles.Render("~/Content/NovoPitanjeStilovi.css")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/Bootstrap")
+
 
 <form id="forma1" method="post" action="@Url.Action("DodajPitanje","NovoPitanje")">
     <h1 id="dodaj">Dodaj novo pitanje</h1>
     <div id="naslovPit">
         <h3>Unesi naslov pitanja:</h3>
-        <input type="text" size="80" name="naslovPitanja" id="textNaslov" />
+        @*<input type="text" size="80" name="naslovPitanja" id="textNaslov" />*@
+        @Html.TextBoxFor(m => m.NaslovPitanja, new { @name="naslovPitanja",@id="textNaslov"})
         
-        @if (Model != null)
+        @if (Model == null)
         {
             <br />
             <h3>Unesi ime oblasti:</h3>
-       <input list="oblastiLista" onkeyup="ajaxPoziv()" id="obl" name="imeOblasti"/>
-          <datalist id="oblastiLista" >
+             @*<input type="text" list="oblastiLista" onkeyup="ajaxPoziv()" id="obl" name="imeOblasti"/>*@
+            @Html.TextBoxFor(m => m.NazivOblasti, new { @list="oblastiLista",@onkeyup="ajaxPoziv()",@id="obl", @name="imeOblasti"})
+             
+                      <datalist id="oblastiLista" >
 
-        </datalist>
+                         </datalist>
         }
     </div>
     <div class="editor1 ">
-        <textarea name="textarea" id="textarea"></textarea>
+        @*<textarea name="textarea" id="textarea"></textarea>*@
+        @Html.TextAreaFor(m=>m.TekstPitanja,new{@name="textarea",@id="textarea"})
 
         <script>
             CKEDITOR.replace('textarea');
@@ -33,7 +40,8 @@
 
         <div id="dugmeItagovi">
             <h3 id="tg">Unesi tagove:</h3>
-            <input list="tagoviLista" name="tagovi" size="35" class="kont" id="tagsLista" onkeyup="ajaxPozivTagovi()"/>
+            @*<input list="tagoviLista" name="tagovi" size="35" class="kont" id="tagsLista" onkeyup="ajaxPozivTagovi()"/>*@
+            @Html.TextBoxFor(m => m.Tagovi, new { @list = "tagoviLista", @onkeyup = "ajaxPozivTagovi()", @id = "tagsLista", @name = "tagovi" })
             <datalist id="tagoviLista">
 
 
@@ -42,6 +50,11 @@
             <br />
         </div>
 
+
+        @if (Model != null)
+        {
+            @Html.HiddenFor(m=>m.IdOblasti)
+        }
 
 
 
@@ -55,7 +68,6 @@
                     var tekst = CKEDITOR.instances.textarea.getData();
                     window.location = "Home/Pocetna";
                 }
-
 
 
             }
@@ -188,3 +200,45 @@
         </div>
     </div>
 </div>
+
+
+
+@*<div id="mdl1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <h4>Napravili ste neku grešku u unosu,
+             molimo Vas,
+             proverite da li su sva polja uredno popunjena.</h4>
+        </div>
+    </div>
+</div>*@
+
+
+<div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
+</div>
+
+
+@if (Model!=null)
+{
+    if (Model.Greska == true)
+    { 
+    @*<script type="text/javascript">
+        {
+            $(document).ready(function () {
+                $("#myModal").modal('show');
+            });
+        }
+    </script>*@
+    }
+}

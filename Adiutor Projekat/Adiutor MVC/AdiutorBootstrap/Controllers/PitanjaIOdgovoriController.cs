@@ -92,6 +92,7 @@ namespace AdiutorBootstrap.Controllers
             OblastDTO obl = Business.DataAccess.Oblasti.Procitaj(idOblasti);
             oblast.Naziv = obl.Ime;
             oblast.Opis = obl.Opis;
+            oblast.Id = obl.Id;
 
             foreach (var liter in Literature.VratiSve(idOblasti))
             {
@@ -266,7 +267,7 @@ namespace AdiutorBootstrap.Controllers
             odg.KorisnikId = (int)Session["Id"];
             odg.Minus = 0;
             odg.Plus = 0;
-            odg.Odobreno = 1;
+            odg.Odobreno = 0;
             odg.Tekst = textarea;
             odg.PitanjeId = pitanjeId;
             Odgovori.Dodaj(odg);
@@ -314,6 +315,8 @@ namespace AdiutorBootstrap.Controllers
         public JsonResult OceniPozitivno(OdgovorModel odgovor)
         {
             OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
+            O
+            
             odg.Plus++;
 
             Odgovori.Izmeni(odg);

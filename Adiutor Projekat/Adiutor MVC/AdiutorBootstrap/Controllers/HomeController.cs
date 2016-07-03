@@ -7,6 +7,7 @@ using AdiutorBootstrap.Models;
 using Business.DTO;
 using Business.DataAccess;
 using AdiutorBootstrap.Controllers;
+using System.IO;
 
 namespace AdiutorBootstrap.Controllers
 {
@@ -172,6 +173,8 @@ namespace AdiutorBootstrap.Controllers
             korisnik.Slika = user.Slika;
             korisnik.Email = user.Email;
 
+            
+
 
             List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
             List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
@@ -239,6 +242,27 @@ namespace AdiutorBootstrap.Controllers
             korisnikZaIzmenu.Opis = korisnik.Opis; 
             korisnikZaIzmenu.BrojIndeksa = korisnik.BrojIndeksa;
             korisnikZaIzmenu.Smer = korisnik.Smer;
+
+
+            string slikaputanja;
+            if (korisnik.FajlSlika != null) { 
+                if (korisnik.FajlSlika.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(korisnik.FajlSlika.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                    korisnik.FajlSlika.SaveAs(path);
+                    slikaputanja = "/Content/Images/" + fileName;
+                    korisnikZaIzmenu.Slika = slikaputanja;
+                    int startIndex = slikaputanja.IndexOf("Upload");
+
+
+
+                    string proba = "Ne vjeruj mi nocas";
+                    int pocetni = proba.IndexOf("vjeruj");
+
+                }
+            }
+
             
         
             korisnik.Username = (string)Session["Username"];

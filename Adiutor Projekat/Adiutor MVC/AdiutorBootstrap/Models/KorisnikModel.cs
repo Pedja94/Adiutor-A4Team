@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-
+using System.Web.Mvc;
 
 namespace AdiutorBootstrap.Models
 {
@@ -41,6 +41,9 @@ namespace AdiutorBootstrap.Models
 
         [Display(Name = "Fotografija:")]
         public string Slika { get; set; }
+        
+      
+       public HttpPostedFileBase FajlSlika { get; set; }
 
         public int Id { get; set; }
 

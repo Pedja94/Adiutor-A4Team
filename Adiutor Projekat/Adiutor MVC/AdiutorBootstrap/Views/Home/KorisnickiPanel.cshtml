@@ -9,7 +9,7 @@
     @*ovaj div ce da sluzi za smestanje profilne slike*@
     <form method="post" action="@Url.Action("IzmeniPodatkeZahtev","Home")">
         <div id="profilnaSlika" class="col-lg-6 col-md-3 col-sm-3 col-xs-6">
-            <img src=@Model.Korisnik.Slika class="img-thumbnail" />
+            <img src="@Model.Korisnik.Slika" class="img-thumbnail" />
             @Html.HiddenFor(m => m.Korisnik.Slika, new { })
             @if(ViewBag.Izmena!=true && (int)Session["Id"]==@Model.Korisnik.Id) 
             {
@@ -36,7 +36,7 @@
 
 }
 else if (ViewBag.Izmena == true)
-{    <form method="post" action="@Url.Action("IzmeniPodatke", "Home")">
+{    <form method="post" action="@Url.Action("IzmeniPodatke", "Home")" enctype="multipart/form-data">
       <div id="opisi" class="col-lg-6 col-md-7 col-sm-4 col-xs-4">
         <label>Ime: &nbsp;  </label>@Html.TextBoxFor(m => m.Korisnik.Ime, new { @class = "form-control", @name = "Ime" })<br />
         <label>Prezime: &nbsp; </label>@Html.TextBoxFor(m => m.Korisnik.Prezime, new { @class = "form-control", @name = "Prezime" })<br />
@@ -45,6 +45,7 @@ else if (ViewBag.Izmena == true)
         <label>Smer:&nbsp;  </label>@Html.TextBoxFor(m => m.Korisnik.Smer, new { @class = "form-control", @name = "Smer" }) <br />
         <label>Opis:&nbsp;  </label>@Html.TextAreaFor(m => m.Korisnik.Opis, new { @class = "form-control", @name = "Opis" })
         <label>E-mail adresa:&nbsp; </label>@Html.TextBoxFor(m => m.Korisnik.Email, new { @class = "form-control", @name = "E-mail" })<br />
+        <label>Dodaj profilnu sliku: &nbsp;</label>@Html.TextBoxFor(m=>m.Korisnik.FajlSlika,new{ @type="file", @name="FajlSlika",@class="form-control"})
        
 
                <div>

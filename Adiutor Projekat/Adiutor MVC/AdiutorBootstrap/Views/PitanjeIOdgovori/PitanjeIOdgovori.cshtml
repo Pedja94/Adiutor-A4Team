@@ -77,7 +77,7 @@
                         @Html.DisplayTextFor(m => m.Pitanje.DatumVreme)
                     </td>
                     <td id="nazivOblasti" style="text-align:center">
-                        @Html.ActionLink(@Model.Pitanje.Oblast, "KlikNaLink", new { idOblasti = @Model.Pitanje.OblastId })
+                        @Html.ActionLink(@Model.Pitanje.Oblast, "KlikNaLink", "PitanjeIOdgovori",new { idOblasti = @Model.Pitanje.OblastId },null)
                     </td>
 
                 </tr>

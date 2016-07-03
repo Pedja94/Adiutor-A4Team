@@ -17,31 +17,53 @@ namespace AdiutorBootstrap.Controllers
 
         public ActionResult NovoPitanje(int idOblasti)
         {
-            NovoPitanjeModel novoPitanje = new NovoPitanjeModel();
-            novoPitanje.ImenaSvihOblasti.Add("Grafovi");
-            novoPitanje.ImenaSvihOblasti.Add("Nizovi");
-            novoPitanje.ImenaSvihOblasti.Add("Stabla");
+            if (idOblasti != 0) 
+            { 
+                NovoPitanjeModel mdl = new NovoPitanjeModel();
+                mdl.IdOblasti = idOblasti.ToString();
+                return View(mdl);
+            }
+            else
+            {
+                return View();
+            }    
+        }
 
-            return View(novoPitanje);
+        public ActionResult NovoPitanje1(NovoPitanjeModel model)
+        {
+            return View("NovoPitanje",model);
         }
 
         [ValidateInput(false)]
-        public ActionResult DodajPitanje(string naslovPitanja, string textarea, string tagovi, string oblast,string imeOblasti)
+        //public ActionResult DodajPitanje(string naslovPitanja, string textarea, string tagovi, string oblast,string imeOblasti)
+        public ActionResult DodajPitanje(NovoPitanjeModel pitanje)
         {
+            try
+            { 
             PitanjeDTO pit=new PitanjeDTO();
             pit.KorisnikId=(int)Session["Id"];
-            pit.Tekst=textarea;
-            pit.Naslov=naslovPitanja;
-            pit.OblastId = Oblasti.Nadji(imeOblasti).Id;
+            pit.Tekst=pitanje.TekstPitanja;
+            pit.Naslov=pitanje.NaslovPitanja;
+            if (pitanje.NazivOblasti != null)
+            {
+                pit.OblastId = Oblasti.Nadji(pitanje.NazivOblasti).Id;
+            }
+            else
+            {
+                pit.OblastId = int.Parse(pitanje.IdOblasti);
+            }
             pit.DatumVreme=DateTime.Now;
 
           
                 
-            Pitanja.Dodaj(pit);
+           
 
             PitanjeDTO pitproc = Pitanja.Nadji(pit.Naslov);
 
-            string primljeniTagovi = tagovi;
+            Pitanja.Dodaj(pit);
+           
+           
+            string primljeniTagovi = pitanje.Tagovi;
             if(primljeniTagovi[0]=='#')
             {
                 char[] separatingChar = { '#', ' ' };
@@ -62,25 +84,28 @@ namespace AdiutorBootstrap.Controllers
 
             }
 
+            
 
             PitanjeIOdgovoriController cont = new PitanjeIOdgovoriController();
 
             return cont.PitanjeIOdgovori1(pitproc.Id);//ovo treba da se ipsravi
+            }
+            catch (Exception e)
+            {
+                pitanje.Greska = true;
+                return NovoPitanje1(pitanje);
+            }
+
         }
 
         [HttpPost]
         public JsonResult VratiOblastiPoPrvomSlovu(ListaOblastiModel prvoS)
         {
-            // ovo dole cemo otkomentarisati kad proradi fucking baza
-            //List<OblastDTO> OblastiTrazene = Oblasti.VratiSveKojePocinjuSa(prvoS.PrvoSlovo.ToString());
-            //foreach( var obl in OblastiTrazene)
-            //{
-            //    prvoS.ListaOblasti.Add(obl.Ime);
-            //}
-            
-            prvoS.ListaOblasti.Add("Grafovi");
-            prvoS.ListaOblasti.Add("Grabulje");
-            prvoS.ListaOblasti.Add("Grofovi");
+            List<OblastDTO> OblastiTrazene = Oblasti.VratiSveKojePocinjuSa(prvoS.PrvoSlovo.ToString());
+            foreach( var obl in OblastiTrazene)
+            {
+                prvoS.ListaOblasti.Add(obl.Ime);
+            }
 
 
             return Json(prvoS, JsonRequestBehavior.AllowGet);
@@ -91,17 +116,17 @@ namespace AdiutorBootstrap.Controllers
         [HttpPost]
         public JsonResult VratiSveTagove(ListaOblastiModel prvoS)
         {
-            //List<TagDTO> tagovi = Tagovi.VratiSve();
-            //List<string> ImenaTagova = new List<string>();
-            //foreach(var tag in tagovi)
-            //{
-            //    ImenaTagova.Add(tag.TagIme);
-            //}
+            List<TagDTO> tagovi = Tagovi.VratiSve();
             List<string> ImenaTagova = new List<string>();
-            ImenaTagova.Add("programiranje");
-            ImenaTagova.Add("web");
-            ImenaTagova.Add("mvc");
-            ImenaTagova.Add("niz");
+            foreach (var tag in tagovi)
+            {
+                ImenaTagova.Add(tag.TagIme);
+            }
+            //List<string> ImenaTagova = new List<string>();
+            //ImenaTagova.Add("programiranje");
+            //ImenaTagova.Add("web");
+            //ImenaTagova.Add("mvc");
+            //ImenaTagova.Add("niz");
 
             return Json(ImenaTagova, JsonRequestBehavior.AllowGet);
         }

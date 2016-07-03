@@ -57,7 +57,7 @@
 
 </form>
 
-<form method="get" action="@Url.Action("NovoPitanje", "NovoPitanje", new { idOblasti = Model.Id })">
+<form method="get" action="@Url.Action("NovoPitanje", "NovoPitanje", new { idOblasti = @Model.Id },null)">
     <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -70,7 +70,8 @@
 
 
         <div class="container postaviPitanje" >
-            <button id="postaviNovoPitanje" type="submit" class="btn btn-primary" >Postavi novo pitanje</button>
+            @*<button id="postaviNovoPitanje" type="submit" class="btn btn-primary" >Postavi novo pitanje</button>*@
+            @Html.ActionLink("Postavi novo pitanje", "NovoPitanje", "NovoPitanje", new { idOblasti = @Model.Id }, new { @class = "btn btn-primary" })
         </div>
 
 
