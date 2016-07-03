@@ -30,6 +30,8 @@ namespace AdiutorBootstrap.Models
 
         public int AutorId { get; set; }
 
+        public int PitanjeId { get; set; }
+
         public IList<KomentarModel> Komentari;
 
         public OdgovorModel()

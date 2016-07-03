@@ -119,15 +119,15 @@
             var nazivOblasti = $('#naslovObl').val();
             var tekstOblasti = $('#opisObl').val();
 
-            var oblast = { ImeOblasti: nazivOblasti, OpisOblasti: tekstOblasti, PredmetId: idPredmeta };
+            var oblast = { ImeOblasti: nazivOblasti, OpisOblasti: tekstOblasti, PredmetId: idPredmeta }
 
             $.post("DodajNovuOblast", oblast, function (data) {
                 //hendler funkcija;
                 $('#oblastiPredmeta').append("<div id='karticaOblast'><div id='nazivOblasti'>"+data.ImeOblasti+"</div> <article id='opisOblasti'>"+ data.OpisOblasti+"</article></div>");
 
               
-            });
-    
+            })
+
         }
     }
 </script>

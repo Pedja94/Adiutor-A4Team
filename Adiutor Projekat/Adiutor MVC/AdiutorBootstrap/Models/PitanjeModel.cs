@@ -33,6 +33,8 @@ namespace AdiutorBootstrap.Models
 
         public int BrojOdgovora { get; set; }
 
+
+        public int ProfesorId { get; set; }
     
         public PitanjeModel()
         {

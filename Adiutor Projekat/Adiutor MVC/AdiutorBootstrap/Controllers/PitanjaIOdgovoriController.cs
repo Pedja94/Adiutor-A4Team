@@ -128,7 +128,7 @@ namespace AdiutorBootstrap.Controllers
             PitanjaOdgovoriKomentariModel model = new PitanjaOdgovoriKomentariModel();
             PitanjeModel pitanje = new PitanjeModel();
       
-
+          
             List<OdgovorDTO> odgovori = Odgovori.VratiSve(pitanje.Id);
             //u listi sada imamo sve odgovore, ostaje da njihove parametre prosledimo modelu
             int i = 0;
@@ -151,7 +151,7 @@ namespace AdiutorBootstrap.Controllers
             KorisnikDTO kor = Korisnici.Procitaj(pit.KorisnikId);
             OblastDTO obl=Oblasti.Procitaj(pit.OblastId);
 
-
+            PredmetDTO pred = Predmeti.Procitaj(obl.PredmetId);
 
 
             pitanje.Text = pit.Tekst;
@@ -163,6 +163,7 @@ namespace AdiutorBootstrap.Controllers
             pitanje.NaslovPitanja = pit.Naslov;
             pitanje.Id = pit.Id;
             pitanje.SlikaAutora = kor.Slika;
+            pitanje.ProfesorId = pred.ProfesorId;
 
 
             foreach (var tag in tagovi)
@@ -363,5 +364,20 @@ namespace AdiutorBootstrap.Controllers
                 return Json(null);
             }
         }
+
+        [HttpPost]
+        public JsonResult OdobriOdgovor(OdgovorModel odgovor)
+        {
+            OdgovorDTO odg = Odgovori.Procitaj(odgovor.Id);
+            odg.Odobreno = 1;
+
+            Odgovori.Izmeni(odg);
+
+            return Json(odgovor, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+   
 	}
 }

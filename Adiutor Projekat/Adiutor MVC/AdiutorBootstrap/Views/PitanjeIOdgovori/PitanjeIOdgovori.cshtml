@@ -149,12 +149,26 @@
                 {
                     <table id="tabelaOdgovori" class="@odgovor.Id">
                         <tr id="informacijeOodgovorima">
-                            <td id="brojOdgovora">
-                                @(i + 1). odgovor
+                            <td class="odobrenNeodobren">
+                                <div class="slicicaZaOdobravanje" id="slicica+@odgovor.Id">
+                                    @if (odgovor.Odobreno == 1)
+                                    {
+                                        //ako je odgovor odobren, onda cemo prikazati slicicu
+                                        <img src="~/Content/Images/odobren.png" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/neodobren.png" />
+                                    }
+                                </div>
                             </td>
                             <td id="autorOdgovora">
                                 @Html.ActionLink(odgovor.AutorOdgovora, "KlikNaKorisnika", "KorisnickiPanel", new { korisnikId = odgovor.AutorId }, null)
-                           
+                               
+                                @if ((int)Session["Id"] == @Model.Pitanje.ProfesorId && odgovor.Odobreno!=1)
+                                { 
+                                     <button id="odobri+@odgovor.Id" class="btn btn-link" onclick="OdobriOdgovor(@odgovor.Id,@Model.Pitanje.Id)">Odobri odgovor</button>
+                                }
                             </td>
                             <td id="vremeOdgovora">
                                 @Html.DisplayTextFor(m => m.Odgovori[i].DatumVreme)
@@ -196,8 +210,8 @@
                                     <table class="tableZaKomentar">
                                         <tr class="imeIvreme">
                                             <td>
-                                                <a href="/KorisnickiPanel/KlikNaKorisnika?korisnikId=@komentar.AutorId">@komentar.ImeAutora</a> 
-                                                &nbsp;
+                                                <a href="/KorisnickiPanel/KlikNaKorisnika?korisnikId=@komentar.AutorId">@komentar.ImeAutora</a>
+                                                 &nbsp;
                                             </td>
                                             <td id="tekstKomentara">
                                                 @komentar.DatumVreme
@@ -256,6 +270,26 @@
 
 <script type="text/javascript">
     {
+        function OdobriOdgovor(odgovorId, pitanjeId)
+        {
+            var idOdgovora=odgovorId;
+            var idPitanja=pitanjeId;
+
+            var odgovor={ Id:odgovorId, PitanjeId:idPitanja};
+
+            $.post("OdobriOdgovor",odgovor,function(data){
+                //hendler funkcija u slucaju uspeha ajax poziva
+                //treba da ovde nadjem div gde se nalazi ikonica odobreno/neodobreno i stavim odobreno
+                //takodje da obrisem link koji omogucava odobravanje
+                $('#slicica+'+data.Id+'').empty();
+                $('#slicica+'+data.Id+'').append("<img src='~/Content/Images/odobren.png'/>");
+
+                $('#odobri+'+data.Id+'').remove();
+            
+            });         
+
+        }
+
         function nactajFormuZaKomentar(id) {
             if(document.getElementById(id)==null){
                 var odgovor = document.getElementsByClassName(id)[0];
