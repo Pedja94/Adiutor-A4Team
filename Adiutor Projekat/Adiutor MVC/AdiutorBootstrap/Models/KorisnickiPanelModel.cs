@@ -13,10 +13,14 @@ namespace AdiutorBootstrap.Models
 
         public IList<PitanjeModel> Pitanja { get; set; }
 
+        public IList<PredmetModel> ListaZaduzenihPredmeta { get; set; }
+
+
         public KorisnickiPanelModel()
         {
             Pitanja = new List<PitanjeModel>();
             Korisnik = new KorisnikModel();
+            ListaZaduzenihPredmeta = new List<PredmetModel>();
         }
     }
 }

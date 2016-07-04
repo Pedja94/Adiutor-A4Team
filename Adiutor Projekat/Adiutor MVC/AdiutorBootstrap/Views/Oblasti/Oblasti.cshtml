@@ -129,7 +129,7 @@
         $.post("/Oblasti/DodajLiteraturu", literatura, function (data) {
             $('#mdl').modal('hide');
 
-            $('#listaLiterature').append("<li><a href='http:\\" + data.Link + "'>" + data.Naziv + "</a></li>");
+            $('#listaLiterature').append("<li><a href='https://" + data.Link + "'>" + data.Naziv + "</a></li>");
 
         });
     }

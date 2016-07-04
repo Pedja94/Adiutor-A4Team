@@ -22,6 +22,8 @@
            </div>
     </form>
 
+    @Html.HiddenFor(m => m.Korisnik.Role, new { })
+
 @if (ViewBag.Izmena != true) 
 { 
     <div id="opisi" class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
@@ -32,6 +34,7 @@
         <label>Smer:&nbsp;  </label>@Html.DisplayTextFor(m=> m.Korisnik.Smer) <br />
         <label>Opis:&nbsp;  </label><div class="opisKorisnika">@Html.DisplayTextFor(m=> m.Korisnik.Opis)</div>
         <label>E-mail adresa:&nbsp; </label>@Html.DisplayTextFor(m=> m.Korisnik.Email)<br />
+       
     </div>
 
 }
@@ -66,7 +69,7 @@ else if (ViewBag.Izmena == true)
 
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 forma-za-pretrazivanje-i-navigaciju">
     
-    @if ((int)Session["Id"] == @Model.Korisnik.Id)
+    @if (((int)Session["Id"] == @Model.Korisnik.Id) && (@Model.Korisnik.Role!=2))
     { 
         <form method="post" action="@Url.Action("TrazenjePoTagu","Oblasti")">
             <div id="grupa">
@@ -84,6 +87,30 @@ else if (ViewBag.Izmena == true)
                  <a id="dugmePredmet" href="@Url.Action("Odabir_predmeta","Odabir_predmeta")" class="btn btn-success">Odaberi ručno predmete koji te interesuju</a>
              </div> 
         </form>
+    }
+    else
+    {
+         <form>
+            <fieldset>
+                <legend>Predmeti za koje ste zaduženi:</legend>
+                <ul>
+                    @foreach (var predmet in @Model.ListaZaduzenihPredmeta)
+                    {   
+                        
+                        <li id="zaduzeniPredmeti">
+                            <div id="Predmet">
+                                <div id="predmetNaziv">
+                                    @Html.ActionLink(@predmet.NazivPredmeta, "VratiPredmetPoId", "Predmet", new { predmetId = predmet.Id }, null)
+                                 </div>
+                                
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </fieldset>
+
+    </form>
+
     }
     
     <form>

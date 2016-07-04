@@ -47,6 +47,7 @@ namespace AdiutorBootstrap.Models
 
         public int Id { get; set; }
 
+        public int Role { get; set; }//1 je korisnik, 2 je profesor
 
         
 

@@ -42,13 +42,22 @@ namespace AdiutorBootstrap.Controllers
                 else if(Korisnici.Nadji(tagovi)!=null)
                 {
                     //sada ovde treba da vratimo korinsicki panel trazenog korisnika
-                    KorisnikDTO kor = Korisnici.Nadji(tagovi);
-                    HomeController con = new HomeController();
-                    return View("~/Views/Home/KorisnickiPanel.cshtml",con.KreirajKorisnickiPanelModel(kor.Id));
+                    try
+                    {
+                        KorisnikDTO kor = Korisnici.Nadji(tagovi);
+                        HomeController con = new HomeController();
+                        return View("~/Views/Home/KorisnickiPanel.cshtml", con.KreirajKorisnickiPanelModel(kor.Id));
+                    }
+                    catch (Exception ex)
+                    {
+                        return null;
+                    }
                 }
                 else
                 {
-                    return View("~/Views/Oblasti/PrikazListePitanja.cshtml", null);
+                    //KorisnikDTO kor = Korisnici.Nadji(tagovi);
+                    HomeController con = new HomeController();
+                    return View("~/Views/Home/KorisnickiPanel.cshtml", con.KreirajKorisnickiPanelModel((int)Session["Id"]));
                 }
             }
             catch (Exception e)
@@ -169,7 +178,7 @@ namespace AdiutorBootstrap.Controllers
         public JsonResult DodajLiteraturu(LiteraturaModel literatura)
         {
             LiteraturaDTO lit = new LiteraturaDTO();
-            lit.Link = literatura.Link;
+            lit.Link ="https://"+literatura.Link;
             lit.Naziv = literatura.Naziv;
             lit.OblastId = literatura.OblastId;
 

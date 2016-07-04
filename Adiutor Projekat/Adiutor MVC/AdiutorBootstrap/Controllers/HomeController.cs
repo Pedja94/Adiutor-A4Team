@@ -110,9 +110,8 @@ namespace AdiutorBootstrap.Controllers
                 korisnik.Slika = user.Slika;
                 korisnik.Email = user.Email;
                 korisnik.Id = user.Id;
+                korisnik.Role = user.RoleId;
 
-             
-                
                 List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
                 List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
                 KorisnickiPanelController con = new KorisnickiPanelController();
@@ -125,6 +124,28 @@ namespace AdiutorBootstrap.Controllers
                 KorisnickiPanelModel panel = new KorisnickiPanelModel();
                 panel.Korisnik = korisnik;
                 panel.Pitanja = PitanjaKorisnika;
+
+                if (korisnik.Role == 2)
+                {
+                    List<PredmetDTO> ZaduzeniPredmeti = Predmeti.VratiSvePredmeteZaduzenog(korisnik.Id);
+
+                    foreach (var pr in ZaduzeniPredmeti)
+                    {
+                        PredmetModel pred = new PredmetModel()
+                        {
+                            PregledaProfesor = true,
+                            GodinaStudija = pr.GodinaStudija,
+                            Id = pr.Id,
+                            NazivPredmeta = pr.Naziv,
+                            OpisPredmeta = pr.Opis,
+                            ZaduzeniProfesor = (string)Session["Username"],
+                        };
+                        panel.ListaZaduzenihPredmeta.Add(pred);
+                    }
+                }
+             
+                
+               
              
                 return View("KorisnickiPanel",panel);
 
@@ -172,6 +193,7 @@ namespace AdiutorBootstrap.Controllers
             korisnik.BrojIndeksa = user.BrojIndeksa;
             korisnik.Slika = user.Slika;
             korisnik.Email = user.Email;
+            korisnik.Role = user.RoleId;
 
             
 
@@ -188,6 +210,25 @@ namespace AdiutorBootstrap.Controllers
             KorisnickiPanelModel panel = new KorisnickiPanelModel();
             panel.Korisnik = korisnik;
             panel.Pitanja = PitanjaKorisnika;
+
+            if (korisnik.Role == 2)
+            {
+                List<PredmetDTO> ZaduzeniPredmeti = Predmeti.VratiSvePredmeteZaduzenog(korisnik.Id);
+
+                foreach (var pr in ZaduzeniPredmeti)
+                {
+                    PredmetModel pred = new PredmetModel()
+                    {
+                        PregledaProfesor = true,
+                        GodinaStudija = pr.GodinaStudija,
+                        Id = pr.Id,
+                        NazivPredmeta = pr.Naziv,
+                        OpisPredmeta = pr.Opis,
+                        ZaduzeniProfesor = (string)Session["Username"],
+                    };
+                    panel.ListaZaduzenihPredmeta.Add(pred);
+                }
+            }
              
 
             return View("KorisnickiPanel", panel);
@@ -208,6 +249,7 @@ namespace AdiutorBootstrap.Controllers
             korisnik.Slika = user.Slika;
             korisnik.Email = user.Email;
             korisnik.Id = korisnikId;
+            korisnik.Role = user.RoleId;
 
             List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
             List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
@@ -221,6 +263,27 @@ namespace AdiutorBootstrap.Controllers
             KorisnickiPanelModel panel = new KorisnickiPanelModel();
             panel.Korisnik = korisnik;
             panel.Pitanja = PitanjaKorisnika;
+
+            if (korisnik.Role == 2)
+            {
+                List<PredmetDTO> ZaduzeniPredmeti = Predmeti.VratiSvePredmeteZaduzenog(korisnik.Id);
+
+                foreach (var pr in ZaduzeniPredmeti)
+                {
+                    PredmetModel pred = new PredmetModel()
+                    {
+                        PregledaProfesor = true,
+                        GodinaStudija = pr.GodinaStudija,
+                        Id = pr.Id,
+                        NazivPredmeta = pr.Naziv,
+                        OpisPredmeta = pr.Opis,
+                        ZaduzeniProfesor = (string)Session["Username"],
+                    };
+                    panel.ListaZaduzenihPredmeta.Add(pred);
+                }
+            }
+             
+
 
             return panel;
         }
@@ -242,8 +305,9 @@ namespace AdiutorBootstrap.Controllers
             korisnikZaIzmenu.Opis = korisnik.Opis; 
             korisnikZaIzmenu.BrojIndeksa = korisnik.BrojIndeksa;
             korisnikZaIzmenu.Smer = korisnik.Smer;
+            korisnikZaIzmenu.RoleId = korisnik.Role;
 
-
+           
             string slikaputanja;
             if (korisnik.FajlSlika != null) { 
                 if (korisnik.FajlSlika.ContentLength > 0)
