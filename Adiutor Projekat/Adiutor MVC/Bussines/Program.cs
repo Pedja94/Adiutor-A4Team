@@ -331,35 +331,35 @@ namespace Bussiness
 
                 //Profesori.Dodaj(profa7);
 
-                PredmetDTO predmet8 = Predmeti.Procitaj(121);
+                //PredmetDTO predmet8 = Predmeti.Procitaj(121);
 
-                ProfesorDTO profa8 = new ProfesorDTO
-                {
-                    PunoIme = "Vladimir Stanković",
-                    PredmetId = predmet8.Id
-                };
+                //ProfesorDTO profa8 = new ProfesorDTO
+                //{
+                //    PunoIme = "Vladimir Stanković",
+                //    PredmetId = predmet8.Id
+                //};
 
-                Profesori.Dodaj(profa8);
+                //Profesori.Dodaj(profa8);
 
-                PredmetDTO predmet9 = Predmeti.Procitaj(128);
+                //PredmetDTO predmet9 = Predmeti.Procitaj(128);
 
-                ProfesorDTO profa9 = new ProfesorDTO
-                {
-                    PunoIme = "Ivica Marković",
-                    PredmetId = predmet9.Id
-                };
+                //ProfesorDTO profa9 = new ProfesorDTO
+                //{
+                //    PunoIme = "Ivica Marković",
+                //    PredmetId = predmet9.Id
+                //};
 
-                Profesori.Dodaj(profa9);
+                //Profesori.Dodaj(profa9);
 
-                PredmetDTO predmet10 = Predmeti.Procitaj(129);
+                //PredmetDTO predmet10 = Predmeti.Procitaj(129);
 
-                ProfesorDTO profa10 = new ProfesorDTO
-                {
-                    PunoIme = "Aleksandar Dimitrijevic",
-                    PredmetId = predmet10.Id
-                };
+                //ProfesorDTO profa10 = new ProfesorDTO
+                //{
+                //    PunoIme = "Aleksandar Dimitrijevic",
+                //    PredmetId = predmet10.Id
+                //};
 
-                Profesori.Dodaj(profa10);
+                //Profesori.Dodaj(profa10);
 
                 //Korisnik_OdgovorDTO ko = new Korisnik_OdgovorDTO
                 //{
@@ -416,6 +416,8 @@ namespace Bussiness
                 //PredmetDTO pr = Predmeti.Procitaj(128);
                 //KorisnikDTO k = Korisnici.Procitaj(37);
                 //Predmeti.DodajZaduzenog(pr, k);
+
+                List<PredmetDTO> lista = Predmeti.VratiSvePredmeteZaduzenog(232);
             }
             catch (Exception e)
             {

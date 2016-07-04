@@ -334,5 +334,40 @@ namespace Business.DataAccess
             }
         }
 
+
+        static public List<PredmetDTO> VratiSvePredmeteZaduzenog(int profesorId)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                List<PredmetDTO> retVal = new List<PredmetDTO>();
+                List<Predmet> predmeti = (from k in s.Query<Predmet>()
+                                          where k.ZaduzeniProfesor.Id == profesorId
+                                          select k).ToList<Predmet>();
+   
+                foreach (Predmet predmet in predmeti)
+                {
+                    PredmetDTO dto = new PredmetDTO()
+                    {
+                        Id = predmet.Id,
+                        Naziv = predmet.Naziv,
+                        Semestar = predmet.Semestar,
+                        GodinaStudija = predmet.GodinaStudija,
+                        Opis = predmet.Opis,
+                        ZaduzenId = profesorId
+                    };
+
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
     }
 }
