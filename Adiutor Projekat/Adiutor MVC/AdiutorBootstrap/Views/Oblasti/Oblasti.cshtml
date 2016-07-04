@@ -16,7 +16,6 @@
             </div>*@
         <div class="naz"><h1 class="nazivOblasti">@Model.Naziv</h1></div>
         <ul id="listaLiterature" @*class="col-lg-5 col-md-4"*@>
-            <li><a href="http://www.wikipedia.org">Wikipedia</a></li>
             @foreach (var lit in @Model.Literatura)
             {
                 <li>@Html.ActionLink(lit.Naziv, lit.Link)</li>
