@@ -16,16 +16,9 @@ namespace AdiutorBootstrap.Controllers
 
         //
         // GET: /Administracija/
-        public ActionResult Administracija(int korisnikId)
+        public ActionResult Administracija()
         {
-            KorisnikDTO proveri = Korisnici.Procitaj(korisnikId);
-            if(proveri.RoleId==3)
-            {
-                return View("~/Views/Administracija/Administracija.cshtml");
-            }
-            else{
-                return null;
-            }
+            return View();
         }
 
         public ActionResult AdministracijaSmerova()

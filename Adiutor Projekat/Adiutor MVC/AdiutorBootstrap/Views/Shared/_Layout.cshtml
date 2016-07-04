@@ -60,6 +60,10 @@
                            
                       
                             <li>@Html.ActionLink("Postavi novo pitanje", "NovoPitanje", "NovoPitanje", new { idOblasti = 0 }, new { })</li>
+                            @if (Session["Role"] != null && (int)Session["Role"] == 3)
+                            {
+                                  <li>@Html.ActionLink("Administratorski panel", "Administracija", "Administracija")</li>
+                            }
                             <li role="separator" class="divider"></li>
                             <li>@Html.ActionLink("Odjavi se","LogOut","Home")</li>
                        

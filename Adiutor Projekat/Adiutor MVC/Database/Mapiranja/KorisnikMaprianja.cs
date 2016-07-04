@@ -33,8 +33,8 @@ namespace Database.Mapiranja
             References(x => x.ImaStatus).Column("STATUS_ID").LazyLoad();
 
             HasManyToMany(x => x.OcenjeniOdgovori).Table("KORISNIK_ODGOVOR").ParentKeyColumn("KORISNIK_ID")
-                .ChildKeyColumn("ODGOVOR_ID")
-                .Cascade.All();
+                .ChildKeyColumn("ODGOVOR_ID");
+               // .Cascade.All();
         }
     }
 }

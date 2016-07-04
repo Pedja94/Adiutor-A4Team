@@ -153,8 +153,23 @@ namespace AdiutorBootstrap.Controllers
                 }
                 else
                 {
-                    AdministracijaController admin = new AdministracijaController();
-                    return admin.Administracija(user.Id);
+                    Session["Id"] = user.Id;
+                    Session["Role"] = user.RoleId;
+                    ViewBag.foto = user.Slika;
+                    ViewBag.Ime = user.Ime;
+                    ViewBag.Prezime = user.Prezime;
+                    ViewBag.Username = user.Username;
+
+                    Session["Username"] = user.Username;
+                    Session["Ime"] = user.Ime;
+                    Session["Prezime"] = user.Prezime;
+                    Session["Password"] = user.Password;
+                    Session["GodinaStudija"] = user.GodinaStudija;
+                    ViewBag.foto = user.Slika;
+                    ViewBag.brIndeksa = user.BrojIndeksa;
+                    Session["Status"] = user.StatusId;
+
+                    return RedirectToAction("Administracija", "Administracija");
                 }
             }
             else
@@ -312,7 +327,6 @@ namespace AdiutorBootstrap.Controllers
             korisnikZaIzmenu.Opis = korisnik.Opis; 
             korisnikZaIzmenu.BrojIndeksa = korisnik.BrojIndeksa;
             korisnikZaIzmenu.Smer = korisnik.Smer;
-            korisnikZaIzmenu.RoleId = korisnik.Role;
 
            
             string slikaputanja;
