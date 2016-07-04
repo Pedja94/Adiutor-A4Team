@@ -36,7 +36,7 @@
 
                   
                             <div class="inp">
-                                <input list="listaTagova" id="traziInput" name="tagovi" type="text" size="18" class="kontrola form-control" onkeyup="ajaxPozivTagoviNaslovna()"  />
+                                <input list="listaTagova" id="traziInput" name="tagovi" type="text" size="18" class="kontrola form-control" onkeyup="ajaxPozivTagoviNaslovna()" placeholder="Pretraži portal" />
                                  <datalist id="listaTagova">
                                  
     
@@ -150,5 +150,12 @@
 
         }
 
+
+        function inputFocus(i) {
+            if (i.value == i.defaultValue) { i.value = ""; i.style.color = "#000"; }
+        }
+        function inputBlur(i) {
+            if (i.value == "") { i.value = i.defaultValue; i.style.color = "#888"; }
+        }
     }
 </script>

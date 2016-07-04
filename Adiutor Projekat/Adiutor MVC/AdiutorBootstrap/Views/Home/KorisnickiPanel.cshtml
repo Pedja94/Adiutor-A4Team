@@ -90,6 +90,7 @@ else if (ViewBag.Izmena == true)
     }
     else
     {
+        if (Model.Korisnik.Id == (int)Session["Id"]) { 
          <form>
             <fieldset>
                 <legend>Predmeti za koje ste zaduženi:</legend>
@@ -108,9 +109,9 @@ else if (ViewBag.Izmena == true)
                     }
                 </ul>
             </fieldset>
-
+            
     </form>
-
+    }
     }
     
     <form>

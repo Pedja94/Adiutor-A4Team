@@ -240,7 +240,7 @@
 }
 
 .image-container {
-    background-image: url('https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/13232944_10209153813620640_8681434930084924708_n.jpg?oh=f388a66ec528253460eb85f5df839faa&oe=57E11FC3');
+    /*background-image: url('https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/13232944_10209153813620640_8681434930084924708_n.jpg?oh=f388a66ec528253460eb85f5df839faa&oe=57E11FC3');*/
     background-size: cover;
     background-repeat: no-repeat;
     width: 60px;
@@ -457,7 +457,7 @@ td{
     overflow:hidden;
 }
 
-div > img {
+/*div > img {
     position:absolute;
     top:50%;
     min-height:100%;
@@ -465,10 +465,15 @@ div > img {
     left:50%;
     -webkit-transform: translate(-50%, -50%);
     min-width:100%;
-}
+}*/
 
 
 .img{
+    max-width:100%;
+    max-height:100%;
+}
+
+#slikaKorisnikaa{
     max-width:100%;
     max-height:100%;
 }

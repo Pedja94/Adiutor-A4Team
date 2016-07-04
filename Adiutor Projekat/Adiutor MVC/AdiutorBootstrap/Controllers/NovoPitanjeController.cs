@@ -29,6 +29,10 @@ namespace AdiutorBootstrap.Controllers
             }    
         }
 
+        //public ActionResult NovoPitanje()
+        //{
+        //    return View();
+        //}
         public ActionResult NovoPitanje1(NovoPitanjeModel model)
         {
             return View("NovoPitanje",model);
