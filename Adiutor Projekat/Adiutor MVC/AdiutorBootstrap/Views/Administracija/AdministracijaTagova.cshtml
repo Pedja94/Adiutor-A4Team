@@ -1,0 +1,88 @@
+﻿@model AdiutorBootstrap.Models.AdminSviTagoviModel
+@{
+    ViewBag.Title = "AdministracijaTagova";
+}
+
+<header>
+    <h2 class="center">Administracija tagova</h2>
+</header>
+
+<h2>Lista tagova</h2>
+<div class="row">
+    <form action="@Url.Action("DodajTag", "Administracija")" method="get">
+        <input type="submit" class="btn btn-success" value="Dodaj tag" />
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    @if (Model.listaTagova != null)
+    {
+        <table class="col-lg-6 table">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Tag</th>
+                    <th>Opis</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tag in Model.listaTagova)
+                {
+                    <tr>
+                        <td>@tag.Ime</td>
+                        <td>@tag.TagIme</td>
+                        <td>@tag.Opis</td>
+                        <td><a href="/Administracija/ObrisiTag?tagId=@tag.TagID">Obriši</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="col-lg-6">Nema tagova u bazi.</p>
+    }
+    <div class="col-lg-3"></div>
+</div>
+
+<h2>Predlozi tagova od strane korisnika</h2>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    @if (Model.listaPredlozenihTagova != null)
+    {
+        <table class="col-lg-6 table">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Tag</th>
+                    <th>Opis</th>
+                    <th>Datum i vreme predloga</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tag in Model.listaPredlozenihTagova)
+                {
+                    <tr>
+                        <td>@tag.Ime</td>
+                        <td>@tag.TagIme</td>
+                        <td>@tag.Opis</td>
+                        <td>@tag.DatumPostavljanja</td>
+                        <td><a href="/Administracija/OdobriTag?tagId=@tag.TagID">Odobri</a></td>
+                        <td><a href="/Administracija/OdbaciTag?tagId=@tag.TagID">Odbaci</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="col-lg-6">Nema predloženih tagova u bazi.</p>
+    }
+    <div class="col-lg-3"></div>
+</div>
+

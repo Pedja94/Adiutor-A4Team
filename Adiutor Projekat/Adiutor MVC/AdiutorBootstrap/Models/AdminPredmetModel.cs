@@ -59,4 +59,36 @@ namespace AdiutorBootstrap.Models
         public int StatusID { get; set; }
         public string StatusName { get; set; }
     }
+
+    public class AdminTagModel
+    {
+        [Required]
+        [Display(Name = "Ime")]
+        public string Ime { get; set; }
+
+        [Display(Name = "Opis")]
+        public string Opis { get; set; }
+
+        [Required]
+        [Display(Name = "Tag ime")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "Razmaci nisu dozvoljeni")]
+        public string TagIme { get; set; }
+
+        public int TagID { get; set; }
+
+        public DateTime DatumPostavljanja { get; set; }
+    }
+
+    public class AdminSviTagoviModel
+    {
+        public List<AdminTagModel> listaTagova;
+        public List<AdminTagModel> listaPredlozenihTagova;
+
+        public AdminSviTagoviModel()
+        {
+            listaTagova = new List<AdminTagModel>();
+            listaPredlozenihTagova = new List<AdminTagModel>();
+        }
+
+    }
 }

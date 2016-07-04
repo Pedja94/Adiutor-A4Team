@@ -187,5 +187,41 @@ namespace Business.DataAccess
                 return null;
             }
         }
+
+        static public List<Predlozeni_TagDTO> VratiSveNeObradjene()
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+
+                List<Predlozeni_Tag> Predlozeni_Tagi = (from k in s.Query<Predlozeni_Tag>()
+                                                        where k.DatumObrade == null
+                                                        select k).ToList<Predlozeni_Tag>();
+
+                List<Predlozeni_TagDTO> retVal = new List<Predlozeni_TagDTO>();
+
+                foreach (Predlozeni_Tag p in Predlozeni_Tagi)
+                {
+                    Predlozeni_TagDTO dto = new Predlozeni_TagDTO()
+                    {
+                        Id = p.Id,
+                        DatumObrade = p.DatumObrade,
+                        DatumPostavljanja = p.DatumPostavljanja,
+                        Ime = p.Ime,
+                        Opis = p.Opis,
+                        TagIme = p.TagIme
+                    };
+                    retVal.Add(dto);
+                }
+
+                return retVal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
     }
 }

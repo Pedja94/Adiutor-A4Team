@@ -1,0 +1,38 @@
+﻿@model AdiutorBootstrap.Models.AdminTagModel
+@{
+    ViewBag.Title = "DodajTag";
+}
+
+<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6 formaRegistracija skloniMarginuZaRegistraciju">
+    <div class=" ">
+        <style>
+            .center-page {
+                margin-top: 120px;
+            }
+        </style>
+
+        <form method="post" action="@Url.Action("DodajTag", "Administracija")">
+            <input type="hidden" name="TagId" value="@Model.TagID" />
+
+            @Html.LabelFor(m => m.Ime, new { })
+            @Html.TextBoxFor(m => m.Ime, new { @class = "form-control", @id = "ime", @name = "Ime", @placeholder = "Ime" })
+            @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(m => m.TagIme, new { })
+            @Html.TextBoxFor(m => m.TagIme, new { @class = "form-control", @id = "tagime", @name = "TagIme", @placeholder = "Tag Ime" })
+            @Html.ValidationMessageFor(model => model.TagIme, "", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(m => m.Opis, new { })
+            @Html.TextBoxFor(m => m.Opis, new { @class = "form-control", @id = "opis", @name = "Opis", @placeholder = "Opis" })
+            @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+            <br />
+
+            <span>
+                <input type="submit" class="btn btn-success space-vert" value="Dodaj" />
+            </span>
+
+        </form>
+    </div>
+</div>

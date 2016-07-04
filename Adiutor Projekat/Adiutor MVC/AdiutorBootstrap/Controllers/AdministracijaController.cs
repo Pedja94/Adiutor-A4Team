@@ -356,5 +356,93 @@ namespace AdiutorBootstrap.Controllers
 
              return RedirectToAction("AdministracijaKorisnika");
         }
+
+        public ActionResult AdministracijaTagova()
+        {
+            AdminSviTagoviModel model = new AdminSviTagoviModel();
+            List<TagDTO> tagovi = Tagovi.VratiSve();
+            List<Predlozeni_TagDTO> predlozeni = PredlozeniTagovi.VratiSveNeObradjene();
+
+            if (tagovi != null)
+            {
+                foreach (TagDTO tag in tagovi)
+                {
+                    model.listaTagova.Add(new AdminTagModel()
+                    {
+                        TagID = tag.Id,
+                        Ime = tag.Ime,
+                        TagIme = tag.TagIme,
+                        Opis = tag.Opis,
+                    });
+                }
+            }
+
+            if (predlozeni != null)
+            {
+                foreach (Predlozeni_TagDTO tag in predlozeni)
+                {
+                    model.listaPredlozenihTagova.Add(new AdminTagModel()
+                    {
+                        TagID = tag.Id,
+                        Ime = tag.Ime,
+                        TagIme = tag.TagIme,
+                        Opis = tag.Opis,
+                        DatumPostavljanja = tag.DatumPostavljanja
+                    });
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult DodajTag()
+        {
+            AdminTagModel model = new AdminTagModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DodajTag(AdminTagModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                TagDTO tag = new TagDTO();
+                tag.Ime = model.Ime;
+                tag.TagIme = model.TagIme;
+                tag.Opis = tag.Opis;
+
+                Tagovi.Dodaj(tag);
+
+                return RedirectToAction("AdministracijaTagova");
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ObrisiTag(int tagId)
+        {
+            Tagovi.Obrisi(tagId);
+            return RedirectToAction("AdministracijaTagova");
+        }
+
+        [HttpGet]
+        public ActionResult OdobriTag(int tagId)
+        {
+            Predlozeni_TagDTO tag = PredlozeniTagovi.Procitaj(tagId);
+            Tagovi.DodajPredlozeniTag(tag);
+            return RedirectToAction("AdministracijaTagova");
+        }
+
+        [HttpGet]
+        public ActionResult OdbaciTag(int tagId)
+        {
+            Predlozeni_TagDTO tag = PredlozeniTagovi.Procitaj(tagId);
+            tag.DatumObrade = DateTime.Now;
+            PredlozeniTagovi.Izmeni(tag);
+            return RedirectToAction("AdministracijaTagova");
+        }
 	}
 }
