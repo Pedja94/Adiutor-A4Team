@@ -13,27 +13,36 @@ namespace AdiutorBootstrap.Controllers
     {
         //
         // GET: /Administracija/
-        public ActionResult Administracija()
+        public ActionResult Administracija(int korisnikId)
         {
-            return View();
+            KorisnikDTO proveri = Korisnici.Procitaj(korisnikId);
+            if(proveri.RoleId==3)
+            {
+                return View("~/Views/Administracija/Administracija.cshtml");
+            }
+            else{
+                return null;
+            }
         }
 
         public ActionResult AdministracijaSmerova()
         {
-            List<SmerModel> model = new List<SmerModel>();
-            List<SmerDTO> smerovi = Smerovi.VratiSve();
+            
+                    List<SmerModel> model = new List<SmerModel>();
+                    List<SmerDTO> smerovi = Smerovi.VratiSve();
 
-            foreach (SmerDTO smer in smerovi)
-            {
-                model.Add(new SmerModel() {
-                    Id = smer.Id,
-                    PocSem = smer.PocSem,
-                    KrajSem = smer.KrajSem,
-                    Ime = smer.Ime
-                });
-            }
-
-            return View(model);
+                    foreach (SmerDTO smer in smerovi)
+                    {
+                        model.Add(new SmerModel() {
+                            Id = smer.Id,
+                            PocSem = smer.PocSem,
+                            KrajSem = smer.KrajSem,
+                            Ime = smer.Ime
+                        });
+                    }
+                  return View(model);
+   
+            
         }
 
         [HttpGet]

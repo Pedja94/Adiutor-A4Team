@@ -79,79 +79,86 @@ namespace AdiutorBootstrap.Controllers
         public ActionResult LogIn(LogInModel model)
         {
             KorisnikDTO user = Korisnici.Nadji(model.username);
-            if (ModelState.IsValid && user != null && user.Password == model.password && user.StatusId == 1)
+            if (ModelState.IsValid && user != null && user.Password == model.password && user.StatusId == 1 )
             {
-                Session["Id"] = user.Id;
-                Session["Role"] = user.RoleId;
-                ViewBag.foto= user.Slika;
-                ViewBag.Ime = user.Ime;
-                ViewBag.Prezime = user.Prezime;
-                ViewBag.Username = user.Username;
+                if (user.RoleId != 3) 
+                { 
+                    Session["Id"] = user.Id;
+                    Session["Role"] = user.RoleId;
+                    ViewBag.foto= user.Slika;
+                    ViewBag.Ime = user.Ime;
+                    ViewBag.Prezime = user.Prezime;
+                    ViewBag.Username = user.Username;
 
-                Session["Username"] = user.Username;
-                Session["Ime"] = user.Ime;
-                Session["Prezime"] = user.Prezime;
-                Session["Password"] = user.Password;
-                Session["GodinaStudija"] = user.GodinaStudija;
-                ViewBag.foto = user.Slika;
-                ViewBag.brIndeksa = user.BrojIndeksa;
-                Session["Status"] = user.StatusId;
+                    Session["Username"] = user.Username;
+                    Session["Ime"] = user.Ime;
+                    Session["Prezime"] = user.Prezime;
+                    Session["Password"] = user.Password;
+                    Session["GodinaStudija"] = user.GodinaStudija;
+                    ViewBag.foto = user.Slika;
+                    ViewBag.brIndeksa = user.BrojIndeksa;
+                    Session["Status"] = user.StatusId;
 
-                //sada ovde treba da inicijalizujemo elemente korisnickog modela svim podacima iz baze
+                    //sada ovde treba da inicijalizujemo elemente korisnickog modela svim podacima iz baze
                 
 
-                KorisnikModel korisnik=new KorisnikModel();
-                korisnik.Ime = user.Ime;
-                korisnik.Prezime = user.Prezime;
-                korisnik.Username = user.Username;
-                korisnik.Opis = user.Opis;
-                korisnik.Smer = user.Smer;
-                korisnik.BrojIndeksa = user.BrojIndeksa;
-                korisnik.Slika = user.Slika;
-                korisnik.Email = user.Email;
-                korisnik.Id = user.Id;
-                korisnik.Role = user.RoleId;
+                    KorisnikModel korisnik=new KorisnikModel();
+                    korisnik.Ime = user.Ime;
+                    korisnik.Prezime = user.Prezime;
+                    korisnik.Username = user.Username;
+                    korisnik.Opis = user.Opis;
+                    korisnik.Smer = user.Smer;
+                    korisnik.BrojIndeksa = user.BrojIndeksa;
+                    korisnik.Slika = user.Slika;
+                    korisnik.Email = user.Email;
+                    korisnik.Id = user.Id;
+                    korisnik.Role = user.RoleId;
 
-                List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
-                List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
-                KorisnickiPanelController con = new KorisnickiPanelController();
-                foreach (var pitanjce in ListaPostavljenihPitanja)
-                {
-                    PitanjeModel pit = con.VratiPitanjaKorisnikaModel(pitanjce);
-                    PitanjaKorisnika.Add(pit);
-                }
-
-                KorisnickiPanelModel panel = new KorisnickiPanelModel();
-                panel.Korisnik = korisnik;
-                panel.Pitanja = PitanjaKorisnika;
-
-                if (korisnik.Role == 2)
-                {
-                    List<PredmetDTO> ZaduzeniPredmeti = Predmeti.VratiSvePredmeteZaduzenog(korisnik.Id);
-
-                    foreach (var pr in ZaduzeniPredmeti)
+                    List<PitanjeDTO> ListaPostavljenihPitanja = Pitanja.VratiSvaPitanjaKorisnika(user.Id);
+                    List<PitanjeModel> PitanjaKorisnika = new List<PitanjeModel>();
+                    KorisnickiPanelController con = new KorisnickiPanelController();
+                    foreach (var pitanjce in ListaPostavljenihPitanja)
                     {
-                        PredmetModel pred = new PredmetModel()
-                        {
-                            PregledaProfesor = true,
-                            GodinaStudija = pr.GodinaStudija,
-                            Id = pr.Id,
-                            NazivPredmeta = pr.Naziv,
-                            OpisPredmeta = pr.Opis,
-                            ZaduzeniProfesor = (string)Session["Username"],
-                        };
-                        panel.ListaZaduzenihPredmeta.Add(pred);
+                        PitanjeModel pit = con.VratiPitanjaKorisnikaModel(pitanjce);
+                        PitanjaKorisnika.Add(pit);
                     }
-                }
+
+                    KorisnickiPanelModel panel = new KorisnickiPanelModel();
+                    panel.Korisnik = korisnik;
+                    panel.Pitanja = PitanjaKorisnika;
+
+                    if (korisnik.Role == 2)
+                    {
+                        List<PredmetDTO> ZaduzeniPredmeti = Predmeti.VratiSvePredmeteZaduzenog(korisnik.Id);
+
+                        foreach (var pr in ZaduzeniPredmeti)
+                        {
+                            PredmetModel pred = new PredmetModel()
+                            {
+                                PregledaProfesor = true,
+                                GodinaStudija = pr.GodinaStudija,
+                                Id = pr.Id,
+                                NazivPredmeta = pr.Naziv,
+                                OpisPredmeta = pr.Opis,
+                                ZaduzeniProfesor = (string)Session["Username"],
+                            };
+                            panel.ListaZaduzenihPredmeta.Add(pred);
+                        }
+                    }
              
                 
                
              
-                return View("KorisnickiPanel",panel);
-
+                    return View("KorisnickiPanel",panel);
+                }
+                else
+                {
+                    AdministracijaController admin = new AdministracijaController();
+                    return admin.Administracija(user.Id);
+                }
             }
             else
-            {
+            { 
                 ViewBag.BadLogin = true;
                 return View("Pocetna", model);
             }
@@ -277,7 +284,7 @@ namespace AdiutorBootstrap.Controllers
                         Id = pr.Id,
                         NazivPredmeta = pr.Naziv,
                         OpisPredmeta = pr.Opis,
-                        ZaduzeniProfesor = (string)Session["Username"],
+                       
                     };
                     panel.ListaZaduzenihPredmeta.Add(pred);
                 }

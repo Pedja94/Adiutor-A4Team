@@ -32,16 +32,17 @@
                     <li>
                         <form action="@Url.Action("TrazenjePoTagu","Oblasti")" method="post">
                             @if (Session["Id"] != null)
-                    {
+                            {
 
-                        @*<div id="trazenjeGrupa" class="input-group input-group-sm" >*@
-                        <div class="inp">
-                             <input id="traziNavbar" name="tagovi" type="text" size="18" class="kontrola form-control" />
-                             <button class="btn btn-default" id="btnsrch"><span class="glyphicon glyphicon-search"></span></button>
-                        </div>
-                            @*<span class="input-group-addon"><span class="glyphicon glyphicon-search" id="lupa"><input type="submit" id="btn1" hidden="hidden" /></span></span>
-                        </div>*@
-                       
+                  
+                            <div class="inp">
+                                <input list="listaTagova" id="traziInput" name="tagovi" type="text" size="18" class="kontrola form-control" onkeyup="ajaxPozivTagoviNaslovna()"  />
+                                 <datalist id="listaTagova">
+                                 
+    
+                                  </datalist>
+                                 <button class="btn btn-default" id="btnsrch"><span class="glyphicon glyphicon-search"></span></button>
+                             </div>
 
                     }
                     </form>
@@ -54,12 +55,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nalog<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a  href="@Url.Action("Odabir_predmeta","Odabir_predmeta")">Odabir predmeta</a></li>
+                           
                             <li role="separator" class="divider"></li>
                             <!--<li class="dropdown-header">Nav header</li>-->
-                            <li><a href="#">Separated link</a></li>
                             <li>@Html.ActionLink("Odjavi se","LogOut","Home")</li>
                         </ul>
                     </li>
@@ -93,3 +92,63 @@
 </body>
 </html>
     
+
+
+
+
+
+<script type="text/javascript">
+    {
+        function ajaxPozivTagoviNaslovna() {
+            if ($('#traziInput').val()[$('#traziInput').val().length - 1] != '#' && ($('#traziInput').val().length == 2)) {
+                var prvoSlovoTaga = $('#traziInput').val()[1];
+                var prvoS = { PrvoSlovo: prvoSlovoTaga }
+
+                if ($('#traziInput').val()[0] == '#') {
+                    $.post("/NovoPitanje/VratiSveTagove", prvoS, function (data) {
+                        $('#tagoviLista').empty();
+                        $.each(data, function (index) {
+                            var opcija = document.createElement("option");
+                            opcija.value = "#" + data[index];
+
+                            var roditelj = document.getElementById("listaTagova");
+                            $('#listaTagova').empty();
+                            roditelj.appendChild(opcija);
+                        });
+                    });
+                }
+            }
+
+
+            if ($('#traziInput').val()[($('#traziInput').val().length) - 3] == ' ' && $('#traziInput').val()[$('#traziInput').val().length - 2] == '#') {
+                //ako je blanko pretposlednji uneti znak, a poslednji #, znaci da kucamo sledeci tag
+
+                var uneseniTagovi1 = $('#tagsLista').val();
+
+                var uneseniTagovi = uneseniTagovi1.substring(0, uneseniTagovi1.length - 1);
+
+                var prvoSlovoTaga = $('#tagsLista').val()[$('#tagsLista').val().length - 1];
+                var prvoS = { PrvoSlovo: prvoSlovoTaga }
+
+                $.post("/NovoPitanje/VratiSveTagove", prvoS, function (data) {
+                    $('#tagovLista').empty();
+                    $.each(data, function (index) {
+                        var opcija = document.createElement("option");
+                        opcija.value = uneseniTagovi + data[index];
+
+                        var roditelj = document.getElementById("listaTagova");
+                        $('#listaTagova').empty();
+                        roditelj.appendChild(opcija);
+
+                    });
+                });
+
+
+
+
+            }
+
+        }
+
+    }
+</script>

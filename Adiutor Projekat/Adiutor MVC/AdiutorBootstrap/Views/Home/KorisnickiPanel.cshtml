@@ -73,12 +73,12 @@ else if (ViewBag.Izmena == true)
     { 
         <form method="post" action="@Url.Action("TrazenjePoTagu","Oblasti")">
             <div id="grupa">
-                <b id="labela">Pretraži portal:</b>
-                <input list="listaTagova" id="traziInput" name="tagovi" type="text" size="25" class="form-control" onkeyup="ajaxPozivTagovi()" />
-                <datalist id="listaTagova">
+                @*<b id="labela">Pretraži portal:</b>*@
+                @*<input list="listaTagova" id="traziInput" name="tagovi" type="text" size="25" class="form-control" onkeyup="ajaxPozivTagoviNaslovna()" />*@
+                @*<datalist id="listaTagova">
 
-                </datalist>
-                <input type="submit" class="btn btn-success" value="Pretrazi" id="pretrazi" />
+                </datalist>*@
+                @*<input type="submit" class="btn btn-success" value="Pretrazi" id="pretrazi" />*@
 
             </div>
             <br />
@@ -146,7 +146,7 @@ else if (ViewBag.Izmena == true)
 
 <script type="text/javascript">
             {
-                function ajaxPozivTagovi() {
+                function ajaxPozivTagoviNaslovna() {
                     if ($('#traziInput').val()[$('#traziInput').val().length - 1] != '#' && ($('#traziInput').val().length == 2)) {
                         var prvoSlovoTaga = $('#traziInput').val()[1];
                         var prvoS = { PrvoSlovo: prvoSlovoTaga }
