@@ -41,4 +41,22 @@ namespace AdiutorBootstrap.Models
             korisnici = new List<KorisnikModel>();
         }
     }
+
+    public class AdminKorisnikModel
+    {
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public string Username { get; set; }
+
+        [Required]
+        [Display(Name = "Sifra")]
+        public string Password { get; set; }
+
+        public string Email { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+        public int StatusID { get; set; }
+        public string StatusName { get; set; }
+    }
 }

@@ -1,0 +1,164 @@
+﻿@model List<AdiutorBootstrap.Models.AdminKorisnikModel>
+@{
+    ViewBag.Title = "AdministracijaKorisnika";
+}
+
+<header>
+    <h2 class="center">Administracija Korisnika</h2>
+</header>
+
+<div class="row">
+    <h2>Lista administratora</h2>
+</div>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    @if (Model != null)
+    {
+        <table class="col-lg-6 table">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var korisnik in Model)
+                {
+                    <tr>
+                        <td>@korisnik.Ime</td>
+                        <td>@korisnik.Prezime</td>
+                        <td>@korisnik.Username</td>
+                        <td>@korisnik.Email</td>
+                        <td>@korisnik.StatusName</td>
+                        <td><a href="/KorisnickiPanel/KlikNaKorisnika?korisnikId=@korisnik.Id">Profil</a></td>
+                        <td><a href="/Administracija/PromenaPodataka?korisnikId=@korisnik.Id">Promeni podatke</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="col-lg-6">Nema korisnika sa administratorskom privilegijom privilegijom.</p>
+    }
+    <div class="col-lg-3"></div>
+</div>
+
+<div class="row">
+    <form class="col-lg-4">
+        <p><strong>Korisničko ime za pretragu:</strong></p>
+        <input type="text" class="form-control" id="username">
+        <p class="text-danger" id="poruka"></p>
+        <br />
+    </form>
+</div>
+<div class="row">
+        <span>
+            <input type="button" class="btn btn-default space-vert" value="Traži po username" onclick="VratiKorisnika()" />
+        </span>
+        <span>
+            <input type="button" class="btn btn-default space-vert" value="Prikaži sve korisnike" onclick="VratiSveKorisnike()" />
+        </span>
+        <span>
+            <input type="button" class="btn btn-default space-vert" value="Prikaži sve profesore" onclick="VratiSveProfesore()"  />
+        </span>
+</div>
+
+<div class="row">
+    <div class="col-lg-3"></div>
+        <table class="col-lg-6 table" id="tabela">
+        </table>
+    <div class="col-lg-3"></div>
+</div>
+
+<script type="text/javascript">
+    {
+        function VratiKorisnika()
+        {
+            var username = document.getElementById("username").value;
+            $("#poruka").html("");
+            if (username === "")
+            {
+                $("#poruka").html("Morate da unesete korisničko ime za pretragu!");
+                return;
+            }
+            var send = { username: username };
+            $.get("VratiKorisnika", send, function (data) {
+                    Crtaj(data);
+            });
+        }
+
+        function VratiSveKorisnike() {
+            $.post("VratiSveKorisnike", null, function (data) {
+                Crtaj(data);
+            });
+        }
+
+        function VratiSveProfesore() {
+            $.get("VratiSveProfesore", null, function (data) {
+                Crtaj(data);
+            });
+        }
+
+        function Crtaj(data) {
+            if (data.length === 0)
+            {
+                $("#tabela").html("Ne postoje takvi podaci u bazi.");
+                return;
+            }
+
+            $("#tabela").html("<thead><tr><th>Ime</th><th>Prezime</th><th>Username</th><th>Email</th><th>Rola</th><th>Status</th>\
+                                <th></th></tr></thead><tbody id='content'></tbody>");
+            var telo = document.getElementById("content");
+            for (var i = 0; i < data.length; i++)
+            {
+                var red = document.createElement("tr");
+
+                var kol = document.createElement("td");
+                kol.innerHTML = data[i].Ime;
+                red.appendChild(kol);
+
+                kol = document.createElement("td");
+                kol.innerHTML = data[i].Prezime;
+                red.appendChild(kol);
+
+                kol = document.createElement("td");
+                kol.innerHTML = data[i].Username;
+                red.appendChild(kol);
+
+                kol = document.createElement("td");
+                kol.innerHTML = data[i].Email;
+                red.appendChild(kol);
+
+                kol = document.createElement("td");
+                kol.innerHTML = data[i].RoleName;
+                red.appendChild(kol);
+
+                kol = document.createElement("td");
+                kol.innerHTML = data[i].StatusName;
+                red.appendChild(kol);
+
+                kol = document.createElement("td");
+                var link = document.createElement("a");
+                link.href = "/KorisnickiPanel/KlikNaKorisnika?korisnikId=" + data[i].Id;
+                link.innerHTML = "Profil";
+                kol.appendChild(link);
+                red.appendChild(kol);
+
+                kol = document.createElement("td");
+                var link = document.createElement("a");
+                link.href = "/Administracija/PromenaPodataka?korisnikId=" + data[i].Id;
+                link.innerHTML = "Promeni podatke";
+                kol.appendChild(link);
+                red.appendChild(kol);
+
+                telo.appendChild(red);
+            }
+        }
+    }
+</script>

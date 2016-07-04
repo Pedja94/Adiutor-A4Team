@@ -1,0 +1,94 @@
+﻿@model AdiutorBootstrap.Models.AdminKorisnikModel
+@{
+    ViewBag.Title = "PromenaPodataka";
+}
+
+<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6 formaRegistracija skloniMarginuZaRegistraciju">
+    <div class=" ">
+        <style>
+            .center-page {
+                margin-top: 120px;
+            }
+        </style>
+
+        <form method="post" action="@Url.Action("PromenaPodataka", "Administracija")">
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            <p><strong>Ime i prezime: @Model.Ime @Model.Prezime</strong></p>
+            <br />
+
+            <p><strong>Username: @Model.Username</strong></p>
+            <br />
+
+            <p><strong>Email: @Model.Email</strong></p>
+            <br />
+
+            <input type="button" class="btn btn-default" value="Zameni rolu" onclick="OtvoriRola()">
+            <div id="rola"></div>
+            <br />
+
+            <input type="button" class="btn btn-default" value="Zameni status" onclick="OtvoriStatus()">
+            <div id="status"></div>
+            <br />
+
+            <input type="button" class="btn btn-default" id="dugme" value="Zameni šifru" onclick="OtvoriSifra()">
+            <input type="text" class="form-control" id="sifra" name="Password" disabled>
+            <br />
+
+       
+            <span>
+                <input type="submit" class="btn btn-success space-vert" value="Upamti promene" />
+            </span>
+
+
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    {
+        function OtvoriStatus()
+        {
+            switch (@Model.StatusID)
+            {
+                case 1: $("#status").html("<select name='StatusId'><option value='1' selected>Aktivan</option><option value='2'>Neaktivan</option>\
+                                <option value='3'>Blokiran</option></select>"); break;
+                case 2: $("#status").html("<select name='StatusId'><option value='1'>Aktivan</option><option value='2' selected>Neaktivan</option>\
+                                <option value='3'>Blokiran</option></select>"); break;
+                case 3: $("#status").html("<select name='StatusId'><option value='1'>Aktivan</option><option value='2'>Neaktivan</option>\
+                                <option value='3' selected>Blokiran</option></select>"); break;
+            }
+        }
+
+        function OtvoriRola()
+        {
+            switch (@Model.RoleID)
+            {
+                case 1: $("#rola").html("<select name='RoleId'><option value='1' selected>Korisnik</option><option value='2'>Profesor</option>\
+                                <option value='3'>Administrator</option></select>"); break;
+                case 2: $("#rola").html("<select name='RoleId'><option value='1'>Korisnik</option><option value='2' selected>Profesor</option>\
+                                <option value='3'>Administrator</option></select>"); break;
+                case 3: $("#rola").html("<select name='RoleId'><option value='1'>Korisnik</option><option value='2'>Profesor</option>\
+                                <option value='3' selected>Administrator</option></select>"); break;
+            }
+        }
+
+        function OtvoriSifra()
+        {
+            var input = document.getElementById("sifra");
+            var btn = document.getElementById("dugme");
+            if (input.disabled)
+            {
+                input.disabled = false;
+                btn.value = "Odbaci promenu";
+            }
+            else
+            {
+                input.disabled = true;
+                btn.value = "Zameni šifru";
+                input.value = "";
+            }
+        }
+    }
+</script>
+

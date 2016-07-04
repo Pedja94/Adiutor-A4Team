@@ -11,6 +11,9 @@ namespace AdiutorBootstrap.Controllers
 {
     public class AdministracijaController : Controller
     {
+        public string[] role = {"Korisnik", "Profesor", "Administrator"};
+        public string[] status = { "Aktivan", "Neaktivan", "Blokiran" };
+
         //
         // GET: /Administracija/
         public ActionResult Administracija(int korisnikId)
@@ -212,6 +215,146 @@ namespace AdiutorBootstrap.Controllers
             Predmeti.DodajZaduzenog(predmetId, profesorId);
 
             return RedirectToAction("AdministracijaPredmeta");
+        }
+
+        public ActionResult AdministracijaKorisnika()
+        {
+            List<AdminKorisnikModel> model = new List<AdminKorisnikModel>();
+            List<KorisnikDTO> korisnici = Korisnici.VratiSve(3);
+            foreach (KorisnikDTO user in korisnici)
+            {
+                model.Add(new AdminKorisnikModel()
+                {
+                    Id = user.Id,
+                    Ime = user.Ime,
+                    Prezime = user.Prezime,
+                    Username = user.Username,
+                    Password = user.Password,
+                    Email = user.Email,
+                    RoleID = user.RoleId,
+                    RoleName = role[user.RoleId - 1],
+                    StatusID = user.StatusId,
+                    StatusName = status[user.StatusId - 1]
+                });
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public JsonResult VratiKorisnika(string username)
+        {
+            KorisnikDTO user = Korisnici.Nadji(username);
+            List<AdminKorisnikModel> model = new List<AdminKorisnikModel>();
+
+            if (user != null)
+            {
+                model.Add(new AdminKorisnikModel()
+                {
+                    Id = user.Id,
+                    Ime = user.Ime,
+                    Prezime = user.Prezime,
+                    Username = user.Username,
+                    Password = user.Password,
+                    Email = user.Email,
+                    RoleID = user.RoleId,
+                    RoleName = role[user.RoleId - 1],
+                    StatusID = user.StatusId,
+                    StatusName = status[user.StatusId - 1]
+                });
+            }
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult VratiSveProfesore()
+        {
+            List<KorisnikDTO> korisnici = Korisnici.VratiSve(2);
+            List<AdminKorisnikModel> model = new List<AdminKorisnikModel>();
+
+            foreach (KorisnikDTO user in korisnici)
+            {
+                model.Add(new AdminKorisnikModel()
+                {
+                    Id = user.Id,
+                    Ime = user.Ime,
+                    Prezime = user.Prezime,
+                    Username = user.Username,
+                    Password = user.Password,
+                    Email = user.Email,
+                    RoleID = user.RoleId,
+                    RoleName = role[user.RoleId - 1],
+                    StatusID = user.StatusId,
+                    StatusName = status[user.StatusId - 1]
+                });
+            }
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult VratiSveKorisnike()
+        {
+            List<KorisnikDTO> korisnici = Korisnici.VratiSve();
+            List<AdminKorisnikModel> model = new List<AdminKorisnikModel>();
+
+            foreach (KorisnikDTO user in korisnici)
+            {
+                model.Add(new AdminKorisnikModel()
+                {
+                    Id = user.Id,
+                    Ime = user.Ime,
+                    Prezime = user.Prezime,
+                    Username = user.Username,
+                    Password = user.Password,
+                    Email = user.Email,
+                    RoleID = user.RoleId,
+                    RoleName = role[user.RoleId - 1],
+                    StatusID = user.StatusId,
+                    StatusName = status[user.StatusId - 1]
+                });
+            }
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult PromenaPodataka(int korisnikId)
+        {
+            AdminKorisnikModel model = new AdminKorisnikModel();
+            KorisnikDTO user = Korisnici.Procitaj(korisnikId);
+
+            model.Id = user.Id;
+            model.Username = user.Username;
+            model.Ime = user.Ime;
+            model.Prezime = user.Prezime;
+            model.Email = user.Email;
+            model.RoleID = user.RoleId;
+            model.StatusID = user.StatusId;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult PromenaPodataka(AdminKorisnikModel model)
+        {
+            KorisnikDTO user = Korisnici.Procitaj(model.Id);
+             if (model.RoleID != 0)
+             {
+                user.RoleId = model.RoleID;
+             }
+             if (model.StatusID != 0)
+             {
+                user.StatusId = model.StatusID;
+             }
+             if (model.Password != "" && model.Password != null)
+             {
+                user.Password = model.Password;
+             }
+             Korisnici.Izmeni(user);
+
+             return RedirectToAction("AdministracijaKorisnika");
         }
 	}
 }

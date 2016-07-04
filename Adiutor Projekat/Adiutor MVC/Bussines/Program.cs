@@ -417,7 +417,7 @@ namespace Bussiness
                 //KorisnikDTO k = Korisnici.Procitaj(37);
                 //Predmeti.DodajZaduzenog(pr, k);
 
-                List<PredmetDTO> lista = Predmeti.VratiSvePredmeteZaduzenog(232);
+                //List<PredmetDTO> lista = Predmeti.VratiSvePredmeteZaduzenog(232);
             }
             catch (Exception e)
             {
