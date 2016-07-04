@@ -88,7 +88,14 @@ else
 
         <div class="postaviPitanje">
             @*<button id="postaviNovoPitanje" type="submit" class="btn btn-primary" >Postavi novo pitanje</button>*@
-            @Html.ActionLink("Postavi novo pitanje", "NovoPitanje", "NovoPitanje", new { idOblasti = @Model.Id }, new { @class = "btn btn-primary" })
+           @if(Model!=null){
+                @Html.ActionLink("Postavi novo pitanje", "NovoPitanje", "NovoPitanje", new { idOblasti = @Model.Id }, new { @class = "btn btn-primary" })
+           }
+            else{
+               @Html.ActionLink("Postavi novo pitanje", "NovoPitanje", "NovoPitanje", new { idOblasti = 0 }, new { @class = "btn btn-primary" })
+           }
+
+
         </div>
 
     </div>
