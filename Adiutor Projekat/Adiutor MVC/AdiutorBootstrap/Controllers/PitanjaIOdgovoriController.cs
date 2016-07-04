@@ -119,6 +119,7 @@ namespace AdiutorBootstrap.Controllers
                     AutorPitanja = autorPitanja.Ime,
                     AutorId=autorPitanja.Id,
                     NaslovPitanja=pit.Naslov,
+                    BrojOdgovora=Odgovori.VratiSve(pit.Id).Count,
                 };
                 oblast.Pitanja.ListaPitanja.Add(p);
             }
