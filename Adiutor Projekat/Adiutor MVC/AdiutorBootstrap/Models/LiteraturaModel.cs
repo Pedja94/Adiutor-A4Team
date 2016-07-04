@@ -10,6 +10,8 @@ namespace AdiutorBootstrap.Models
         public int Id { get; set; }
         public string Naziv { get; set; }
         public string Link { get; set; }
+        public int OblastId { get; set; }
+
 
         public HttpPostedFileBase LiteraturaFajl { get; set; }
 

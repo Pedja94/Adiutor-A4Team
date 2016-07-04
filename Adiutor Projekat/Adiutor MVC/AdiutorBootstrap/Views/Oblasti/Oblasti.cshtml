@@ -7,8 +7,7 @@
 
 @Styles.Render("~/Content/KarticeStilovi")
 @Styles.Render("https://fonts.googleapis.com/css?family=Merriweather")
-
-
+@Styles.Render("~/Content/OblastiStilovi.css");
 
 <div class="biggerCon">
     <div class="literaturaContainer">
@@ -23,7 +22,11 @@
                 <li>@Html.ActionLink(lit.Naziv, lit.Link)</li>
             }
         </ul>
-
+        
+        @if (Model.ProfesorId == (int)Session["Id"])
+        { 
+          <div id="upl"><label class="nnt"></label><button id="upload" class="btn btn-danger" @*onclick="PredloziTag()"*@ data-toggle="modal" data-target=".bs-example-modal-sm">Dodaj</button></div>
+        }
     </div>
 </div>
 
@@ -100,3 +103,34 @@
 </form>
 
 
+
+
+
+<div id="mdl" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <br />
+            <div><label class="lbl">Ime literature:</label><input id="imeLiter" type="text" class="kontrole form-control" /></div>
+            <div><label class="lbl">Link </label><input id="linkLiter" type="text" class="kontrole form-control" /></div>
+            <button id="dugmeDodaj" class="btn btn-primary" onclick="DodajLiteraturu(@Model.Id)">Predlozi</button>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function DodajLiteraturu(oblastId) {
+        //ova funkcija treba da pokrene bootstrap modal
+        var nazivLiter = $('#imeLiter').val();
+        var linkLiter = $('#linkLiter').val();
+
+        var literatura = { OblastId: oblastId, Naziv: nazivLiter, Link: linkLiter };
+
+        $.post("/Oblasti/DodajLiteraturu", literatura, function (data) {
+            $('#mdl').modal('hide');
+
+            $('#listaLiterature').append("<li><a href='http:\\" + data.Link + "'>" + data.Naziv + "</a></li>");
+
+        });
+    }
+</script>

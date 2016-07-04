@@ -127,9 +127,6 @@ p{
 }
 
 
-body {
-    margin-top:50px;
-}
 
 
 
@@ -157,12 +154,12 @@ ul{
 
 .literaturaContainer{
     border-radius:5px;
-    background-color:rgba(43, 178, 125, 0.36);
+    /*background-color:rgba(43, 178, 125, 0.20);*/
     width:auto;
     display:inline-block;
     padding:10px;
     align-content:center;
-  
+    margin-bottom:20px;
 }
 
 

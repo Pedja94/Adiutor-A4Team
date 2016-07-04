@@ -165,6 +165,19 @@ namespace AdiutorBootstrap.Controllers
 
         }
 
+        [HttpPost]
+        public JsonResult DodajLiteraturu(LiteraturaModel literatura)
+        {
+            LiteraturaDTO lit = new LiteraturaDTO();
+            lit.Link = literatura.Link;
+            lit.Naziv = literatura.Naziv;
+            lit.OblastId = literatura.OblastId;
+
+            Literature.Dodaj(lit);
+
+
+            return Json(literatura, JsonRequestBehavior.AllowGet);
+        }
 
 
 	}
