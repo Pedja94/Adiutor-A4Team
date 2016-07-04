@@ -31,7 +31,7 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <form action="@Url.Action("TrazenjePoTagu","Oblasti")" method="post">
-                            @if (Session["Id"] != null)
+                  @if (Session["Id"] != null)
                             {
 
                   
@@ -52,15 +52,19 @@
 
                     <li></li>
                     <li class="dropdown">
+                    @if (Session["Id"] != null)
+                       {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Navigacija<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a  href="@Url.Action("Odabir_predmeta","Odabir_predmeta")">Odabir predmeta</a></li>
                            
-                           
+                      
                             <li>@Html.ActionLink("Postavi novo pitanje", "NovoPitanje", "NovoPitanje", new { idOblasti = 0 }, new { })</li>
                             <li role="separator" class="divider"></li>
                             <li>@Html.ActionLink("Odjavi se","LogOut","Home")</li>
+                       
                         </ul>
+                       }
                     </li>
                     <li>@if(Session["Id"]==null)
                         {@Html.ActionLink("Registracija", "Registracija", "Registracija")}</li>
