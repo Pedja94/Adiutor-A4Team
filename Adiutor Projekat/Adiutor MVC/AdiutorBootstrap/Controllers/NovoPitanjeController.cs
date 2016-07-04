@@ -48,12 +48,10 @@ namespace AdiutorBootstrap.Controllers
                 pit.KorisnikId=(int)Session["Id"];
                 pit.Tekst=pitanje.TekstPitanja;
                 pit.Naslov=pitanje.NaslovPitanja;
-                pit.OblastId = Oblasti.Nadji(pitanje.NazivOblasti).Id;
-
-                OblastDTO obl = Oblasti.Nadji(pitanje.NazivOblasti);
+              
 
 
-                if (pitanje.NazivOblasti != null && obl!=null)
+                if (pitanje.NazivOblasti != null)
                 {
                     pit.OblastId = Oblasti.Nadji(pitanje.NazivOblasti).Id;
                 }
