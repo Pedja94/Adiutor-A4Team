@@ -17,7 +17,7 @@
         @*<input type="text" size="80" name="naslovPitanja" id="textNaslov" />*@
         @Html.TextBoxFor(m => m.NaslovPitanja, new { @name="naslovPitanja",@id="textNaslov"})
         
-        @if (Model == null)
+        @if (Model == null || Model.IdOblasti==0)
         {
             <br />
             <h3>Unesi ime oblasti:</h3>
@@ -50,10 +50,10 @@
         </div>
 
 
-        @if (Model != null)
+        @*@if (Model != null)
         {
             @Html.HiddenFor(m=>m.IdOblasti)
-        }
+        }*@
 
 
 

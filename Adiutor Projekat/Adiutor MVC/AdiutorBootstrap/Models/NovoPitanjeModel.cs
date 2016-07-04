@@ -9,7 +9,7 @@ namespace AdiutorBootstrap.Models
     {
         public string NazivOblasti { get; set;}
 
-        public string IdOblasti { get; set; }
+        public int IdOblasti { get; set; }
 
         public List<string> ImenaSvihOblasti { get; set; }
 

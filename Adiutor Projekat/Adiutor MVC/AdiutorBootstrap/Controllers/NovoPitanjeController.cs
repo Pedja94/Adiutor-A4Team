@@ -20,7 +20,7 @@ namespace AdiutorBootstrap.Controllers
             if (idOblasti != 0) 
             { 
                 NovoPitanjeModel mdl = new NovoPitanjeModel();
-                mdl.IdOblasti = idOblasti.ToString();
+                mdl.IdOblasti = idOblasti;
                 return View(mdl);
             }
             else
@@ -44,56 +44,61 @@ namespace AdiutorBootstrap.Controllers
         {
             try
             { 
-            PitanjeDTO pit=new PitanjeDTO();
-            pit.KorisnikId=(int)Session["Id"];
-            pit.Tekst=pitanje.TekstPitanja;
-            pit.Naslov=pitanje.NaslovPitanja;
-            if (pitanje.NazivOblasti != null)
-            {
+                PitanjeDTO pit=new PitanjeDTO();
+                pit.KorisnikId=(int)Session["Id"];
+                pit.Tekst=pitanje.TekstPitanja;
+                pit.Naslov=pitanje.NaslovPitanja;
                 pit.OblastId = Oblasti.Nadji(pitanje.NazivOblasti).Id;
-            }
-            else
-            {
-                pit.OblastId = int.Parse(pitanje.IdOblasti);
-            }
-            pit.DatumVreme=DateTime.Now;
 
-          
-                
-           
+                OblastDTO obl = Oblasti.Nadji(pitanje.NazivOblasti);
 
-            PitanjeDTO pitproc = Pitanja.Nadji(pit.Naslov);
 
-            Pitanja.Dodaj(pit);
-           
-           
-            string primljeniTagovi = pitanje.Tagovi;
-            if(primljeniTagovi[0]=='#')
-            {
-                char[] separatingChar = { '#', ' ' };
-                string[] nizTagova = primljeniTagovi.Split(separatingChar, System.StringSplitOptions.RemoveEmptyEntries);
-
-                foreach (var tag in nizTagova)
+                if (pitanje.NazivOblasti != null && obl!=null)
                 {
-                    TagDTO tag1 = Tagovi.Nadji(tag);
-                    //Pitanja_
-                    Pitanje_TagDTO pitanjeTag = new Pitanje_TagDTO()
-                    {
-                        PitanjeId=pitproc.Id,
-                        TagId=tag1.Id,
-                    };
-                    Pitanja_Tagovi.Dodaj(pitanjeTag);
+                    pit.OblastId = Oblasti.Nadji(pitanje.NazivOblasti).Id;
                 }
+                else
+                {
+                    pit.OblastId = pitanje.IdOblasti;
+                }
+                pit.DatumVreme=DateTime.Now;
 
 
-            }
+
+                Pitanja.Dodaj(pit);
+
+                PitanjeDTO pitproc = Pitanja.Nadji(pit.Naslov);
+
+              
+           
+           
+                string primljeniTagovi = pitanje.Tagovi;
+                if(primljeniTagovi[0]=='#')
+                {
+                    char[] separatingChar = { '#', ' ' };
+                    string[] nizTagova = primljeniTagovi.Split(separatingChar, System.StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (var tag in nizTagova)
+                    {
+                        TagDTO tag1 = Tagovi.Nadji(tag);
+                        //Pitanja_
+                        Pitanje_TagDTO pitanjeTag = new Pitanje_TagDTO()
+                        {
+                            PitanjeId=pitproc.Id,
+                            TagId=tag1.Id,
+                        };
+                        Pitanja_Tagovi.Dodaj(pitanjeTag);
+                    }
+
+
+                }
 
             
 
-            PitanjeIOdgovoriController cont = new PitanjeIOdgovoriController();
+                PitanjeIOdgovoriController cont = new PitanjeIOdgovoriController();
 
-            return cont.PitanjeIOdgovori1(pitproc.Id);//ovo treba da se ipsravi
-            }
+                return cont.PitanjeIOdgovori1(pitproc.Id);//ovo treba da se ipsravi
+                }
             catch (Exception e)
             {
                 pitanje.Greska = true;
