@@ -13,6 +13,6 @@ namespace Database.Entiteti
         public virtual string TagIme { get; set; }
         public virtual string Opis { get; set; }
         public virtual DateTime DatumPostavljanja { get; set; }
-        public virtual DateTime DatumObrade { get; set; }
+        public virtual DateTime? DatumObrade { get; set; }
     }
 }

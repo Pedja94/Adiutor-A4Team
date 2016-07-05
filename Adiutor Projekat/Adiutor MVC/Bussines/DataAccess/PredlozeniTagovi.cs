@@ -22,7 +22,7 @@ namespace Business.DataAccess
 
                 Predlozeni_Tag pt = new Predlozeni_Tag()
                 {
-                    DatumObrade = c.DatumObrade,
+                    DatumObrade = null,
                     DatumPostavljanja = c.DatumPostavljanja,
                     Ime = c.Ime,
                     Opis = c.Opis,

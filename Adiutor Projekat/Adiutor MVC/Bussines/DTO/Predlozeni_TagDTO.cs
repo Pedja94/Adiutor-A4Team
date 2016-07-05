@@ -13,6 +13,6 @@ namespace Business.DTO
         public string TagIme { get; set; }
         public string Opis { get; set; }
         public DateTime DatumPostavljanja { get; set; }
-        public DateTime DatumObrade { get; set; }
+        public DateTime? DatumObrade { get; set; }
     }
 }

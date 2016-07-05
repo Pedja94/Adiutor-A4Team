@@ -129,11 +129,7 @@ namespace AdiutorBootstrap.Controllers
             {
                 ImenaTagova.Add(tag.TagIme);
             }
-            //List<string> ImenaTagova = new List<string>();
-            //ImenaTagova.Add("programiranje");
-            //ImenaTagova.Add("web");
-            //ImenaTagova.Add("mvc");
-            //ImenaTagova.Add("niz");
+          
 
             return Json(ImenaTagova, JsonRequestBehavior.AllowGet);
         }
