@@ -105,6 +105,7 @@ namespace AdiutorBootstrap.Controllers
             
             PredmetDTO pred = Predmeti.Procitaj(model.Id);
             PredmetModel posalji = model;
+            model.PregledaProfesor = true;
 
             if (model.OpisPredmeta != null)
             { 

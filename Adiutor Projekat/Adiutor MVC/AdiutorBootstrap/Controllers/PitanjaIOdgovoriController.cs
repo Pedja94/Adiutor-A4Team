@@ -356,8 +356,11 @@ namespace AdiutorBootstrap.Controllers
                 korOdg.KorisnikId = (int)Session["Id"];
                 korOdg.OdgovorId = odgovor.Id;
 
+                if ((odg.Minus - odg.Plus) > 100)
+                {
+                    Odgovori.Obrisi(odgovor.Id);
+                }
                 Korisnici_Odgovori.Dodaj(korOdg);
-
             }
 
             return Json(odgovor, JsonRequestBehavior.AllowGet);

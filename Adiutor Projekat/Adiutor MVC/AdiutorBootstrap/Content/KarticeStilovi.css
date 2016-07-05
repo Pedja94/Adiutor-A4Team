@@ -27,7 +27,13 @@
     border-radius:5px;
     width:80%;
     left:15%;
+    color:#2bb27d;
        
+}
+
+
+p > a{
+    color:black;
 }
 
 .dodatni_atributi{
