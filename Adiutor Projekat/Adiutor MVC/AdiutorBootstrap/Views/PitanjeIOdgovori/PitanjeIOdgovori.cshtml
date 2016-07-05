@@ -75,6 +75,14 @@
                         @Html.ActionLink(@Model.Pitanje.Oblast, "KlikNaLink", "PitanjeIOdgovori",new { idOblasti = @Model.Pitanje.OblastId },null)
                     </td>
 
+                    @* DODATAK ZA BRISANJE *@
+                    @if ((int)Session["Role"] == 3 || (int)Session["Id"] == Model.Pitanje.ProfesorId)
+                    {
+                         <td id="obrisiPitanje" style="text-align:center">
+                            @Html.ActionLink("Obriši", "ObrisiPitanje", "PitanjeIOdgovori",new { idPitanja = @Model.Pitanje.Id },null)
+                        </td>
+                    }
+
                 </tr>
                 <tr id="naslov-pitanja" style="text-align:center">
                     <td id="samNaslov" colspan="4">
@@ -168,6 +176,13 @@
                             <td id="vremeOdgovora">
                                 @Html.DisplayTextFor(m => m.Odgovori[i].DatumVreme)
                             </td>
+                            @* DODATAK ZA BRISANJE *@
+                            @if ((int)Session["Role"] == 3 || (int)Session["Id"] == Model.Pitanje.ProfesorId)
+                            {
+                                <td id="obrisiPitanje" style="text-align:center">
+                                    @Html.ActionLink("Obriši", "ObrisiOdgovor", "PitanjeIOdgovori", new { idOdgovora = @odgovor.Id, idPitanja = @Model.Pitanje.Id }, null)
+                                </td>
+                            }
                         </tr>
                         <tr id="tekstOdgovora">
                             <td id="samTekstOdgovora" colspan="3">
@@ -211,6 +226,13 @@
                                             <td id="tekstKomentara">
                                                 @komentar.DatumVreme
                                             </td>
+                                            @* DODATAK ZA BRISANJE *@
+                                            @if ((int)Session["Role"] == 3 || (int)Session["Id"] == Model.Pitanje.ProfesorId)
+                                            {
+                                                <td id="obrisiPitanje" style="text-align:center">
+                                                    @Html.ActionLink("Obriši", "ObrisiKomentar", "PitanjeIOdgovori", new { idKomentara = @komentar.Id, idPitanja = @Model.Pitanje.Id }, null)
+                                                </td>
+                                            }
                                         </tr>
                                         <tr>
                                             <td colspan="2">

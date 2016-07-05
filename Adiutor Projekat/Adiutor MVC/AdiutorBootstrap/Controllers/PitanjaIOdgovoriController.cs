@@ -404,8 +404,22 @@ namespace AdiutorBootstrap.Controllers
             return Json(odgovor, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult ObrisiPitanje(int idPitanja)
+        {
+            Pitanja.Obrisi(idPitanja);
+            return RedirectToAction("KlikNaKorisnika", "KorisnickiPanel", new { korisnikId = (int)Session["Id"] });
+        }
 
+        public ActionResult ObrisiOdgovor(int idOdgovora, int idPitanja)
+        {
+            Odgovori.Obrisi(idOdgovora);
+            return RedirectToAction("PitanjeIOdgovori1", new { idPitanja = idPitanja });
+        }
 
-   
+        public ActionResult ObrisiKomentar(int idKomentara, int idPitanja)
+        {
+            Komentari.Obrisi(idKomentara);
+            return RedirectToAction("PitanjeIOdgovori1", new { idPitanja = idPitanja });
+        }
 	}
 }
