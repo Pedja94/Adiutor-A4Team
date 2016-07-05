@@ -99,12 +99,38 @@ namespace AdiutorBootstrap.Controllers
         }
 
 
-
-        public ActionResult IzmeniPodatkeOPredmetuZahtev (int predmetId)
+        [HttpPost]
+        public ActionResult IzmeniPodatkeOPredmetuZahtev (PredmetModel model)
         {
-            ViewBag.Izmena = true;
-            PredmetDTO pred = Predmeti.Procitaj(predmetId);
-            return View();
+            
+            PredmetDTO pred = Predmeti.Procitaj(model.Id);
+            PredmetModel posalji = model;
+
+            if (model.OpisPredmeta != null)
+            { 
+                pred.Opis = model.OpisPredmeta;
+            }
+            pred.Semestar = (int)model.Semestar;
+
+            foreach (var oblast in Oblasti.VratiSve())
+            {
+                if (oblast.PredmetId == pred.Id)
+                {
+                    OblastModel obl = new OblastModel
+                    {
+                        Naziv = oblast.Ime,
+                        Opis = oblast.Opis,
+                        Id = oblast.Id,
+                        ProfesorId = pred.ZaduzenId,
+                    };
+                    posalji.Oblasti.Add(obl);
+                }
+            }
+
+            Predmeti.Izmeni(pred);
+           
+
+            return View("Predmet",posalji);
         }
 
 

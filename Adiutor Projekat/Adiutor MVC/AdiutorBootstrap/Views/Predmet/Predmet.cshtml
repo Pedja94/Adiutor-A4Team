@@ -7,51 +7,57 @@
 }
 @Styles.Render("~/Content/PredmetStilovi.css")
 
+<form action="@Url.Action("IzmeniPodatkeOPredmetuZahtev","Predmet")" method="post">
+    <div id="container" class="col-lg-5 col-md-6 col-sm-10 col-xs-10">
+        <h1  id="nazivPredmeta">@Html.DisplayTextFor(m => m.NazivPredmeta)</h1>
+        <hr />
+        @Html.HiddenFor(m=>m.NazivPredmeta)
 
-<div id="container" class="col-lg-5 col-md-6 col-sm-10 col-xs-10">
-    <h1 name="nazivPredmeta" id="nazivPredmeta">@Html.DisplayTextFor(m=> m.NazivPredmeta)</h1>
-    <hr />
-    <div class="semestar-godina-smer">
-        <h4 id="zadProfesor">Zaduženi profesor: @if (Model.PregledaProfesor == false) { 
-                                                    @Html.DisplayTextFor(m => m.ZaduzeniProfesor)
-                                                 }
-                                                else
-                                                {
-                                                    @Html.TextBoxFor(m => m.ZaduzeniProfesor, new { @class="form-control"})
-                                                }
+        <div class="semestar-godina-smer">
+            <h4 id="zadProfesor">
+                Zaduženi profesor: @if (Model.PregledaProfesor == false)
+                {
+                    @Html.DisplayTextFor(m => m.ZaduzeniProfesor)
+                }
+                else
+                {
+                    @Html.DisplayTextFor(m => m.ZaduzeniProfesor)
+                    @Html.HiddenFor(m=>m.ZaduzeniProfesor)
+                }
             </h4>
-        <h4>Semestar: @Html.DisplayTextFor(m=>m.Semestar) &nbsp; |</h4>
+            <h4>Semestar: @Html.TextBoxFor(m => m.Semestar, new {@class="form-control" }) &nbsp; </h4>
 
+        </div>
+        <hr />
+        <div class="opisPredmeta">
+
+            <!--ovde neki opis iz modela kad se napravi-->
+            <article id="opisPredmeta">
+                @if (Model.PregledaProfesor == false)
+                {
+                    @Model.OpisPredmeta
+                }
+                else
+                {
+                    @Html.TextAreaFor(m => m.OpisPredmeta, new { @class = "form-control", @name = "Opis" });
+                }
+            </article>
+
+            @Html.HiddenFor(m => m.Id)
+
+
+            @if (Model.PregledaProfesor == true)
+            {
+                @Html.HiddenFor(m => m.Id)
+      
+                    @*@Html.ActionLink("Izmeni podatke", "IzmeniPodatkeOPredmetuZahtev", new { model = @Model }, new { @class = "btn btn-success" })*@
+                    <button type="submit" class="btn btn-success">Izmeni podatke</button>
+            }
+        </div>
+        <br />
     </div>
-    <hr />
-    <div class="opisPredmeta">
-
-        <!--ovde neki opis iz modela kad se napravi--> 
-        <article id="opisPredmeta">
-          @if (Model.PregledaProfesor == false)
-          {  
-            @Model.OpisPredmeta  
-          }
-          else
-          {
-              @Html.TextAreaFor(m => m.OpisPredmeta, new {@class = "form-control", @name = "Opis" });
-          } 
-        </article>
-
-        @Html.HiddenFor(m => m.Id)
-        
-
-        @if (Model.PregledaProfesor == true)
-        {
-             @Html.HiddenFor(m => m.Id)
-            <form method="post" action="@Url.Action("IzmeniPodatkeOPredmetuZahtev","Predmet")">
-                @Html.ActionLink("Izmeni podatke", "IzmeniPodatkeOPredmetuZahtev", new { predmetId = @Model.Id }, new { @class = "btn btn-success" })
-            </form>
-        }
-    </div>
-  <br />
-</div>
-<br />
+    <br />
+</form>
 
 <div id="oblastiPredmeta" class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
     @if (@Model.PregledaProfesor == true)
@@ -107,6 +113,7 @@
                 $('#sadrzaj2').append("<br/>");
                 $('#sadrzaj2').append("<button id='dodajBtn' onclick='DodajNovuOblast(@Model.Id)' class='btn btn-success'>Dodaj</button>");
 
+               
 
                
                
@@ -127,7 +134,7 @@
                 //hendler funkcija;
                 $('#oblastiPredmeta').append("<div id='karticaOblast'><div id='nazivOblasti'>"+data.ImeOblasti+"</div> <article id='opisOblasti'>"+ data.OpisOblasti+"</article></div>");
 
-              
+                $('#mdl').modal('hide');
             })
 
         }
